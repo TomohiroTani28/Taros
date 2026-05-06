@@ -66,8 +66,9 @@ class AssemblyParams:
     PUMP_POS: tuple = (10.0, 75.0, 5.0)      # X=10-90, Y=75-115, Z=5-25
 
     # #4b SHG module (60×30×20mm) — 12_mechanical §1.4: 独立部品
+    # TEC_SHG (Z=3-8) の上に配置。OPA同様 Z=8 (TEC上面) から開始。
     SHG_SIZE: tuple = (60.0, 30.0, 20.0)
-    SHG_POS: tuple = (10.0, 120.0, 5.0)      # X=10-70, Y=120-150, Z=5-25
+    SHG_POS: tuple = (10.0, 120.0, 8.0)      # X=10-70, Y=120-150, Z=8-28 (TEC上)
 
     # #5 PPLN OPA ×2 (50×20×10mm) — TEC上に配置 (Z=8 = 底板3mm + TEC5mm)
     OPA_SIZE: tuple = (50.0, 20.0, 10.0)

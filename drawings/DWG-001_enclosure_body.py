@@ -248,29 +248,45 @@ def build_enclosure_body(p: EnclosureParams = None):
         )
 
     # 8. PTFE断熱板取付溝 (4面側壁内面, Z=90mm)
-    # 左右壁 (<X/>X): local X=Y方向, local Y=Z方向, center=(D/2, H_body/2)
-    # 前後壁 (<Y/>Y): local X=X方向, local Y=Z方向, center=(W/2, H_body/2)
+    # faces("<X") は外壁面(X=0)を選択するため、cutBlind では外面側に溝ができてしまう。
+    # 内壁面に溝を作るには Step 9 (EMI溝) と同じ transformed+box+cut 方式を使用する。
+    # 溝位置: 各壁の内面から PTFE_GROOVE_D (1.5mm) 切り込み
     if p.PTFE_GROOVE_ENABLED:
-        # 左右壁: Y方向全内寸に溝
-        for face_sel in ["<X", ">X"]:
-            body = (
-                body
-                .faces(face_sel)
-                .workplane()
-                .move(0, p.PTFE_Z - H_body / 2)
-                .rect(D_inner, p.PTFE_T)
-                .cutBlind(-p.PTFE_GROOVE_D)
-            )
-        # 前後壁: X方向全内寸に溝
-        for face_sel in ["<Y", ">Y"]:
-            body = (
-                body
-                .faces(face_sel)
-                .workplane()
-                .move(0, p.PTFE_Z - H_body / 2)
-                .rect(W_inner, p.PTFE_T)
-                .cutBlind(-p.PTFE_GROOVE_D)
-            )
+        gd = p.PTFE_GROOVE_D  # 1.5mm
+        pt = p.PTFE_T          # 3.0mm (溝高さ = PTFE板厚)
+        pz = p.PTFE_Z          # 90.0mm (溝底面Z)
+
+        # 左壁内面溝: X = T_side - gd .. T_side (= 1.5 .. 3.0)
+        left_groove = (
+            cq.Workplane("XY")
+            .transformed(offset=(T_side - gd, T_side, pz))
+            .box(gd, D_inner, pt, centered=False)
+        )
+        body = body.cut(left_groove)
+
+        # 右壁内面溝: X = W - T_side .. W - T_side + gd (= 297.0 .. 298.5)
+        right_groove = (
+            cq.Workplane("XY")
+            .transformed(offset=(W - T_side, T_side, pz))
+            .box(gd, D_inner, pt, centered=False)
+        )
+        body = body.cut(right_groove)
+
+        # 前壁内面溝: Y = T_side - gd .. T_side (= 1.5 .. 3.0)
+        front_groove = (
+            cq.Workplane("XY")
+            .transformed(offset=(T_side, T_side - gd, pz))
+            .box(W_inner, gd, pt, centered=False)
+        )
+        body = body.cut(front_groove)
+
+        # 後壁内面溝: Y = D - T_side .. D - T_side + gd (= 247.0 .. 248.5)
+        back_groove = (
+            cq.Workplane("XY")
+            .transformed(offset=(T_side, D - T_side, pz))
+            .box(W_inner, gd, pt, centered=False)
+        )
+        body = body.cut(back_groove)
 
     # 9. EMI遮蔽壁取付溝 (底板上面, X=210, Zone B/C境界)
     # 銅箔シールド壁(0.1mm Cu, 238×134mm)の底板側固定溝
