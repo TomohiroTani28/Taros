@@ -84,7 +84,8 @@ Taros/
 │
 ├── assets/                # 画像・レンダリング・資料
 │   ├── exterior-render.png         # 外観レンダリング
-│   └── TAROS_Investor_Pitch_Revised.pptx  # 投資家向けピッチデック
+│   ├── TAROS_Investor_Pitch.pdf           # 投資家向けピッチデック (PDF, GitHub閲覧可)
+│   └── TAROS_Investor_Pitch_Revised.pptx  # 投資家向けピッチデック (編集用)
 │
 ├── fallback/              # DV-FBQCフォールバック設計
 │   ├── 01_deskside-vision.md       # DV-FBQC版デスクサイドQC
@@ -127,7 +128,7 @@ Taros/
 
 | 目的 | 参照先 |
 |------|--------|
-| 投資家向け説明 | `design/00_overview.md` + `assets/TAROS_Investor_Pitch_Revised.pptx` |
+| 投資家向け説明 | `design/00_overview.md` + [`Investor Pitch (PDF)`](assets/TAROS_Investor_Pitch.pdf) |
 | 技術デューデリジェンス | `design/06_noise-budget.md` + `design/13_performance.md` |
 | 実験計画 | `experiments/` |
 | コスト見積もり | `analysis/bom.md` |
