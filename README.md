@@ -1,10 +1,10 @@
-# Taros — デスクサイド光量子コンピュータ
+# Taros — デスクトップ光量子コンピュータ
 
 <p align="center">
   <img src="assets/taros-pro-6view.png" alt="Taros Pro 6-view render" width="720">
 </p>
 
-**プロジェクト名**: Taros (Desktop photonic quantum computer)
+**プロジェクト名**: Taros (Desktop Photonic Quantum Computer)
 **目標**: ACアダプタで動くポータブル誤り訂正型光量子コンピュータの実現
 **Last Updated**: 2026-05-06
 
@@ -14,7 +14,7 @@
 
 > **「電源コンセントとLANケーブルで動く量子コンピュータ」**
 
-超伝導方式（IBM/Google）はmK冷凍機が必須で原理的にデスクサイド化不可能。
+超伝導方式（IBM/Google）はmK冷凍機が必須で原理的にデスクトップ化不可能。
 フォトニック方式のみが到達可能な形態であり、Tarosの決定的差別化要因。
 
 ---
