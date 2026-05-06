@@ -87,7 +87,7 @@ TDM方式に最適な2つの駆動オプション:
 - OPAは定常状態で動作 → 最大安定性
 - EO gateでパルス化 → タイミング精度 <1ps (LNOI EO)
 - 追加損失: EO gate 挿入損失 0.3dB → ビームスプリッタモデルで実効スクイージング劣化（v2.0: dB直接減算は物理的に不正確。V_eff = η×V_sqz + (1−η), σ_eff = −10×log₁₀(V_eff)。06_noise-budget v2.0 §2.3参照）
-- **実効スクイージング: 約12.1dB**（η=0.933でV_eff=0.0616, σ_eff=12.1dB。旧値12.7dBはdB減算による過大評価）
+- **実効スクイージング: 約9.4dB**（η=0.933でV_eff=0.933×0.0501+(1−0.933)=0.1137, σ_eff=−10log₁₀(0.1137)=9.4dB）[v3.4: BSモデル修正。旧12.1dBはdB減算(13-0.9)による過大推定]
 
 **Option B: パルスポンプOPA (1550nm GS-DFB + SOA + PPLN SHG)**
 ```
@@ -106,6 +106,17 @@ TDM方式に最適な2つの駆動オプション:
 - **実効スクイージング: 13dB**
 
 **選択: **Option B（パルスポンプOPA）を推奨**（v2.0: EO gate 0.3dB損失が閾値マージンに致命的）。** Option AはEO gate挿入損失0.3dBが実効スクイージングを~0.9dB劣化させ、閾値マージンを大幅に削減する。Option BはEO gateを排除し、この損失を完全に回避する。
+
+> **[v3.4追記] フォームファクタ別ポンプ構成**
+>
+> | フォームファクタ | ポンプ構成 | 詳細 |
+> |---|---|---|
+> | **Portable (2 OPA)** | Option B — パルス | GS-DFB 1550nm + SOA 1.6W peak + PPLN SHG → 775nm パルス ~400mW peak → 1×2 split → 200mW/OPA |
+> | **Rack (8 OPA)** | CW 775nm DFB + TA 2.5W | 1×8 splitter → ~250mW/OPA [05_phase-lock.md §3参照] |
+>
+> **理由**: Portable=低消費電力(SOA 8W vs TA 65W)・小型化優先。Rack=高出力安定性・8 OPA同時駆動に十分なパワーバジェット。
+>
+> Option BのEO gate不要利点はPortableにのみ適用。Rack版はCWポンプのため従来型TDM（EO gate使用 or CWモードスロット方式）。
 
 ---
 

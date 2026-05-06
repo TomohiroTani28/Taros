@@ -188,6 +188,19 @@ QECサイクル = 7 rounds (d=7のsingle-shot近似)
 >   → Tゲート最小間隔 ≈ T_QEC + 560ns = 7.42μs。
 > - MWPM最悪ケース(O(n³)): 高シンドロームカウント時に510nsを超過する可能性あり。
 >   対策: タイムアウト閾値設定(700ns) + UFフォールバック。Phase -1 T11で実装検証。
+>
+> **[v3.4追記] MWPM 510ns 概算サイクル分解（Blossom-V FPGA実装の推定値、Phase -1でのシリコン検証必須）**:
+>
+> | Phase | 処理内容 | サイクル数 | 時間 (@ 400MHz) |
+> |---|---|---:|---:|
+> | 1 | Syndrome parsing + edge weight computation | ~40 cycles | 100ns |
+> | 2 | Minimum-weight matching (Blossom-V kernel) | ~120 cycles | 300ns |
+> | 3 | Correction chain extraction | ~20 cycles | 50ns |
+> | 4 | Output formatting + byproduct update | ~24 cycles | 60ns |
+> | **合計** | | **~204 cycles** | **510ns** |
+>
+> タイムアウト(700ns) + UFフォールバックの実効p_Lへの影響:
+> タイムアウト発生率が0.1%以下であれば、実効p_Lへの影響は無視可能（UF単独p_L~5×10⁻⁴がタイムアウト頻度で重み付け: 実効p_L ≈ p_L_MWPM + 0.001×p_L_UF ≈ p_L_MWPM + 5×10⁻⁷）。
 
 ### 3.3 FPGA実装
 
