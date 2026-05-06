@@ -1,8 +1,6 @@
-## SS0: Executive Summary（v4.0 R5新規 C41、R6更新）
+> **⚠ FROZEN (2026-05-04)**: 本文書はDV-FBQC v4.0 R6時点の設計を記録したものです。プロジェクトの主軸はCV方式に移行しています。最新設計は `design/00_overview.md` を参照してください。
 
-> **⚠️ レガシー文書**: 本文書はDV-FBQC方式の設計書です。プロジェクトの主軸はCV方式（Taros Portable）に移行しています。
-> 最新のExecutive Summaryは **`00_summary/cv-executive-summary.md`** を参照してください。
-> 本文書はDV-FBQCフォールバック設計として保持されています。
+## SS0: Executive Summary（v4.0 R5新規 C41、R6更新）
 
 本セクションは、6,000行超の設計書の最終推奨構成を1箇所に集約したものである。R1-R6の全合意事項（56項目）を統合した**確定版**。
 

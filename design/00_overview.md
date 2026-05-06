@@ -21,7 +21,7 @@
 |-----------|------|--------|------|----------|
 | 生成スクイージング | σ_gen | 13dB | CW PPLN OPA (NTT) | 02_opa-source |
 | 全劣化 (GAWBS込み) | L_total | 1.42dB (離散光学) / 0.39dB (Phase 1 離散光学) / 0.15dB (Phase 2+ PIC) | ビームスプリッタモデル: η=10^(-L/10) | 06_noise-budget v2.0 |
-| 実効スクイージング | σ_eff | **5.0dB** (現離散光学) / 8.8dB (Phase 1, 13dB) / 9.5-10.2dB (Phase 2+ PIC 現実的) / 10.9dB (理論限界) | v3.1修正: Phase 1を13dBに統一。PIC L=0.27dB(現実的) | 06_noise-budget v3.1 |
+| 実効スクイージング | σ_eff | **5.0dB** (現離散光学) / 8.8dB (Phase 1, 13dB) / **≈9.5dB** (Phase 2+ PIC 現実的, L=0.27dB, non-loss込み) / 10.9dB (理論限界, L=0.15dB) | v3.5修正: Phase 2+ PIC現実的を9.5dBに確定（06_noise-budget §2.3統一計算: V_eff=0.1124→9.49dB）。旧「9.5-10.2dB」のうち10.2dBはL≈0.19dB楽観ケースで別途記載 | 06_noise-budget v3.5 |
 | 物理エラー率 | p_phys | 現離散(5.0dB): 閾値未達 / Phase 1(13dB, 8.8dB): 7.5×10⁻³ / Phase 2+ PIC現実的(13dB, ~9.7dB): ~3×10⁻³ | v3.1 erfc再計算 | 13_performance |
 | 閾値 (soft-info) | p_th_eff | 1.5% | soft-info MWPM (Noh-Chamberland 2022); UF時≈0.8-1.2%. v3.2: 製品デコーダはMWPM (現実的L=0.27dBでUF~5×10⁻⁴>10⁻⁵) | 08_decoder |
 | 閾値 (保守) | p_th | 0.59% | hard-syndrome MWPM | 文献値 |
@@ -64,9 +64,9 @@
 | Tゲートレート (単一ch) | ~1.9kHz | ~400Hz | ~146Hz |
 | 筐体 | 25×20×10cm | 30×25×16cm | 40×30×20cm |
 | 重量 (WDM込み) | **~4.3kg** | **~7.5kg** | **~9.7kg** |
-| 消費電力 (WDM込み) | **~100W** | **~109W** | **~112W** | [v3.2: SOA +3W全モデル反映]
+| 消費電力 (WDM込み) | **~104W** | **~109W** | **~112W** | [v3.5: Edu OPA×2必須(macronode要件)で100→104W]
 | 冷却 | 低速ファン+底面HS | 低速ファン+背面HP | 低速ファン×2 |
-| 原価 (WDM込み) | $53K | $75K | $95K |
+| 原価 (WDM込み) | $56K | $75K | $95K |
 | 販売価格 | **$90K** | **$120K** | **$170K** |
 | 用途 | 教育・QEC研究 | 研究・VQE | **FTQC・量子化学 (Phase 2+ PIC)** |
 

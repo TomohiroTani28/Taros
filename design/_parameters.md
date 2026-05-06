@@ -6,7 +6,12 @@
 
 > 本文書はプロジェクト全体のパラメータ定義の単一真実源（SSOT）です。
 > 他の文書がパラメータ値を引用する場合、本文書を参照元とすること。
-> CV方式の詳細パラメータは `design/00_overview.md` 正規パラメータ表を参照。
+>
+> **SSOT階層 (v3.5明確化)**:
+> - **本文書 `_parameters.md`**: プロジェクト全体のSSOT。全方式(CV/DV)横断のパラメータ定義
+> - **`00_overview.md` 正規パラメータ表**: CV方式の詳細パラメータ。本文書の値を展開・詳細化したもの
+> - **各design文書 (01-14)**: 個別サブシステムの設計詳細。パラメータ値は上位2文書に準拠
+> - **矛盾時の優先順位**: `_parameters.md` > `00_overview.md` > 個別design文書
 
 ---
 
@@ -47,8 +52,8 @@
 |-----------|------|---------------|----------------------|------------------------|----------|
 | 全光学損失 | L_total | 0.39 dB | 0.27 dB | 0.15 dB | design/06_noise-budget |
 | 全光学透過率 | η_total | 0.914 | 0.940 | 0.966 | design/06_noise-budget |
-| 実効スクイージング | σ_eff | 8.8 dB | 9.5-10.2 dB | 10.9 dB | design/06_noise-budget |
-| 物理エラー率 | p_phys | 7.5×10⁻³ | 2-4×10⁻³ | 9.9×10⁻⁴ | design/13_performance |
+| 実効スクイージング | σ_eff | 8.8 dB | **≈9.5 dB** (L=0.27dB, non-loss込み) | 10.9 dB | design/06_noise-budget |
+| 物理エラー率 | p_phys | 7.5×10⁻³ | ≈3.3×10⁻³ (L=0.27dB) | 9.9×10⁻⁴ | design/13_performance |
 
 ### 2.3 QEC性能
 
@@ -57,7 +62,7 @@
 | 閾値 (soft-info MWPM) | p_th_eff | 1.5% | Noh-Chamberland 2022 | design/08_decoder |
 | 閾値 (保守 hard MWPM) | p_th | 0.59% | 文献値 | design/13_performance |
 | 論理エラー率 d=7 (MWPM, Phase 2+ PIC理論限界) | p_L | 5.7×10⁻⁷ | L=0.15dB, Δ=0, QE=99% | design/13_performance |
-| 論理エラー率 d=7 (MWPM, Phase 2+ PIC現実的) | p_L | ~7×10⁻⁵ | L=0.27dB, non-loss noise込み | design/06_noise-budget |
+| 論理エラー率 d=7 (MWPM, Phase 2+ PIC現実的) | p_L | **~7×10⁻⁵** | L=0.27dB, QE≥99%, non-loss noise込み。v3.5統一計算: 06_noise-budget §2.3 | design/06_noise-budget |
 | デコーダ遅延 (MWPM製品) | t_dec | 510 ns | @400MHz | design/08_decoder |
 | デコーダ遅延 (UF実験) | t_dec | 350 ns | @400MHz | design/08_decoder |
 | フィードフォワード (FF-1) | t_FF | 27 ns | @400MHz | design/07_feedforward |
@@ -68,8 +73,8 @@
 |-----------|-----------|-----------|-----------|----------|
 | 表面符号距離 | d=3 | d=5 | d=7 | design/00_overview |
 | 重量 | ~4.3 kg | ~7.5 kg | ~9.7 kg | design/00_overview |
-| 消費電力 | ~100 W | ~109 W | ~112 W | design/00_overview |
-| 原価 | $53K | $75K | $95K | analysis/bom |
+| 消費電力 | ~104 W | ~109 W | ~112 W | design/00_overview |
+| 原価 | $56K | $75K | $95K | analysis/bom |
 | 販売価格 | $90K | $120K | $170K | analysis/bom |
 
 ---
