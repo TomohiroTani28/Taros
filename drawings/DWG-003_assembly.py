@@ -112,7 +112,7 @@ class AssemblyParams:
     # 出典: 03_tdm-cluster.md:100 — τ₁=10ns=PMF 2m
     PMF_SHORT_D: float = 50.0
     PMF_SHORT_H: float = 20.0
-    PMF_SHORT_POS: tuple = (170.0, 210.0, 18.0)  # Zone B内、HDPE上
+    PMF_SHORT_POS: tuple = (170.0, 210.0, 3.0)   # Zone B内、底板上直置き (HDPE範囲外)
 
     # #11 WDM AWG 8ch (100×35×20mm)
     AWG_SIZE: tuple = (100.0, 35.0, 20.0)
