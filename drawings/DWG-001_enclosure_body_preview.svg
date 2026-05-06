@@ -114,7 +114,7 @@
   <!-- 250mm -> 125px, 142mm -> 71px -->
   <!-- Position: x=220, y=30 -->
   <!-- ============================================ -->
-  <g id="right-side-view" transform="translate(220, 30)">
+  <g id="right-side-view" transform="translate(220, 130)">
     <text x="62.5" y="-3" class="text-note" text-anchor="middle" font-weight="bold">右側面図 (X=300)</text>
 
     <!-- Outer rectangle -->
@@ -384,7 +384,7 @@
     <text x="60" y="19" class="text-title-sm">3rd Angle</text>
     <text x="2" y="25.5" class="text-title-sm">Material</text>
     <text x="32" y="25.5" class="text-title-sm">A6063-T5</text>
-    <text x="52" y="25.5" class="text-title-sm">Mass: 2.31 kg</text>
+    <text x="52" y="25.5" class="text-title-sm">Mass: 1.74 kg</text>
     <text x="2" y="32" class="text-title-sm">Surface</text>
     <text x="32" y="32" class="text-title-sm">Anodized Black 15um (JIS H 8601 AA15)</text>
     <text x="2" y="38" class="text-title-sm">Tolerance</text>

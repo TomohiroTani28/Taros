@@ -247,17 +247,28 @@ def build_enclosure_body(p: EnclosureParams = None):
             .cutBlind(-p.TOP_SCREW_DEPTH)
         )
 
-    # 8. PTFE断熱板取付溝 (左右側壁内面, Z=90mm)
-    # <X/>X面: local X=Y方向, local Y=Z方向, center=(D/2, H_body/2)
+    # 8. PTFE断熱板取付溝 (4面側壁内面, Z=90mm)
+    # 左右壁 (<X/>X): local X=Y方向, local Y=Z方向, center=(D/2, H_body/2)
+    # 前後壁 (<Y/>Y): local X=X方向, local Y=Z方向, center=(W/2, H_body/2)
     if p.PTFE_GROOVE_ENABLED:
-        groove_w = D_inner  # 244mm (Y方向内寸)
+        # 左右壁: Y方向全内寸に溝
         for face_sel in ["<X", ">X"]:
             body = (
                 body
                 .faces(face_sel)
                 .workplane()
                 .move(0, p.PTFE_Z - H_body / 2)
-                .rect(groove_w, p.PTFE_T)
+                .rect(D_inner, p.PTFE_T)
+                .cutBlind(-p.PTFE_GROOVE_D)
+            )
+        # 前後壁: X方向全内寸に溝
+        for face_sel in ["<Y", ">Y"]:
+            body = (
+                body
+                .faces(face_sel)
+                .workplane()
+                .move(0, p.PTFE_Z - H_body / 2)
+                .rect(W_inner, p.PTFE_T)
                 .cutBlind(-p.PTFE_GROOVE_D)
             )
 

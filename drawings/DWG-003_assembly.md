@@ -36,7 +36,7 @@
 | 3 | NKT E15 OEM | Master Laser 1550nm | 120×60×30mm, 10mW | 1 | [出典: design/12_mechanical.md:L72] |
 | 4 | — | 775nm GS-DFB+SOA+SHG | Option B pump, 200mW peak | 1 | [出典: design/10_portable.md:L207] |
 | 5 | NTT/HC Photonics | PPLN OPA | 50×20×10mm | 2 | [出典: design/12_mechanical.md:L75-L76] |
-| 6 | — | Peltier TEC (OPA×2温調 + SHG×1) | 60×50×5mm, ΔT_max=50K | 3 | [出典: design/12_mechanical.md:L77, design/10_portable.md:L109] |
+| 6 | — | Peltier TEC (OPA×2温調 + SHG×1) | 60×50×5mm (OPA), 60×35×5mm (SHG), ΔT_max=50K | 3 | [出典: design/12_mechanical.md:L77, design/10_portable.md:L109] ※SHG用TEC位置: Y=120-155 (SHG直下)。12_mech §1.4の Y=80-115 は旧配置、更新要 |
 | 7 | iXblue/HyperLight | LNOI EOM | 40×20×10mm | 2 | [出典: design/12_mechanical.md:L78-L79] |
 | 8 | — | BS カプラ 50:50 | PMF1550, FC/APC | 3 | [出典: design/12_mechanical.md:L80] |
 | 9 | — | Balanced PD (InGaAs) | 35×20×20mm, QE≥99% | 2 | [出典: design/12_mechanical.md:L81-L82] |
@@ -50,7 +50,7 @@
 | 16 | Maxim MAX5898 | DAC 14bit 400MSPS | — | 1 | [出典: design/07_feedforward.md] |
 | 17 | — | DC-DC converter | 28V→各電圧, η≥92% | 1 | [出典: design/12_mechanical.md:L103] |
 | 18 | — | Cu ヒートパイプ φ6×80mm | sintered wick, 50W/本 | 3 | [出典: design/12_mechanical.md:L104] |
-| 19 | — | PTFE断熱板 | 290×240×3mm | 1 | [出典: design/12_mechanical.md:L58] |
+| 19 | — | PTFE断熱板 | 290×240×3mm, PMFスプール部φ85切欠き | 1 | [出典: design/12_mechanical.md:L58] |
 | 20 | — | PZT driver + PID | 80×40×15mm | 1 | [出典: design/12_mechanical.md:L102] |
 | 21 | — | DAC + EO driver | 70×30×15mm | 1 | [出典: design/12_mechanical.md:L101] |
 | 22 | Noctua NF-A8 | 80mmファン | 1400rpm, <25dBA | 1 | [出典: design/11_industrial-design.md:L210] |
@@ -74,7 +74,7 @@
 | 40 | — | ゴムブッシュ M4用 (PMF防振) | NBR Shore A 40 | 2 | 手順10 |
 | 41 | — | スタンドオフ M3×10 (FPGA/ADC) | 黄銅ニッケルメッキ | 8 | 手順13-14 |
 | 42 | — | 熱伝導グリス | λ≥5W/mK, 10g | 1 | 手順2,2b,17 |
-| 43 | — | 銅箔シールド壁 0.1mm | Cu 290×137mm | 1 | [出典: design/12_mechanical.md:L303] |
+| 43 | — | 銅箔シールド壁 0.1mm | Cu 238×134mm (内寸244-6cl × 136-2cl) | 1 | [出典: design/12_mechanical.md:L303] |
 | 44 | — | DC-DCシールド缶 | アルミ t0.5mm | 1 | [出典: design/12_mechanical.md:L306] |
 
 ---
@@ -316,7 +316,7 @@ Zone C → 背面: USB-C, 10GbE, GND 各配線
 | 2 | ホモダインバランス | 20min | CMR ≥ 35dB |
 | 3 | PLL 3層ロック | 45min | ±0.5° RSS, 30min持続 |
 | 4 | FFレイテンシ | 15min | ≤ 27ns |
-| 5 | σ_eff統合測定 | 30min | ≥ 9.0dB (d=3 break-even)。d=5出荷: ≥ 10.5dB [出典: 12_mechanical §2.5] |
+| 5 | σ_eff統合測定 | 30min | **≥ 10.5dB** (d=5出荷基準) [出典: 12_mechanical §2.5]。参考: d=3 break-even ≥ 9.0dB |
 | 6 | GKP動作確認 | 30min | P_mode ≥ 90% |
 | 7 | 温度サイクル | 60min | σ_eff変動 < 0.3dB |
 | 8 | 48hバーンイン | 48h無人 | drift < 0.1dB |

@@ -100,15 +100,17 @@ class AssemblyParams:
     # =====================================================================
 
     # #10 PMFスプール 102m (φ80×80mm) — d=5ベースライン
+    # HDPE隔離プレート(Z=3-18, 15mm厚)の上に配置 → Z_bottom=18
+    # スプール上端 Z=18+80=98 → PTFE板(Z=90)を貫通するため、PTFE板にφ85mm切欠き要
     PMF_D: float = 80.0
     PMF_H: float = 80.0
-    PMF_POS: tuple = (170.0, 122.0, 5.0)     # center (X,Y), Z_bottom
+    PMF_POS: tuple = (170.0, 122.0, 18.0)    # center (X,Y), Z_bottom=HDPE上面
 
     # 短遅延PMF 2m スプール (φ50×20mm) — TDMクラスタ生成必須
     # 出典: 03_tdm-cluster.md:100 — τ₁=10ns=PMF 2m
     PMF_SHORT_D: float = 50.0
     PMF_SHORT_H: float = 20.0
-    PMF_SHORT_POS: tuple = (170.0, 210.0, 5.0)  # Zone B内、長遅延スプールの横
+    PMF_SHORT_POS: tuple = (170.0, 210.0, 18.0)  # Zone B内、HDPE上
 
     # #11 WDM AWG 8ch (100×35×20mm)
     AWG_SIZE: tuple = (100.0, 35.0, 20.0)
@@ -161,6 +163,7 @@ class AssemblyParams:
 
     # =====================================================================
     # PTFE断熱板 (出典: 12_mechanical §1.3)
+    # 290×240×3mm, PMFスプール貫通部にφ85mm切欠き (スプール上端Z=98 > PTFE Z=90)
     # =====================================================================
     PTFE_SIZE: tuple = (290.0, 240.0, 3.0)
     PTFE_POS: tuple = (5.0, 5.0, 90.0)       # Z=90 底面基準

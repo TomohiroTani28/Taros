@@ -187,7 +187,7 @@
   <!-- D=250->125px, H=160->80px at 1:2 -->
   <!-- Position: x=220, y=25 -->
   <!-- ============================================ -->
-  <g id="right-side-view" transform="translate(225, 25)">
+  <g id="right-side-view" transform="translate(225, 128)">
     <text x="62.5" y="-3" class="text-note" text-anchor="middle" font-weight="bold">右側面図 (X=300)</text>
 
     <!-- Body outline -->

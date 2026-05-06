@@ -238,6 +238,7 @@
       <rect x="107.5" y="0" width="1" height="9"/>
       <rect x="110" y="0" width="1" height="9"/>
       <rect x="112.5" y="0" width="1" height="9"/>
+      <rect x="115" y="0" width="1" height="9"/>
     </g>
 
     <!-- Dimension: Depth 250 -->
@@ -327,6 +328,7 @@
       <line x1="10" y1="107.5" x2="140" y2="107.5"/>
       <line x1="10" y1="110" x2="140" y2="110"/>
       <line x1="10" y1="112.5" x2="140" y2="112.5"/>
+      <line x1="10" y1="115" x2="140" y2="115"/>
     </g>
 
     <!-- M3 holes (shown as + marks through fins) -->
@@ -477,7 +479,7 @@
     <text x="60" y="19" class="text-title-sm">3rd Angle</text>
     <text x="2" y="25.5" class="text-title-sm">Material</text>
     <text x="32" y="25.5" class="text-title-sm">A6063-T5</text>
-    <text x="52" y="25.5" class="text-title-sm">Mass: 1.64 kg</text>
+    <text x="52" y="25.5" class="text-title-sm">Mass: 1.66 kg</text>
     <text x="2" y="32" class="text-title-sm">Surface</text>
     <text x="32" y="32" class="text-title-sm">Anodized Black 15um (JIS H 8601 AA15)</text>
     <text x="2" y="38" class="text-title-sm">Tolerance</text>
