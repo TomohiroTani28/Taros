@@ -150,7 +150,7 @@ class AssemblyParams:
     PZT_SIZE: tuple = (80.0, 40.0, 15.0)
     PZT_POS: tuple = (210.0, 180.0, 5.0)     # X=210-290, Y=180-220
 
-    # #18 Cu ヒートパイプ ×3 (φ6×80mm, vertical)
+    # #18 Cu ヒートパイプ ×3 (φ6×84mm, vertical)
     HP_D: float = 6.0
     HP_H: float = 84.0   # Z=55-139 (天板内面Z=139に到達、TIM 50-100μm接続)
     HP_POSITIONS: tuple = (
