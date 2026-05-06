@@ -40,7 +40,8 @@
 | 7 | iXblue/HyperLight | LNOI EOM | 40×20×10mm | 2 | [出典: design/12_mechanical.md:L78-L79] |
 | 8 | — | BS カプラ 50:50 | PMF1550, FC/APC | 3 | [出典: design/12_mechanical.md:L80] |
 | 9 | — | Balanced PD (InGaAs) | 35×20×20mm, QE≥99% | 2 | [出典: design/12_mechanical.md:L81-L82] |
-| 10 | Corning/Fujikura | PMF 102m スプール | φ80×80mm, ~0.8kg | 1 | [出典: design/12_mechanical.md:L84] |
+| 10 | Corning/Fujikura | PMF 102m スプール (長遅延, d=5) | φ80×80mm, ~0.8kg | 1 | [出典: design/12_mechanical.md:L84] |
+| 10b | — | PMF 2m スプール (短遅延 τ₁=10ns) | φ50×20mm | 1 | [出典: design/03_tdm-cluster.md:L100] |
 | 11 | NTT-AT | WDM AWG 8ch | 100×35×20mm, IL 0.2dB | 1 | [出典: design/12_mechanical.md:L96] |
 | 12 | — | WDM PD ×16 | ドーターカード | 1set | [出典: design/12_mechanical.md:L97] |
 | 13 | AMD VE2302 | FPGA Versal | 80×80×20mm, 25W TDP | 1 | [出典: design/12_mechanical.md:L99] |

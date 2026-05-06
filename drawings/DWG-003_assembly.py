@@ -7,6 +7,9 @@ DWG-003: Taros Pro 総組立図 (General Assembly)
 内部部品は簡易形状 (box/cylinder) で表現。
 正確なモデルは個別DWG図面を参照のこと。
 
+設計ベースライン: d=5 (符号距離), PMF 102m (長遅延)
+  d=5: N_col=50, τ₂=500ns, PMF=102m, φ80×80mmスプール
+
 座標系 (データム):
   A: 筐体底面 Z=0
   B: 筐体左側面 X=0
@@ -41,7 +44,7 @@ TopPlateParams = _dwg002.TopPlateParams
 
 @dataclass
 class AssemblyParams:
-    """DWG-003 組立固有パラメータ"""
+    """DWG-003 組立固有パラメータ (BOM全44品目の主要部品を配置)"""
 
     # === 共通パラメータ参照 ===
     common: TarosProParams = None
@@ -49,54 +52,183 @@ class AssemblyParams:
     # === 天板配置Z (SSOT導出: EnclosureParams.H_body - LIP_H) ===
     TOP_PLATE_Z: float = None  # __post_init__で動的計算
 
-    # === Zone A: 光学部品 (出典: 12_mechanical §1.4 座標表) ===
-    # OPA ×2 (50×20×10mm) — TEC上に配置 (Z=8 = 底板3mm + TEC5mm)
-    OPA_SIZE: tuple = (50.0, 20.0, 10.0)
-    OPA1_POS: tuple = (15.0, 155.0, 8.0)   # 12_mech: X=15-65, Y=155-175
-    OPA2_POS: tuple = (15.0, 180.0, 8.0)   # 12_mech: X=15-65, Y=180-200
+    # =====================================================================
+    # Zone A: 光学部品 (X=5-135, Y=5-244, Z=5-90)
+    # 出典: 12_mechanical §1.4 座標表
+    # =====================================================================
 
-    # TEC ×3 (60×50×5mm) — OPA直下×2 + SHG×1 (底板上面Z=3に配置)
+    # #3 Master Laser NKT E15 OEM (120×60×30mm)
+    LASER_SIZE: tuple = (120.0, 60.0, 30.0)
+    LASER_POS: tuple = (10.0, 10.0, 5.0)     # X=10-130, Y=10-70, Z=5-35
+
+    # #4 775nm Pump LD + SOA + SHG module (80×40×20mm)
+    PUMP_SIZE: tuple = (80.0, 40.0, 20.0)
+    PUMP_POS: tuple = (10.0, 75.0, 5.0)      # X=10-90, Y=75-115, Z=5-25
+
+    # #5 PPLN OPA ×2 (50×20×10mm) — TEC上に配置 (Z=8 = 底板3mm + TEC5mm)
+    OPA_SIZE: tuple = (50.0, 20.0, 10.0)
+    OPA1_POS: tuple = (15.0, 155.0, 8.0)     # X=15-65, Y=155-175
+    OPA2_POS: tuple = (15.0, 180.0, 8.0)     # X=15-65, Y=180-200
+
+    # #6 Peltier TEC ×3 (底板上面Z=3に配置)
     # 注: 12_mechanical §1.4 ではTEC Z=15-20 (OPA上) だが、
     #      TEC→底板排熱パスの熱抵抗最小化のためOPA直下(Z=3)に配置変更。
-    #      12_mechanical.md の座標表を本配置に更新すること。
-    TEC_SIZE: tuple = (60.0, 50.0, 5.0)
-    TEC1_POS: tuple = (10.0, 155.0, 3.0)   # OPA#1直下
-    TEC2_POS: tuple = (10.0, 180.0, 3.0)   # OPA#2直下
-    TEC3_POS: tuple = (10.0, 120.0, 3.0)   # SHG直下 (12_mech: SHG Y=120-150)
+    TEC_OPA_SIZE: tuple = (60.0, 50.0, 5.0)  # OPA#1+#2 共用 (1台で両OPAカバー)
+    TEC_OPA_POS: tuple = (10.0, 152.0, 3.0)  # Y=152-202 (両OPAの下)
+    TEC_SHG_SIZE: tuple = (60.0, 35.0, 5.0)  # SHG温調用
+    TEC_SHG_POS: tuple = (10.0, 80.0, 3.0)   # Pump/SHG module直下
 
-    # Master Laser (120×60×30mm)
-    LASER_SIZE: tuple = (120.0, 60.0, 30.0)
-    LASER_POS: tuple = (10.0, 10.0, 5.0)   # 12_mech: X=10-130, Y=10-70, Z=5-35
+    # #7 LNOI EOM ×2 (40×20×10mm)
+    EOM_SIZE: tuple = (40.0, 20.0, 10.0)
+    EOM1_POS: tuple = (75.0, 155.0, 5.0)     # X=75-115, Y=155-175
+    EOM2_POS: tuple = (75.0, 180.0, 5.0)     # X=75-115, Y=180-200
 
-    # === Zone B: ファイバ (出典: DWG-003_assembly.md §2.2) ===
-    # PMFスプール (φ80×80mm) — cylinder
+    # #8 BS カプラ 50:50 ×3 (ファイバトレイ内, 40×30×10mm)
+    BS_SIZE: tuple = (40.0, 30.0, 10.0)
+    BS_POS: tuple = (10.0, 210.0, 5.0)       # X=10-50, Y=210-240
+
+    # #9 Balanced PD ×2 (35×20×20mm)
+    BPD_SIZE: tuple = (35.0, 20.0, 20.0)
+    BPD1_POS: tuple = (75.0, 210.0, 5.0)     # X=75-110, Y=210-230
+    BPD2_POS: tuple = (75.0, 230.0, 5.0)     # X=75-110, Y=230-244
+
+    # =====================================================================
+    # Zone B: ファイバ (X=135-210, Y=5-244, Z=5-90)
+    # =====================================================================
+
+    # #10 PMFスプール 102m (φ80×80mm) — d=5ベースライン
     PMF_D: float = 80.0
     PMF_H: float = 80.0
-    PMF_POS: tuple = (170.0, 122.0, 5.0)  # 12_mech: X=130-210, Y=52-192 center (Zone B内)
+    PMF_POS: tuple = (170.0, 122.0, 5.0)     # center (X,Y), Z_bottom
 
-    # === Zone C: 電子制御 (出典: DWG-003_assembly.md §2.2) ===
-    # FPGA (80×80×20mm)
+    # 短遅延PMF 2m スプール (φ50×20mm) — TDMクラスタ生成必須
+    # 出典: 03_tdm-cluster.md:100 — τ₁=10ns=PMF 2m
+    PMF_SHORT_D: float = 50.0
+    PMF_SHORT_H: float = 20.0
+    PMF_SHORT_POS: tuple = (170.0, 210.0, 5.0)  # Zone B内、長遅延スプールの横
+
+    # #11 WDM AWG 8ch (100×35×20mm)
+    AWG_SIZE: tuple = (100.0, 35.0, 20.0)
+    AWG_POS: tuple = (135.0, 5.0, 5.0)       # X=135-235, Y=5-40
+
+    # #12 WDM PD ×16 ドーターカード (80×35×20mm)
+    WDMPD_SIZE: tuple = (80.0, 35.0, 20.0)
+    WDMPD_POS: tuple = (135.0, 5.0, 30.0)    # AWG上にスタック
+
+    # #25 HDPE振動隔離プレート (80×80×15mm) — PMFスプール支持
+    HDPE_SIZE: tuple = (80.0, 80.0, 15.0)
+    HDPE_POS: tuple = (130.0, 82.0, 3.0)     # PMFスプール周辺
+
+    # =====================================================================
+    # Zone C: 電子制御 (X=210-294, Y=5-244, Z=5-137)
+    # =====================================================================
+
+    # #13 FPGA VE2302 (80×80×20mm)
     FPGA_SIZE: tuple = (80.0, 80.0, 20.0)
-    FPGA_POS: tuple = (210.0, 50.0, 3.0)   # 12_mech: X=210-290, Y=10-90, 左下隅基準
+    FPGA_POS: tuple = (210.0, 10.0, 5.0)     # X=210-290, Y=10-90
 
-    # === PTFE断熱板 (出典: DWG-003_assembly.md §2.4, 12_mechanical §1.3) ===
+    # #14-15 ADC boards ×2 (80×45×15mm)
+    ADC_SIZE: tuple = (80.0, 45.0, 15.0)
+    ADC_POS: tuple = (210.0, 95.0, 5.0)      # X=210-290, Y=95-140
+
+    # #16,21 DAC + EO driver (70×30×15mm)
+    DAC_SIZE: tuple = (70.0, 30.0, 15.0)
+    DAC_POS: tuple = (210.0, 145.0, 5.0)     # X=210-280, Y=145-175
+
+    # #17 DC-DC converter (80×80×25mm)
+    DCDC_SIZE: tuple = (80.0, 45.0, 25.0)
+    DCDC_POS: tuple = (210.0, 95.0, 25.0)    # ADC上にスタック
+
+    # #20 PZT driver + PID (80×40×15mm)
+    PZT_SIZE: tuple = (80.0, 40.0, 15.0)
+    PZT_POS: tuple = (210.0, 180.0, 5.0)     # X=210-290, Y=180-220
+
+    # #18 Cu ヒートパイプ ×3 (φ6×80mm, vertical)
+    HP_D: float = 6.0
+    HP_H: float = 80.0
+    HP_POSITIONS: tuple = (
+        (230.0, 50.0, 55.0),    # HP#1 — DWG-002 HP穴位置と一致
+        (250.0, 125.0, 55.0),   # HP#2
+        (230.0, 200.0, 55.0),   # HP#3
+    )
+
+    # #43 EMI遮蔽壁 Cu箔 (0.1mm, at X=210 Zone B/C boundary)
+    SHIELD_SIZE: tuple = (0.5, 238.0, 134.0)  # 薄板 (簡易表現)
+    SHIELD_POS: tuple = (209.75, 3.0, 3.0)    # X=210 center
+
+    # =====================================================================
+    # PTFE断熱板 (出典: 12_mechanical §1.3)
+    # =====================================================================
     PTFE_SIZE: tuple = (290.0, 240.0, 3.0)
-    PTFE_POS: tuple = (5.0, 5.0, 90.0)
+    PTFE_POS: tuple = (5.0, 5.0, 90.0)       # Z=90 底面基準
 
-    # === 部品質量概算 [g] (出典: 10_portable.md §2) ===
+    # =====================================================================
+    # 部品質量概算 [g]
+    # =====================================================================
     MASS_OPA: float = 30.0          # OPA ×1
     MASS_TEC: float = 50.0          # TEC ×1
     MASS_LASER: float = 350.0       # Master Laser
-    MASS_PMF_SPOOL: float = 800.0   # PMFスプール (0.8kg, DWG-003 BOM#10)
+    MASS_PUMP: float = 200.0        # Pump LD+SOA+SHG
+    MASS_EOM: float = 20.0          # EOM ×1
+    MASS_BS: float = 15.0           # BS ×1
+    MASS_BPD: float = 40.0          # BPD ×1
+    MASS_PMF_SPOOL: float = 800.0   # PMF 102m スプール
+    MASS_PMF_SHORT: float = 30.0    # PMF 2m 短遅延
+    MASS_AWG: float = 150.0         # AWG
+    MASS_WDMPD: float = 100.0       # WDM PD x16
     MASS_FPGA: float = 120.0        # FPGA基板
-    MASS_PTFE: float = 450.0        # PTFE板 (2.15g/cm3 × 290×240×3mm)
+    MASS_ADC: float = 100.0         # ADC基板 ×2
+    MASS_DAC: float = 60.0          # DAC + EO driver
+    MASS_DCDC: float = 200.0        # DC-DC
+    MASS_PZT: float = 60.0          # PZT driver
+    MASS_HP: float = 30.0           # ヒートパイプ ×1
+    MASS_HDPE: float = 100.0        # HDPE plate
+    MASS_PTFE: float = 450.0        # PTFE板
 
     def __post_init__(self):
         if self.common is None:
             self.common = PARAMS
         if self.TOP_PLATE_Z is None:
-            # 動的計算: 筐体上端 - リップ深さ = 142 - 3 = 139mm
             self.TOP_PLATE_Z = EnclosureParams().H_body - self.common.LIP_H
+
+
+# =============================================================================
+# ヘルパー関数
+# =============================================================================
+
+def _add_box(assy, name, size, pos, color):
+    """box形状を生成しAssemblyに追加"""
+    part = cq.Workplane("XY").box(size[0], size[1], size[2], centered=False)
+    assy.add(part, name=name, loc=cq.Location(cq.Vector(*pos)), color=color)
+
+
+def _add_cylinder(assy, name, diameter, height, pos, color, centered_xy=True):
+    """cylinder形状を生成しAssemblyに追加"""
+    part = cq.Workplane("XY").cylinder(
+        height, diameter / 2, centered=(centered_xy, centered_xy, False)
+    )
+    assy.add(part, name=name, loc=cq.Location(cq.Vector(*pos)), color=color)
+
+
+# =============================================================================
+# カラー定義
+# =============================================================================
+
+C_ENCLOSURE = cq.Color(0.15, 0.15, 0.15, 1.0)   # dark gray
+C_LASER = cq.Color(0.8, 0.1, 0.1, 0.8)           # red
+C_PUMP = cq.Color(0.8, 0.2, 0.2, 0.8)            # dark red
+C_OPA = cq.Color(0.9, 0.5, 0.1, 0.8)             # orange
+C_TEC = cq.Color(0.3, 0.3, 0.8, 0.8)             # blue
+C_EOM = cq.Color(0.7, 0.7, 0.1, 0.8)             # yellow
+C_BS = cq.Color(0.6, 0.3, 0.6, 0.8)              # purple
+C_BPD = cq.Color(0.1, 0.5, 0.5, 0.8)             # teal
+C_PMF = cq.Color(0.2, 0.7, 0.2, 0.7)             # green
+C_ELECTRONICS = cq.Color(0.1, 0.6, 0.1, 0.8)     # dark green
+C_DCDC = cq.Color(0.4, 0.4, 0.4, 0.8)            # gray
+C_HP = cq.Color(0.8, 0.5, 0.2, 0.9)              # copper
+C_PTFE = cq.Color(0.95, 0.95, 0.95, 0.5)         # white translucent
+C_SHIELD = cq.Color(0.8, 0.5, 0.2, 0.3)          # copper translucent
+C_HDPE = cq.Color(0.9, 0.9, 0.8, 0.6)            # off-white
 
 
 # =============================================================================
@@ -104,10 +236,7 @@ class AssemblyParams:
 # =============================================================================
 
 def build_assembly(p: AssemblyParams = None):
-    """
-    総組立モデルを生成する。
-    Returns: cadquery.Assembly
-    """
+    """総組立モデルを生成する。BOM全主要部品を配置。"""
     if p is None:
         p = AssemblyParams()
 
@@ -115,121 +244,124 @@ def build_assembly(p: AssemblyParams = None):
 
     # --- 1. 筐体本体 (DWG-001) ---
     enclosure = build_enclosure_body(EnclosureParams())
-    assy.add(enclosure, name="enclosure_body", color=cq.Color(0.15, 0.15, 0.15, 1.0))
+    assy.add(enclosure, name="enclosure_body", color=C_ENCLOSURE)
 
     # --- 2. 天板 (DWG-002) Z=139mm配置 ---
-    # 天板はZ=0基準で生成されるため、Z=139に移動
-    # 干渉チェック: 天板下面の嵌合段差 (外周2mm, 深さ3mm) が
-    #   筐体リップ (内寸+2mm幅, 深さ3mm, Z=139-142) に嵌合する。
-    #   天板配置Z=139 → 天板下面=139, 嵌合部=139-142 → 筐体リップ=139-142 ✓ 整合
     top_plate = build_top_plate(TopPlateParams())
-    assy.add(
-        top_plate,
-        name="top_plate",
-        loc=cq.Location(cq.Vector(0, 0, p.TOP_PLATE_Z)),
-        color=cq.Color(0.15, 0.15, 0.15, 1.0),
-    )
+    assy.add(top_plate, name="top_plate",
+             loc=cq.Location(cq.Vector(0, 0, p.TOP_PLATE_Z)), color=C_ENCLOSURE)
 
-    # --- 3. Zone A: OPA ×2 ---
+    # === Zone A: 光学部品 ===
+
+    # --- 3. Master Laser (#3) ---
+    _add_box(assy, "Laser", p.LASER_SIZE, p.LASER_POS, C_LASER)
+
+    # --- 4. Pump LD + SOA + SHG (#4) ---
+    _add_box(assy, "Pump_SHG", p.PUMP_SIZE, p.PUMP_POS, C_PUMP)
+
+    # --- 5. OPA ×2 (#5) ---
     for i, pos in enumerate([p.OPA1_POS, p.OPA2_POS], 1):
-        opa = cq.Workplane("XY").box(
-            p.OPA_SIZE[0], p.OPA_SIZE[1], p.OPA_SIZE[2], centered=False
-        )
-        assy.add(
-            opa,
-            name=f"OPA_{i}",
-            loc=cq.Location(cq.Vector(*pos)),
-            color=cq.Color(0.9, 0.5, 0.1, 0.8),  # orange
-        )
+        _add_box(assy, f"OPA_{i}", p.OPA_SIZE, pos, C_OPA)
 
-    # --- 4. Zone A: TEC ×3 (OPA×2 + SHG×1) ---
-    for i, pos in enumerate([p.TEC1_POS, p.TEC2_POS, p.TEC3_POS], 1):
-        tec = cq.Workplane("XY").box(
-            p.TEC_SIZE[0], p.TEC_SIZE[1], p.TEC_SIZE[2], centered=False
-        )
-        assy.add(
-            tec,
-            name=f"TEC_{i}",
-            loc=cq.Location(cq.Vector(*pos)),
-            color=cq.Color(0.3, 0.3, 0.8, 0.8),  # blue
-        )
+    # --- 6. TEC (OPA共用 + SHG) (#6) ---
+    _add_box(assy, "TEC_OPA", p.TEC_OPA_SIZE, p.TEC_OPA_POS, C_TEC)
+    _add_box(assy, "TEC_SHG", p.TEC_SHG_SIZE, p.TEC_SHG_POS, C_TEC)
 
-    # --- 5. Zone A: Master Laser ---
-    laser = cq.Workplane("XY").box(
-        p.LASER_SIZE[0], p.LASER_SIZE[1], p.LASER_SIZE[2], centered=False
-    )
-    assy.add(
-        laser,
-        name="Laser",
-        loc=cq.Location(cq.Vector(*p.LASER_POS)),
-        color=cq.Color(0.8, 0.1, 0.1, 0.8),  # red
-    )
+    # --- 7. EOM ×2 (#7) ---
+    for i, pos in enumerate([p.EOM1_POS, p.EOM2_POS], 1):
+        _add_box(assy, f"EOM_{i}", p.EOM_SIZE, pos, C_EOM)
 
-    # --- 6. Zone B: PMFスプール (cylinder φ80×80mm) ---
-    pmf = (
-        cq.Workplane("XY")
-        .cylinder(p.PMF_H, p.PMF_D / 2, centered=(True, True, False))
-    )
-    assy.add(
-        pmf,
-        name="PMF_spool",
-        loc=cq.Location(cq.Vector(*p.PMF_POS)),
-        color=cq.Color(0.2, 0.7, 0.2, 0.7),  # green
-    )
+    # --- 8. BS カプラ ×3 (#8, ファイバトレイ内まとめ配置) ---
+    _add_box(assy, "BS_tray", p.BS_SIZE, p.BS_POS, C_BS)
 
-    # --- 7. Zone C: FPGA ---
-    fpga = cq.Workplane("XY").box(
-        p.FPGA_SIZE[0], p.FPGA_SIZE[1], p.FPGA_SIZE[2], centered=False
-    )
-    assy.add(
-        fpga,
-        name="FPGA",
-        loc=cq.Location(cq.Vector(*p.FPGA_POS)),
-        color=cq.Color(0.1, 0.6, 0.1, 0.8),  # dark green
-    )
+    # --- 9. BPD ×2 (#9) ---
+    for i, pos in enumerate([p.BPD1_POS, p.BPD2_POS], 1):
+        _add_box(assy, f"BPD_{i}", p.BPD_SIZE, pos, C_BPD)
 
-    # --- 8. PTFE断熱板 ---
-    ptfe = cq.Workplane("XY").box(
-        p.PTFE_SIZE[0], p.PTFE_SIZE[1], p.PTFE_SIZE[2], centered=False
-    )
-    assy.add(
-        ptfe,
-        name="PTFE_plate",
-        loc=cq.Location(cq.Vector(*p.PTFE_POS)),
-        color=cq.Color(0.95, 0.95, 0.95, 0.5),  # white translucent
-    )
+    # === Zone B: ファイバ ===
+
+    # --- 10. HDPE振動隔離プレート (#25) ---
+    _add_box(assy, "HDPE_plate", p.HDPE_SIZE, p.HDPE_POS, C_HDPE)
+
+    # --- 11. PMF 102m スプール (#10) ---
+    _add_cylinder(assy, "PMF_spool_102m", p.PMF_D, p.PMF_H, p.PMF_POS, C_PMF)
+
+    # --- 12. 短遅延PMF 2m スプール (03_tdm-cluster.md:100) ---
+    _add_cylinder(assy, "PMF_spool_2m", p.PMF_SHORT_D, p.PMF_SHORT_H,
+                  p.PMF_SHORT_POS, C_PMF)
+
+    # --- 13. WDM AWG (#11) ---
+    _add_box(assy, "AWG", p.AWG_SIZE, p.AWG_POS, C_ELECTRONICS)
+
+    # --- 14. WDM PD ×16 (#12) ---
+    _add_box(assy, "WDM_PD", p.WDMPD_SIZE, p.WDMPD_POS, C_BPD)
+
+    # === Zone C: 電子制御 ===
+
+    # --- 15. FPGA VE2302 (#13) ---
+    _add_box(assy, "FPGA", p.FPGA_SIZE, p.FPGA_POS, C_ELECTRONICS)
+
+    # --- 16. ADC boards (#14-15) ---
+    _add_box(assy, "ADC_boards", p.ADC_SIZE, p.ADC_POS, C_ELECTRONICS)
+
+    # --- 17. DAC + EO driver (#16,21) ---
+    _add_box(assy, "DAC_EO_driver", p.DAC_SIZE, p.DAC_POS, C_ELECTRONICS)
+
+    # --- 18. DC-DC converter (#17) ---
+    _add_box(assy, "DC_DC", p.DCDC_SIZE, p.DCDC_POS, C_DCDC)
+
+    # --- 19. PZT driver + PID (#20) ---
+    _add_box(assy, "PZT_driver", p.PZT_SIZE, p.PZT_POS, C_ELECTRONICS)
+
+    # --- 20. Cu ヒートパイプ ×3 (#18, vertical) ---
+    for i, pos in enumerate(p.HP_POSITIONS, 1):
+        _add_cylinder(assy, f"HP_{i}", p.HP_D, p.HP_H, pos, C_HP)
+
+    # --- 21. EMI遮蔽壁 Cu箔 (#43) ---
+    _add_box(assy, "EMI_shield", p.SHIELD_SIZE, p.SHIELD_POS, C_SHIELD)
+
+    # === 断熱 ===
+
+    # --- 22. PTFE断熱板 (#19) ---
+    _add_box(assy, "PTFE_plate", p.PTFE_SIZE, p.PTFE_POS, C_PTFE)
 
     return assy
 
 
 def calc_total_mass(p: AssemblyParams = None):
-    """
-    組立体の概算質量を計算する。
-    筐体・天板はCadQueryのVolume×密度、内部部品はカタログ値を使用。
-    """
+    """組立体の概算質量を計算する。"""
     if p is None:
         p = AssemblyParams()
 
-    c = p.common
-    density = c.DENSITY  # g/mm^3
+    density = p.common.DENSITY
 
-    # 筐体質量
+    # 筐体・天板 (CadQuery体積計算)
     enclosure = build_enclosure_body(EnclosureParams())
-    vol_enclosure = enclosure.val().Volume()
-    mass_enclosure = vol_enclosure * density
+    mass_enclosure = enclosure.val().Volume() * density
 
-    # 天板質量
     top_plate = build_top_plate(TopPlateParams())
-    vol_top_plate = top_plate.val().Volume()
-    mass_top_plate = vol_top_plate * density
+    mass_top_plate = top_plate.val().Volume() * density
 
     # 内部部品 (カタログ値)
     mass_internal = (
-        p.MASS_OPA * 2
-        + p.MASS_TEC * 3  # OPA×2 + SHG×1 = 3個
-        + p.MASS_LASER
+        p.MASS_LASER
+        + p.MASS_PUMP
+        + p.MASS_OPA * 2
+        + p.MASS_TEC * 3
+        + p.MASS_EOM * 2
+        + p.MASS_BS * 3
+        + p.MASS_BPD * 2
         + p.MASS_PMF_SPOOL
+        + p.MASS_PMF_SHORT
+        + p.MASS_AWG
+        + p.MASS_WDMPD
         + p.MASS_FPGA
+        + p.MASS_ADC
+        + p.MASS_DAC
+        + p.MASS_DCDC
+        + p.MASS_PZT
+        + p.MASS_HP * 3
+        + p.MASS_HDPE
         + p.MASS_PTFE
     )
 
@@ -251,7 +383,7 @@ if __name__ == "__main__":
     out_dir = os.path.dirname(os.path.abspath(__file__))
 
     print("=" * 60)
-    print("DWG-003: Taros Pro Assembly Build")
+    print("DWG-003: Taros Pro Assembly Build (d=5 baseline)")
     print("=" * 60)
 
     params = AssemblyParams()
@@ -271,16 +403,11 @@ if __name__ == "__main__":
     print(f"  ----------------------------")
     print(f"  TOTAL          : {mass['total_g']:8.1f} g ({mass['total_kg']:.2f} kg)")
     print(f"  Target (spec)  : 7500 g (7.5 kg)")
-    print(f"  Note: Internal mass is approximate (catalog values).")
-    print(f"         Remaining ~{7500 - mass['total_g']:.0f} g includes")
-    print(f"         EOM, BS, BPD, AWG, ADC/DAC, DC-DC, HP, cables, fasteners, etc.")
 
-    # 干渉チェック確認
+    # 干渉チェック
     print("\n--- Fit Check ---")
     print(f"  Top plate Z = {params.TOP_PLATE_Z} mm")
-    print(f"  Enclosure lip: Z = {params.TOP_PLATE_Z} to {params.TOP_PLATE_Z + params.common.LIP_H} mm")
-    print(f"  Top plate engagement depth = {params.common.LIP_H} mm")
-    print(f"  Lip width = {params.common.LIP_W} mm")
-    print(f"  -> Engagement OK: top plate sits flush at Z=139, lip Z=139-142")
+    print(f"  Enclosure lip: Z={params.TOP_PLATE_Z} to {params.TOP_PLATE_Z + params.common.LIP_H}")
+    print(f"  Components: {22} items placed in 3D model")
 
     print("\nDWG-003 complete.")

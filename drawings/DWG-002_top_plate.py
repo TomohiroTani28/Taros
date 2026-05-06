@@ -95,7 +95,7 @@ def build_top_plate(p: TopPlateParams = None):
         .cutBlind(-LIP_H)
     )
 
-    # 2. フィン生成 (42本, X方向に平行, 天板上面から18mm突出)
+    # 2. フィン生成 (43本, X方向に平行, 天板上面から18mm突出)
     for i in range(p.FIN_N):
         y = p.FIN_Y_START + i * p.FIN_PITCH
         fin = (
