@@ -57,8 +57,8 @@ class EnclosureParams:
 
     # === グロメット穴 (出典: 12_mechanical.md §2.2) ===
     # TODO(設計判断要): グロメット穴はZone A/B間の内部仕切壁(X=135)を貫通する設計。
-    # 現状の筐体モデルには内部仕切壁が未実装のため、グロメット穴の切削も保留。
-    # Phase 0a で内部仕切構造確定後に実装のこと。
+    # EMI遮蔽壁(X=210)は Step 9 で実装済み。Zone A/B間仕切壁は未実装。
+    # Phase 0a で仕切構造確定後にグロメット穴も実装のこと。
     GROMMET_D: float = 10.0    # φ10mm — Zone A-B間ファイバ通過
     GROMMET_X: float = 135.0   # X位置 (Zone A/B境界)
     GROMMET_Y1: float = 80.0
@@ -70,6 +70,13 @@ class EnclosureParams:
     PTFE_T: float = 3.0        # 板厚 [mm]
     PTFE_GROOVE_D: float = 1.5 # 溝深さ [mm] (側壁に切り込み)
     PTFE_GROOVE_ENABLED: bool = True  # 溝加工有効化フラグ
+
+    # === EMI遮蔽壁取付溝 (出典: 12_mechanical §3.3, DWG-003 BOM #43) ===
+    # Zone B/C 境界 (X=210) に銅箔シールド壁 (0.1mm Cu) の取付溝
+    SHIELD_X: float = 210.0        # X位置 [mm] (Zone B/C境界)
+    SHIELD_GROOVE_W: float = 1.0   # 溝幅 [mm] (0.1mm Cu箔 + 接着マージン)
+    SHIELD_GROOVE_D: float = 1.5   # 溝深さ [mm] (底板3mmのうち1.5mm)
+    SHIELD_GROOVE_ENABLED: bool = True
 
     # === 天板固定ネジ穴 ===
     TOP_SCREW_D: float = 2.5       # M3タップ下穴 [mm]
@@ -245,7 +252,18 @@ def build_enclosure_body(p: EnclosureParams = None):
                 .cutBlind(-p.PTFE_GROOVE_D)
             )
 
-    # 9. 背面ポート開口
+    # 9. EMI遮蔽壁取付溝 (底板上面, X=210, Zone B/C境界)
+    # 銅箔シールド壁(0.1mm Cu, 290×137mm)の底板側固定溝
+    if p.SHIELD_GROOVE_ENABLED:
+        shield_groove = (
+            cq.Workplane("XY")
+            .transformed(offset=(p.SHIELD_X, T_side, T_bottom))
+            .box(p.SHIELD_GROOVE_W, D_inner, p.SHIELD_GROOVE_D,
+                 centered=(True, False, False))
+        )
+        body = body.cut(shield_groove)
+
+    # 10. 背面ポート開口
     # >Y面: local X=X方向, local Y=Z方向, center=(W/2, H_body/2)
     # USB-C ×2
     for ux in [p.USBC_X1, p.USBC_X2]:
