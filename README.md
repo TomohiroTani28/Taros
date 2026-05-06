@@ -4,7 +4,7 @@
   <img src="assets/taros-pro-6view.png" alt="Taros Pro 6-view render" width="720">
 </p>
 
-**プロジェクト名**: Taros (Desktop photonic quantum computer)
+**プロジェクト名**: Taros (Desktop Photonic Quantum Computer)
 **目標**: ACアダプタで動くポータブル誤り訂正型光量子コンピュータの実現
 **Last Updated**: 2026-05-06
 
