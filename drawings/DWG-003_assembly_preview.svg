@@ -435,9 +435,9 @@
     <text x="25" y="-8.5" class="text-dim" font-size="2px">Date</text>
     <text x="55" y="-8.5" class="text-dim" font-size="2px">Description</text>
     <text x="87" y="-8.5" class="text-dim" font-size="2px">Appr.</text>
-    <text x="7.5" y="-2.5" class="text-dim" font-size="2px">D</text>
+    <text x="7.5" y="-2.5" class="text-dim" font-size="2px">E</text>
     <text x="25" y="-2.5" class="text-dim" font-size="2px">2026-05-06</text>
-    <text x="55" y="-2.5" class="text-dim" font-size="2px">R10: PTFE HP holes, step reorder</text>
+    <text x="55" y="-2.5" class="text-dim" font-size="2px">R11: EMI/shield steps, grease ref</text>
     <text x="87" y="-2.5" class="text-dim" font-size="2px">--</text>
 
     <!-- Main block -->
@@ -449,7 +449,7 @@
     <line x1="60" y1="12" x2="60" y2="18" class="title-box"/>
 
     <text x="2" y="4.5" class="text-title-sm">DWG No.</text>
-    <text x="32" y="4.5" class="text-title">DWG-003 Rev.D</text>
+    <text x="32" y="4.5" class="text-title">DWG-003 Rev.E</text>
     <text x="2" y="10.5" class="text-title-sm">Title</text>
     <text x="32" y="10.5" class="text-title">Taros Pro General Assembly</text>
     <text x="2" y="16.5" class="text-title-sm">Scale</text>
