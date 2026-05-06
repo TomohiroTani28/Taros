@@ -1,0 +1,15 @@
+{
+  "job_id": "d7sp492udops73974mmg",
+  "backend": "ibm_fez",
+  "circuits": [
+    "rep_d3",
+    "rep_d5",
+    "rep_d7",
+    "surface_d3",
+    "logical_zero_d3",
+    "logical_zero_d5"
+  ],
+  "shots": 4096,
+  "submitted_at": "2026-05-05 15:45:56",
+  "purpose": "Taros design verification - QEC scaling law"
+}
