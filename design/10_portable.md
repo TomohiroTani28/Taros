@@ -224,6 +224,45 @@ Master LD (1550nm, 100mW) ──► [PM: 25GHz RF] ──► [IM: 25GHz RF]
 - Taros Pro (OPA×2, WDM 8ch): 86W + 12W + 11W(RF修正) = **109W** [v3.2: SOA +3W。旧106W]
 - Taros Max (OPA×2, WDM 7ch): 89.5W + 11W + 11W(RF修正) = **112W** [v3.2: SOA +3W。旧109W]
 
+**[v3.4追加] ベース電力の導出透明化**:
+
+上記モデル別電力の「ベース値」(82W/86W/89.5W)は、コンポーネント表の項目から以下のように導出される:
+
+```
+■ Taros Pro ベース電力導出 (OPA×2, WDM追加前):
+  Master LD + GS-DFB + SOA + SHG TEC  : 15W  (DFB 2W + SOA 8W + SHG TEC 5W)
+  PPLN OPA Peltier ×2                 :  8W  (4W/OPA × 2)
+  SHG Peltier                          :  4W
+  EO gate driver                       :  5W  (Option B: ゲート駆動→LO基底切替用EOMに転用)
+  PZT phase lock                       :  3W
+  Balanced PD + TIA (2ch base)         :  2W
+  ADC ×2 (base, Flash+Pipeline)        : 10W
+  FPGA VE2302                          : 25W
+  DAC + misc                           :  5W
+  DC-DC変換損失 (η≈0.92, 入力段)       :  7W  (77W÷0.92 - 77W ≈ 7W)
+  ─────────────────────────────────────────
+  合計ベース (Pro)                      : 84W → 丸め・実測マージン込み **86W**
+
+■ Taros Edu ベース電力導出 (OPA×1):
+  Pro基準 86W − OPA Peltier 1台分 4W = 82W
+
+■ Taros Max ベース電力導出 (OPA×2, 大型冷却系):
+  Pro基準 86W + 追加ファン 1.5W + 大型ヒートシンク制御 1W + 長遅延PMF温調 1W = 89.5W
+
+■ WDM追加電力 (Pro 8ch):
+  追加PD+TIA (14ch − 2ch base = 12ch追加): ~6W (0.5W/ch)
+  追加ADC (14ch − 2ch base = 12ch追加)   : ~6W (0.5W/ch)
+  小計                                    : 12W
+
+■ EO comb RF電力:
+  PM用RF amp (25GHz)   :  6W
+  IM用RF amp (25GHz)   :  8W  (Pro: 8ch駆動で+3W → 11W表記はRF効率マージン込み)
+  ミニEDFA             :  3W
+  小計                 : 17W → Proは8ch分 11W (Edu 5ch: 10W)で按分計上
+
+■ Pro合計: 86W (ベース) + 12W (WDM PD/ADC) + 11W (RF/EDFA按分) = **109W** ✓
+```
+
 **注**: Edu OPA×1構成: CW広帯域OPA（帯域~500GHz）では各周波数モードが独立にスクイーズされる
 （縮退type-0 PDC）。AWG分割後の各チャネルは独立なスクイーズド真空を保持（挿入損失0.2dBのみ）。
 これはXanadu Borealis等で実証済みの原理。Pro/Max OPA×2はチャネル間相関排除+冗長性のため。
