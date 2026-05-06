@@ -273,7 +273,7 @@ def build_enclosure_body(p: EnclosureParams = None):
             )
 
     # 9. EMI遮蔽壁取付溝 (底板上面, X=210, Zone B/C境界)
-    # 銅箔シールド壁(0.1mm Cu, 290×137mm)の底板側固定溝
+    # 銅箔シールド壁(0.1mm Cu, 238×134mm)の底板側固定溝
     if p.SHIELD_GROOVE_ENABLED:
         shield_groove = (
             cq.Workplane("XY")

@@ -419,6 +419,6 @@ if __name__ == "__main__":
     print("\n--- Fit Check ---")
     print(f"  Top plate Z = {params.TOP_PLATE_Z} mm")
     print(f"  Enclosure lip: Z={params.TOP_PLATE_Z} to {params.TOP_PLATE_Z + params.common.LIP_H}")
-    print(f"  Components: {22} items placed in 3D model")
+    print(f"  Components: 22 of 44 BOM items placed in 3D model")
 
     print("\nDWG-003 complete.")
