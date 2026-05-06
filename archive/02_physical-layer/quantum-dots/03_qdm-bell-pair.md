@@ -1,3 +1,5 @@
+> **⚠ FROZEN (2026-05-04)**: 本文書はDV-FBQC v4.0 R6時点の設計を記録したものです。プロジェクトの主軸はCV方式に移行しています。最新設計は `design/00_overview.md` を参照してください。
+
 ### 4.10 決定論的ベル対生成（v4.0 R4新規、Rudolph提案 C15）
 
 R3の弾道式RSGでは補助ベル対をヘラルド方式で生成するが（成功率50%/試行）、**biexciton-exciton cascade**からのentangled photon pairを用いることで、ベル対生成を決定論的に行える。

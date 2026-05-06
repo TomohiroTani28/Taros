@@ -1,8 +1,10 @@
+> **⚠ フォールバック参考文書**: 本文書はハイブリッドCV+QD PIC設計のフォールバック参考です。プロジェクトの主軸はCV pure Portable方式に移行済み。最新設計は `design/00_overview.md` を参照してください。
+
 # ハイブリッドCV+QD方式 PIC設計書
 
 **Document ID**: PQC-HYBRID-PIC-v1.0
 **Last Updated**: 2026-05-05
-**Status**: Draft (A4: 6人チーム提案)
+**Status**: フォールバック参考
 **前提**: `../design/01_system-architecture.md` のPIC Phase移行計画に基づく
 
 ---

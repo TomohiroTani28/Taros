@@ -1,3 +1,5 @@
+> **⚠ FROZEN (2026-05-04)**: 本文書はDV-FBQC v4.0 R6時点の設計を記録したものです。プロジェクトの主軸はCV方式に移行しています。最新設計は `design/00_overview.md` を参照してください。
+
 ## 9.4 Sliding Windowデコーダとソフト情報デコーディング（v4.0 R3新規）
 
 ### 9.4.1 Sliding Windowデコーダ（Higgott提案）
