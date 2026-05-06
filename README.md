@@ -82,8 +82,9 @@ Taros/
 │   ├── phase-minus1-execution.md   # Phase -1実行計画（14タスク/$3.04M/12ヶ月）[v3.1確定]
 │   └── development-cost-summary.md  # 開発費用全体サマリー
 │
-├── assets/                # 画像・レンダリング
-│   └── exterior-render.png         # 外観レンダリング
+├── assets/                # 画像・レンダリング・資料
+│   ├── exterior-render.png         # 外観レンダリング
+│   └── TAROS_Investor_Pitch_Revised.pptx  # 投資家向けピッチデック
 │
 ├── fallback/              # DV-FBQCフォールバック設計
 │   ├── 01_deskside-vision.md       # DV-FBQC版デスクサイドQC
@@ -126,7 +127,7 @@ Taros/
 
 | 目的 | 参照先 |
 |------|--------|
-| 投資家向け説明 | `design/00_overview.md` |
+| 投資家向け説明 | `design/00_overview.md` + `assets/TAROS_Investor_Pitch_Revised.pptx` |
 | 技術デューデリジェンス | `design/06_noise-budget.md` + `design/13_performance.md` |
 | 実験計画 | `experiments/` |
 | コスト見積もり | `analysis/bom.md` |
