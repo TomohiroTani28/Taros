@@ -35,12 +35,12 @@
 | 2 | DWG-002 | 天板(フィン一体) | A6063-T5, アノダイズド黒 | 1 | [出典: design/12_mechanical.md:L32-L38] |
 | 3 | NKT E15 OEM | Master Laser 1550nm | 120×60×30mm, 10mW | 1 | [出典: design/12_mechanical.md:L72] |
 | 4 | — | 775nm GS-DFB+SOA+SHG | Option B pump, 200mW peak | 1 | [出典: design/10_portable.md:L207] |
-| 5 | NTT/HC Photonics | PPLN OPA | 50×20×10mm | 2 | [出典: design/12_mechanical.md:L75-L76] |
+| 5 | NTT/HC Photonics | PPLN OPA | 50×20×10mm, pigtail fusion IL ≤ 0.10dB | 2 | [出典: design/12_mechanical.md:L75-L76] |
 | 6 | — | Peltier TEC (OPA共用1台 + SHG1台) | 60×50×5mm (OPA共用), 60×35×5mm (SHG), ΔT_max=50K | 2 | [出典: design/12_mechanical.md:L77, design/10_portable.md:L109] ※OPA TEC 1台で#1,#2両方カバー(Y=152-202)。SHG用TEC位置: Y=120-155 (SHG直下)。12_mech §1.4の Y=80-115 は旧配置、更新要 |
 | 7 | iXblue/HyperLight | LNOI EOM | 40×20×10mm | 2 | [出典: design/12_mechanical.md:L78-L79] |
-| 8 | — | BS カプラ 50:50 | PMF1550, FC/APC | 3 | [出典: design/12_mechanical.md:L80] |
-| 9 | — | Balanced PD (InGaAs) | 35×20×20mm, QE≥99% | 2 | [出典: design/12_mechanical.md:L81-L82] |
-| 10 | Corning/Fujikura | PMF 102m スプール (長遅延, d=5) | φ80×80mm, ~0.8kg | 1 | [出典: design/12_mechanical.md:L84] |
+| 8 | — | BS カプラ 50:50 | PMF1550, FC/APC, excess IL ≤ 0.05dB/個 (選別品) | 3 | [出典: design/12_mechanical.md:L80] |
+| 9 | — | Balanced PD (InGaAs) | 35×20×20mm, QE ≥ 98% (カスタムPD必須, 市販95%不可), 目標QE ≥ 99% | 2 | [出典: design/12_mechanical.md:L81-L82, 06_noise-budget §2.2†] |
+| 10 | Corning/Fujikura | PMF 102m スプール (長遅延, d=5) | φ80×80mm, ~0.8kg. Phase 1: 200m高密度巻きφ80×80 (d=7) | 1 | [出典: design/12_mechanical.md:L84] |
 | 10b | — | PMF 2m スプール (短遅延 τ₁=10ns) | φ50×20mm | 1 | [出典: design/03_tdm-cluster.md:L100] |
 | 11 | NTT-AT | WDM AWG 8ch | 100×35×20mm, IL 0.2dB | 1 | [出典: design/12_mechanical.md:L96] |
 | 12 | — | WDM PD ×16 | ドーターカード | 1set | [出典: design/12_mechanical.md:L97] |
@@ -383,6 +383,7 @@ Zone C → 背面: USB-C, 10GbE, GND 各配線
 | DWG-003 | 総組立図 (本図面) | Rev.A |
 | DWG-004 | PTFE断熱板 | 予定 |
 | DWG-005 | OPA温調プレート | 予定 |
+| DWG-006 | ラック型PMFモジュール (Phase 2+, d≥9, PMF 331m+) | 予定 |
 
 ---
 
