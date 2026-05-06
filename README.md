@@ -1,6 +1,6 @@
-# Taros — デスクサイド光量子コンピュータ
+# Taros — デスクトップ光量子コンピュータ
 
-**プロジェクト名**: Taros (Tabletop-scale Room-temperature Optical System)
+**プロジェクト名**: Taros (Desktop optical quantum computer)
 **目標**: ACアダプタで動くポータブル誤り訂正型光量子コンピュータの実現
 **Last Updated**: 2026-05-06
 
