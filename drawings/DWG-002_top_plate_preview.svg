@@ -52,21 +52,21 @@
   <!-- Actually let's use 1:2 true scale but make it readable -->
   <!-- Position: x=30, y=30 -->
   <!-- ============================================ -->
-  <g id="front-view" transform="translate(30, 40)">
+  <g id="front-view" transform="translate(30, 80)">
     <text x="75" y="-5" class="text-note" text-anchor="middle" font-weight="bold">正面図 (Y=0)</text>
 
     <!-- Base plate: 300x3 at 1:2 = 150 x 1.5 -->
     <rect x="0" y="9" width="150" height="1.5" class="outline"/>
 
-    <!-- Fins: 42 fins, X=20-280 -> 10-140 at 1:2, height 18->9px, width 2->1px, pitch 5->2.5px -->
+    <!-- Fins: 43 fins, X=20-280 -> 10-140 at 1:2, height 18->9px, width 2->1px, pitch 5->2.5px -->
     <!-- First fin at X=20 (Y=20 in plan but here showing X cross section from front) -->
     <!-- From front (Y=0), fins extend in Y direction, so we see fin ends -->
     <!-- Actually front view shows fin profile: 42 rectangles 2mm wide x 18mm high -->
     <!-- At 1:2: 1px wide x 9px high, spaced 2.5px apart -->
-    <!-- Fin range: X=20-280 -> px 10-140 (260mm range, 42 fins) -->
+    <!-- Fin range: X=20-280 -> px 10-140 (260mm range, 43 fins) -->
     <!-- Draw representative fins (every 3rd for readability) + indicate 42 total -->
     <g class="outline" stroke-width="0.35">
-      <!-- 42 fins at 2.5px pitch (5mm at 1:2), Y=20-227 shown as X cross-section -->
+      <!-- 43 fins at 2.5px pitch (5mm at 1:2), Y=20-227 shown as X cross-section -->
       <!-- First 14 fins (representative) -->
       <rect x="10" y="0" width="1" height="9"/>
       <rect x="12.5" y="0" width="1" height="9"/>
@@ -145,13 +145,13 @@
     <line x1="0" y1="18" x2="10" y2="18" class="dim-line"/>
     <text x="5" y="17.5" class="text-dim" font-size="2px">20</text>
 
-    <!-- Annotation: 42 fins -->
-    <text x="75" y="-1" class="text-dim" font-size="2.5px">42 fins, t2, pitch 5</text>
+    <!-- Annotation: 43 fins -->
+    <text x="75" y="-1" class="text-dim" font-size="2.5px">43 fins, t2, pitch 5</text>
   </g>
 
   <!-- ============================================ -->
   <!-- SECTION B-B (top-right) - X=150 cut, fin perpendicular -->
-  <!-- Shows fins in cross section: 42 fins, 2mm wide, 3mm gap, 18mm high -->
+  <!-- Shows fins in cross section: 43 fins, 2mm wide, 3mm gap, 18mm high -->
   <!-- D=250->125px, H=21->10.5px at 1:2 -->
   <!-- Use enhanced vertical scale for clarity -->
   <!-- Position: x=220, y=30 -->
@@ -192,7 +192,7 @@
     </g>
 
     <!-- Fins in cross section: Y=20-230 -> 10-115 at 1:2 -->
-    <!-- 42 fins, pitch 5mm->2.5px, width 2mm->1px -->
+    <!-- 43 fins, pitch 5mm->2.5px, width 2mm->1px -->
     <!-- Draw fins with hatching -->
     <g class="outline" stroke-width="0.3">
       <!-- Representative fins (showing pattern) -->
@@ -276,7 +276,7 @@
   <!-- W=300->150px, D=250->125px at 1:2 -->
   <!-- Position: x=30, y=90 -->
   <!-- ============================================ -->
-  <g id="plan-view" transform="translate(30, 80)">
+  <g id="plan-view" transform="translate(30, 40)">
     <text x="75" y="-3" class="text-note" text-anchor="middle" font-weight="bold">平面図 (上面 - フィン上方)</text>
 
     <!-- Outer boundary -->
@@ -498,11 +498,11 @@
   <g transform="translate(220, 175)">
     <text x="0" y="0" class="text-note" font-size="2px">Notes:</text>
     <text x="0" y="4" class="text-note" font-size="2px">1. General tol: JIS B 0405 m</text>
-    <text x="0" y="7.5" class="text-note" font-size="2px">2. Fin tip: C0.2 chamfer (all 42)</text>
+    <text x="0" y="7.5" class="text-note" font-size="2px">2. Fin tip: C0.2 chamfer (all 43)</text>
     <text x="0" y="11" class="text-note" font-size="2px">3. Fin root: R0.5 fillet (CNC)</text>
     <text x="0" y="14.5" class="text-note" font-size="2px">4. Edges: C0.3, ridges R0.2 max</text>
     <text x="0" y="18" class="text-note" font-size="2px">5. Bottom face: Ra0.8 (mating)</text>
-    <text x="0" y="21.5" class="text-note" font-size="2px">6. 42 fins x t2 x h18 x L260</text>
+    <text x="0" y="21.5" class="text-note" font-size="2px">6. 43 fins x t2 x h18 x L260</text>
     <text x="0" y="25" class="text-note" font-size="2px">7. M3 CSK holes x8 (DWG-001 align)</text>
     <text x="0" y="28.5" class="text-note" font-size="2px">8. HP through-holes phi7 x3</text>
   </g>

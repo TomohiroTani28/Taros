@@ -56,7 +56,7 @@
   <!-- 300->150px, 160->80px -->
   <!-- Position: x=30, y=25 -->
   <!-- ============================================ -->
-  <g id="front-view" transform="translate(30, 25)">
+  <g id="front-view" transform="translate(30, 128)">
     <text x="75" y="-3" class="text-note" text-anchor="middle" font-weight="bold">正面図 (Y=0) - 総組立</text>
 
     <!-- Enclosure body outline -->
@@ -70,7 +70,7 @@
     <!-- Fins on top (18mm -> 9px) -->
     <g class="thin" stroke-width="0.3">
       <!-- Representative fins -->
-      <!-- 42 fins at 2.5px pitch (5mm at 1:2), X=20-225 → px 10-112.5 -->
+      <!-- 43 fins at 2.5px pitch (5mm at 1:2), X=20-230 → px 10-115 -->
       <rect x="10" y="0" width="1" height="9"/>
       <rect x="12.5" y="0" width="1" height="9"/>
       <rect x="15" y="0" width="1" height="9"/>
@@ -239,7 +239,7 @@
   <!-- W=300->150px, D=250->125px at 1:2 -->
   <!-- Position: x=30, y=125 -->
   <!-- ============================================ -->
-  <g id="plan-view" transform="translate(30, 128)">
+  <g id="plan-view" transform="translate(30, 25)">
     <text x="75" y="-3" class="text-note" text-anchor="middle" font-weight="bold">平面図 (Zone配置)</text>
 
     <!-- Outer boundary (enclosure) -->

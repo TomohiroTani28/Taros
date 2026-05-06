@@ -10,7 +10,7 @@ DWG-002: Taros Pro 天板 (Top Plate with Integrated Fins)
 寸法体系:
   天板: 300 × 250 × 3 mm                       ← 12_mechanical §1.2
   嵌合段差: 外周2mm×3mm深さ (嵌合部296×246mm)   ← DWG-001リップと対応
-  フィン: 42本, 18mm高, 2mm厚, 3mm間隔(5mmピッチ)  ← 12_mechanical §1.2
+  フィン: 43本, 18mm高, 2mm厚, 3mm間隔(5mmピッチ)  ← 12_mechanical §1.2
   フィン範囲: X=20-280mm, Y=20-230mm             ← 12_mechanical §1.2
   総高さ: 3 + 18 = 21mm (フィン含む)
 """
@@ -31,7 +31,7 @@ class TopPlateParams:
     T_plate: float = 3.0     # 板厚 [mm]
 
     # === フィン寸法 (出典: 12_mechanical.md §1.2) ===
-    FIN_N: int = 42          # 本数 (42×5mm=210mm, Y=20-230で設計文書と整合)
+    FIN_N: int = 43          # 本数 (43本: Y=20から5mmピッチでY=230まで, 12_mechanical §1.2)
     FIN_H: float = 18.0      # 高さ [mm] (天板表面から)
     FIN_T: float = 2.0       # 厚さ [mm]
     FIN_GAP: float = 3.0     # 間隔 [mm]

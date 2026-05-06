@@ -10,7 +10,8 @@ DWG-001: Taros Pro 筐体本体 (Lower Body)
 寸法体系:
   外寸: 300 × 250 × 142 mm (W × D × H_body)  ← 12_mechanical §1.2
   肉厚: 底板 3mm, 側板 3mm                      ← 12_mechanical §1.2
-  内寸: 294 × 244 × 136 mm                     ← 導出: (300-6)×(250-6)×(142-3-3)
+  くり抜き深さ: 294 × 244 × 139 mm              ← 導出: (300-6)×(250-6)×(142-3)
+  有効内部空間 (天板嵌合後): 294 × 244 × 136 mm ← 導出: (142-3底板-3リップ)
   ※天板(DWG-002)と合わせて外寸 300×250×160mm (フィン18mm込み)
 
 # TODO(設計判断要): 内寸高さ 12_mechanical記載137mmと導出値136mmに1mm差異。
@@ -116,7 +117,15 @@ class EnclosureParams:
 
 
 def build_enclosure_body(p: EnclosureParams = None):
-    """筐体本体を生成"""
+    """筐体本体を生成
+
+    座標系注意:
+      CadQuery の faces().workplane() は面の重心を原点とするため、
+      絶対座標 (x, y) を指定するには .move(x - center_x, y - center_y) とする。
+      - >Z/<Z 面: center = (W/2, D/2)
+      - <X/>X 面: center = (D/2, H_body/2)  ※local X=Y方向, local Y=Z方向
+      - >Y 面:    center = (W/2, H_body/2)  ※local X=X方向, local Y=Z方向
+    """
     if p is None:
         p = EnclosureParams()
 
@@ -132,59 +141,52 @@ def build_enclosure_body(p: EnclosureParams = None):
     LIP_H = c.LIP_H
     W_inner = W - 2 * T_side       # 294mm
     D_inner = D - 2 * T_side       # 244mm
-    H_inner = H_body - T_bottom    # 139mm (側板内面高さ)
+    H_inner = H_body - T_bottom    # 139mm (くり抜き深さ)
 
     # 1. 外殻ブロック
     body = cq.Workplane("XY").box(W, D, H_body, centered=False)
 
     # 2. 内部くり抜き (底板3mm残し)
+    # >Z面中心 = (W/2, D/2)。centered=True の rect は面中心に対称配置
     body = (
         body
         .faces(">Z")
         .workplane()
-        .move(T_side, T_side)
-        .rect(W_inner, D_inner, centered=False)
-        .cutBlind(-(H_inner))
+        .rect(W_inner, D_inner)
+        .cutBlind(-H_inner)
     )
 
     # 3. 天板嵌合段差 (上端内側にリップ)
+    # リップ領域: 298×248mm (= W_inner+2*LIP_W × D_inner+2*LIP_W)、面中心に対称
     body = (
         body
         .faces(">Z")
         .workplane()
-        .move(T_side - LIP_W, T_side - LIP_W)
-        .rect(W_inner + 2 * LIP_W, D_inner + 2 * LIP_W, centered=False)
+        .rect(W_inner + 2 * LIP_W, D_inner + 2 * LIP_W)
         .cutBlind(-LIP_H)
     )
 
     # 4. 側面スリット (左右対称)
+    # スリット中心 Y = SLIT_Y_START + SLIT_L/2 = 25 + 100 = 125 = D/2 (Y対称)
     for i in range(p.SLIT_N):
         z = p.SLIT_Z_START + i * p.SLIT_PITCH
-        # 左側面 (X=0)
-        body = (
-            body
-            .faces("<X")
-            .workplane()
-            .move(p.SLIT_Y_START, z)
-            .rect(p.SLIT_L, p.SLIT_W, centered=False)
-            .cutBlind(-T_side)
-        )
-        # 右側面 (X=300)
-        body = (
-            body
-            .faces(">X")
-            .workplane()
-            .move(-(p.SLIT_Y_START + p.SLIT_L), z)
-            .rect(p.SLIT_L, p.SLIT_W, centered=False)
-            .cutBlind(-T_side)
-        )
+        for face_sel in ["<X", ">X"]:
+            body = (
+                body
+                .faces(face_sel)
+                .workplane()
+                .move(0, z - H_body / 2)
+                .rect(p.SLIT_L, p.SLIT_W)
+                .cutBlind(-T_side)
+            )
 
     # 5. 底面ファン開口 (円形φ70mm + 取付穴4箇所)
+    # <Z面中心 = (W/2, D/2)。ファン中心 = (150, 125) = 面中心 → offset (0, 0)
     body = (
         body
         .faces("<Z")
         .workplane()
-        .move(p.FAN_X_CENTER, p.FAN_Y_CENTER)
+        .move(p.FAN_X_CENTER - W / 2, p.FAN_Y_CENTER - D / 2)
         .circle(p.FAN_SIZE / 2 - 5)  # φ70mm開口
         .cutBlind(-T_bottom)
     )
@@ -196,7 +198,7 @@ def build_enclosure_body(p: EnclosureParams = None):
             body
             .faces("<Z")
             .workplane()
-            .move(p.FAN_X_CENTER + dx, p.FAN_Y_CENTER + dy)
+            .move(p.FAN_X_CENTER + dx - W / 2, p.FAN_Y_CENTER + dy - D / 2)
             .circle(p.FAN_BORE_D / 2)
             .cutBlind(-T_bottom)
         )
@@ -213,7 +215,7 @@ def build_enclosure_body(p: EnclosureParams = None):
             body
             .faces("<Z")
             .workplane()
-            .move(fx, fy)
+            .move(fx - W / 2, fy - D / 2)
             .circle(p.FOOT_BORE_D / 2)
             .cutBlind(-p.FOOT_BORE_DEPTH)
         )
@@ -230,26 +232,28 @@ def build_enclosure_body(p: EnclosureParams = None):
         )
 
     # 8. PTFE断熱板取付溝 (左右側壁内面, Z=90mm)
+    # <X/>X面: local X=Y方向, local Y=Z方向, center=(D/2, H_body/2)
     if p.PTFE_GROOVE_ENABLED:
-        groove_w = W_inner  # 溝長さ (Y方向全長)
-        for x_face, x_sign in [("<X", 1), (">X", -1)]:
+        groove_w = D_inner  # 244mm (Y方向内寸)
+        for face_sel in ["<X", ">X"]:
             body = (
                 body
-                .faces(x_face)
+                .faces(face_sel)
                 .workplane()
-                .move(0, p.PTFE_Z - p.H_body / 2)
+                .move(0, p.PTFE_Z - H_body / 2)
                 .rect(groove_w, p.PTFE_T)
                 .cutBlind(-p.PTFE_GROOVE_D)
             )
 
     # 9. 背面ポート開口
+    # >Y面: local X=X方向, local Y=Z方向, center=(W/2, H_body/2)
     # USB-C ×2
     for ux in [p.USBC_X1, p.USBC_X2]:
         body = (
             body
             .faces(">Y")
             .workplane()
-            .move(ux - W / 2, p.USBC_Z)
+            .move(ux - W / 2, p.USBC_Z - H_body / 2)
             .rect(p.USBC_W, p.USBC_H)
             .cutBlind(-T_side)
         )
@@ -259,7 +263,7 @@ def build_enclosure_body(p: EnclosureParams = None):
         body
         .faces(">Y")
         .workplane()
-        .move(p.RJ45_X - W / 2, p.RJ45_Z)
+        .move(p.RJ45_X - W / 2, p.RJ45_Z - H_body / 2)
         .rect(p.RJ45_W, p.RJ45_H)
         .cutBlind(-T_side)
     )
@@ -269,7 +273,7 @@ def build_enclosure_body(p: EnclosureParams = None):
         body
         .faces(">Y")
         .workplane()
-        .move(p.DC_X - W / 2, p.DC_Z)
+        .move(p.DC_X - W / 2, p.DC_Z - H_body / 2)
         .rect(p.DC_W, p.DC_H)
         .cutBlind(-T_side)
     )
@@ -279,7 +283,7 @@ def build_enclosure_body(p: EnclosureParams = None):
         body
         .faces(">Y")
         .workplane()
-        .move(p.GND_X - W / 2, p.GND_Z)
+        .move(p.GND_X - W / 2, p.GND_Z - H_body / 2)
         .circle(p.GND_D / 2)
         .cutBlind(-T_side)
     )
@@ -289,7 +293,7 @@ def build_enclosure_body(p: EnclosureParams = None):
         body
         .faces(">Y")
         .workplane()
-        .move(p.SW_X - W / 2, p.SW_Z)
+        .move(p.SW_X - W / 2, p.SW_Z - H_body / 2)
         .rect(p.SW_W, p.SW_H)
         .cutBlind(-T_side)
     )

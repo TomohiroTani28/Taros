@@ -14,7 +14,6 @@ DWG-003: Taros Pro 総組立図 (General Assembly)
 """
 
 import importlib
-import math
 import os
 import sys
 from dataclasses import dataclass
@@ -50,32 +49,35 @@ class AssemblyParams:
     # === 天板配置Z (SSOT導出: EnclosureParams.H_body - LIP_H) ===
     TOP_PLATE_Z: float = None  # __post_init__で動的計算
 
-    # === Zone A: 光学部品 (出典: DWG-003_assembly.md §2.2, 12_mechanical §1.4) ===
-    # OPA ×2 (50×20×10mm)
+    # === Zone A: 光学部品 (出典: 12_mechanical §1.4 座標表) ===
+    # OPA ×2 (50×20×10mm) — TEC上に配置 (Z=8 = 底板3mm + TEC5mm)
     OPA_SIZE: tuple = (50.0, 20.0, 10.0)
-    OPA1_POS: tuple = (30.0, 60.0, 8.0)    # (X, Y, Z) 左下隅基準
-    OPA2_POS: tuple = (30.0, 140.0, 8.0)
+    OPA1_POS: tuple = (15.0, 155.0, 8.0)   # 12_mech: X=15-65, Y=155-175
+    OPA2_POS: tuple = (15.0, 180.0, 8.0)   # 12_mech: X=15-65, Y=180-200
 
-    # TEC ×3 (60×50×5mm) — OPA直下×2 + SHG×1
+    # TEC ×3 (60×50×5mm) — OPA直下×2 + SHG×1 (底板上面Z=3に配置)
+    # 注: 12_mechanical §1.4 ではTEC Z=15-20 (OPA上) だが、
+    #      TEC→底板排熱パスの熱抵抗最小化のためOPA直下(Z=3)に配置変更。
+    #      12_mechanical.md の座標表を本配置に更新すること。
     TEC_SIZE: tuple = (60.0, 50.0, 5.0)
-    TEC1_POS: tuple = (30.0, 60.0, 3.0)    # OPA#1直下
-    TEC2_POS: tuple = (30.0, 140.0, 3.0)   # OPA#2直下
-    TEC3_POS: tuple = (80.0, 100.0, 3.0)   # SHG直下
+    TEC1_POS: tuple = (10.0, 155.0, 3.0)   # OPA#1直下
+    TEC2_POS: tuple = (10.0, 180.0, 3.0)   # OPA#2直下
+    TEC3_POS: tuple = (10.0, 120.0, 3.0)   # SHG直下 (12_mech: SHG Y=120-150)
 
-    # Master Laser (120×60×30mm) — 底板上に直置き
+    # Master Laser (120×60×30mm)
     LASER_SIZE: tuple = (120.0, 60.0, 30.0)
-    LASER_POS: tuple = (10.0, 92.0, 3.0)   # Z=3: 底板上面
+    LASER_POS: tuple = (10.0, 10.0, 5.0)   # 12_mech: X=10-130, Y=10-70, Z=5-35
 
     # === Zone B: ファイバ (出典: DWG-003_assembly.md §2.2) ===
     # PMFスプール (φ80×80mm) — cylinder
     PMF_D: float = 80.0
     PMF_H: float = 80.0
-    PMF_POS: tuple = (175.0, 125.0, 5.0)  # (X_center, Y_center, Z_bottom) — Zone B内に収める(X=135-215)
+    PMF_POS: tuple = (170.0, 122.0, 5.0)  # 12_mech: X=130-210, Y=52-192 center (Zone B内)
 
     # === Zone C: 電子制御 (出典: DWG-003_assembly.md §2.2) ===
     # FPGA (80×80×20mm)
     FPGA_SIZE: tuple = (80.0, 80.0, 20.0)
-    FPGA_POS: tuple = (215.0, 125.0, 3.0)  # 左下隅: X=215, Y=85(center125-40)
+    FPGA_POS: tuple = (210.0, 50.0, 3.0)   # 12_mech: X=210-290, Y=10-90, 左下隅基準
 
     # === PTFE断熱板 (出典: DWG-003_assembly.md §2.4, 12_mechanical §1.3) ===
     PTFE_SIZE: tuple = (290.0, 240.0, 3.0)
@@ -94,8 +96,7 @@ class AssemblyParams:
             self.common = PARAMS
         if self.TOP_PLATE_Z is None:
             # 動的計算: 筐体上端 - リップ深さ = 142 - 3 = 139mm
-            object.__setattr__(self, 'TOP_PLATE_Z',
-                               EnclosureParams().H_body - self.common.LIP_H)
+            self.TOP_PLATE_Z = EnclosureParams().H_body - self.common.LIP_H
 
 
 # =============================================================================
@@ -180,16 +181,10 @@ def build_assembly(p: AssemblyParams = None):
     fpga = cq.Workplane("XY").box(
         p.FPGA_SIZE[0], p.FPGA_SIZE[1], p.FPGA_SIZE[2], centered=False
     )
-    # FPGA_POS X=215, Y=125 は中心指定 → 左下隅に変換
-    fpga_corner = (
-        p.FPGA_POS[0],
-        p.FPGA_POS[1] - p.FPGA_SIZE[1] / 2,
-        p.FPGA_POS[2],
-    )
     assy.add(
         fpga,
         name="FPGA",
-        loc=cq.Location(cq.Vector(*fpga_corner)),
+        loc=cq.Location(cq.Vector(*p.FPGA_POS)),
         color=cq.Color(0.1, 0.6, 0.1, 0.8),  # dark green
     )
 

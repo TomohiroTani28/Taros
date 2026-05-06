@@ -55,7 +55,7 @@
   <!-- Scale 1:2, so 300mm -> 150px, 142mm -> 71px -->
   <!-- Position: x=25, y=25 -->
   <!-- ============================================ -->
-  <g id="front-view" transform="translate(30, 30)">
+  <g id="front-view" transform="translate(30, 130)">
     <text x="75" y="-3" class="text-note" text-anchor="middle" font-weight="bold">正面図 (Y=0)</text>
 
     <!-- Outer rectangle 150 x 71 (300x142 at 1:2) -->
@@ -167,7 +167,7 @@
   <!-- 300mm -> 150px, 250mm -> 125px -->
   <!-- Position: x=30, y=125 -->
   <!-- ============================================ -->
-  <g id="plan-view" transform="translate(30, 130)">
+  <g id="plan-view" transform="translate(30, 30)">
     <text x="75" y="-3" class="text-note" text-anchor="middle" font-weight="bold">平面図 (Z=142)</text>
 
     <!-- Outer rectangle -->
