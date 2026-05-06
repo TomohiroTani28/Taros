@@ -1,6 +1,6 @@
 # Taros パラメータレジストリ (Single Source of Truth)
 
-**Document ID**: PQC-PARAMS-v1.0
+**Document ID**: PQC-PARAMS-v1.0 [v3.6]
 **Last Updated**: 2026-05-06
 **Status**: 確定版
 
@@ -52,8 +52,8 @@
 |-----------|------|---------------|----------------------|------------------------|----------|
 | 全光学損失 | L_total | 0.39 dB | 0.27 dB | 0.15 dB | design/06_noise-budget |
 | 全光学透過率 | η_total | 0.914 | 0.940 | 0.966 | design/06_noise-budget |
-| 実効スクイージング | σ_eff | 8.8 dB | **≈9.5 dB** (L=0.27dB, non-loss込み) | 10.9 dB | design/06_noise-budget |
-| 物理エラー率 | p_phys | 7.5×10⁻³ | ≈3.3×10⁻³ (L=0.27dB) | 9.9×10⁻⁴ | design/13_performance |
+| 実効スクイージング | σ_eff | 8.5 dB | **≈9.3 dB** (L=0.27dB, non-loss込み) | 10.8 dB | design/06_noise-budget |
+| 物理エラー率 | p_phys | 7.5×10⁻³ | ≈4.9×10⁻³ (L=0.27dB) | 9.9×10⁻⁴ | design/13_performance |
 
 ### 2.3 QEC性能
 
@@ -61,8 +61,8 @@
 |-----------|------|--------|------|----------|
 | 閾値 (soft-info MWPM) | p_th_eff | 1.5% | Noh-Chamberland 2022 | design/08_decoder |
 | 閾値 (保守 hard MWPM) | p_th | 0.59% | 文献値 | design/13_performance |
-| 論理エラー率 d=7 (MWPM, Phase 2+ PIC理論限界) | p_L | 5.7×10⁻⁷ | L=0.15dB, Δ=0, QE=99% | design/13_performance |
-| 論理エラー率 d=7 (MWPM, Phase 2+ PIC現実的) | p_L | **~7×10⁻⁵** | L=0.27dB, QE≥99%, non-loss noise込み。v3.5統一計算: 06_noise-budget §2.3 | design/06_noise-budget |
+| 論理エラー率 d=7 (MWPM, Phase 2+ PIC理論限界) | p_L | 6.1×10⁻⁷ | L=0.15dB, Δ=0, QE=99% | design/13_performance |
+| 論理エラー率 d=7 (MWPM, Phase 2+ PIC現実的) | p_L | **~3.3×10⁻⁴** | L=0.27dB, QE≥99%, non-loss noise込み。v3.6修正: 06_noise-budget §2.3。≲10⁻³。L≤0.22dBで≲10⁻⁴ | design/06_noise-budget |
 | デコーダ遅延 (MWPM製品) | t_dec | 510 ns | @400MHz | design/08_decoder |
 | デコーダ遅延 (UF実験) | t_dec | 350 ns | @400MHz | design/08_decoder |
 | フィードフォワード (FF-1) | t_FF | 27 ns | @400MHz | design/07_feedforward |
@@ -73,7 +73,7 @@
 |-----------|-----------|-----------|-----------|----------|
 | 表面符号距離 | d=3 | d=5 | d=7 | design/00_overview |
 | 重量 | ~4.3 kg | ~7.5 kg | ~9.7 kg | design/00_overview |
-| 消費電力 | ~104 W | ~109 W | ~112 W | design/00_overview |
+| 消費電力 | ~104 W | ~109 W | ~112 W | design/00_overview, design/10_portable |
 | 原価 | $56K | $75K | $95K | analysis/bom |
 | 販売価格 | $90K | $120K | $170K | analysis/bom |
 
