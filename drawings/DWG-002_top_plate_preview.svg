@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 297" width="420mm" height="297mm">
+  <defs>
+    <marker id="arrow-start" markerWidth="3" markerHeight="2" refX="0" refY="1" orient="auto">
+      <polygon points="3,0 0,1 3,2" fill="black"/>
+    </marker>
+    <marker id="arrow-end" markerWidth="3" markerHeight="2" refX="3" refY="1" orient="auto">
+      <polygon points="0,0 3,1 0,2" fill="black"/>
+    </marker>
+    <style>
+      .outline { stroke: black; stroke-width: 0.5; fill: none; }
+      .thin { stroke: black; stroke-width: 0.25; fill: none; }
+      .hidden { stroke: black; stroke-width: 0.25; fill: none; stroke-dasharray: 2,1; }
+      .center { stroke: black; stroke-width: 0.18; fill: none; stroke-dasharray: 6,1,1,1; }
+      .dim-line { stroke: black; stroke-width: 0.18; fill: none; marker-start: url(#arrow-start); marker-end: url(#arrow-end); }
+      .ext-line { stroke: black; stroke-width: 0.13; fill: none; }
+      .cutting { stroke: black; stroke-width: 0.35; fill: none; stroke-dasharray: 8,2,1,2; }
+      .hatch { stroke: black; stroke-width: 0.13; fill: none; }
+      .frame { stroke: black; stroke-width: 0.7; fill: none; }
+      .frame-inner { stroke: black; stroke-width: 0.35; fill: none; }
+      .title-box { stroke: black; stroke-width: 0.35; fill: none; }
+      .text-dim { font-family: Arial, sans-serif; font-size: 3px; text-anchor: middle; }
+      .text-note { font-family: Arial, sans-serif; font-size: 2.5px; text-anchor: start; }
+      .text-title { font-family: Arial, sans-serif; font-size: 3.5px; text-anchor: start; font-weight: bold; }
+      .text-title-sm { font-family: Arial, sans-serif; font-size: 2.5px; text-anchor: start; }
+      .text-zone { font-family: Arial, sans-serif; font-size: 3px; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <!-- Drawing frame -->
+  <rect x="5" y="5" width="410" height="287" class="frame"/>
+  <rect x="15" y="15" width="390" height="267" class="frame-inner"/>
+
+  <!-- Center marks -->
+  <line x1="210" y1="5" x2="210" y2="10" class="frame"/>
+  <line x1="210" y1="287" x2="210" y2="292" class="frame"/>
+  <line x1="5" y1="148.5" x2="10" y2="148.5" class="frame"/>
+  <line x1="410" y1="148.5" x2="415" y2="148.5" class="frame"/>
+
+  <!-- Zone labels -->
+  <text x="112" y="12" class="text-zone">A</text>
+  <text x="308" y="12" class="text-zone">B</text>
+  <text x="112" y="295" class="text-zone">A</text>
+  <text x="308" y="295" class="text-zone">B</text>
+  <text x="8" y="80" class="text-zone" transform="rotate(-90,8,80)">1</text>
+  <text x="8" y="220" class="text-zone" transform="rotate(-90,8,220)">2</text>
+
+  <!-- ============================================ -->
+  <!-- FRONT VIEW (top-left) - Y=0 face showing fin cross-section -->
+  <!-- W=300, total H=21 (3mm plate + 18mm fin) at 1:2 -->
+  <!-- 300->150px, 21->10.5px. Use vertical scale x3 for visibility: 21->31.5px -->
+  <!-- Actually let's use 1:2 true scale but make it readable -->
+  <!-- Position: x=30, y=30 -->
+  <!-- ============================================ -->
+  <g id="front-view" transform="translate(30, 40)">
+    <text x="75" y="-5" class="text-note" text-anchor="middle" font-weight="bold">正面図 (Y=0)</text>
+
+    <!-- Base plate: 300x3 at 1:2 = 150 x 1.5 -->
+    <rect x="0" y="9" width="150" height="1.5" class="outline"/>
+
+    <!-- Fins: 42 fins, X=20-280 -> 10-140 at 1:2, height 18->9px, width 2->1px, pitch 5->2.5px -->
+    <!-- First fin at X=20 (Y=20 in plan but here showing X cross section from front) -->
+    <!-- From front (Y=0), fins extend in Y direction, so we see fin ends -->
+    <!-- Actually front view shows fin profile: 42 rectangles 2mm wide x 18mm high -->
+    <!-- At 1:2: 1px wide x 9px high, spaced 2.5px apart -->
+    <!-- Fin range: X=20-280 -> px 10-140 (260mm range, 42 fins) -->
+    <!-- Draw representative fins (every 3rd for readability) + indicate 42 total -->
+    <g class="outline" stroke-width="0.35">
+      <!-- Draw 14 representative fin pairs to show pattern -->
+      <rect x="10" y="0" width="1" height="9"/>
+      <rect x="12.5" y="0" width="1" height="9"/>
+      <rect x="15" y="0" width="1" height="9"/>
+      <rect x="17.5" y="0" width="1" height="9"/>
+      <rect x="20" y="0" width="1" height="9"/>
+      <rect x="22.5" y="0" width="1" height="9"/>
+      <rect x="25" y="0" width="1" height="9"/>
+      <rect x="27.5" y="0" width="1" height="9"/>
+      <rect x="30" y="0" width="1" height="9"/>
+      <rect x="32.5" y="0" width="1" height="9"/>
+      <rect x="35" y="0" width="1" height="9"/>
+      <rect x="37.5" y="0" width="1" height="9"/>
+      <rect x="40" y="0" width="1" height="9"/>
+      <rect x="42.5" y="0" width="1" height="9"/>
+      <!-- Break indication -->
+      <text x="50" y="5" class="text-dim" font-size="2px">...</text>
+      <!-- Middle fins -->
+      <rect x="57.5" y="0" width="1" height="9"/>
+      <rect x="60" y="0" width="1" height="9"/>
+      <rect x="62.5" y="0" width="1" height="9"/>
+      <rect x="65" y="0" width="1" height="9"/>
+      <rect x="67.5" y="0" width="1" height="9"/>
+      <rect x="70" y="0" width="1" height="9"/>
+      <rect x="72.5" y="0" width="1" height="9"/>
+      <rect x="75" y="0" width="1" height="9"/>
+      <rect x="77.5" y="0" width="1" height="9"/>
+      <rect x="80" y="0" width="1" height="9"/>
+      <rect x="82.5" y="0" width="1" height="9"/>
+      <rect x="85" y="0" width="1" height="9"/>
+      <rect x="87.5" y="0" width="1" height="9"/>
+      <rect x="90" y="0" width="1" height="9"/>
+      <!-- Break -->
+      <text x="97" y="5" class="text-dim" font-size="2px">...</text>
+      <!-- End fins -->
+      <rect x="105" y="0" width="1" height="9"/>
+      <rect x="107.5" y="0" width="1" height="9"/>
+      <rect x="110" y="0" width="1" height="9"/>
+      <rect x="112.5" y="0" width="1" height="9"/>
+      <rect x="115" y="0" width="1" height="9"/>
+      <rect x="117.5" y="0" width="1" height="9"/>
+      <rect x="120" y="0" width="1" height="9"/>
+      <rect x="122.5" y="0" width="1" height="9"/>
+      <rect x="125" y="0" width="1" height="9"/>
+      <rect x="127.5" y="0" width="1" height="9"/>
+      <rect x="130" y="0" width="1" height="9"/>
+      <rect x="132.5" y="0" width="1" height="9"/>
+      <rect x="135" y="0" width="1" height="9"/>
+      <rect x="137.5" y="0" width="1" height="9"/>
+      <rect x="140" y="0" width="1" height="9"/>
+    </g>
+
+    <!-- Center line -->
+    <line x1="75" y1="-3" x2="75" y2="15" class="center"/>
+
+    <!-- Dimension: Total width 300 -->
+    <line x1="0" y1="15" x2="0" y2="13" class="ext-line"/>
+    <line x1="150" y1="15" x2="150" y2="13" class="ext-line"/>
+    <line x1="0" y1="14" x2="150" y2="14" class="dim-line"/>
+    <text x="75" y="13" class="text-dim">300</text>
+
+    <!-- Dimension: Fin height 18 -->
+    <line x1="155" y1="0" x2="158" y2="0" class="ext-line"/>
+    <line x1="155" y1="9" x2="158" y2="9" class="ext-line"/>
+    <line x1="157" y1="0" x2="157" y2="9" class="dim-line"/>
+    <text x="161" y="5.5" class="text-dim" font-size="2.5px">18</text>
+
+    <!-- Dimension: Plate thickness 3 -->
+    <line x1="155" y1="9" x2="158" y2="9" class="ext-line"/>
+    <line x1="155" y1="10.5" x2="158" y2="10.5" class="ext-line"/>
+    <line x1="157" y1="9" x2="157" y2="10.5" class="dim-line"/>
+    <text x="161" y="10.2" class="text-dim" font-size="2px">3</text>
+
+    <!-- Dimension: Total height 21 -->
+    <line x1="163" y1="0" x2="166" y2="0" class="ext-line"/>
+    <line x1="163" y1="10.5" x2="166" y2="10.5" class="ext-line"/>
+    <line x1="165" y1="0" x2="165" y2="10.5" class="dim-line"/>
+    <text x="169" y="6" class="text-dim" font-size="2.5px">21</text>
+
+    <!-- Dimension: Fin start X=20 -->
+    <line x1="0" y1="17" x2="0" y2="19" class="ext-line"/>
+    <line x1="10" y1="17" x2="10" y2="19" class="ext-line"/>
+    <line x1="0" y1="18" x2="10" y2="18" class="dim-line"/>
+    <text x="5" y="17.5" class="text-dim" font-size="2px">20</text>
+
+    <!-- Annotation: 42 fins -->
+    <text x="75" y="-1" class="text-dim" font-size="2.5px">42 fins, t2, pitch 5</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- SECTION B-B (top-right) - X=150 cut, fin perpendicular -->
+  <!-- Shows fins in cross section: 42 fins, 2mm wide, 3mm gap, 18mm high -->
+  <!-- D=250->125px, H=21->10.5px at 1:2 -->
+  <!-- Use enhanced vertical scale for clarity -->
+  <!-- Position: x=220, y=30 -->
+  <!-- ============================================ -->
+  <g id="section-bb" transform="translate(220, 35)">
+    <text x="62.5" y="-5" class="text-note" text-anchor="middle" font-weight="bold">断面図 B-B (X=150)</text>
+
+    <!-- Base plate cross section -->
+    <rect x="0" y="9" width="125" height="1.5" class="outline"/>
+
+    <!-- Hatching on plate -->
+    <g class="hatch">
+      <line x1="2" y1="10.5" x2="3.5" y2="9"/>
+      <line x1="7" y1="10.5" x2="8.5" y2="9"/>
+      <line x1="12" y1="10.5" x2="13.5" y2="9"/>
+      <line x1="17" y1="10.5" x2="18.5" y2="9"/>
+      <line x1="22" y1="10.5" x2="23.5" y2="9"/>
+      <line x1="27" y1="10.5" x2="28.5" y2="9"/>
+      <line x1="32" y1="10.5" x2="33.5" y2="9"/>
+      <line x1="37" y1="10.5" x2="38.5" y2="9"/>
+      <line x1="42" y1="10.5" x2="43.5" y2="9"/>
+      <line x1="47" y1="10.5" x2="48.5" y2="9"/>
+      <line x1="52" y1="10.5" x2="53.5" y2="9"/>
+      <line x1="57" y1="10.5" x2="58.5" y2="9"/>
+      <line x1="62" y1="10.5" x2="63.5" y2="9"/>
+      <line x1="67" y1="10.5" x2="68.5" y2="9"/>
+      <line x1="72" y1="10.5" x2="73.5" y2="9"/>
+      <line x1="77" y1="10.5" x2="78.5" y2="9"/>
+      <line x1="82" y1="10.5" x2="83.5" y2="9"/>
+      <line x1="87" y1="10.5" x2="88.5" y2="9"/>
+      <line x1="92" y1="10.5" x2="93.5" y2="9"/>
+      <line x1="97" y1="10.5" x2="98.5" y2="9"/>
+      <line x1="102" y1="10.5" x2="103.5" y2="9"/>
+      <line x1="107" y1="10.5" x2="108.5" y2="9"/>
+      <line x1="112" y1="10.5" x2="113.5" y2="9"/>
+      <line x1="117" y1="10.5" x2="118.5" y2="9"/>
+      <line x1="122" y1="10.5" x2="123.5" y2="9"/>
+    </g>
+
+    <!-- Fins in cross section: Y=20-230 -> 10-115 at 1:2 -->
+    <!-- 42 fins, pitch 5mm->2.5px, width 2mm->1px -->
+    <!-- Draw fins with hatching -->
+    <g class="outline" stroke-width="0.3">
+      <!-- Representative fins (showing pattern) -->
+      <rect x="10" y="0" width="1" height="9"/>
+      <rect x="12.5" y="0" width="1" height="9"/>
+      <rect x="15" y="0" width="1" height="9"/>
+      <rect x="17.5" y="0" width="1" height="9"/>
+      <rect x="20" y="0" width="1" height="9"/>
+      <rect x="22.5" y="0" width="1" height="9"/>
+      <rect x="25" y="0" width="1" height="9"/>
+      <rect x="27.5" y="0" width="1" height="9"/>
+      <rect x="30" y="0" width="1" height="9"/>
+      <rect x="32.5" y="0" width="1" height="9"/>
+      <rect x="35" y="0" width="1" height="9"/>
+      <rect x="37.5" y="0" width="1" height="9"/>
+      <rect x="40" y="0" width="1" height="9"/>
+      <rect x="42.5" y="0" width="1" height="9"/>
+      <rect x="45" y="0" width="1" height="9"/>
+      <rect x="47.5" y="0" width="1" height="9"/>
+      <rect x="50" y="0" width="1" height="9"/>
+      <rect x="52.5" y="0" width="1" height="9"/>
+      <rect x="55" y="0" width="1" height="9"/>
+      <rect x="57.5" y="0" width="1" height="9"/>
+      <rect x="60" y="0" width="1" height="9"/>
+      <rect x="62.5" y="0" width="1" height="9"/>
+      <rect x="65" y="0" width="1" height="9"/>
+      <rect x="67.5" y="0" width="1" height="9"/>
+      <rect x="70" y="0" width="1" height="9"/>
+      <rect x="72.5" y="0" width="1" height="9"/>
+      <rect x="75" y="0" width="1" height="9"/>
+      <rect x="77.5" y="0" width="1" height="9"/>
+      <rect x="80" y="0" width="1" height="9"/>
+      <rect x="82.5" y="0" width="1" height="9"/>
+      <rect x="85" y="0" width="1" height="9"/>
+      <rect x="87.5" y="0" width="1" height="9"/>
+      <rect x="90" y="0" width="1" height="9"/>
+      <rect x="92.5" y="0" width="1" height="9"/>
+      <rect x="95" y="0" width="1" height="9"/>
+      <rect x="97.5" y="0" width="1" height="9"/>
+      <rect x="100" y="0" width="1" height="9"/>
+      <rect x="102.5" y="0" width="1" height="9"/>
+      <rect x="105" y="0" width="1" height="9"/>
+      <rect x="107.5" y="0" width="1" height="9"/>
+      <rect x="110" y="0" width="1" height="9"/>
+      <rect x="112.5" y="0" width="1" height="9"/>
+    </g>
+
+    <!-- Dimension: Depth 250 -->
+    <line x1="0" y1="15" x2="0" y2="13" class="ext-line"/>
+    <line x1="125" y1="15" x2="125" y2="13" class="ext-line"/>
+    <line x1="0" y1="14" x2="125" y2="14" class="dim-line"/>
+    <text x="62.5" y="13" class="text-dim">250</text>
+
+    <!-- Dimension: Fin pitch detail -->
+    <line x1="10" y1="-3" x2="10" y2="-1" class="ext-line"/>
+    <line x1="12.5" y1="-3" x2="12.5" y2="-1" class="ext-line"/>
+    <line x1="10" y1="-2" x2="12.5" y2="-2" class="dim-line"/>
+    <text x="11.25" y="-3" class="text-dim" font-size="2px">5</text>
+
+    <!-- Dimension: Fin width -->
+    <line x1="10" y1="-5" x2="10" y2="-7" class="ext-line"/>
+    <line x1="11" y1="-5" x2="11" y2="-7" class="ext-line"/>
+    <line x1="10" y1="-6" x2="11" y2="-6" class="dim-line"/>
+    <text x="10.5" y="-7.5" class="text-dim" font-size="2px">2</text>
+
+    <!-- Dimension: Gap 3 -->
+    <line x1="11" y1="-5" x2="11" y2="-7" class="ext-line"/>
+    <line x1="12.5" y1="-5" x2="12.5" y2="-7" class="ext-line"/>
+    <line x1="11" y1="-6" x2="12.5" y2="-6" class="dim-line"/>
+    <text x="11.75" y="-7.5" class="text-dim" font-size="2px">3</text>
+
+    <!-- Fin start Y=20 -->
+    <line x1="0" y1="17" x2="0" y2="19" class="ext-line"/>
+    <line x1="10" y1="17" x2="10" y2="19" class="ext-line"/>
+    <line x1="0" y1="18" x2="10" y2="18" class="dim-line"/>
+    <text x="5" y="17.5" class="text-dim" font-size="2px">20</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- PLAN VIEW (bottom-left) - Top view showing fins from above -->
+  <!-- W=300->150px, D=250->125px at 1:2 -->
+  <!-- Position: x=30, y=90 -->
+  <!-- ============================================ -->
+  <g id="plan-view" transform="translate(30, 80)">
+    <text x="75" y="-3" class="text-note" text-anchor="middle" font-weight="bold">平面図 (上面 - フィン上方)</text>
+
+    <!-- Outer boundary -->
+    <rect x="0" y="0" width="150" height="125" class="outline"/>
+
+    <!-- Fin lines (42 horizontal lines from Y=20 to Y=230) -->
+    <!-- Y=20->10px, pitch 5mm->2.5px, length X=20-280 -> 10-140 -->
+    <g class="thin" stroke-width="0.2">
+      <line x1="10" y1="10" x2="140" y2="10"/>
+      <line x1="10" y1="12.5" x2="140" y2="12.5"/>
+      <line x1="10" y1="15" x2="140" y2="15"/>
+      <line x1="10" y1="17.5" x2="140" y2="17.5"/>
+      <line x1="10" y1="20" x2="140" y2="20"/>
+      <line x1="10" y1="22.5" x2="140" y2="22.5"/>
+      <line x1="10" y1="25" x2="140" y2="25"/>
+      <line x1="10" y1="27.5" x2="140" y2="27.5"/>
+      <line x1="10" y1="30" x2="140" y2="30"/>
+      <line x1="10" y1="32.5" x2="140" y2="32.5"/>
+      <line x1="10" y1="35" x2="140" y2="35"/>
+      <line x1="10" y1="37.5" x2="140" y2="37.5"/>
+      <line x1="10" y1="40" x2="140" y2="40"/>
+      <line x1="10" y1="42.5" x2="140" y2="42.5"/>
+      <line x1="10" y1="45" x2="140" y2="45"/>
+      <line x1="10" y1="47.5" x2="140" y2="47.5"/>
+      <line x1="10" y1="50" x2="140" y2="50"/>
+      <line x1="10" y1="52.5" x2="140" y2="52.5"/>
+      <line x1="10" y1="55" x2="140" y2="55"/>
+      <line x1="10" y1="57.5" x2="140" y2="57.5"/>
+      <line x1="10" y1="60" x2="140" y2="60"/>
+      <line x1="10" y1="62.5" x2="140" y2="62.5"/>
+      <line x1="10" y1="65" x2="140" y2="65"/>
+      <line x1="10" y1="67.5" x2="140" y2="67.5"/>
+      <line x1="10" y1="70" x2="140" y2="70"/>
+      <line x1="10" y1="72.5" x2="140" y2="72.5"/>
+      <line x1="10" y1="75" x2="140" y2="75"/>
+      <line x1="10" y1="77.5" x2="140" y2="77.5"/>
+      <line x1="10" y1="80" x2="140" y2="80"/>
+      <line x1="10" y1="82.5" x2="140" y2="82.5"/>
+      <line x1="10" y1="85" x2="140" y2="85"/>
+      <line x1="10" y1="87.5" x2="140" y2="87.5"/>
+      <line x1="10" y1="90" x2="140" y2="90"/>
+      <line x1="10" y1="92.5" x2="140" y2="92.5"/>
+      <line x1="10" y1="95" x2="140" y2="95"/>
+      <line x1="10" y1="97.5" x2="140" y2="97.5"/>
+      <line x1="10" y1="100" x2="140" y2="100"/>
+      <line x1="10" y1="102.5" x2="140" y2="102.5"/>
+      <line x1="10" y1="105" x2="140" y2="105"/>
+      <line x1="10" y1="107.5" x2="140" y2="107.5"/>
+      <line x1="10" y1="110" x2="140" y2="110"/>
+      <line x1="10" y1="112.5" x2="140" y2="112.5"/>
+    </g>
+
+    <!-- M3 holes (shown as + marks through fins) -->
+    <!-- (30,32.5)->(15,16.25) etc at 1:2 -->
+    <circle cx="15" cy="16.25" r="1.2" class="outline" stroke-width="0.25"/>
+    <circle cx="75" cy="16.25" r="1.2" class="outline" stroke-width="0.25"/>
+    <circle cx="135" cy="16.25" r="1.2" class="outline" stroke-width="0.25"/>
+    <circle cx="15" cy="63.75" r="1.2" class="outline" stroke-width="0.25"/>
+    <circle cx="135" cy="63.75" r="1.2" class="outline" stroke-width="0.25"/>
+    <circle cx="15" cy="111.25" r="1.2" class="outline" stroke-width="0.25"/>
+    <circle cx="75" cy="111.25" r="1.2" class="outline" stroke-width="0.25"/>
+    <circle cx="135" cy="111.25" r="1.2" class="outline" stroke-width="0.25"/>
+
+    <!-- HP holes phi7 at (230,50),(250,125),(230,200) -> (115,25),(125,62.5),(115,100) -->
+    <circle cx="115" cy="25" r="1.75" class="outline" stroke-width="0.25"/>
+    <circle cx="125" cy="62.5" r="1.75" class="outline" stroke-width="0.25"/>
+    <circle cx="115" cy="100" r="1.75" class="outline" stroke-width="0.25"/>
+    <!-- Cross hairs for HP holes -->
+    <line x1="113" y1="25" x2="117" y2="25" class="center"/>
+    <line x1="115" y1="23" x2="115" y2="27" class="center"/>
+
+    <!-- Center lines -->
+    <line x1="75" y1="-3" x2="75" y2="128" class="center"/>
+    <line x1="-3" y1="62.5" x2="153" y2="62.5" class="center"/>
+
+    <!-- Cutting line B-B at X=150 -> x=75 -->
+    <line x1="75" y1="-6" x2="75" y2="-3" class="cutting"/>
+    <line x1="75" y1="128" x2="75" y2="131" class="cutting"/>
+    <text x="73" y="-7" class="text-dim" font-size="3px" text-anchor="end">B</text>
+    <text x="73" y="134" class="text-dim" font-size="3px" text-anchor="end">B</text>
+
+    <!-- Dimension: Width 300 -->
+    <line x1="0" y1="132" x2="0" y2="129" class="ext-line"/>
+    <line x1="150" y1="132" x2="150" y2="129" class="ext-line"/>
+    <line x1="0" y1="131" x2="150" y2="131" class="dim-line"/>
+    <text x="75" y="130" class="text-dim">300</text>
+
+    <!-- Dimension: Depth 250 -->
+    <line x1="157" y1="0" x2="160" y2="0" class="ext-line"/>
+    <line x1="157" y1="125" x2="160" y2="125" class="ext-line"/>
+    <line x1="159" y1="0" x2="159" y2="125" class="dim-line"/>
+    <text x="163" y="62.5" class="text-dim" transform="rotate(-90,163,62.5)">250</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- DETAIL C - Fitting step (5:1 scale) -->
+  <!-- Position: x=220, y=75 -->
+  <!-- ============================================ -->
+  <g id="detail-c" transform="translate(225, 80)">
+    <text x="40" y="-5" class="text-note" text-anchor="middle" font-weight="bold">詳細図 C (嵌合段差 5:1)</text>
+
+    <!-- Circle indicating detail area -->
+    <circle cx="40" cy="30" r="38" class="thin" stroke-dasharray="4,2"/>
+
+    <!-- At 5:1 scale: 2mm->10px, 3mm->15px -->
+    <!-- Show edge cross section -->
+    <!-- Plate top surface -->
+    <line x1="5" y1="15" x2="75" y2="15" class="outline"/>
+    <!-- Plate bottom surface (main area) -->
+    <line x1="15" y1="30" x2="75" y2="30" class="outline"/>
+    <!-- Plate bottom (step area = outer 2mm removed) -->
+    <line x1="5" y1="15" x2="5" y2="30" class="outline"/>
+    <!-- Step vertical -->
+    <line x1="15" y1="15" x2="15" y2="30" class="outline"/>
+    <!-- Outer edge -->
+    <line x1="5" y1="30" x2="15" y2="30" class="outline"/>
+
+    <!-- DWG-001 lip (shown as phantom/reference) -->
+    <line x1="5" y1="30" x2="5" y2="45" class="hidden"/>
+    <line x1="15" y1="30" x2="15" y2="45" class="hidden"/>
+    <line x1="5" y1="45" x2="15" y2="45" class="hidden"/>
+    <text x="10" y="50" class="text-dim" font-size="2px">DWG-001</text>
+    <text x="10" y="53" class="text-dim" font-size="2px">lip ref.</text>
+
+    <!-- Hatching for plate body -->
+    <g class="hatch">
+      <line x1="17" y1="30" x2="32" y2="15"/>
+      <line x1="22" y1="30" x2="37" y2="15"/>
+      <line x1="27" y1="30" x2="42" y2="15"/>
+      <line x1="32" y1="30" x2="47" y2="15"/>
+      <line x1="37" y1="30" x2="52" y2="15"/>
+      <line x1="42" y1="30" x2="57" y2="15"/>
+      <line x1="47" y1="30" x2="62" y2="15"/>
+      <line x1="52" y1="30" x2="67" y2="15"/>
+      <line x1="57" y1="30" x2="72" y2="15"/>
+      <line x1="62" y1="30" x2="75" y2="17"/>
+      <line x1="67" y1="30" x2="75" y2="22"/>
+      <line x1="72" y1="30" x2="75" y2="27"/>
+    </g>
+
+    <!-- Dimension: Step width 2mm (at 5:1 = 10px) -->
+    <line x1="5" y1="33" x2="5" y2="36" class="ext-line"/>
+    <line x1="15" y1="33" x2="15" y2="36" class="ext-line"/>
+    <line x1="5" y1="35" x2="15" y2="35" class="dim-line"/>
+    <text x="10" y="34" class="text-dim">2</text>
+
+    <!-- Dimension: Step depth 3mm (at 5:1 = 15px) -->
+    <line x1="2" y1="15" x2="-1" y2="15" class="ext-line"/>
+    <line x1="2" y1="30" x2="-1" y2="30" class="ext-line"/>
+    <line x1="0" y1="15" x2="0" y2="30" class="dim-line"/>
+    <text x="-3" y="23" class="text-dim" transform="rotate(-90,-3,23)">3</text>
+
+    <!-- Dimension: Plate thickness 3mm -->
+    <line x1="78" y1="15" x2="81" y2="15" class="ext-line"/>
+    <line x1="78" y1="30" x2="81" y2="30" class="ext-line"/>
+    <line x1="80" y1="15" x2="80" y2="30" class="dim-line"/>
+    <text x="83" y="23" class="text-dim" font-size="2.5px">3 (t)</text>
+
+    <!-- Gap annotation -->
+    <text x="10" y="40" class="text-note" font-size="2px">Gap: 0.05-0.15</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- TITLE BLOCK (bottom-right) -->
+  <!-- ============================================ -->
+  <g id="title-block" transform="translate(295, 237)">
+    <!-- Revision block -->
+    <rect x="0" y="-20" width="100" height="20" class="title-box"/>
+    <line x1="0" y1="-10" x2="100" y2="-10" class="title-box"/>
+    <line x1="15" y1="-20" x2="15" y2="0" class="title-box"/>
+    <line x1="35" y1="-20" x2="35" y2="0" class="title-box"/>
+    <line x1="75" y1="-20" x2="75" y2="0" class="title-box"/>
+    <text x="7.5" y="-15" class="text-dim" font-size="2px">Rev</text>
+    <text x="25" y="-15" class="text-dim" font-size="2px">Date</text>
+    <text x="55" y="-15" class="text-dim" font-size="2px">Description</text>
+    <text x="87" y="-15" class="text-dim" font-size="2px">Appr.</text>
+    <text x="7.5" y="-5" class="text-dim" font-size="2px">A</text>
+    <text x="25" y="-5" class="text-dim" font-size="2px">2026-05-06</text>
+    <text x="55" y="-5" class="text-dim" font-size="2px">Initial release</text>
+    <text x="87" y="-5" class="text-dim" font-size="2px">--</text>
+
+    <!-- Main title block -->
+    <rect x="0" y="0" width="100" height="40" class="title-box"/>
+    <line x1="0" y1="7" x2="100" y2="7" class="title-box"/>
+    <line x1="0" y1="14" x2="100" y2="14" class="title-box"/>
+    <line x1="0" y1="21" x2="100" y2="21" class="title-box"/>
+    <line x1="0" y1="28" x2="100" y2="28" class="title-box"/>
+    <line x1="0" y1="34" x2="100" y2="34" class="title-box"/>
+    <line x1="30" y1="0" x2="30" y2="28" class="title-box"/>
+    <line x1="50" y1="21" x2="50" y2="28" class="title-box"/>
+
+    <text x="2" y="5" class="text-title-sm">DWG No.</text>
+    <text x="32" y="5" class="text-title">DWG-002 Rev.A</text>
+    <text x="2" y="12" class="text-title-sm">Title</text>
+    <text x="32" y="12" class="text-title">Taros Pro Top Plate (Fin)</text>
+    <text x="2" y="19" class="text-title-sm">Scale</text>
+    <text x="32" y="19" class="text-title-sm">1:2 (A3)</text>
+    <text x="60" y="19" class="text-title-sm">3rd Angle</text>
+    <text x="2" y="25.5" class="text-title-sm">Material</text>
+    <text x="32" y="25.5" class="text-title-sm">A6063-T5</text>
+    <text x="52" y="25.5" class="text-title-sm">Mass: 1.64 kg</text>
+    <text x="2" y="32" class="text-title-sm">Surface</text>
+    <text x="32" y="32" class="text-title-sm">Anodized Black 15um (JIS H 8601 AA15)</text>
+    <text x="2" y="38" class="text-title-sm">Tolerance</text>
+    <text x="32" y="38" class="text-title-sm">JIS B 0405 m / JIS B 0419 K</text>
+
+    <!-- Third angle projection symbol -->
+    <g transform="translate(85, 15)">
+      <circle cx="0" cy="0" r="2" class="outline" stroke-width="0.2"/>
+      <circle cx="0" cy="0" r="0.5" class="outline" stroke-width="0.2" fill="black"/>
+      <line x1="3" y1="-2" x2="3" y2="2" class="outline" stroke-width="0.2"/>
+      <line x1="3" y1="-2" x2="5" y2="-1" class="outline" stroke-width="0.2"/>
+      <line x1="3" y1="2" x2="5" y2="1" class="outline" stroke-width="0.2"/>
+      <line x1="5" y1="-1" x2="5" y2="1" class="outline" stroke-width="0.2"/>
+    </g>
+  </g>
+
+  <!-- Notes -->
+  <g transform="translate(220, 175)">
+    <text x="0" y="0" class="text-note" font-size="2px">Notes:</text>
+    <text x="0" y="4" class="text-note" font-size="2px">1. General tol: JIS B 0405 m</text>
+    <text x="0" y="7.5" class="text-note" font-size="2px">2. Fin tip: C0.2 chamfer (all 42)</text>
+    <text x="0" y="11" class="text-note" font-size="2px">3. Fin root: R0.5 fillet (CNC)</text>
+    <text x="0" y="14.5" class="text-note" font-size="2px">4. Edges: C0.3, ridges R0.2 max</text>
+    <text x="0" y="18" class="text-note" font-size="2px">5. Bottom face: Ra0.8 (mating)</text>
+    <text x="0" y="21.5" class="text-note" font-size="2px">6. 42 fins x t2 x h18 x L260</text>
+    <text x="0" y="25" class="text-note" font-size="2px">7. M3 CSK holes x8 (DWG-001 align)</text>
+    <text x="0" y="28.5" class="text-note" font-size="2px">8. HP through-holes phi7 x3</text>
+  </g>
+</svg>

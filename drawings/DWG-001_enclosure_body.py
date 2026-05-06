@@ -18,103 +18,112 @@ DWG-001: Taros Pro 筐体本体 (Lower Body)
 """
 
 import cadquery as cq
-
-# === 基本パラメータ (出典: 12_mechanical.md §1.2) ===
-W = 300.0   # 幅 [mm] — X方向
-D = 250.0   # 奥行 [mm] — Y方向
-H_body = 142.0  # 本体高さ [mm] — Z方向 (天板含まず: 160 - 18fin = 142)
-
-T_bottom = 3.0   # 底板厚 [mm] — 12_mechanical §1.2
-T_side = 3.0     # 側板厚 [mm] — 12_mechanical §1.2
-
-# 天板嵌合段差 (本体上端に天板を載せるための段差)
-LIP_W = 2.0      # 段差幅 [mm]
-LIP_H = 3.0      # 段差深さ [mm] — 天板板厚と同一
-
-# 内部寸法 (導出)
-W_inner = W - 2 * T_side       # 294mm
-D_inner = D - 2 * T_side       # 244mm
-H_inner = H_body - T_bottom    # 139mm (側板内面高さ)
-
-# === ゴム脚 (出典: 11_industrial-design.md §2) ===
-FOOT_D = 15.0    # ゴム脚直径 [mm]
-FOOT_INSET = 20.0  # 角からのインセット [mm]
-FOOT_BORE_D = 5.5  # M5ネジ下穴径 [mm]
-FOOT_BORE_DEPTH = 8.0  # 下穴深さ [mm]
-
-# === 側面スリット (出典: 12_mechanical.md §1.2) ===
-SLIT_N = 12       # 片側本数
-SLIT_W = 2.0      # 幅 [mm]
-SLIT_L = 200.0    # 長さ [mm] — Y方向
-SLIT_Z_START = 30.0   # 開始Z [mm]
-SLIT_Z_END = 130.0    # 終了Z [mm]
-SLIT_PITCH = 8.0      # ピッチ [mm]
-SLIT_Y_START = 25.0   # Y開始 [mm]
-
-# === ファン開口 (出典: 11_industrial-design.md §7, 12_mechanical §4.2) ===
-FAN_SIZE = 80.0       # ファンサイズ [mm] — Noctua NF-A8
-FAN_MOUNT_PITCH = 71.5  # 取付穴ピッチ [mm]
-FAN_BORE_D = 4.5      # M4ネジ穴径 [mm]
-FAN_X_CENTER = 150.0  # 底面中央X
-FAN_Y_CENTER = 125.0  # 底面中央Y
-
-# === グロメット穴 (出典: 12_mechanical.md §2.2) ===
-GROMMET_D = 10.0  # φ10mm — Zone A-B間ファイバ通過
-GROMMET_X = 135.0  # X位置 (Zone A/B境界)
-GROMMET_Y1 = 80.0
-GROMMET_Y2 = 170.0
-GROMMET_Z = 50.0
-
-# === Zone間仕切り取付溝 ===
-# PTFE断熱板 (Z=93, 3mm厚) 用の溝 — 12_mechanical §1.3
-PTFE_Z = 90.0     # 溝底面Z位置 [mm]
-PTFE_T = 3.0      # 板厚 [mm]
-PTFE_GROOVE_D = 1.5  # 溝深さ [mm] (側壁に切り込み)
-
-# === 天板固定ネジ穴 ===
-TOP_SCREW_POSITIONS = [
-    (30, 30), (150, 30), (270, 30),    # 前面3箇所
-    (30, 125),            (270, 125),   # 側面2箇所
-    (30, 220), (150, 220), (270, 220),  # 背面3箇所
-]
-TOP_SCREW_D = 2.5   # M3タップ下穴 [mm]
-TOP_SCREW_DEPTH = 8.0
-
-# === 背面ポート開口 (出典: 11_industrial-design.md §4) ===
-# USB-C ×2
-USBC_W = 9.0
-USBC_H = 3.5
-USBC_Y = D  # 背面 (Y=250)
-USBC_X1 = 60.0
-USBC_X2 = 90.0
-USBC_Z = 20.0
-
-# 10GbE RJ45
-RJ45_W = 16.0
-RJ45_H = 14.0
-RJ45_X = 140.0
-RJ45_Z = 15.0
-
-# DC入力 (USB-PD EPR)
-DC_W = 9.0
-DC_H = 3.5
-DC_X = 220.0
-DC_Z = 20.0
-
-# GND端子
-GND_D = 8.0
-GND_X = 250.0
-GND_Z = 25.0
-
-# 電源SW開口
-SW_W = 20.0
-SW_H = 13.0
-SW_X = 270.0
-SW_Z = 18.0
+from dataclasses import dataclass
+from taros_params import TarosProParams, PARAMS
 
 
-def build_enclosure_body():
+@dataclass
+class EnclosureParams:
+    """DWG-001 筐体本体固有パラメータ"""
+
+    # === 共通パラメータ参照 ===
+    common: TarosProParams = None
+
+    # === 本体高さ (出典: 12_mechanical.md §1.2) ===
+    H_body: float = 142.0   # 本体高さ [mm] — Z方向 (天板含まず: 160 - 18fin = 142)
+
+    # === ゴム脚 (出典: 11_industrial-design.md §2) ===
+    FOOT_D: float = 15.0          # ゴム脚直径 [mm]
+    FOOT_INSET: float = 20.0      # 角からのインセット [mm]
+    FOOT_BORE_D: float = 4.2      # M5タップ下穴径 [mm] (JIS: φ4.2 for M5×0.8)
+    FOOT_BORE_DEPTH: float = 8.0  # 下穴深さ [mm]
+
+    # === 側面スリット (出典: 12_mechanical.md §1.2) ===
+    SLIT_N: int = 12          # 片側本数
+    SLIT_W: float = 2.0       # 幅 [mm]
+    SLIT_L: float = 200.0     # 長さ [mm] — Y方向
+    SLIT_Z_START: float = 30.0    # 開始Z [mm]
+    SLIT_Z_END: float = 118.0     # 終了Z [mm]
+    SLIT_PITCH: float = 8.0       # ピッチ [mm]
+    SLIT_Y_START: float = 25.0    # Y開始 [mm]
+
+    # === ファン開口 (出典: 11_industrial-design.md §7, 12_mechanical §4.2) ===
+    FAN_SIZE: float = 80.0          # ファンサイズ [mm] — Noctua NF-A8
+    FAN_MOUNT_PITCH: float = 71.5   # 取付穴ピッチ [mm]
+    FAN_BORE_D: float = 4.5         # M4ネジ穴径 [mm]
+    FAN_X_CENTER: float = 150.0     # 底面中央X
+    FAN_Y_CENTER: float = 125.0     # 底面中央Y
+
+    # === グロメット穴 (出典: 12_mechanical.md §2.2) ===
+    GROMMET_D: float = 10.0    # φ10mm — Zone A-B間ファイバ通過
+    GROMMET_X: float = 135.0   # X位置 (Zone A/B境界)
+    GROMMET_Y1: float = 80.0
+    GROMMET_Y2: float = 170.0
+    GROMMET_Z: float = 50.0
+
+    # === Zone間仕切り取付溝 (出典: 12_mechanical §1.3) ===
+    PTFE_Z: float = 90.0       # 溝底面Z位置 [mm]
+    PTFE_T: float = 3.0        # 板厚 [mm]
+    PTFE_GROOVE_D: float = 1.5 # 溝深さ [mm] (側壁に切り込み)
+
+    # === 天板固定ネジ穴 ===
+    TOP_SCREW_D: float = 2.5       # M3タップ下穴 [mm]
+    TOP_SCREW_DEPTH: float = 8.0
+
+    # === 背面ポート開口 (出典: 11_industrial-design.md §4) ===
+    # USB-C ×2
+    USBC_W: float = 9.0
+    USBC_H: float = 3.5
+    USBC_X1: float = 60.0
+    USBC_X2: float = 90.0
+    USBC_Z: float = 20.0
+
+    # 10GbE RJ45
+    RJ45_W: float = 16.0
+    RJ45_H: float = 14.0
+    RJ45_X: float = 140.0
+    RJ45_Z: float = 15.0
+
+    # DC入力 (USB-PD EPR)
+    DC_W: float = 9.0
+    DC_H: float = 3.5
+    DC_X: float = 220.0
+    DC_Z: float = 20.0
+
+    # GND端子
+    GND_D: float = 8.0
+    GND_X: float = 250.0
+    GND_Z: float = 25.0
+
+    # 電源SW開口
+    SW_W: float = 20.0
+    SW_H: float = 13.0
+    SW_X: float = 270.0
+    SW_Z: float = 18.0
+
+    def __post_init__(self):
+        if self.common is None:
+            self.common = PARAMS
+
+
+def build_enclosure_body(p: EnclosureParams = None):
     """筐体本体を生成"""
+    if p is None:
+        p = EnclosureParams()
+
+    c = p.common  # 共通パラメータ
+
+    # 導出寸法
+    W = c.W
+    D = c.D
+    H_body = p.H_body
+    T_side = c.T_side
+    T_bottom = c.T_bottom
+    LIP_W = c.LIP_W
+    LIP_H = c.LIP_H
+    W_inner = W - 2 * T_side       # 294mm
+    D_inner = D - 2 * T_side       # 244mm
+    H_inner = H_body - T_bottom    # 139mm (側板内面高さ)
 
     # 1. 外殻ブロック
     body = cq.Workplane("XY").box(W, D, H_body, centered=False)
@@ -140,15 +149,15 @@ def build_enclosure_body():
     )
 
     # 4. 側面スリット (左右対称)
-    for i in range(SLIT_N):
-        z = SLIT_Z_START + i * SLIT_PITCH
+    for i in range(p.SLIT_N):
+        z = p.SLIT_Z_START + i * p.SLIT_PITCH
         # 左側面 (X=0)
         body = (
             body
             .faces("<X")
             .workplane()
-            .move(SLIT_Y_START, z)
-            .rect(SLIT_L, SLIT_W, centered=False)
+            .move(p.SLIT_Y_START, z)
+            .rect(p.SLIT_L, p.SLIT_W, centered=False)
             .cutBlind(-T_side)
         )
         # 右側面 (X=300)
@@ -156,8 +165,8 @@ def build_enclosure_body():
             body
             .faces(">X")
             .workplane()
-            .move(-(SLIT_Y_START + SLIT_L), z)
-            .rect(SLIT_L, SLIT_W, centered=False)
+            .move(-(p.SLIT_Y_START + p.SLIT_L), z)
+            .rect(p.SLIT_L, p.SLIT_W, centered=False)
             .cutBlind(-T_side)
         )
 
@@ -166,29 +175,29 @@ def build_enclosure_body():
         body
         .faces("<Z")
         .workplane()
-        .move(FAN_X_CENTER, FAN_Y_CENTER)
-        .circle(FAN_SIZE / 2 - 5)  # φ70mm開口
+        .move(p.FAN_X_CENTER, p.FAN_Y_CENTER)
+        .circle(p.FAN_SIZE / 2 - 5)  # φ70mm開口
         .cutBlind(-T_bottom)
     )
     # ファン取付穴 M4 × 4
-    half_p = FAN_MOUNT_PITCH / 2
+    half_p = p.FAN_MOUNT_PITCH / 2
     for dx, dy in [(-half_p, -half_p), (half_p, -half_p),
                    (-half_p, half_p), (half_p, half_p)]:
         body = (
             body
             .faces("<Z")
             .workplane()
-            .move(FAN_X_CENTER + dx, FAN_Y_CENTER + dy)
-            .circle(FAN_BORE_D / 2)
+            .move(p.FAN_X_CENTER + dx, p.FAN_Y_CENTER + dy)
+            .circle(p.FAN_BORE_D / 2)
             .cutBlind(-T_bottom)
         )
 
     # 6. ゴム脚ネジ穴 M5 × 4 (底面)
     foot_positions = [
-        (FOOT_INSET, FOOT_INSET),
-        (W - FOOT_INSET, FOOT_INSET),
-        (FOOT_INSET, D - FOOT_INSET),
-        (W - FOOT_INSET, D - FOOT_INSET),
+        (p.FOOT_INSET, p.FOOT_INSET),
+        (W - p.FOOT_INSET, p.FOOT_INSET),
+        (p.FOOT_INSET, D - p.FOOT_INSET),
+        (W - p.FOOT_INSET, D - p.FOOT_INSET),
     ]
     for fx, fy in foot_positions:
         body = (
@@ -196,30 +205,30 @@ def build_enclosure_body():
             .faces("<Z")
             .workplane()
             .move(fx, fy)
-            .circle(FOOT_BORE_D / 2)
-            .cutBlind(-FOOT_BORE_DEPTH)
+            .circle(p.FOOT_BORE_D / 2)
+            .cutBlind(-p.FOOT_BORE_DEPTH)
         )
 
     # 7. 天板固定ネジ穴 M3 × 8 (上端面)
-    for sx, sy in TOP_SCREW_POSITIONS:
+    for sx, sy in c.TOP_SCREW_POSITIONS:
         body = (
             body
             .faces(">Z")
             .workplane()
             .move(sx - W / 2, sy - D / 2)
-            .circle(TOP_SCREW_D / 2)
-            .cutBlind(-TOP_SCREW_DEPTH)
+            .circle(p.TOP_SCREW_D / 2)
+            .cutBlind(-p.TOP_SCREW_DEPTH)
         )
 
     # 8. 背面ポート開口
     # USB-C ×2
-    for ux in [USBC_X1, USBC_X2]:
+    for ux in [p.USBC_X1, p.USBC_X2]:
         body = (
             body
             .faces(">Y")
             .workplane()
-            .move(ux - W / 2, USBC_Z)
-            .rect(USBC_W, USBC_H)
+            .move(ux - W / 2, p.USBC_Z)
+            .rect(p.USBC_W, p.USBC_H)
             .cutBlind(-T_side)
         )
 
@@ -228,8 +237,8 @@ def build_enclosure_body():
         body
         .faces(">Y")
         .workplane()
-        .move(RJ45_X - W / 2, RJ45_Z)
-        .rect(RJ45_W, RJ45_H)
+        .move(p.RJ45_X - W / 2, p.RJ45_Z)
+        .rect(p.RJ45_W, p.RJ45_H)
         .cutBlind(-T_side)
     )
 
@@ -238,8 +247,8 @@ def build_enclosure_body():
         body
         .faces(">Y")
         .workplane()
-        .move(DC_X - W / 2, DC_Z)
-        .rect(DC_W, DC_H)
+        .move(p.DC_X - W / 2, p.DC_Z)
+        .rect(p.DC_W, p.DC_H)
         .cutBlind(-T_side)
     )
 
@@ -248,8 +257,8 @@ def build_enclosure_body():
         body
         .faces(">Y")
         .workplane()
-        .move(GND_X - W / 2, GND_Z)
-        .circle(GND_D / 2)
+        .move(p.GND_X - W / 2, p.GND_Z)
+        .circle(p.GND_D / 2)
         .cutBlind(-T_side)
     )
 
@@ -258,8 +267,8 @@ def build_enclosure_body():
         body
         .faces(">Y")
         .workplane()
-        .move(SW_X - W / 2, SW_Z)
-        .rect(SW_W, SW_H)
+        .move(p.SW_X - W / 2, p.SW_Z)
+        .rect(p.SW_W, p.SW_H)
         .cutBlind(-T_side)
     )
 
@@ -270,16 +279,29 @@ if __name__ == "__main__":
     import os
     out_dir = os.path.dirname(os.path.abspath(__file__))
 
-    result = build_enclosure_body()
+    params = EnclosureParams()
+    result = build_enclosure_body(params)
 
     # STEP出力
     step_path = os.path.join(out_dir, "DWG-001_enclosure_body.step")
     cq.exporters.export(result, step_path)
     print(f"STEP exported: {step_path}")
 
+    # STL出力
+    stl_path = os.path.join(out_dir, "DWG-001_enclosure_body.stl")
+    cq.exporters.export(result, stl_path, exportType="STL")
+    print(f"STL exported: {stl_path}")
+
     # DXF出力 (上面図)
     dxf_path = os.path.join(out_dir, "DWG-001_enclosure_body_top.dxf")
     cq.exporters.export(result, dxf_path, exportType="DXF")
     print(f"DXF exported: {dxf_path}")
+
+    # 質量計算
+    volume_mm3 = result.val().Volume()
+    density = params.common.DENSITY  # g/mm^3
+    mass_g = volume_mm3 * density
+    print(f"Volume: {volume_mm3:.1f} mm^3")
+    print(f"Mass: {mass_g:.1f} g ({mass_g/1000:.3f} kg) [{params.common.MATERIAL}]")
 
     print("DWG-001 complete.")

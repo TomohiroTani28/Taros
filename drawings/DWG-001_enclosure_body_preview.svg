@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 297" width="420mm" height="297mm">
+  <defs>
+    <!-- Arrowhead marker for dimension lines -->
+    <marker id="arrow-start" markerWidth="3" markerHeight="2" refX="0" refY="1" orient="auto">
+      <polygon points="3,0 0,1 3,2" fill="black"/>
+    </marker>
+    <marker id="arrow-end" markerWidth="3" markerHeight="2" refX="3" refY="1" orient="auto">
+      <polygon points="0,0 3,1 0,2" fill="black"/>
+    </marker>
+    <!-- Line style classes -->
+    <style>
+      .outline { stroke: black; stroke-width: 0.5; fill: none; }
+      .hidden { stroke: black; stroke-width: 0.25; fill: none; stroke-dasharray: 2,1; }
+      .center { stroke: black; stroke-width: 0.18; fill: none; stroke-dasharray: 6,1,1,1; }
+      .dimension { stroke: black; stroke-width: 0.18; fill: none; }
+      .dim-line { stroke: black; stroke-width: 0.18; fill: none; marker-start: url(#arrow-start); marker-end: url(#arrow-end); }
+      .ext-line { stroke: black; stroke-width: 0.13; fill: none; }
+      .cutting { stroke: black; stroke-width: 0.35; fill: none; stroke-dasharray: 8,2,1,2; }
+      .hatch { stroke: black; stroke-width: 0.13; fill: none; }
+      .frame { stroke: black; stroke-width: 0.7; fill: none; }
+      .frame-inner { stroke: black; stroke-width: 0.35; fill: none; }
+      .title-box { stroke: black; stroke-width: 0.35; fill: none; }
+      .text-dim { font-family: Arial, sans-serif; font-size: 3px; text-anchor: middle; }
+      .text-note { font-family: Arial, sans-serif; font-size: 2.5px; text-anchor: start; }
+      .text-title { font-family: Arial, sans-serif; font-size: 3.5px; text-anchor: start; font-weight: bold; }
+      .text-title-sm { font-family: Arial, sans-serif; font-size: 2.5px; text-anchor: start; }
+      .text-zone { font-family: Arial, sans-serif; font-size: 3px; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <!-- Drawing frame - outer border -->
+  <rect x="5" y="5" width="410" height="287" class="frame"/>
+  <!-- Drawing frame - inner border (10mm margin) -->
+  <rect x="15" y="15" width="390" height="267" class="frame-inner"/>
+
+  <!-- Center marks on four sides -->
+  <line x1="210" y1="5" x2="210" y2="10" class="frame"/>
+  <line x1="210" y1="287" x2="210" y2="292" class="frame"/>
+  <line x1="5" y1="148.5" x2="10" y2="148.5" class="frame"/>
+  <line x1="410" y1="148.5" x2="415" y2="148.5" class="frame"/>
+
+  <!-- Zone labels -->
+  <text x="112" y="12" class="text-zone">A</text>
+  <text x="308" y="12" class="text-zone">B</text>
+  <text x="112" y="295" class="text-zone">A</text>
+  <text x="308" y="295" class="text-zone">B</text>
+  <text x="8" y="80" class="text-zone" transform="rotate(-90,8,80)">1</text>
+  <text x="8" y="220" class="text-zone" transform="rotate(-90,8,220)">2</text>
+  <text x="417" y="80" class="text-zone" transform="rotate(90,417,80)">1</text>
+  <text x="417" y="220" class="text-zone" transform="rotate(90,417,220)">2</text>
+
+  <!-- ============================================ -->
+  <!-- FRONT VIEW (top-left) - Y=0 plane, W x H = 300 x 142 at 1:2 -->
+  <!-- Scale 1:2, so 300mm -> 150px, 142mm -> 71px -->
+  <!-- Position: x=25, y=25 -->
+  <!-- ============================================ -->
+  <g id="front-view" transform="translate(30, 30)">
+    <text x="75" y="-3" class="text-note" text-anchor="middle" font-weight="bold">正面図 (Y=0)</text>
+
+    <!-- Outer rectangle 150 x 71 (300x142 at 1:2) -->
+    <rect x="0" y="0" width="150" height="71" class="outline"/>
+
+    <!-- Inner cavity (wall 3mm -> 1.5px at 1:2) -->
+    <!-- Inner: from x=1.5 to x=148.5, from y=1.5(top, lip) to y=69.5(bottom wall) -->
+    <rect x="1.5" y="1.5" width="147" height="68" class="hidden"/>
+
+    <!-- Lip step at top: 2mm wide x 3mm deep -> 1x1.5 at 1:2 -->
+    <line x1="1" y1="1.5" x2="149" y2="1.5" class="hidden"/>
+
+    <!-- Side slits (hidden lines on front view) - 12 slits, Z=30-118, pitch 8mm -->
+    <!-- At 1:2: Z=30->15px from bottom=71-15=56, Z=118->59px from bottom=71-59=12 -->
+    <!-- Slit width 2mm -> 1px, shown as hidden lines -->
+    <!-- Slits on side walls shown as dashed -->
+
+    <!-- Center lines -->
+    <line x1="75" y1="-5" x2="75" y2="76" class="center"/>
+    <line x1="-5" y1="35.5" x2="155" y2="35.5" class="center"/>
+
+    <!-- Dimension: Width 300 -->
+    <line x1="0" y1="78" x2="0" y2="75" class="ext-line"/>
+    <line x1="150" y1="78" x2="150" y2="75" class="ext-line"/>
+    <line x1="0" y1="77" x2="150" y2="77" class="dim-line"/>
+    <text x="75" y="76" class="text-dim">300</text>
+
+    <!-- Dimension: Height 142 -->
+    <line x1="157" y1="0" x2="160" y2="0" class="ext-line"/>
+    <line x1="157" y1="71" x2="160" y2="71" class="ext-line"/>
+    <line x1="159" y1="0" x2="159" y2="71" class="dim-line"/>
+    <text x="163" y="37" class="text-dim" transform="rotate(-90,163,37)">142</text>
+
+    <!-- Dimension: Wall thickness 3 (left side) -->
+    <line x1="0" y1="83" x2="0" y2="80" class="ext-line"/>
+    <line x1="1.5" y1="83" x2="1.5" y2="80" class="ext-line"/>
+    <line x1="0" y1="82" x2="1.5" y2="82" class="dim-line"/>
+    <text x="0.75" y="85" class="text-dim" font-size="2px">3</text>
+
+    <!-- Dimension: Lip 2x3 -->
+    <line x1="0" y1="-4" x2="0" y2="-7" class="ext-line"/>
+    <line x1="1" y1="-4" x2="1" y2="-7" class="ext-line"/>
+    <line x1="0" y1="-6" x2="1" y2="-6" class="dim-line"/>
+    <text x="0.5" y="-7.5" class="text-dim" font-size="2px">2</text>
+
+    <!-- Slit zone indication (right side annotation) -->
+    <line x1="152" y1="12" x2="155" y2="12" class="ext-line"/>
+    <line x1="152" y1="56" x2="155" y2="56" class="ext-line"/>
+    <line x1="154" y1="12" x2="154" y2="56" class="dim-line"/>
+    <text x="158" y="34" class="text-note" font-size="2px">Z=30-118</text>
+    <text x="158" y="37" class="text-note" font-size="2px">slits p8</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- RIGHT SIDE VIEW (top-right) - X=300 plane, D x H = 250 x 142 at 1:2 -->
+  <!-- 250mm -> 125px, 142mm -> 71px -->
+  <!-- Position: x=220, y=30 -->
+  <!-- ============================================ -->
+  <g id="right-side-view" transform="translate(220, 30)">
+    <text x="62.5" y="-3" class="text-note" text-anchor="middle" font-weight="bold">右側面図 (X=300)</text>
+
+    <!-- Outer rectangle -->
+    <rect x="0" y="0" width="125" height="71" class="outline"/>
+
+    <!-- 12 slits: Z=30-118, pitch 8mm, width 2mm, length 200mm (Y=25-225) -->
+    <!-- At 1:2: Y=25->12.5px, Y=225->112.5px; Z values from top: 71-(Z/2) -->
+    <!-- Slit at Z=30: y=71-15=56; Z=118: y=71-59=12 -->
+    <g class="outline" stroke-width="0.25">
+      <!-- 12 slits from Z=30 (y=56) to Z=118 (y=12), pitch 8mm->4px -->
+      <line x1="12.5" y1="56" x2="112.5" y2="56"/>
+      <line x1="12.5" y1="52" x2="112.5" y2="52"/>
+      <line x1="12.5" y1="48" x2="112.5" y2="48"/>
+      <line x1="12.5" y1="44" x2="112.5" y2="44"/>
+      <line x1="12.5" y1="40" x2="112.5" y2="40"/>
+      <line x1="12.5" y1="36" x2="112.5" y2="36"/>
+      <line x1="12.5" y1="32" x2="112.5" y2="32"/>
+      <line x1="12.5" y1="28" x2="112.5" y2="28"/>
+      <line x1="12.5" y1="24" x2="112.5" y2="24"/>
+      <line x1="12.5" y1="20" x2="112.5" y2="20"/>
+      <line x1="12.5" y1="16" x2="112.5" y2="16"/>
+      <line x1="12.5" y1="12" x2="112.5" y2="12"/>
+    </g>
+
+    <!-- Center lines -->
+    <line x1="62.5" y1="-5" x2="62.5" y2="76" class="center"/>
+    <line x1="-5" y1="35.5" x2="130" y2="35.5" class="center"/>
+
+    <!-- Dimension: Depth 250 -->
+    <line x1="0" y1="78" x2="0" y2="75" class="ext-line"/>
+    <line x1="125" y1="78" x2="125" y2="75" class="ext-line"/>
+    <line x1="0" y1="77" x2="125" y2="77" class="dim-line"/>
+    <text x="62.5" y="76" class="text-dim">250</text>
+
+    <!-- Dimension: Height 142 -->
+    <line x1="132" y1="0" x2="135" y2="0" class="ext-line"/>
+    <line x1="132" y1="71" x2="135" y2="71" class="ext-line"/>
+    <line x1="134" y1="0" x2="134" y2="71" class="dim-line"/>
+    <text x="138" y="37" class="text-dim" transform="rotate(-90,138,37)">142</text>
+
+    <!-- Dimension: Slit pitch 8 -->
+    <line x1="115" y1="12" x2="118" y2="12" class="ext-line"/>
+    <line x1="115" y1="16" x2="118" y2="16" class="ext-line"/>
+    <line x1="117" y1="12" x2="117" y2="16" class="dim-line"/>
+    <text x="121" y="15" class="text-dim" font-size="2px">8</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- PLAN VIEW (bottom-left) - Top, W x D = 300 x 250 at 1:2 -->
+  <!-- 300mm -> 150px, 250mm -> 125px -->
+  <!-- Position: x=30, y=125 -->
+  <!-- ============================================ -->
+  <g id="plan-view" transform="translate(30, 130)">
+    <text x="75" y="-3" class="text-note" text-anchor="middle" font-weight="bold">平面図 (Z=142)</text>
+
+    <!-- Outer rectangle -->
+    <rect x="0" y="0" width="150" height="125" class="outline"/>
+
+    <!-- Lip inner edge (2mm -> 1px at 1:2) -->
+    <rect x="1" y="1" width="148" height="123" class="outline" stroke-width="0.25"/>
+
+    <!-- M3 tap holes x8 (shown as circles) -->
+    <!-- Positions at 1:2: (30,32.5)->(15,16.25), (150,32.5)->(75,16.25), etc. -->
+    <circle cx="15" cy="16.25" r="1" class="outline" stroke-width="0.25"/>
+    <circle cx="75" cy="16.25" r="1" class="outline" stroke-width="0.25"/>
+    <circle cx="135" cy="16.25" r="1" class="outline" stroke-width="0.25"/>
+    <circle cx="15" cy="63.75" r="1" class="outline" stroke-width="0.25"/>
+    <circle cx="135" cy="63.75" r="1" class="outline" stroke-width="0.25"/>
+    <circle cx="15" cy="111.25" r="1" class="outline" stroke-width="0.25"/>
+    <circle cx="75" cy="111.25" r="1" class="outline" stroke-width="0.25"/>
+    <circle cx="135" cy="111.25" r="1" class="outline" stroke-width="0.25"/>
+
+    <!-- Center lines -->
+    <line x1="75" y1="-5" x2="75" y2="130" class="center"/>
+    <line x1="-5" y1="62.5" x2="155" y2="62.5" class="center"/>
+
+    <!-- Fan opening phi70 at center (150,125) -> (75,62.5) at 1:2, r=35->17.5 -->
+    <!-- This is on the bottom (Z=0), shown as hidden -->
+    <circle cx="75" cy="62.5" r="17.5" class="hidden"/>
+    <text x="75" y="62.5" class="text-dim" font-size="2px">phi70</text>
+
+    <!-- Dimension: Width 300 -->
+    <line x1="0" y1="132" x2="0" y2="129" class="ext-line"/>
+    <line x1="150" y1="132" x2="150" y2="129" class="ext-line"/>
+    <line x1="0" y1="131" x2="150" y2="131" class="dim-line"/>
+    <text x="75" y="130" class="text-dim">300</text>
+
+    <!-- Dimension: Depth 250 -->
+    <line x1="157" y1="0" x2="160" y2="0" class="ext-line"/>
+    <line x1="157" y1="125" x2="160" y2="125" class="ext-line"/>
+    <line x1="159" y1="0" x2="159" y2="125" class="dim-line"/>
+    <text x="163" y="62.5" class="text-dim" transform="rotate(-90,163,62.5)">250</text>
+
+    <!-- Cutting line A-A at Y=125 -> y=62.5 at 1:2 -->
+    <line x1="-8" y1="62.5" x2="-3" y2="62.5" class="cutting"/>
+    <line x1="153" y1="62.5" x2="158" y2="62.5" class="cutting"/>
+    <text x="-10" y="63.5" class="text-dim" font-size="3px" text-anchor="end">A</text>
+    <text x="160" y="63.5" class="text-dim" font-size="3px" text-anchor="start">A</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- SECTION A-A (center-bottom) - Y=125 cut -->
+  <!-- Position: x=210, y=140 -->
+  <!-- ============================================ -->
+  <g id="section-aa" transform="translate(215, 140)">
+    <text x="50" y="-3" class="text-note" text-anchor="middle" font-weight="bold">断面図 A-A (Y=125)</text>
+
+    <!-- Outer rectangle 150 x 71 (300x142 at 1:2) -->
+    <rect x="0" y="0" width="150" height="71" class="outline"/>
+
+    <!-- Bottom wall hatched area (3mm -> 1.5px) -->
+    <rect x="0" y="69.5" width="150" height="1.5" class="outline" fill="none"/>
+    <!-- Left wall -->
+    <rect x="0" y="0" width="1.5" height="71" class="outline" fill="none"/>
+    <!-- Right wall -->
+    <rect x="148.5" y="0" width="1.5" height="71" class="outline" fill="none"/>
+    <!-- Top lip left -->
+    <rect x="0" y="0" width="1.5" height="1.5" class="outline" fill="none"/>
+    <!-- Top lip right -->
+    <rect x="148.5" y="0" width="1.5" height="1.5" class="outline" fill="none"/>
+
+    <!-- Hatching for cut material (45 degree lines) -->
+    <g class="hatch">
+      <!-- Left wall hatch -->
+      <line x1="0" y1="5" x2="1.5" y2="3.5"/>
+      <line x1="0" y1="10" x2="1.5" y2="8.5"/>
+      <line x1="0" y1="15" x2="1.5" y2="13.5"/>
+      <line x1="0" y1="20" x2="1.5" y2="18.5"/>
+      <line x1="0" y1="25" x2="1.5" y2="23.5"/>
+      <line x1="0" y1="30" x2="1.5" y2="28.5"/>
+      <line x1="0" y1="35" x2="1.5" y2="33.5"/>
+      <line x1="0" y1="40" x2="1.5" y2="38.5"/>
+      <line x1="0" y1="45" x2="1.5" y2="43.5"/>
+      <line x1="0" y1="50" x2="1.5" y2="48.5"/>
+      <line x1="0" y1="55" x2="1.5" y2="53.5"/>
+      <line x1="0" y1="60" x2="1.5" y2="58.5"/>
+      <line x1="0" y1="65" x2="1.5" y2="63.5"/>
+      <line x1="0" y1="70" x2="1.5" y2="68.5"/>
+      <!-- Right wall hatch -->
+      <line x1="148.5" y1="5" x2="150" y2="3.5"/>
+      <line x1="148.5" y1="10" x2="150" y2="8.5"/>
+      <line x1="148.5" y1="15" x2="150" y2="13.5"/>
+      <line x1="148.5" y1="20" x2="150" y2="18.5"/>
+      <line x1="148.5" y1="25" x2="150" y2="23.5"/>
+      <line x1="148.5" y1="30" x2="150" y2="28.5"/>
+      <line x1="148.5" y1="35" x2="150" y2="33.5"/>
+      <line x1="148.5" y1="40" x2="150" y2="38.5"/>
+      <line x1="148.5" y1="45" x2="150" y2="43.5"/>
+      <line x1="148.5" y1="50" x2="150" y2="48.5"/>
+      <line x1="148.5" y1="55" x2="150" y2="53.5"/>
+      <line x1="148.5" y1="60" x2="150" y2="58.5"/>
+      <line x1="148.5" y1="65" x2="150" y2="63.5"/>
+      <line x1="148.5" y1="70" x2="150" y2="68.5"/>
+      <!-- Bottom wall hatch -->
+      <line x1="5" y1="71" x2="6.5" y2="69.5"/>
+      <line x1="10" y1="71" x2="11.5" y2="69.5"/>
+      <line x1="15" y1="71" x2="16.5" y2="69.5"/>
+      <line x1="20" y1="71" x2="21.5" y2="69.5"/>
+      <line x1="25" y1="71" x2="26.5" y2="69.5"/>
+      <line x1="30" y1="71" x2="31.5" y2="69.5"/>
+      <line x1="35" y1="71" x2="36.5" y2="69.5"/>
+      <line x1="40" y1="71" x2="41.5" y2="69.5"/>
+      <line x1="45" y1="71" x2="46.5" y2="69.5"/>
+      <line x1="50" y1="71" x2="51.5" y2="69.5"/>
+      <line x1="55" y1="71" x2="56.5" y2="69.5"/>
+      <line x1="60" y1="71" x2="61.5" y2="69.5"/>
+      <line x1="65" y1="71" x2="66.5" y2="69.5"/>
+      <line x1="70" y1="71" x2="71.5" y2="69.5"/>
+      <line x1="75" y1="71" x2="76.5" y2="69.5"/>
+      <line x1="80" y1="71" x2="81.5" y2="69.5"/>
+      <line x1="85" y1="71" x2="86.5" y2="69.5"/>
+      <line x1="90" y1="71" x2="91.5" y2="69.5"/>
+      <line x1="95" y1="71" x2="96.5" y2="69.5"/>
+      <line x1="100" y1="71" x2="101.5" y2="69.5"/>
+      <line x1="105" y1="71" x2="106.5" y2="69.5"/>
+      <line x1="110" y1="71" x2="111.5" y2="69.5"/>
+      <line x1="115" y1="71" x2="116.5" y2="69.5"/>
+      <line x1="120" y1="71" x2="121.5" y2="69.5"/>
+      <line x1="125" y1="71" x2="126.5" y2="69.5"/>
+      <line x1="130" y1="71" x2="131.5" y2="69.5"/>
+      <line x1="135" y1="71" x2="136.5" y2="69.5"/>
+      <line x1="140" y1="71" x2="141.5" y2="69.5"/>
+      <line x1="145" y1="71" x2="146.5" y2="69.5"/>
+    </g>
+
+    <!-- Inner cavity line -->
+    <line x1="1.5" y1="1.5" x2="148.5" y2="1.5" class="outline" stroke-width="0.25"/>
+    <line x1="1.5" y1="1.5" x2="1.5" y2="69.5" class="outline" stroke-width="0.25"/>
+    <line x1="148.5" y1="1.5" x2="148.5" y2="69.5" class="outline" stroke-width="0.25"/>
+    <line x1="1.5" y1="69.5" x2="148.5" y2="69.5" class="outline" stroke-width="0.25"/>
+
+    <!-- Lip step lines -->
+    <line x1="1" y1="0" x2="1" y2="1.5" class="outline" stroke-width="0.25"/>
+    <line x1="149" y1="0" x2="149" y2="1.5" class="outline" stroke-width="0.25"/>
+    <line x1="1" y1="1.5" x2="1.5" y2="1.5" class="outline" stroke-width="0.25"/>
+    <line x1="149" y1="1.5" x2="148.5" y2="1.5" class="outline" stroke-width="0.25"/>
+
+    <!-- Dimension: Wall 3mm left -->
+    <line x1="0" y1="78" x2="0" y2="75" class="ext-line"/>
+    <line x1="1.5" y1="78" x2="1.5" y2="75" class="ext-line"/>
+    <line x1="0" y1="77" x2="1.5" y2="77" class="dim-line"/>
+    <text x="0.75" y="80" class="text-dim" font-size="2px">3</text>
+
+    <!-- Dimension: Internal width 294 -->
+    <line x1="1.5" y1="83" x2="1.5" y2="80" class="ext-line"/>
+    <line x1="148.5" y1="83" x2="148.5" y2="80" class="ext-line"/>
+    <line x1="1.5" y1="82" x2="148.5" y2="82" class="dim-line"/>
+    <text x="75" y="81" class="text-dim">294</text>
+
+    <!-- Dimension: Bottom 3mm -->
+    <line x1="155" y1="69.5" x2="158" y2="69.5" class="ext-line"/>
+    <line x1="155" y1="71" x2="158" y2="71" class="ext-line"/>
+    <line x1="157" y1="69.5" x2="157" y2="71" class="dim-line"/>
+    <text x="161" y="71" class="text-dim" font-size="2px">3</text>
+
+    <!-- Dimension: Lip depth 3 -->
+    <line x1="155" y1="0" x2="158" y2="0" class="ext-line"/>
+    <line x1="155" y1="1.5" x2="158" y2="1.5" class="ext-line"/>
+    <line x1="157" y1="0" x2="157" y2="1.5" class="dim-line"/>
+    <text x="161" y="1.2" class="text-dim" font-size="2px">3</text>
+
+    <!-- Dimension annotation: Internal 136 -->
+    <line x1="160" y1="1.5" x2="163" y2="1.5" class="ext-line"/>
+    <line x1="160" y1="69.5" x2="163" y2="69.5" class="ext-line"/>
+    <line x1="162" y1="1.5" x2="162" y2="69.5" class="dim-line"/>
+    <text x="166" y="37" class="text-dim" transform="rotate(-90,166,37)">136</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- TITLE BLOCK (bottom-right) -->
+  <!-- ============================================ -->
+  <g id="title-block" transform="translate(295, 237)">
+    <!-- Revision block above title block -->
+    <rect x="0" y="-20" width="100" height="20" class="title-box"/>
+    <line x1="0" y1="-10" x2="100" y2="-10" class="title-box"/>
+    <line x1="15" y1="-20" x2="15" y2="0" class="title-box"/>
+    <line x1="35" y1="-20" x2="35" y2="0" class="title-box"/>
+    <line x1="75" y1="-20" x2="75" y2="0" class="title-box"/>
+    <text x="7.5" y="-15" class="text-dim" font-size="2px">Rev</text>
+    <text x="25" y="-15" class="text-dim" font-size="2px">Date</text>
+    <text x="55" y="-15" class="text-dim" font-size="2px">Description</text>
+    <text x="87" y="-15" class="text-dim" font-size="2px">Appr.</text>
+    <text x="7.5" y="-5" class="text-dim" font-size="2px">A</text>
+    <text x="25" y="-5" class="text-dim" font-size="2px">2026-05-06</text>
+    <text x="55" y="-5" class="text-dim" font-size="2px">Initial release</text>
+    <text x="87" y="-5" class="text-dim" font-size="2px">--</text>
+
+    <!-- Main title block -->
+    <rect x="0" y="0" width="100" height="40" class="title-box"/>
+    <!-- Horizontal lines -->
+    <line x1="0" y1="7" x2="100" y2="7" class="title-box"/>
+    <line x1="0" y1="14" x2="100" y2="14" class="title-box"/>
+    <line x1="0" y1="21" x2="100" y2="21" class="title-box"/>
+    <line x1="0" y1="28" x2="100" y2="28" class="title-box"/>
+    <line x1="0" y1="34" x2="100" y2="34" class="title-box"/>
+    <!-- Vertical lines -->
+    <line x1="30" y1="0" x2="30" y2="28" class="title-box"/>
+    <line x1="50" y1="21" x2="50" y2="28" class="title-box"/>
+
+    <!-- Title block content -->
+    <text x="2" y="5" class="text-title-sm">DWG No.</text>
+    <text x="32" y="5" class="text-title">DWG-001 Rev.A</text>
+    <text x="2" y="12" class="text-title-sm">Title</text>
+    <text x="32" y="12" class="text-title">Taros Pro Lower Body</text>
+    <text x="2" y="19" class="text-title-sm">Scale</text>
+    <text x="32" y="19" class="text-title-sm">1:2 (A3)</text>
+    <text x="60" y="19" class="text-title-sm">3rd Angle</text>
+    <text x="2" y="25.5" class="text-title-sm">Material</text>
+    <text x="32" y="25.5" class="text-title-sm">A6063-T5</text>
+    <text x="52" y="25.5" class="text-title-sm">Mass: 2.31 kg</text>
+    <text x="2" y="32" class="text-title-sm">Surface</text>
+    <text x="32" y="32" class="text-title-sm">Anodized Black 15um (JIS H 8601 AA15)</text>
+    <text x="2" y="38" class="text-title-sm">Tolerance</text>
+    <text x="32" y="38" class="text-title-sm">JIS B 0405 m / JIS B 0419 K</text>
+
+    <!-- Third angle projection symbol -->
+    <g transform="translate(85, 15)">
+      <circle cx="0" cy="0" r="2" class="outline" stroke-width="0.2"/>
+      <circle cx="0" cy="0" r="0.5" class="outline" stroke-width="0.2" fill="black"/>
+      <line x1="3" y1="-2" x2="3" y2="2" class="outline" stroke-width="0.2"/>
+      <line x1="3" y1="-2" x2="5" y2="-1" class="outline" stroke-width="0.2"/>
+      <line x1="3" y1="2" x2="5" y2="1" class="outline" stroke-width="0.2"/>
+      <line x1="5" y1="-1" x2="5" y2="1" class="outline" stroke-width="0.2"/>
+    </g>
+  </g>
+
+  <!-- Notes area -->
+  <g transform="translate(215, 230)">
+    <text x="0" y="0" class="text-note" font-size="2px">Notes:</text>
+    <text x="0" y="4" class="text-note" font-size="2px">1. General tol: JIS B 0405 m</text>
+    <text x="0" y="7.5" class="text-note" font-size="2px">2. Edges: C0.3, ridges R0.2 max</text>
+    <text x="0" y="11" class="text-note" font-size="2px">3. Deburr all</text>
+    <text x="0" y="14.5" class="text-note" font-size="2px">4. Fan opening: phi70 (bottom)</text>
+  </g>
+</svg>
