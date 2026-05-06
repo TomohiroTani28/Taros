@@ -455,9 +455,9 @@
     <text x="25" y="-15" class="text-dim" font-size="2px">Date</text>
     <text x="55" y="-15" class="text-dim" font-size="2px">Description</text>
     <text x="87" y="-15" class="text-dim" font-size="2px">Appr.</text>
-    <text x="7.5" y="-5" class="text-dim" font-size="2px">A</text>
+    <text x="7.5" y="-5" class="text-dim" font-size="2px">B</text>
     <text x="25" y="-5" class="text-dim" font-size="2px">2026-05-06</text>
-    <text x="55" y="-5" class="text-dim" font-size="2px">Initial release</text>
+    <text x="55" y="-5" class="text-dim" font-size="2px">R1-R6 review fixes</text>
     <text x="87" y="-5" class="text-dim" font-size="2px">--</text>
 
     <!-- Main title block -->
