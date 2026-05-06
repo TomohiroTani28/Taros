@@ -61,10 +61,10 @@
     <!-- Fins: 43 fins, X=20-280 -> 10-140 at 1:2, height 18->9px, width 2->1px, pitch 5->2.5px -->
     <!-- First fin at X=20 (Y=20 in plan but here showing X cross section from front) -->
     <!-- From front (Y=0), fins extend in Y direction, so we see fin ends -->
-    <!-- Actually front view shows fin profile: 42 rectangles 2mm wide x 18mm high -->
+    <!-- Actually front view shows fin profile: 43 rectangles 2mm wide x 18mm high -->
     <!-- At 1:2: 1px wide x 9px high, spaced 2.5px apart -->
     <!-- Fin range: X=20-280 -> px 10-140 (260mm range, 43 fins) -->
-    <!-- Draw representative fins (every 3rd for readability) + indicate 42 total -->
+    <!-- Draw representative fins (every 3rd for readability) + indicate 43 total -->
     <g class="outline" stroke-width="0.35">
       <!-- 43 fins at 2.5px pitch (5mm at 1:2), Y=20-227 shown as X cross-section -->
       <!-- First 14 fins (representative) -->
@@ -282,7 +282,7 @@
     <!-- Outer boundary -->
     <rect x="0" y="0" width="150" height="125" class="outline"/>
 
-    <!-- Fin lines (42 horizontal lines from Y=20 to Y=230) -->
+    <!-- Fin lines (43 horizontal lines from Y=20 to Y=230) -->
     <!-- Y=20->10px, pitch 5mm->2.5px, length X=20-280 -> 10-140 -->
     <g class="thin" stroke-width="0.2">
       <line x1="10" y1="10" x2="140" y2="10"/>

@@ -61,22 +61,24 @@ class AssemblyParams:
     LASER_SIZE: tuple = (120.0, 60.0, 30.0)
     LASER_POS: tuple = (10.0, 10.0, 5.0)     # X=10-130, Y=10-70, Z=5-35
 
-    # #4 775nm Pump LD + SOA + SHG module (80×40×20mm)
+    # #4a 775nm Pump LD + SOA (80×40×20mm)
     PUMP_SIZE: tuple = (80.0, 40.0, 20.0)
     PUMP_POS: tuple = (10.0, 75.0, 5.0)      # X=10-90, Y=75-115, Z=5-25
+
+    # #4b SHG module (60×30×20mm) — 12_mechanical §1.4: 独立部品
+    SHG_SIZE: tuple = (60.0, 30.0, 20.0)
+    SHG_POS: tuple = (10.0, 120.0, 5.0)      # X=10-70, Y=120-150, Z=5-25
 
     # #5 PPLN OPA ×2 (50×20×10mm) — TEC上に配置 (Z=8 = 底板3mm + TEC5mm)
     OPA_SIZE: tuple = (50.0, 20.0, 10.0)
     OPA1_POS: tuple = (15.0, 155.0, 8.0)     # X=15-65, Y=155-175
     OPA2_POS: tuple = (15.0, 180.0, 8.0)     # X=15-65, Y=180-200
 
-    # #6 Peltier TEC ×3 (底板上面Z=3に配置)
-    # 注: 12_mechanical §1.4 ではTEC Z=15-20 (OPA上) だが、
-    #      TEC→底板排熱パスの熱抵抗最小化のためOPA直下(Z=3)に配置変更。
+    # #6 Peltier TEC ×2 (底板上面Z=3, TEC→底板排熱パス最短化)
     TEC_OPA_SIZE: tuple = (60.0, 50.0, 5.0)  # OPA#1+#2 共用 (1台で両OPAカバー)
     TEC_OPA_POS: tuple = (10.0, 152.0, 3.0)  # Y=152-202 (両OPAの下)
     TEC_SHG_SIZE: tuple = (60.0, 35.0, 5.0)  # SHG温調用
-    TEC_SHG_POS: tuple = (10.0, 80.0, 3.0)   # Pump/SHG module直下
+    TEC_SHG_POS: tuple = (10.0, 120.0, 3.0)  # SHG module(Y=120-150)直下
 
     # #7 LNOI EOM ×2 (40×20×10mm)
     EOM_SIZE: tuple = (40.0, 20.0, 10.0)
@@ -88,8 +90,9 @@ class AssemblyParams:
     BS_POS: tuple = (10.0, 210.0, 5.0)       # X=10-50, Y=210-240
 
     # #9 Balanced PD ×2 (35×20×20mm)
-    BPD_SIZE: tuple = (35.0, 20.0, 20.0)
+    BPD1_SIZE: tuple = (35.0, 20.0, 20.0)
     BPD1_POS: tuple = (75.0, 210.0, 5.0)     # X=75-110, Y=210-230
+    BPD2_SIZE: tuple = (35.0, 14.0, 20.0)    # BPD#2は14mm奥行 (12_mech: Y=230-244)
     BPD2_POS: tuple = (75.0, 230.0, 5.0)     # X=75-110, Y=230-244
 
     # =====================================================================
@@ -136,8 +139,8 @@ class AssemblyParams:
     DAC_POS: tuple = (210.0, 145.0, 5.0)     # X=210-280, Y=145-175
 
     # #17 DC-DC converter (80×80×25mm)
-    DCDC_SIZE: tuple = (80.0, 45.0, 25.0)
-    DCDC_POS: tuple = (210.0, 95.0, 25.0)    # ADC上にスタック
+    DCDC_SIZE: tuple = (80.0, 80.0, 25.0)
+    DCDC_POS: tuple = (210.0, 10.0, 25.0)    # FPGA上スタック (12_mech: Z=30-55)
 
     # #20 PZT driver + PID (80×40×15mm)
     PZT_SIZE: tuple = (80.0, 40.0, 15.0)
@@ -145,7 +148,7 @@ class AssemblyParams:
 
     # #18 Cu ヒートパイプ ×3 (φ6×80mm, vertical)
     HP_D: float = 6.0
-    HP_H: float = 80.0
+    HP_H: float = 82.0   # Z=55-137 (天板Z=139到達、TIM接続)
     HP_POSITIONS: tuple = (
         (230.0, 50.0, 55.0),    # HP#1 — DWG-002 HP穴位置と一致
         (250.0, 125.0, 55.0),   # HP#2
@@ -168,7 +171,8 @@ class AssemblyParams:
     MASS_OPA: float = 30.0          # OPA ×1
     MASS_TEC: float = 50.0          # TEC ×1
     MASS_LASER: float = 350.0       # Master Laser
-    MASS_PUMP: float = 200.0        # Pump LD+SOA+SHG
+    MASS_PUMP: float = 150.0        # Pump LD+SOA
+    MASS_SHG: float = 80.0          # SHG module
     MASS_EOM: float = 20.0          # EOM ×1
     MASS_BS: float = 15.0           # BS ×1
     MASS_BPD: float = 40.0          # BPD ×1
@@ -256,8 +260,11 @@ def build_assembly(p: AssemblyParams = None):
     # --- 3. Master Laser (#3) ---
     _add_box(assy, "Laser", p.LASER_SIZE, p.LASER_POS, C_LASER)
 
-    # --- 4. Pump LD + SOA + SHG (#4) ---
-    _add_box(assy, "Pump_SHG", p.PUMP_SIZE, p.PUMP_POS, C_PUMP)
+    # --- 4a. Pump LD + SOA (#4a) ---
+    _add_box(assy, "Pump_LD", p.PUMP_SIZE, p.PUMP_POS, C_PUMP)
+
+    # --- 4b. SHG module (#4b) ---
+    _add_box(assy, "SHG_module", p.SHG_SIZE, p.SHG_POS, C_PUMP)
 
     # --- 5. OPA ×2 (#5) ---
     for i, pos in enumerate([p.OPA1_POS, p.OPA2_POS], 1):
@@ -275,8 +282,8 @@ def build_assembly(p: AssemblyParams = None):
     _add_box(assy, "BS_tray", p.BS_SIZE, p.BS_POS, C_BS)
 
     # --- 9. BPD ×2 (#9) ---
-    for i, pos in enumerate([p.BPD1_POS, p.BPD2_POS], 1):
-        _add_box(assy, f"BPD_{i}", p.BPD_SIZE, pos, C_BPD)
+    _add_box(assy, "BPD_1", p.BPD1_SIZE, p.BPD1_POS, C_BPD)
+    _add_box(assy, "BPD_2", p.BPD2_SIZE, p.BPD2_POS, C_BPD)
 
     # === Zone B: ファイバ ===
 
@@ -346,8 +353,9 @@ def calc_total_mass(p: AssemblyParams = None):
     mass_internal = (
         p.MASS_LASER
         + p.MASS_PUMP
+        + p.MASS_SHG
         + p.MASS_OPA * 2
-        + p.MASS_TEC * 3
+        + p.MASS_TEC * 2  # OPA共用1台 + SHG用1台 = 2台
         + p.MASS_EOM * 2
         + p.MASS_BS * 3
         + p.MASS_BPD * 2
@@ -356,7 +364,7 @@ def calc_total_mass(p: AssemblyParams = None):
         + p.MASS_AWG
         + p.MASS_WDMPD
         + p.MASS_FPGA
-        + p.MASS_ADC
+        + p.MASS_ADC * 2  # ADC ×2
         + p.MASS_DAC
         + p.MASS_DCDC
         + p.MASS_PZT

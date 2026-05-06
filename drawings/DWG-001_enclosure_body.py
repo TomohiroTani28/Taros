@@ -36,7 +36,7 @@ class EnclosureParams:
     FOOT_D: float = 15.0          # ゴム脚直径 [mm]
     FOOT_INSET: float = 20.0      # 角からのインセット [mm]
     FOOT_BORE_D: float = 4.2      # M5タップ下穴径 [mm] (JIS: φ4.2 for M5×0.8)
-    FOOT_BORE_DEPTH: float = 8.0  # 下穴深さ [mm]
+    FOOT_BORE_DEPTH: float = 2.5  # 下穴深さ [mm] (底板厚3mm以内、貫通防止)
 
     # === 側面スリット (出典: 12_mechanical.md §1.2) ===
     SLIT_N: int = 12          # 片側本数
@@ -196,10 +196,20 @@ def build_enclosure_body(p: EnclosureParams = None):
         .circle(p.FAN_SIZE / 2 - 5)  # φ70mm開口
         .cutBlind(-T_bottom)
     )
-    # ファン取付穴 M4 × 4
+    # ファン取付穴 M4 × 4 (ザグリ φ8×1mm + 通し穴 φ4.5)
     half_p = p.FAN_MOUNT_PITCH / 2
     for dx, dy in [(-half_p, -half_p), (half_p, -half_p),
                    (-half_p, half_p), (half_p, half_p)]:
+        # ザグリ φ8×1mm
+        body = (
+            body
+            .faces("<Z")
+            .workplane()
+            .move(p.FAN_X_CENTER + dx - W / 2, p.FAN_Y_CENTER + dy - D / 2)
+            .circle(4.0)
+            .cutBlind(-1.0)
+        )
+        # 通し穴 φ4.5
         body = (
             body
             .faces("<Z")
