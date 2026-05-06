@@ -185,11 +185,11 @@ TDM方式に最適な2つの駆動オプション:
 
 ### 4.2 GKP+表面符号閾値との比較
 
-| 閾値条件 | 必要スクイージング | Phase 1 (9.4dB) | Phase 2+ PIC (10.9dB) | マージン |
+| 閾値条件 | 必要スクイージング | Phase 1 (8.8dB) | Phase 2+ PIC (10.9dB) | マージン |
 |---------|----------------|--------|---------|---------|
-| Noh & Chamberland (2022) | 10dB | −0.6dB (**未達**) | **+0.9dB** | Phase 2+で達成 |
-| Stafford-Menicucci (2025) postselection | 7.5dB | **+1.9dB** | **+3.4dB** | 両Phase達成 |
-| QD支援時 (2個) | 7dB | **+2.4dB** | **+3.9dB** | 両Phase達成 |
+| Noh & Chamberland (2022) | 10dB | −1.2dB (**未達**) | **+0.9dB** | Phase 2+で達成 |
+| Stafford-Menicucci (2025) postselection | 7.5dB | **+1.3dB** | **+3.4dB** | 両Phase達成 |
+| QD支援時 (2個) | 7dB | **+1.8dB** | **+3.9dB** | 両Phase達成 |
 
 **v2.0更新**: ビームスプリッタモデルによるσ_eff修正により、Phase 1(離散光学系)ではNoh & Chamberland閾値に対するマージンが消失。Phase 2+(PIC統合)で+0.9dBマージン回復。Phase 2+ PIC構成(13dB, L=0.15dB)でσ_eff=10.9dB、p_err=9.9×10⁻⁴、p_L(d=7, MWPM) ≈ 5.7×10⁻⁷。
 

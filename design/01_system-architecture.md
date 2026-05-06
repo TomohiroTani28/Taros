@@ -146,7 +146,7 @@ CV-TDM方式の構造的課題:
 | 波長 | 1550nm（テレコム帯） | ホモダイン検出器・ファイバとの親和性 |
 | ポンプ | **775nm DFB+TA ($8K)** | SHG不要、1本で8分岐 |
 | スクイージング（生成） | **≥13dB** | NTT CW 12.1dB実証、SiN clad改良で13dB見込み |
-| スクイージング（実効） | **5.0dB (現離散) / 9.4dB (Phase1) / 10.9dB (Phase2+ PIC)** | v2.0 BSモデル。旧11.5dBはdB減算による誤り（`06_noise-budget.md` v2.0参照） |
+| スクイージング（実効） | **5.0dB (現離散) / 8.8dB (Phase1, 13dB) / 10.9dB (Phase2+ PIC)** | v2.0 BSモデル。旧11.5dBはdB減算による誤り [v3.3: Phase1は13dB/L=0.39dB→8.8dB] |
 | 帯域 | **~500GHz (50mm導波路)** | OPA位相整合帯域、TDMクロック100MHzに対して5000倍以上の余裕 |
 | 繰り返し率 | 100MHz | Option B パルスOPA推奨（v2.0: EO gate除去で0.3dB削減。`02_opa-source.md` v2.0） |
 | モジュールサイズ | **1U（19インチラック）** | 8本のOPAを1Uに収容 |
@@ -290,7 +290,7 @@ Layer 3: 表面符号論理量子ビット
 | 実効的な閾値要件 (QD支援+postselection) | **~4.5dB** | 7.5 - 3 |
 | 生成スクイージング | **13dB** | PPLN導波路OPA (NTT) |
 | 損失バジェット (v2.0) | **0.39dB (Phase1 OptionB) / 0.15dB (Phase2+ PIC)** | 06_noise-budget v2.0 BSモデル |
-| 実効スクイージング (v2.0 BSモデル) | **9.4dB (Phase1, 15dB生成) / 10.9dB (Phase2+ PIC, 13dB生成)** | V_eff=η×V_sqz+(1−η) |
+| 実効スクイージング (v2.0 BSモデル) | **8.8dB (Phase1, 13dB生成, L=0.39dB) / 10.9dB (Phase2+ PIC, 13dB生成, L=0.15dB)** | V_eff=η×V_sqz+(1−η) [v3.3修正] |
 | **閾値マージン (Phase2+ PIC, QD=0, postsel)** | **+3.4dB** | 10.9 - 7.5 |
 | **閾値マージン (QD=2, Phase2+ PIC)** | **+6.1dB** | 13.6 - 7.5 (QD+2.7dB) |
 

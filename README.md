@@ -22,20 +22,21 @@
 | 方式 | ハイブリッドCV+QD（PPLN導波路OPA + macronode TDM） |
 | 実効スクイージング | σ_eff = 5.0dB (現離散光学) / 8.8dB (Phase 1) / 9.5-10.2dB (Phase 2+ PIC 現実的) — v3.1 BSモデル |
 | 物理エラー率 | Phase 2+ PIC現実的: p_err ≈ 3×10⁻³ (v3.1) |
-| 論理エラー率 (d=7, Phase 2+ PIC) | **製品スペック: p_L < 10⁻⁵ (MWPM)**† / 理論限界: 5.7×10⁻⁷ (全条件達成時) |
-| 性能段階 | Phase 1: break-even(p_L~10⁻³) / Phase 2+: 製品FTQC(p_L<10⁻⁵) / 理論限界(p_L<10⁻⁶) |
-| 閾値マージン | v2.0修正: 現離散光学→閾値未達; Phase 1→+1.9dB(PS); Phase 2+ PIC→+3.4dB(PS)/+0.9dB(全モード) |
-| フィードフォワード | 26ns設計ベースライン(400MHz) / 22ns楽観(500MHz)、3モード遅延 [v3.2: DAC MAX5898化で-1ns] |
+| 論理エラー率 (d=7, Phase 2+ PIC) | **製品目標: p_L ≲ 10⁻⁵ (MWPM)**† / 理論限界: 5.7×10⁻⁷ (全条件達成時) |
+| 性能段階 | Phase 1: break-even(p_L~10⁻³) / Phase 2+: 製品FTQC(p_L≲10⁻⁵) / 理論限界(p_L<10⁻⁶) |
+| 閾値マージン | v3.3修正: 現離散光学→閾値未達; Phase 1→+1.3dB(PS); Phase 2+ PIC→+3.4dB(PS)/+0.9dB(全モード) |
+| フィードフォワード | 27ns設計ベースライン(400MHz) / 22ns楽観(500MHz)、3モード遅延 |
 | デコーダ | **510ns (MWPM製品, 400MHz)** / 350ns (UF実験, 400MHz)（パイプライン動作、FF非律速）[v3.2: 製品要件p_L<10⁻⁵。現実的PIC(L=0.27dB)でUF~5×10⁻⁴超過→MWPM必須] |
 | 消費電力 | ~109W (Portable Pro) / ~1.5kW (Rack) [v3.2: SOA +3W] |
 | 冷却 | 低速ファン準無音（QDなし構成は完全室温） |
 | 論理qubit | 10〜1,000+（TDM逐次拡張） |
 
-†**v3.1 3段階スペック定義**:
+†**v3.3 3段階スペック定義**:
 - Phase 1 (離散光学系, 13dB, L=0.39dB): p_L ~ 10⁻³ — QEC break-even実証
-- Phase 2+ PIC (現実的楽観, 13dB, L=0.27dB): p_L ~ 10⁻⁵ — 製品スペック (OPA結合損失込み)
+- Phase 2+ PIC (現実的, 13dB, L=0.27dB, QE≥99%): p_L ~ 2-5×10⁻⁵ — 製品目標 (MWPM d=7境界)
+- Phase 2+ PIC (L≤0.20dB達成時): p_L < 10⁻⁵ — 製品スペック確実達成
 - 理論限界 (L=0.15dB, QE=99%, Δ=0): p_L ~ 10⁻⁷ — 設計上限 (全条件同時達成時)
-現実的推定は「5つの前提条件(Δ<0.12, OPA≥13dB, PLL≥500kHz, QE≥98%, L_total≤0.27dB)」の達成度に依存。
+現実的推定は「5つの前提条件(Δ<0.12, OPA≥13dB, PLL≥500kHz, QE≥99%, L_total≤0.27dB)」の達成度に依存。
 詳細: `design/13_performance.md` §3シナリオ表。
 
 ---
@@ -140,7 +141,7 @@ Taros/
 ```
 PPLN OPA σ_gen=13dB ──┐  v2.0 ビームスプリッタモデル (旧 σ_gen−L は不正確)
                        ├──→ σ_eff = 5.0dB (現離散, L=1.42dB)
-L_total (Phase依存) ──┘         / 9.4dB (Phase 1, L=0.39dB, 15dB pulsed OPA)
+L_total (Phase依存) ──┘         / 8.8dB (Phase 1, L=0.39dB, 13dB OPA)
                                 / 10.9dB (Phase 2+ PIC, L=0.15dB) → p_L≈5.7×10⁻⁷ (MWPM)
 (design/06_noise-budget.md v2.0)                                  (design/13_performance.md)
 ```

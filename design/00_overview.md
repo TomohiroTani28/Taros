@@ -25,15 +25,15 @@
 | 物理エラー率 | p_phys | 現離散(5.0dB): 閾値未達 / Phase 1(13dB, 8.8dB): 7.5×10⁻³ / Phase 2+ PIC現実的(13dB, ~9.7dB): ~3×10⁻³ | v3.1 erfc再計算 | 13_performance |
 | 閾値 (soft-info) | p_th_eff | 1.5% | soft-info MWPM (Noh-Chamberland 2022); UF時≈0.8-1.2%. v3.2: 製品デコーダはMWPM (現実的L=0.27dBでUF~5×10⁻⁴>10⁻⁵) | 08_decoder |
 | 閾値 (保守) | p_th | 0.59% | hard-syndrome MWPM | 文献値 |
-| 論理エラー率 d=7 (Δ=0理想) | p_L | **5.7×10⁻⁷ (MWPM, Phase 2+ PIC)** [理論上限値] | v3.2: 製品要件p_L<10⁻⁵。現実的PIC(L=0.27dB)でMWPM~2-5×10⁻⁵(境界)、UF~5×10⁻⁴(超過)→MWPM必須。理論限界(L=0.15dB)で5.7×10⁻⁷ | 13_performance |
+| 論理エラー率 d=7 (Δ=0理想) | p_L | **5.7×10⁻⁷ (MWPM, Phase 2+ PIC)** [理論上限値] | v3.3: 製品目標p_L≲10⁻⁵。現実的PIC(L=0.27dB, QE≥99%)でMWPM~2-5×10⁻⁵(境界)。L≤0.20dBで<10⁻⁵確実。UF~5×10⁻⁴(超過)→MWPM必須 | 13_performance |
 | 論理エラー率 d=7 (現実Δ=0.12) | p_L | **~1.2×10⁻⁵ (UF)** / ~6×10⁻⁶ (MWPM) [対外基準値] | 13_performance §3シナリオ「現実」行 | 13_performance |
 | QD等価スクイージング | — | +2.7dB (QD=2) | σ_eff等価14.2dB | 01_system-arch |
 | TDMクロック | f_TDM | 100MHz | Option B パルスOPA | 03_tdm-cluster |
 | macronode列数 | N_col | 2d² (18/50/98) | d=3/5/7 | 03_tdm-cluster |
-| フィードフォワード | t_FF | **27ns** (設計ベースライン400MHz) / 22ns (楽観500MHz) | TIA→ADC→FPGA→DAC→EOM | 07_feedforward |
+| フィードフォワード | t_FF | **27ns** (設計ベースライン400MHz) / 22ns (楽観500MHz) | TIA 3 + ADC 3 + FPGA 12.5 + DAC 5 + EOM 3 = 26.5≈27ns | 07_feedforward |
 | デコーダ遅延 | t_dec | **510ns (MWPM製品) / 350ns (UF実験)** (400MHz) | MWPM: Blossom-V, 製品デコーダ; UF: Phase 0-1実験用 | 08_decoder |
 | GKP忠実度 | F_GKP | Phase依存 | σ_eff=5.0dB(現行)では低忠実度; Phase 2+ PIC σ_eff=10.9dBで高忠実度 | 04_gkp-protocol |
-| 閾値マージン | — | v2.0修正: 現離散光学→閾値未達; Phase 1→+1.9dB(PS)/−0.6dB(全モード); Phase 2+ PIC→+3.4dB(PS)/+0.9dB(全モード) | vs 7.5dB / 10.0dB | 06_noise-budget v2.0 |
+| 閾値マージン | — | v2.0修正: 現離散光学→閾値未達; Phase 1→+1.3dB(PS)/−1.2dB(全モード); Phase 2+ PIC→+3.4dB(PS)/+0.9dB(全モード) | vs 7.5dB / 10.0dB [v3.3: Phase 1は8.8dB基準] | 06_noise-budget v2.0 |
 | 反スクイージング | — | **~13dB** (単一パスOPA: sq≈anti-sq) | v1.8修正: 旧20dBは共振器OPO誤引用 | 02_opa-source |
 | PLL残留位相 | φ_res | <0.05° (BW≥500kHz) | 位相ノイズ**<0.002dB** (anti-sq 13dBで事実上無視可能) | 05_phase-lock |
 | 有限エネルギーGKP | Δ | <0.15 (必須要件) | Δ≥0.2でFAIL | 04_gkp-protocol |
@@ -103,7 +103,7 @@ FPGA (Versal VE2302)
 |-----------|-----|------|
 | PPLN OPA生成スクイージング | 13dB | NTT PPLN導波路 CW 12.1dB実証、SiN clad改良で13dB見込み |
 | 全経路劣化 (AWG+EO消光比込み) | 1.42dB (離散光学) / 0.39dB (Phase 1) / 0.15dB (Phase 2+ PIC) | CVノイズバジェット v2.0 |
-| **実効スクイージング σ_eff** | **5.0dB (現離散光学) / 9.4dB (Phase 1) / 10.9dB (Phase 2+ PIC)** | v2.0修正: ビームスプリッタモデル。旧 σ_gen−L=11.5dB は物理的に不正確 |
+| **実効スクイージング σ_eff** | **5.0dB (現離散光学) / 8.8dB (Phase 1, 13dB) / 10.9dB (Phase 2+ PIC)** | v2.0修正: ビームスプリッタモデル。旧 σ_gen−L=11.5dB は物理的に不正確 [v3.3: Phase 1を13dB/8.8dBに統一] |
 | GKP+表面符号閾値 (postselection) | 7.5dB | Stafford-Menicucci-Walshe 2025 (P_round=10⁻³, strict mode時) |
 | GKP+表面符号閾値 (全モード重み付け) | ~10dB | Noh-Chamberland 2022 unconditional相当 |
 | **閾値マージン (Phase 2+ PIC, postsel)** | **+3.4dB** | 10.9 - 7.5 |
@@ -112,7 +112,7 @@ FPGA (Versal VE2302)
 | **閾値マージン (現離散光学, Option A+AWG)** | **閾値未達** | 5.0dB < 7.5dB。**注: Phase -1実験はOption B(AWGなし, L=0.39dB, σ_eff=8.8dB)で実施。閾値超過+1.3dB** |
 | 物理エラー率 p_err (v3.1) | Phase 1(13dB): 7.5×10⁻³ / Phase 2+ PIC現実的(13dB, L=0.27dB): ~3×10⁻³ / 理論限界(L=0.15dB): 9.9×10⁻⁴ | v3.1修正 |
 | 表面符号閾値 p_th_eff | 1.5% | soft-info MWPM (Noh&Chamberland 2022); UF時≈0.8-1.2%. v2.1: 製品デコーダはMWPM |
-| **論理エラー率 p_L (d=7, Phase 2+ PIC)** | **製品スペック: <10⁻⁵ (MWPM)** / 理論限界: 5.7×10⁻⁷ | v3.2: 製品要件10⁻⁵。現実的PIC(L=0.27dB) MWPM~2-5×10⁻⁵(境界達成)。理論限界(L=0.15dB, Δ=0) 5.7×10⁻⁷。UFは現実的条件で~5×10⁻⁴(超過)→MWPM必須 |
+| **論理エラー率 p_L (d=7, Phase 2+ PIC)** | **製品スペック: ≲10⁻⁵ (MWPM, 目標)** / 理論限界: 5.7×10⁻⁷ | v3.3: 現実的PIC(L=0.27dB, QE≥99%) MWPM~2-5×10⁻⁵(境界)。L≤0.20dBで<10⁻⁵確実達成。理論限界(L=0.15dB, Δ=0) 5.7×10⁻⁷。UFは現実的条件で~5×10⁻⁴(超過)→MWPM必須 |
 
 ---
 
@@ -189,7 +189,7 @@ FPGA (Versal VE2302)
 
 1. **重力デコヒーレンス免疫**（理論的注記）: 光子は質量ゼロであるため、Diósi-Penrose / Oppenheim型の重力デコヒーレンスモデルの影響を原理的に受けない。ただし、競合方式（超伝導等）においても重力デコヒーレンスは技術的ノイズ源に対し19桁以上小さく（τ_DP ≈ 10¹⁵ s vs T₁ ≈ 10⁻⁴ s）、現在および予見可能な将来において実用上の差は生じない。本項目は基礎物理学的な原理的区別であり、現時点での性能差を意味するものではない。
 2. **TDM逐次スケーリング**: 同一ハードウェアで1~1,000+ 論理qubit相当の回路実行（逐次処理†）
-3. **消費電力一定**: qubit数に無関係に97-109W
+3. **消費電力一定**: qubit数に無関係に100-112W
 4. **完全室温**: 冷凍機なし → メンテナンスフリー、即時起動
 
 ---

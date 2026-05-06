@@ -18,7 +18,7 @@
 **外観要件**: 研究室・オフィス環境に違和感なく設置可能な外観。
 
 **確定外観レンダリング**: `ChatGPT Image 2026年5月5日 11_09_37.png`
-- 天面: ヒートシンクフィン一体成型（低速ファン併用106W放熱）
+- 天面: ヒートシンクフィン一体成型（低速ファン併用109W放熱）
 - 正面: "TAROS PRO / Photonic Quantum Computer" + LED 3個 (白/緑/青)
 - 側面: 横型放熱スリット
 - 設置: デスク上、ノートPC横に配置
@@ -204,14 +204,14 @@ Z=0   ◯              ◯            ◯        ◯ ゴム脚
 熱流: Zone C (FPGA 25W + ADC 10W + DC-DC 9W = 44W) → Cu HP → 天板フィン右側1/3領域 → 強制対流
       Zone A (OPA TEC 8W + Laser 12W) → 底面ファン吸気で冷却
       Zone B (発熱<1W) → 自然放熱
-      ※Zone C 44W + Zone A 23W + Zone B 1W + EO comb RF 17W + その他 = ~106W (Pro)
+      ※Zone C 44W + Zone A 23W + Zone B 1W + EO comb RF 17W + SOA 8W + その他 = ~109W (Pro) [v3.3: SOA +3W]
 
 冷却方式 (v1.3更新):
   底面: 80mm低速ファン×1 (Noctua NF-A8, 1400rpm, <25dBA)
   動作: 底面吸気 → Zone A/B通過 → 側面スリット排気 + 天面自然対流
   自然対流のみ容量: ~55W (h=8W/m²K, ΔT=30°C, フィン18mm基準)
-  ファン併用容量: ~133W (h=18W/m²K, A_eff=0.37m², ΔT=20K, @1400rpm)
-  マージン: 133W - 106W = 27W (25%余裕)
+  ファン併用容量: ~140W (h=18W/m²K, A_eff=0.39m², ΔT=20K, @1400rpm) [v3.3: フィン面積修正]
+  マージン: 140W - 109W = 31W (22%余裕)
 ```
 
 ---
@@ -225,7 +225,7 @@ Taros Edu (d=3)           Taros Pro (d=5)          Taros Max (d=7)
 │   4.3 kg    │           │    7.5 kg       │      │     9.7 kg        │
 │   PMF 37m   │           │    PMF 102m      │      │     PMF 200m      │
 │   WDM 5ch   │           │    WDM 8ch      │      │     WDM 7ch       │
-│   97W       │           │    106W         │      │     109W          │
+│   100W      │           │    109W         │      │     112W          │
 │   $90K      │           │    $120K        │      │     $170K         │
 └─────────────┘           └─────────────────┘      └───────────────────┘
   ↑ iPad Pro大              ↑ Mac Studio大           ↑ Mac Pro mini大

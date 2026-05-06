@@ -323,7 +323,7 @@ EOM dynamic range ±Vπ (=±π rad)で21μs間の位相ドリフト(≈0.2rad@10
 
 Option B (パルスポンプOPA) では以下の制御系変更が必要:
 
-- **Layer 2 PLL**: OPA出力タップからの誤差信号が断続的(duty 10%)。サンプル＆ホールド回路をPD後に追加し、パルス到達時にホールド→PID入力。
+- **Layer 2 PLL**: OPA出力タップからの誤差信号が断続的(duty 30%)。サンプル＆ホールド回路をPD後に追加し、パルス到達時にホールド→PID入力。[v3.3: 3ns/10ns=30%]
 - **Pilot Tone**: パルスOPA OFF時はPilot Toneが線形通過し位相基準として常時利用可能。OPA ON時のパラメトリック相互作用はPilot Tone帯域外配置で回避。
 - **ホモダイン検出**: ADCサンプリングがパルス中央に同期(14_clock-distribution.md §5)。TIA帯域(500MHz)とパルス幅(≥3ns)の整合条件: 立上り0.7ns×4 < パルス幅。Phase -1で実測確認。
 - **S&H回路要件 (v2.2追加)**: ドループレート<1mV/μs、アパーチャジッタ<5ps、取得時間<2ns。候補: AD783 (500MHz BW, 2ns acquire)。PLL BW 1MHzに対しサンプルレート100MHz(Nyquist 50MHz)で十分余裕。
