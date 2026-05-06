@@ -1,3 +1,5 @@
+> **⚠ FROZEN (2026-05-04)**: 本文書はDV-FBQC v4.0 R6時点の設計を記録したものです。プロジェクトの主軸はCV方式に移行しています。最新設計は `design/00_overview.md` を参照してください。
+
 ### 5.9 Quantum Tanner符号（Phase 2候補、v4.0 R3新規、Breuckmann提案）
 
 v4.0のSS5.1で定義した3パス並行戦略（SHYPS / 4D HPC / 表面符号）に、第4の候補として**Quantum Tanner符号**を追加する。Phase 2のLDPC符号移行時の有力候補である。

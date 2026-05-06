@@ -1,3 +1,5 @@
+> **⚠ FROZEN (2026-05-04)**: 本文書はDV-FBQC v4.0 R6時点の設計を記録したものです。プロジェクトの主軸はCV方式に移行しています。最新設計は `design/00_overview.md` を参照してください。
+
 ### 5.12 Measurement-Free QEC（v4.0 R4新規、Higgott提案 C26）
 
 Phase 2+の長期オプションとして、デコーダ不要の自律的QECを記録する。

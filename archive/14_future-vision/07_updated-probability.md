@@ -1,3 +1,5 @@
+> **⚠ DEPRECATED**: 本文書はDV-FBQC方式に基づいており、CV方式移行に伴い数値（コスト・確率・スケジュール）は現行計画と大幅に異なります。CV方式の最新情報: `analysis/bom.md`, `analysis/risk.md`, `analysis/development-cost-summary.md`
+
 ## 16.7 成功確率の更新評価
 
 可能性探索の結果を踏まえ、プロジェクト成功確率を以下の通り更新する。

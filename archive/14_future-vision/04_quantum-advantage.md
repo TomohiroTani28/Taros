@@ -1,3 +1,5 @@
+> **⚠ DEPRECATED**: 本文書はDV-FBQC方式に基づいており、CV方式移行に伴い数値（コスト・確率・スケジュール）は現行計画と大幅に異なります。CV方式の最新情報: `analysis/bom.md`, `analysis/risk.md`, `analysis/development-cost-summary.md`
+
 ## 16.4 量子優位性の最速実証戦略
 
 ### 16.4.1 3トラック並走戦略

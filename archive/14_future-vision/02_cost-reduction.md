@@ -1,3 +1,5 @@
+> **⚠ DEPRECATED**: 本文書はDV-FBQC方式に基づいており、CV方式移行に伴い数値（コスト・確率・スケジュール）は現行計画と大幅に異なります。CV方式の最新情報: `analysis/bom.md`, `analysis/risk.md`, `analysis/development-cost-summary.md`
+
 ## 16.2 コスト削減ロードマップ
 
 ### 16.2.1 段階的コスト削減計画

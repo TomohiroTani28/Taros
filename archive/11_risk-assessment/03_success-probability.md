@@ -1,3 +1,5 @@
+> **⚠ DEPRECATED**: 本文書はDV-FBQC方式に基づいており、CV方式移行に伴い数値（コスト・確率・スケジュール）は現行計画と大幅に異なります。CV方式の最新情報: `analysis/bom.md`, `analysis/risk.md`, `analysis/development-cost-summary.md`
+
 ### 13.5 成功確率の上方修正（v4.0 R3 第3ラウンド専門家会議）
 
 第3ラウンドの7人専門家会議により、統合フォトニクス技術の効果を考慮した成功確率の上方修正を行う。

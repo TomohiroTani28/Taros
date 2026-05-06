@@ -1,3 +1,5 @@
+> **⚠ FROZEN (2026-05-04)**: 本文書はDV-FBQC v4.0 R6時点の設計を記録したものです。プロジェクトの主軸はCV方式に移行しています。最新設計は `design/00_overview.md` を参照してください。
+
 ### 5.11 Floquet符号のSingle-Shot QEC（v4.0 R4新規、Breuckmann提案 C22）
 
 2025年にDavydova+がFloquet符号のSingle-Shot性を証明した。これはFBQCアーキテクチャの計算速度を根本的に変える。

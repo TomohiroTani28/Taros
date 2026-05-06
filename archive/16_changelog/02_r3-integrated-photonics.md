@@ -1,3 +1,5 @@
+> **⚠ FROZEN (2026-05-04)**: 本文書はDV-FBQC v4.0 R6時点の設計を記録したものです。プロジェクトの主軸はCV方式に移行しています。最新設計は `design/00_overview.md` を参照してください。
+
 ### 1.2B v4.0 R3（第3ラウンド専門家会議）での主要変更概要
 
 第3ラウンドの7人専門家会議（Rudolph, Senellart, Lončar, Berggren, Breuckmann, Poletti, Higgott）により、以下14項目の合意事項を反映した。
