@@ -79,7 +79,7 @@ Taros/
 │   ├── risk.md                     # CV方式成功確率評価
 │   ├── bom.md                      # 統合BOM比較
 │   ├── roadmap.md                  # Phase 0-2ロードマップ
-│   ├── phase-minus1-execution.md   # Phase -1実行計画（14タスク/$3.04M/12ヶ月）[v3.1確定]
+│   ├── phase-minus1-execution.md   # Phase -1実行計画（14タスク/$3.08M/12ヶ月）[v3.1確定]
 │   └── development-cost-summary.md  # 開発費用全体サマリー
 │
 ├── assets/                # 画像・レンダリング・資料

@@ -39,7 +39,7 @@
 | σ_eff dB減算 → BSモデル | 2026-05 | dB減算は物理的に不正確(V_sqz<<1-η)。BSモデルで全面再計算 | `design/06_noise-budget.md` |
 | Option A (CW+EO gate) → Option B (パルスOPA) | 2026-05 | EO gate 0.3dB損失が閾値マージンに致命的 | `design/02_opa-source.md` |
 | v2.2統合修正 (Session 9-10) | 2026-05-06 | P_s記号廃止→p_acc/P_round分離、V_anti=20 SNU表記統一、GKP Fidelity BS model修正(F=0.94→0.87-0.91)、リスク確率ベイジアン化(80%→63%/81%)、Stim統計的不確かさ注記、Phase -1実験構成明示(Option B, AWGなし, σ_eff=8.8dB) | 全design/, analysis/, experiments/ |
-| **v3.1統合修正 (Session 11)** | 2026-05-06 | **p_L 3段階化(10⁻³/10⁻⁵/10⁻⁶)**: 製品スペックp_L<10⁻⁵(現実的PIC L=0.27dB)、理論限界10⁻⁶(L=0.15dB全条件達成時)。**Phase 1 σ_gen 15→13dBに下方修正**(目的をbreak-even実証に限定)。**PIC損失バジェット修正**: L=0.15dBはオンチップのみ、OPA結合込み現実的楽観L=0.27dB。**QE≥98%をGo/No-Go G6追加**。**Phase -1を12ヶ月/$3.04Mに正式確定**。Tゲートパイプラインハザード制約追加。PMF切断精度±1mm→±50μm。OPO→OPA用語統一。 | 全design/, analysis/ |
+| **v3.1統合修正 (Session 11)** | 2026-05-06 | **p_L 3段階化(10⁻³/10⁻⁵/10⁻⁶)**: 製品スペックp_L<10⁻⁵(現実的PIC L=0.27dB)、理論限界10⁻⁶(L=0.15dB全条件達成時)。**Phase 1 σ_gen 15→13dBに下方修正**(目的をbreak-even実証に限定)。**PIC損失バジェット修正**: L=0.15dBはオンチップのみ、OPA結合込み現実的楽観L=0.27dB。**QE≥98%をGo/No-Go G6追加**。**Phase -1を12ヶ月/$3.08Mに正式確定**。Tゲートパイプラインハザード制約追加。PMF切断精度±1mm→±50μm。OPO→OPA用語統一。 | 全design/, analysis/ |
 | **v3.3統合修正 (Session 13)** | 2026-05-06 | **p_L表記「<10⁻⁵」→「≲10⁻⁵(目標)」**: 現実的L=0.27dBでMWPM~2-5×10⁻⁵(境界)。L≤0.20dBで<10⁻⁵確実。**DAC MAX5898 group delay修正**: 2cycle@400MHz=5ns(旧4nsは計算ミス)→FF合計27ns。**σ_eff旧値9.4dB→8.8dB一括修正**(01_sys-arch, 02_opa-source, 00_overview)。**QE≥99%前提明示**: L=0.27dBバジェットはQE≥99%前提。QE=98%ならL≤0.20dB必須。**106W→109W残存11箇所修正**。133W→140W修正。GKP実験$42K/5ヶ月統一。SNSPD 500→1000残存修正。 | 全design/, analysis/, fallback/, experiments/ |
 
 ### Xanadu Auroraとの差別化

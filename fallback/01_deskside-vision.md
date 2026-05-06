@@ -1,8 +1,10 @@
+> **⚠ フォールバック参考文書**: 本文書はDV-FBQC v5.0 Desktopのフォールバック設計です。プロジェクトの主軸はCV方式（Taros Portable）に移行済み。最新設計は `design/00_overview.md` を参照してください。
+
 # デスクサイド量子コンピュータ設計書
 
 **Document ID**: PQC-DESKSIDE-v1.0
 **Last Updated**: 2026-05-04
-**Status**: Draft（v4.0 R6設計書を基盤とした新主軸）
+**Status**: フォールバック参考（旧「新主軸」記述は撤廃）
 
 ---
 
