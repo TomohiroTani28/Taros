@@ -55,6 +55,9 @@ class EnclosureParams:
     FAN_Y_CENTER: float = 125.0     # 底面中央Y
 
     # === グロメット穴 (出典: 12_mechanical.md §2.2) ===
+    # TODO(設計判断要): グロメット穴はZone A/B間の内部仕切壁(X=135)を貫通する設計。
+    # 現状の筐体モデルには内部仕切壁が未実装のため、グロメット穴の切削も保留。
+    # Phase 0a で内部仕切構造確定後に実装のこと。
     GROMMET_D: float = 10.0    # φ10mm — Zone A-B間ファイバ通過
     GROMMET_X: float = 135.0   # X位置 (Zone A/B境界)
     GROMMET_Y1: float = 80.0
@@ -65,6 +68,7 @@ class EnclosureParams:
     PTFE_Z: float = 90.0       # 溝底面Z位置 [mm]
     PTFE_T: float = 3.0        # 板厚 [mm]
     PTFE_GROOVE_D: float = 1.5 # 溝深さ [mm] (側壁に切り込み)
+    PTFE_GROOVE_ENABLED: bool = True  # 溝加工有効化フラグ
 
     # === 天板固定ネジ穴 ===
     TOP_SCREW_D: float = 2.5       # M3タップ下穴 [mm]
@@ -104,6 +108,11 @@ class EnclosureParams:
     def __post_init__(self):
         if self.common is None:
             self.common = PARAMS
+        # SLIT_Z_END 整合性チェック
+        expected_z_end = self.SLIT_Z_START + (self.SLIT_N - 1) * self.SLIT_PITCH
+        assert abs(self.SLIT_Z_END - expected_z_end) < 0.01, (
+            f"SLIT_Z_END={self.SLIT_Z_END} != calculated {expected_z_end}"
+        )
 
 
 def build_enclosure_body(p: EnclosureParams = None):
@@ -170,7 +179,7 @@ def build_enclosure_body(p: EnclosureParams = None):
             .cutBlind(-T_side)
         )
 
-    # 5. 底面ファン開口 (円形φ75mm + 取付穴4箇所)
+    # 5. 底面ファン開口 (円形φ70mm + 取付穴4箇所)
     body = (
         body
         .faces("<Z")
@@ -220,7 +229,20 @@ def build_enclosure_body(p: EnclosureParams = None):
             .cutBlind(-p.TOP_SCREW_DEPTH)
         )
 
-    # 8. 背面ポート開口
+    # 8. PTFE断熱板取付溝 (左右側壁内面, Z=90mm)
+    if p.PTFE_GROOVE_ENABLED:
+        groove_w = W_inner  # 溝長さ (Y方向全長)
+        for x_face, x_sign in [("<X", 1), (">X", -1)]:
+            body = (
+                body
+                .faces(x_face)
+                .workplane()
+                .move(0, p.PTFE_Z - p.H_body / 2)
+                .rect(groove_w, p.PTFE_T)
+                .cutBlind(-p.PTFE_GROOVE_D)
+            )
+
+    # 9. 背面ポート開口
     # USB-C ×2
     for ux in [p.USBC_X1, p.USBC_X2]:
         body = (

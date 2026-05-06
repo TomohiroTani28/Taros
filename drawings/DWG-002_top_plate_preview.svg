@@ -66,7 +66,8 @@
     <!-- Fin range: X=20-280 -> px 10-140 (260mm range, 42 fins) -->
     <!-- Draw representative fins (every 3rd for readability) + indicate 42 total -->
     <g class="outline" stroke-width="0.35">
-      <!-- Draw 14 representative fin pairs to show pattern -->
+      <!-- 42 fins at 2.5px pitch (5mm at 1:2), Y=20-227 shown as X cross-section -->
+      <!-- First 14 fins (representative) -->
       <rect x="10" y="0" width="1" height="9"/>
       <rect x="12.5" y="0" width="1" height="9"/>
       <rect x="15" y="0" width="1" height="9"/>
@@ -81,9 +82,9 @@
       <rect x="37.5" y="0" width="1" height="9"/>
       <rect x="40" y="0" width="1" height="9"/>
       <rect x="42.5" y="0" width="1" height="9"/>
-      <!-- Break indication -->
+      <!-- Break -->
       <text x="50" y="5" class="text-dim" font-size="2px">...</text>
-      <!-- Middle fins -->
+      <!-- Middle 14 fins -->
       <rect x="57.5" y="0" width="1" height="9"/>
       <rect x="60" y="0" width="1" height="9"/>
       <rect x="62.5" y="0" width="1" height="9"/>
@@ -100,22 +101,15 @@
       <rect x="90" y="0" width="1" height="9"/>
       <!-- Break -->
       <text x="97" y="5" class="text-dim" font-size="2px">...</text>
-      <!-- End fins -->
+      <!-- Last 14 fins (ending at x=112.5 = Y=225mm at 1:2) -->
+      <rect x="95" y="0" width="1" height="9"/>
+      <rect x="97.5" y="0" width="1" height="9"/>
+      <rect x="100" y="0" width="1" height="9"/>
+      <rect x="102.5" y="0" width="1" height="9"/>
       <rect x="105" y="0" width="1" height="9"/>
       <rect x="107.5" y="0" width="1" height="9"/>
       <rect x="110" y="0" width="1" height="9"/>
       <rect x="112.5" y="0" width="1" height="9"/>
-      <rect x="115" y="0" width="1" height="9"/>
-      <rect x="117.5" y="0" width="1" height="9"/>
-      <rect x="120" y="0" width="1" height="9"/>
-      <rect x="122.5" y="0" width="1" height="9"/>
-      <rect x="125" y="0" width="1" height="9"/>
-      <rect x="127.5" y="0" width="1" height="9"/>
-      <rect x="130" y="0" width="1" height="9"/>
-      <rect x="132.5" y="0" width="1" height="9"/>
-      <rect x="135" y="0" width="1" height="9"/>
-      <rect x="137.5" y="0" width="1" height="9"/>
-      <rect x="140" y="0" width="1" height="9"/>
     </g>
 
     <!-- Center line -->

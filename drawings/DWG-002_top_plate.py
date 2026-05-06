@@ -111,7 +111,7 @@ def build_top_plate(p: TopPlateParams = None):
             plate
             .faces("<Z")
             .workplane()
-            .move(sx, sy)
+            .move(sx - W / 2, sy - D / 2)
             .circle(p.SCREW_THRU_D / 2)
             .cutThruAll()
         )
@@ -122,7 +122,7 @@ def build_top_plate(p: TopPlateParams = None):
             plate
             .faces("<Z")
             .workplane()
-            .move(hx, hy)
+            .move(hx - W / 2, hy - D / 2)
             .circle(p.HP_D / 2)
             .cutThruAll()
         )

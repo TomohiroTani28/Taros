@@ -47,9 +47,8 @@ class AssemblyParams:
     # === 共通パラメータ参照 ===
     common: TarosProParams = None
 
-    # === 天板配置Z (出典: DWG-003_assembly.md §2.4 正面図) ===
-    # リップ嵌合面 Z=139mm (筐体上端142mm - LIP_H 3mm = 139)
-    TOP_PLATE_Z: float = 139.0
+    # === 天板配置Z (SSOT導出: EnclosureParams.H_body - LIP_H) ===
+    TOP_PLATE_Z: float = None  # __post_init__で動的計算
 
     # === Zone A: 光学部品 (出典: DWG-003_assembly.md §2.2, 12_mechanical §1.4) ===
     # OPA ×2 (50×20×10mm)
@@ -57,20 +56,21 @@ class AssemblyParams:
     OPA1_POS: tuple = (30.0, 60.0, 8.0)    # (X, Y, Z) 左下隅基準
     OPA2_POS: tuple = (30.0, 140.0, 8.0)
 
-    # TEC ×2 (60×50×5mm) — OPA直下
+    # TEC ×3 (60×50×5mm) — OPA直下×2 + SHG×1
     TEC_SIZE: tuple = (60.0, 50.0, 5.0)
-    TEC1_POS: tuple = (30.0, 60.0, 3.0)
-    TEC2_POS: tuple = (30.0, 140.0, 3.0)
+    TEC1_POS: tuple = (30.0, 60.0, 3.0)    # OPA#1直下
+    TEC2_POS: tuple = (30.0, 140.0, 3.0)   # OPA#2直下
+    TEC3_POS: tuple = (80.0, 100.0, 3.0)   # SHG直下
 
-    # Master Laser (120×60×30mm)
+    # Master Laser (120×60×30mm) — 底板上に直置き
     LASER_SIZE: tuple = (120.0, 60.0, 30.0)
-    LASER_POS: tuple = (10.0, 92.0, 30.0)
+    LASER_POS: tuple = (10.0, 92.0, 3.0)   # Z=3: 底板上面
 
     # === Zone B: ファイバ (出典: DWG-003_assembly.md §2.2) ===
     # PMFスプール (φ80×80mm) — cylinder
     PMF_D: float = 80.0
     PMF_H: float = 80.0
-    PMF_POS: tuple = (170.0, 125.0, 5.0)  # (X_center, Y_center, Z_bottom)
+    PMF_POS: tuple = (175.0, 125.0, 5.0)  # (X_center, Y_center, Z_bottom) — Zone B内に収める(X=135-215)
 
     # === Zone C: 電子制御 (出典: DWG-003_assembly.md §2.2) ===
     # FPGA (80×80×20mm)
@@ -92,6 +92,10 @@ class AssemblyParams:
     def __post_init__(self):
         if self.common is None:
             self.common = PARAMS
+        if self.TOP_PLATE_Z is None:
+            # 動的計算: 筐体上端 - リップ深さ = 142 - 3 = 139mm
+            object.__setattr__(self, 'TOP_PLATE_Z',
+                               EnclosureParams().H_body - self.common.LIP_H)
 
 
 # =============================================================================
@@ -137,8 +141,8 @@ def build_assembly(p: AssemblyParams = None):
             color=cq.Color(0.9, 0.5, 0.1, 0.8),  # orange
         )
 
-    # --- 4. Zone A: TEC ×2 ---
-    for i, pos in enumerate([p.TEC1_POS, p.TEC2_POS], 1):
+    # --- 4. Zone A: TEC ×3 (OPA×2 + SHG×1) ---
+    for i, pos in enumerate([p.TEC1_POS, p.TEC2_POS, p.TEC3_POS], 1):
         tec = cq.Workplane("XY").box(
             p.TEC_SIZE[0], p.TEC_SIZE[1], p.TEC_SIZE[2], centered=False
         )
@@ -227,7 +231,7 @@ def calc_total_mass(p: AssemblyParams = None):
     # 内部部品 (カタログ値)
     mass_internal = (
         p.MASS_OPA * 2
-        + p.MASS_TEC * 2
+        + p.MASS_TEC * 3  # OPA×2 + SHG×1 = 3個
         + p.MASS_LASER
         + p.MASS_PMF_SPOOL
         + p.MASS_FPGA
