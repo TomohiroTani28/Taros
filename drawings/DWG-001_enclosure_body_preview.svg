@@ -376,7 +376,7 @@
 
     <!-- Title block content -->
     <text x="2" y="5" class="text-title-sm">DWG No.</text>
-    <text x="32" y="5" class="text-title">DWG-001 Rev.A</text>
+    <text x="32" y="5" class="text-title">DWG-001 Rev.B</text>
     <text x="2" y="12" class="text-title-sm">Title</text>
     <text x="32" y="12" class="text-title">Taros Pro Lower Body</text>
     <text x="2" y="19" class="text-title-sm">Scale</text>

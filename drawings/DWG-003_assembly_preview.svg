@@ -449,7 +449,7 @@
     <line x1="60" y1="12" x2="60" y2="18" class="title-box"/>
 
     <text x="2" y="4.5" class="text-title-sm">DWG No.</text>
-    <text x="32" y="4.5" class="text-title">DWG-003 Rev.A</text>
+    <text x="32" y="4.5" class="text-title">DWG-003 Rev.B</text>
     <text x="2" y="10.5" class="text-title-sm">Title</text>
     <text x="32" y="10.5" class="text-title">Taros Pro General Assembly</text>
     <text x="2" y="16.5" class="text-title-sm">Scale</text>
