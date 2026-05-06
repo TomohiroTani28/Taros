@@ -14,8 +14,7 @@ DWG-001: Taros Pro 筐体本体 (Lower Body)
   有効内部空間 (天板嵌合後): 294 × 244 × 136 mm ← 導出: (142-3底板-3リップ)
   ※天板(DWG-002)と合わせて外寸 300×250×160mm (フィン18mm込み)
 
-# TODO(設計判断要): 内寸高さ 12_mechanical記載137mmと導出値136mmに1mm差異。
-#   天板嵌合部の段差(1mm)で吸収と推定。Phase 0a試作で確定のこと。
+# 内寸高さ: 136mm確定。12_mechanical.md:L30 を 136mm に統一済み。
 """
 
 import cadquery as cq
