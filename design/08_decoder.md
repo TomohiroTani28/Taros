@@ -428,6 +428,29 @@ Tゲートモード: LO位相 θ = π/8
 | 表面符号 (現行) | ~1000:1 | UF/MWPM | Phase 0-1 |
 | **qLDPC [[144,12,12]]** | **~50:1** | BP+OSD | Phase 2+ |
 | **SHYPS** | **~50:1** | BP | Phase 2+ |
+| Color Code | ~200:1 | lookup | Phase 2+ (代替) |
+
+### 7.3 デコーダ選択: MWPM vs UF 再評価
+
+**出典**: arXiv:2505.06385 (2025/5) qLDPC-GKP soft-info比較
+
+2026年ベンチマーク結果: **MWPMがUF・neural-guided・BP全てを上回る**（GKP soft-info活用時）。
+
+| Phase | 推奨デコーダ | 根拠 |
+|-------|------------|------|
+| Phase -1/0 (d≤5) | **MWPM primary** | 510ns でも 6.86μs QECサイクルの7.4%で許容。soft-info活用でUFより高精度 |
+| Phase 1+ (d=7) | UF + MWPM hybrid | UF 350ns primary + MWPM 510ns fallback。700ns timeout |
+| Phase 2+ | **NN decoder** or BP+OSD | 124ns推論、14bit soft-info直接入力。qLDPC移行時はBP |
+
+**理論基盤**: CV方式のfault-tolerant閾値が一般的Markovノイズに対して証明済み（Nature Comms 2026, Matsuura et al.）。GKPコードを通じてCVノイズ→論理量子ビットのMarkovノイズへの変換が厳密に示された。
+
+### 7.4 erasure変換とCV方式の自然な優位性
+
+CV系の光損失は本質的にerasure（消失）ノイズとして扱える。erasure符号はdepolarizing符号より閾値が2-5倍高い。
+
+- 光子検出なし = erasure位置が自動的に判明（ancilla不要）
+- biased noise decoding: CV系の損失バイアスを活用して閾値を向上
+- **Phase 2+でerasure-aware qLDPCデコーダに移行することで、p_Lをさらに桁で改善可能**
 
 ---
 
