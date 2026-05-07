@@ -362,9 +362,9 @@ Phase -1実験でのPLL帯域実測が必須（05_phase-lock §5 Pilot Tone 1kHz
 | ≥500kHz | 0.006dB (設計値) | 計画通り |
 | 300-500kHz | ~0.03dB | 許容範囲内、マージン縮小のみ |
 | 100-300kHz | 0.05-0.15dB | d=7維持可能、p_L 2-5倍悪化 |
-| <100kHz | 0.25dB+ | σ_eff=11.3dB。対策: (a) EOM帯域拡張、(b) d=9拡張、(c) QD追加(Step B前倒し) |
+| <100kHz | 0.25dB+ | σ_eff劣化で閾値マージン縮小。対策: (a) EOM帯域拡張、(b) d=9拡張、(c) QD追加(Step B前倒し) |
 
-**BW=100kHz時の定量影響**: BSモデルでは追加劣化~0.17dB。Phase 2+ PIC構成 σ_eff 10.9→10.7dB、p_L悪化~2倍。PLL BW≥500kHz推奨は維持。
+**BW=100kHz時の定量影響**: BSモデルでは追加劣化~0.17dB。Phase 2+ PIC構成(理論限界) σ_eff 10.8→10.6dB、p_L悪化~2倍。PLL BW≥500kHz推奨は維持。
 BW=50kHz以下ではLevel A未達 → QD追加が必須。
 Phase -1 Go基準: PLL BW ≥ 200kHz (Conditional Go), ≥ 500kHz (Full Go)。
 

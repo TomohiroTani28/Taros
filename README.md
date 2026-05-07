@@ -53,6 +53,7 @@ Taros/
 ├── ARCHITECTURE.md        # 方式選定の根拠と設計判断
 │
 ├── design/                # ★ 主軸設計（CV方式）— 上流→下流の論理順
+│   ├── _parameters.md             # SSOT パラメータレジストリ
 │   ├── 00_overview.md              # エグゼクティブサマリー
 │   ├── 01_system-architecture.md   # ハイブリッドCV+QDシステム設計
 │   ├── 02_opa-source.md            # PPLN導波路OPA スクイージング光源
@@ -93,7 +94,6 @@ Taros/
 │
 ├── assets/                # 画像・レンダリング・資料
 │   ├── taros-pro-6view.png         # Taros Pro 6面レンダリング (README サムネイル)
-│   ├── exterior-render.png         # 外観レンダリング
 │   ├── TAROS_Investor_Pitch.pdf           # 投資家向けピッチデック (PDF, GitHub閲覧可)
 │   └── TAROS_Investor_Pitch_Revised.pptx  # 投資家向けピッチデック (編集用)
 │

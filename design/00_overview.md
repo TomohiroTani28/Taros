@@ -21,12 +21,12 @@
 | 生成スクイージング | σ_gen | 13dB | CW PPLN OPA (NTT) | 02_opa-source |
 | 全劣化 (GAWBS込み) | L_total | 1.42dB (離散光学) / 0.39dB (Phase 1 離散光学) / 0.15dB (Phase 2+ PIC) | ビームスプリッタモデル: η=10^(-L/10) | 06_noise-budget |
 | 実効スクイージング | σ_eff | **5.0dB** (現離散光学) / 8.5dB (Phase 1, 13dB) / **≈9.3dB** (Phase 2+ PIC 現実的, L=0.27dB, non-loss込み) / 10.8dB (理論限界, L=0.15dB) | Phase 1を8.5dBに、Phase 2+ PIC現実的を9.3dBに修正。理論限界10.8dB。 | 06_noise-budget |
-| 物理エラー率 | p_phys | 現離散(5.0dB): 閾値未達 / Phase 1(13dB, 8.5dB): 7.5×10⁻³ / Phase 2+ PIC現実的(13dB, L=0.27dB): ~4.9×10⁻³ | p_phys 4.9×10⁻³ for L=0.27dB | 13_performance |
+| 物理エラー率 | p_phys | 現離散(5.0dB): 閾値未達 / Phase 1(13dB, 8.5dB): 9.3×10⁻³ / Phase 2+ PIC現実的(13dB, L=0.27dB): ~4.9×10⁻³ | erfc再計算。Phase 1: σ=0.266→erfc(1.664)/2≈9.3×10⁻³ | 13_performance |
 | 閾値 (soft-info) | p_th_eff | 1.5% | soft-info MWPM (Noh-Chamberland 2022); UF時≈0.8-1.2%. 製品デコーダはMWPM (現実的L=0.27dBでUF~5×10⁻⁴>10⁻⁵) | 08_decoder |
 | 閾値 (保守) | p_th | 0.59% | hard-syndrome MWPM | 文献値 |
 | 論理エラー率 d=7 (Δ=0理想) | p_L | **6.1×10⁻⁷ (MWPM, Phase 2+ PIC)** [理論上限値] | 製品目標p_L≲10⁻³(L=0.27dB)。現実的PIC(L=0.27dB, QE≥99%)でMWPM~3.3×10⁻⁴。L≤0.22dBで≲10⁻⁴。UF~5×10⁻⁴(超過)→MWPM必須 | 13_performance |
 | 論理エラー率 d=7 (現実Δ=0.12) | p_L | **~3.3×10⁻⁴ (MWPM, L=0.27dB)** [対外基準値] | 13_performance §3.2 性能予測表「現実」行 | 13_performance |
-| QD等価スクイージング | — | +2.7dB (QD=2) | σ_eff等価13.6dB (10.9+2.7, 旧14.2dBは11.5dB基準) | 01_system-arch |
+| QD等価スクイージング | — | +2.7dB (QD=2) | σ_eff等価13.5dB (10.8+2.7, 旧14.2dBは11.5dB基準) | 01_system-arch |
 | TDMクロック | f_TDM | 100MHz | Option B パルスOPA | 03_tdm-cluster |
 | macronode列数 | N_col | 2d² (18/50/98) | d=3/5/7 | 03_tdm-cluster |
 | フィードフォワード | t_FF | **27ns** (設計ベースライン400MHz) / 22ns (楽観500MHz) | TIA 3 + ADC 3 + FPGA 12.5 + DAC 5 + EOM 3 = 26.5≈27ns | 07_feedforward |
@@ -108,11 +108,12 @@ FPGA (Versal VE2302)
 | **実効スクイージング σ_eff** | **5.0dB (現離散光学) / 8.5dB (Phase 1, 13dB) / 10.8dB (Phase 2+ PIC理論限界)** | Phase 1を8.5dB、理論限界を10.8dBに統一。現実的(L=0.27dB)は9.3dB |
 | GKP+表面符号閾値 (postselection) | 7.5dB | Stafford-Menicucci-Walshe 2025 (P_round=10⁻³, strict mode時) |
 | GKP+表面符号閾値 (全モード重み付け) | ~10dB | Noh-Chamberland 2022 unconditional相当 |
-| **閾値マージン (Phase 2+ PIC, postsel)** | **+3.3dB** | 10.8 - 7.5 |
-| **閾値マージン (Phase 2+ PIC, 全モード)** | **+0.8dB** | 10.8 - 10.0 |
+| **閾値マージン (Phase 2+ PIC現実的, postsel)** | **+1.8dB** | 9.3 - 7.5 |
+| **閾値マージン (Phase 2+ PIC理論限界, postsel)** | **+3.3dB** | 10.8 - 7.5 |
+| **閾値マージン (Phase 2+ PIC理論限界, 全モード)** | **+0.8dB** | 10.8 - 10.0 |
 | **閾値マージン (Phase 1, postsel)** | **+1.0dB** | 8.5 - 7.5 (break-even境界、8.8→8.5dB修正) |
 | **閾値マージン (現離散光学, Option A+AWG)** | **閾値未達** | 5.0dB < 7.5dB。**注: Phase -1実験はOption B(AWGなし, L=0.39dB, σ_eff=8.5dB)で実施。閾値超過+1.0dB** |
-| 物理エラー率 p_err | Phase 1(13dB): 7.5×10⁻³ / Phase 2+ PIC現実的(13dB, L=0.27dB): ~4.9×10⁻³ / 理論限界(L=0.15dB): 9.9×10⁻⁴ | erfc再計算+V_non-loss修正 |
+| 物理エラー率 p_err | Phase 1(13dB): 9.3×10⁻³ / Phase 2+ PIC現実的(13dB, L=0.27dB): ~4.9×10⁻³ / 理論限界(L=0.15dB): 9.9×10⁻⁴ | erfc再計算+V_non-loss修正 |
 | 表面符号閾値 p_th_eff | 1.5% | soft-info MWPM (Noh&Chamberland 2022); UF時≈0.8-1.2%. 製品デコーダはMWPM |
 | **論理エラー率 p_L (d=7, Phase 2+ PIC)** | **製品仕様: ~3.3×10⁻⁴ (L=0.27dB, QE≥99%, MWPM)** / L≤0.22dBで≲10⁻⁴ / 理論限界: 6.1×10⁻⁷ | non-loss noise込み統一計算。L=0.27dBでp_L=3.3×10⁻⁴(≲10⁻³)。L≤0.22dBで≲10⁻⁴達成。理論限界(L=0.15dB, Δ=0) 6.1×10⁻⁷。UFは現実的条件で~5×10⁻⁴(超過)→MWPM必須 |
 

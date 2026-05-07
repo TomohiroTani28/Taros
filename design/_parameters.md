@@ -52,7 +52,7 @@
 | 全光学損失 | L_total | 0.39 dB | 0.27 dB | 0.15 dB | design/06_noise-budget |
 | 全光学透過率 | η_total | 0.914 | 0.940 | 0.966 | design/06_noise-budget |
 | 実効スクイージング | σ_eff | 8.5 dB | **≈9.3 dB** (L=0.27dB, non-loss込み) | 10.8 dB | design/06_noise-budget |
-| 物理エラー率 | p_phys | 7.5×10⁻³ | ≈4.9×10⁻³ (L=0.27dB) | 9.9×10⁻⁴ | design/13_performance |
+| 物理エラー率 | p_phys | 9.3×10⁻³ | ≈4.9×10⁻³ (L=0.27dB) | 9.9×10⁻⁴ | design/13_performance |
 
 ### 2.3 QEC性能
 

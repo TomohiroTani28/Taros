@@ -108,7 +108,7 @@ PPLN OPA#2 (CW squeezing 13dB) ──┘        │
 ### 2.3 パルスTDM版（Phase -1b）
 
 Phase -1aの成功後に実施:
-- EO gate追加 → 100MHzパルス化
+- パルスOPA化 → 100MHz動作（Option B採用、EO gate不要。`design/03_tdm-cluster.md`参照）
 - PMF短遅延(2m)追加 → macronode 1列
 - GKP postselectionの**パルス動作での**成功確率確認
 

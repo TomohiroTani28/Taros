@@ -114,7 +114,7 @@ SNU = Shot Noise Unit (真空ノイズ = 1 SNU)
   Phase -1 discrete基準(V_eff=0.316): V_degraded=0.318 → σ_eff=4.98dB → **劣化~0.02dB**。
   (旧0.17dBはBWの帯域積分値との混同。単一周波数0.5°では上記が正確。
   **BW=100kHz時の全帯域積分位相ノイズ**: 05_phase-lock §6のφ_RSS=0.5°はPLL補正前値であり、
-  BW=100kHz残留時は広帯域積分で~0.17dB相当の劣化が残る — Phase 2+ PIC σ_eff 10.9→10.7dB。)
+  BW=100kHz残留時は広帯域積分で~0.17dB相当の劣化が残る — Phase 2+ PIC(理論限界) σ_eff 10.8→10.6dB。)
   PLL BW≥500kHzは依然として推奨だが、PLL失敗(BW=100kHz)時でもσ_eff≈10.7dBでFTQC動作可能。
 
 > **PLL要件検証**: PMF 200m系でのPLL BW≥500kHz達成はPhase -1 T0a最優先実験項目。
@@ -504,7 +504,7 @@ MWPM: p_err/p_th = 2.4×10⁻⁴ / 0.015 = 0.016
 | σ_eff (Phase 2+ PIC, L=0.15dB) | — | **10.8dB** | PIC統合で製品級 |
 | p_L (Phase 2+ PIC, d=7) | 4.4×10⁻⁷ (旧UF) | **6.1×10⁻⁷ (MWPM)** / 7.0×10⁻⁶ (UF) | MWPM必須 |
 
-**核心**: 製品級FTQC(p_L<10⁻⁵)にはPIC統合（現実的L≤0.27dB）+MWPM d=7が必須。L=0.15dBで十分なマージン確保。ディスクリート光学(Phase 1)ではbreak-even実証まで。
+**核心**: 製品級FTQC(p_L≲10⁻³)にはPIC統合（現実的L≤0.27dB）+MWPM d=7が必須（p_L≈3.3×10⁻⁴）。L≤0.17dBでp_L<10⁻⁵達成。ディスクリート光学(Phase 1)ではbreak-even実証まで。
 
 ---
 
