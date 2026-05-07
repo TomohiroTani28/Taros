@@ -131,9 +131,11 @@ Taros/
 ├── analysis/              # 分析・計画
 │   ├── risk.md                     # CV方式成功確率評価
 │   ├── bom.md                      # 統合BOM比較
-│   ├── roadmap.md                  # [DEPRECATED] DV-FBQC v4.0ロードマップ（CV方式は00_overview参照）
 │   ├── phase-minus1-execution.md   # Phase -1実行計画（14タスク/約4.6億円/12ヶ月）
-│   └── development-cost-summary.md  # 開発費用全体サマリー
+│   ├── development-cost-summary.md  # 開発費用全体サマリー
+│   ├── cross-disciplinary-technology-survey.md  # 異分野技術サーベイ
+│   ├── cross-platform-technology-transfer.md    # 他プラットフォーム技術移転分析
+│   └── FEASIBILITY_CONSISTENCY_REPORT.md        # 実現可能性整合性レポート
 │
 ├── drawings/              # 製造図面 (CadQuery STEP/DXF + 仕様書)
 │   ├── DWG-001_enclosure_body.*     # 筐体本体 (.py/.step/.dxf/.md)
@@ -146,6 +148,9 @@ Taros/
 │   └── TAROS_Investor_Pitch_Revised.pptx  # 投資家向けピッチデック (編集用)
 │
 ├── note.md               # プロジェクトピッチノート (概要・投資家向け要約)
+│
+├── scripts/              # ユーティリティスクリプト
+│   └── generate_pitch.py          # ピッチデック生成スクリプト
 │
 ├── fallback/              # DV-FBQCフォールバック設計
 │   ├── 01_deskside-vision.md       # DV-FBQC版デスクトップQC
