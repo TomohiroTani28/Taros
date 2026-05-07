@@ -153,7 +153,7 @@ SNU = Shot Noise Unit (真空ノイズ = 1 SNU)
   **結論**: L=0.27dBバジェットは**QE≥99%前提**。QE=98%の場合はL≤0.20dB必須、またはd=9で対応。
   Phase 1(離散光学)ではQE影響はσ_eff=8.5→7.4dBでbreak-even困難。旧8.8→8.5dB
   **Go/No-Go G6**: Phase 0a終了時にPD QE≥98%達成を確認。QE≥99%は製品L=0.27dBバジェットの前提条件。未達時はd=9+MWPM、またはQD追加。
-- **WDMチャネル数制約**: PPLN OPA type-0 PDCの片側帯域は~400-500GHz (50mm導波路)。
+- **WDMチャネル数制約**: PPLN OPA type-0 PDCのFWHM帯域は~500GHz（片側~250GHz, 50mm導波路）。
   100GHz間隔AWGで最大4-5ch/OPA出力。2 OPA出力で最大8-10ch。ただし帯域端(-3dB)では
   スクイージングが0.5-1dB低下するため、実効的には**中心4ch/OPAが高品質** (>12.5dBスクイージング)、
   端2ch/OPAは品質低下(11.5-12dB)。Portable Max(7ch)は中心4+端3構成で全ch≥11.5dB確保。

@@ -13,7 +13,7 @@ GKP状態生成を3段階に分割し、各段階でGo/No-Goを判定する。
 | Step | 方式 | QD数 | 成功確率 | GKPレート | 忠実度F | Phase |
 |------|------|------|---------|----------|---------|-------|
 | **A** | CVのみ (postselection) | 0 | p_acc~93% | 100kHz | **0.87-0.91**† | Phase 0前期 |
-| **B** | QD photon subtraction | 2 | ~2×10⁻³ | 200kHz | 0.93 | Phase 0後期 |
+| **B** | QD photon subtraction | 2 | ~2×10⁻³ | 200kHz | 0.95 | Phase 0後期 |
 | **C** | QD deterministic breeding | 4 | ~0.5 | 50MHz | 0.98 | Phase 1 |
 
 †: F値はBS modelに基づく。Phase -1 discrete (Option B, 13dB, L=0.39dB) σ_eff=8.5dB→F≈0.86。Phase 2+ PIC (L=0.15dB, 13dB) σ_eff=10.8dB→F≈0.91。旧値F=0.93-0.94はdB減算公式σ_eff=σ_gen−Lによる過大推定 — 06_noise-budget §2.3参照。「成功確率」欄はp_acc(単一モード acceptance rate)を使用。旧P_s記号は廃止(§2.2参照)。σ_eff 8.8→8.5, 10.9→10.8
