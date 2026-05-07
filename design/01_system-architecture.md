@@ -304,7 +304,7 @@ Layer 3: 表面符号論理量子ビット
 | 実効的な閾値要件 (QD支援+postselection) | **~4.5dB** | 7.5 - 3 |
 | 生成スクイージング | **13dB** | PPLN導波路OPA (NTT) |
 | 損失バジェット | **0.39dB (Phase1 OptionB) / 0.15dB (Phase2+ PIC)** | 06_noise-budget BSモデル |
-| 実効スクイージング (BSモデル) | **8.5dB (Phase1, 13dB, L=0.39dB) / ≈9.3dB (Phase2+ PIC現実的, L=0.27dB) / 10.8dB (理論限界, L=0.15dB)** | V_eff=η×V_sqz+(1−η) |
+| 実効スクイージング (BSモデル) | **8.5dB (Phase1, 13dB, L=0.39dB) / ≈9.3dB (Phase2+ PIC現実的, L=0.27dB) / 10.8dB (理論限界, L=0.15dB)** | V_eff=η×V_sqz+(1−η)+V_nl |
 | **閾値マージン (Phase2+ PIC, QD=0, postsel)** | **+1.8dB (現実的) / +3.3dB (理論限界)** | 9.3−7.5(PS基準) / 10.8−7.5 |
 | **閾値マージン (QD=2, Phase2+ PIC)** | **+6.0dB** | 13.5 - 7.5 (QD+2.7dB, 10.8+2.7=13.5) |
 

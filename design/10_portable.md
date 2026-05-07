@@ -232,7 +232,7 @@ Master LD (1550nm, 100mW) ──► [PM: 25GHz RF] ──► [IM: 25GHz RF]
   Master LD + GS-DFB + SOA + SHG TEC  : 15W  (DFB 2W + SOA 8W + SHG TEC 5W)
   PPLN OPA Peltier ×2                 :  8W  (4W/OPA × 2)
   SHG Peltier                          :  4W
-  EO gate driver                       :  5W  (Option B: ゲート駆動→LO基底切替用EOMに転用)
+  EOM driver (LO基底切替)              :  5W  (Option B: LO基底切替用EOM)
   PZT phase lock                       :  3W
   Balanced PD + TIA (2ch base)         :  2W
   ADC ×2 (base, Flash+Pipeline)        : 10W
@@ -422,7 +422,7 @@ print(result.get_counts)
 | IBM Quantum System Two | 超伝導 | 0 | 部屋 | 約22.5億円+ | 200kW+ |
 | IonQ Forte | イオン | 0 | ラック×3 | 約4.5億円+ | 30kW |
 | Xanadu Aurora | フォトニック | TBD | ラック×多 | 約15億円+ | 100kW+ |
-| **Taros Edu** | **CV光子** | **~1 (d=3)** | **ラップトップ** | **約1,350万円** | **100W** |
+| **Taros Edu** | **CV光子** | **~1 (d=3)** | **ラップトップ** | **約1,350万円** | **104W** |
 | **Taros Pro** | **CV光子** | **10+ (d=5)** | **ミニPC** | **約1,800万円** | **109W** |
 | **Taros Max** | **CV光子** | **100+ (d=7)** | **デスクトップ** | **約2,550万円** | **112W** |
 

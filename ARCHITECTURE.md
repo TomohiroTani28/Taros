@@ -10,7 +10,7 @@
 |---|------|------|------|
 | 動作温度 | **完全室温**（QD追加時のみ4K、QDはオプション） | 4K（SNSPD全数） | 15mK |
 | 閾値マージン | 現離散光学→閾値未達(5.0dB<7.5dB); Phase 2+ PIC→**+1.8dB**(PS, 現実的L=0.27dB)/**+3.3dB**(PS, 理論限界L=0.15dB)/+0.8dB(全モード, 理論限界時) | -10pt | +30pt |
-| デスクサイド化 | **可能（~109W, ~7.5kg）** | 困難（2.1kW, 51kg） | 不可能 |
+| デスクサイド化 | **可能（~109W, ~7.5kg）** | 困難（2.1kW, 本体28kg+冷却23kg=51kg） | 不可能 |
 | 論理qubitスケーリング | **TDM: 追加HW 0円** (逐次処理: 1000 qubit回路(10⁶ Tゲート)の実行時間はd=7で全モード~1秒 / strict~16分。並列処理はWDM拡張で対応) | SNSPD比例増加 | 物理qubit比例増加 |
 | 量産性 | **ウェハプロセス** | 個別光学組立 | 希釈冷凍機 |
 
@@ -40,8 +40,8 @@
 | Option A (CW+EO gate) → Option B (パルスOPA) | — | EO gate 0.3dB損失が閾値マージンに致命的 | `design/02_opa-source.md` |
 | 統合修正 (Session 9-10) | — | P_s記号廃止→p_acc/P_round分離、V_anti=20 SNU表記統一、GKP Fidelity BS model修正(F=0.94→0.87-0.91)、リスク確率ベイジアン化(80%→63%/81%)、Stim統計的不確かさ注記、Phase -1実験構成明示(Option B, AWGなし, σ_eff=8.8dB) | 全design/, analysis/, experiments/ |
 | **統合修正 (Session 11)** | — | **p_L 3段階化(10⁻³/10⁻⁵/10⁻⁶)**: 製品スペックp_L<10⁻⁵(現実的PIC L=0.27dB)、理論限界10⁻⁶(L=0.15dB全条件達成時)。**Phase 1 σ_gen 15→13dBに下方修正**(目的をbreak-even実証に限定)。**PIC損失バジェット修正**: L=0.15dBはオンチップのみ、OPA結合込み現実的楽観L=0.27dB。**QE≥98%をGo/No-Go G6追加**。**Phase -1を12ヶ月/約4.6億円に正式確定**。Tゲートパイプラインハザード制約追加。PMF切断精度±1mm→±50μm。OPO→OPA用語統一。 | 全design/, analysis/ |
+| **統合修正 (Session 13)** | — | **p_L表記「<10⁻⁵」→「≲10⁻⁵(目標)」**: 現実的L=0.27dBでMWPM~2-5×10⁻⁵(境界)。L≤0.20dBで<10⁻⁵確実。**DAC MAX5898 group delay修正**: 2cycle@400MHz=5ns(旧4nsは計算ミス)→FF合計27ns。**σ_eff旧値9.4dB→8.8dB一括修正**(01_sys-arch, 02_opa-source, 00_overview)。**QE≥99%前提明示**: L=0.27dBバジェットはQE≥99%前提。QE=98%ならL≤0.20dB必須。**106W→109W残存11箇所修正**。133W→140W修正。GKP実験約560万円/5ヶ月統一。SNSPD 500→1000残存修正。 | 全design/, analysis/, fallback/, experiments/ |
 | **統合修正 (Session 14+)** | — | **σ_eff 9.5→9.3dB**(L=0.27dB, non-loss込み再計算)。**Phase 1 σ_eff 8.8→8.5dB**。**理論限界10.9→10.8dB**。**p_L修正**: 7×10⁻⁵→3.3×10⁻⁴(L=0.27dB)、5.7×10⁻⁷→6.1×10⁻⁷(理論限界)。**p_err 3×10⁻³→4.9×10⁻³**。**L≤0.20dB→L≤0.17dBで<10⁻⁵**。閾値マージン再計算。 | 全design/, README, ARCHITECTURE |
-| **統合修正 (Session 13)** | — | **p_L表記「<10⁻⁵」→「≲10⁻⁵(目標)」**: 現実的L=0.27dBでMWPM~2-5×10⁻⁵(境界)。L≤0.20dBで<10⁻⁵確実。**DAC MAX5898 group delay修正**: 2cycle@400MHz=5ns(旧4nsは計算ミス)→FF合計27ns。**σ_eff旧値9.4dB→8.8dB一括修正**(01_sys-arch, 02_opa-source, 00_overview)。**QE≥99%前提明示**: L=0.27dBバジェットはQE≥99%前提。QE=98%ならL≤0.20dB必須。**106W→109W残存11箇所修正**。133W→140W修正。GKP実験約630万円/5ヶ月統一。SNSPD 500→1000残存修正。 | 全design/, analysis/, fallback/, experiments/ |
 
 ### Xanadu Auroraとの差別化
 

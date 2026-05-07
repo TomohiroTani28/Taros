@@ -125,7 +125,7 @@ SNU = Shot Noise Unit (真空ノイズ = 1 SNU)
   (注: 0.01 SNUは単一モードファイバkm級の値。PMF 200mでは散乱長が短く10⁻⁴ SNU級。Shelby+ 1985。)
   温度安定化(±0.01℃)で更に低減可能。劣化0.005dBは保守的上限値。
 - **EO gate挿入損失0.30dBの定義**: LNOI MZM変調アーム通過損失（ファイバ結合損失を含まない）。LNOI MZMのfull fiber-to-fiber挿入損失は典型2-3dBだが、本設計ではOPA→EOM→BSがall-fiber spliced接続のため、I/O結合損失は項目#2(OPA結合)に含まれる。EO gate固有の損失はDC arm loss (~0.15dB) + RF modulator core loss (~0.15dB) = 0.30dB。
-  **EOM損失リスク**: 0.3dBはLNOI MZMの最良ケース。on-chip propagation loss実測がPhase -1確認項目。0.5dB到達時: σ_eff=11.3dB (p_L(d=7)×3-5悪化)。Go/No-Go: EOM固有損失≤0.5dB。
+  **EOM損失リスク (Option A参考値)**: 0.3dBはLNOI MZMの最良ケース。on-chip propagation loss実測がPhase -1確認項目。**Option B採用によりEOMは光路上にないため、本リスクは非該当**。Option Aフォールバック時の参考: 0.5dB到達時にBSモデルでσ_eff約0.5-0.7dB追加劣化。Go/No-Go: EOM固有損失≤0.5dB（Option A時のみ）。
 - **配線損失と本テーブルの対応関係**: 12_mechanical.md §2.4で配線損失合計0.64dBと計算されている。
   本テーブルとの対応: #2(OPA結合0.30dB)=#OPA出力FC/APC×2 + #5(BS 0.30dB)=BS融着含む + #3(PMF 0.01dB)。
   合計0.61dBに対し実装値0.64dB → 差分0.03dBは設計マージン(丸めマージン+0.03dB)に含まれる。

@@ -30,7 +30,7 @@
 | 閾値マージン | 現離散光学→閾値未達; Phase 2+ PIC現実的(σ_eff≈9.3dB)→**+1.8dB** (postselection閾値7.5dB基準, Stafford-Menicucci 2025) |
 | フィードフォワード | 27ns設計ベースライン(400MHz) / 22ns楽観(500MHz)、3モード遅延 |
 | デコーダ | 350ns (UF, Phase 0-1実験用, 400MHz) / **510ns (MWPM, 製品用, 400MHz)**（パイプライン動作、FF非律速） |
-| 消費電力 | ~109W (Portable Pro) / ~1.5kW (Rack) |
+| 消費電力 | ~109W (Portable Pro) / ~185W (Rack CV pure) / ~1.5kW (Rack CV+QD) |
 | 冷却 | 低速ファン準無音（QDなし構成は完全室温） |
 | 論理qubit | 10〜1,000+（TDM逐次拡張） |
 
@@ -71,7 +71,7 @@ Taros/
 │   └── 14_clock-distribution.md   # クロック分配・同期設計
 │
 ├── experiments/           # 実験計画
-│   ├── 01_gkp-optical.md           # GKP光学生成実験（装置約560万円/完全コスト約2,970万円/5ヶ月）
+│   ├── 01_gkp-optical.md           # GKP光学生成実験（装置約560万円/完全コスト約2,900万円/5ヶ月）
 │   ├── 02_virtual-experiments.md   # 仮想実験シミュレーション
 │   ├── 03_numerical-verification.md # 数値検証レポート（独立再計算）
 │   ├── 04_ibm-quantum-verification.md # IBM Quantum実機検証（ibm_fez 156q）
@@ -83,7 +83,7 @@ Taros/
 ├── analysis/              # 分析・計画
 │   ├── risk.md                     # CV方式成功確率評価
 │   ├── bom.md                      # 統合BOM比較
-│   ├── roadmap.md                  # Phase 0-2ロードマップ
+│   ├── roadmap.md                  # [DEPRECATED] DV-FBQC v4.0ロードマップ（CV方式は00_overview参照）
 │   ├── phase-minus1-execution.md   # Phase -1実行計画（14タスク/約4.6億円/12ヶ月）
 │   └── development-cost-summary.md  # 開発費用全体サマリー
 │

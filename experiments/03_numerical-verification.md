@@ -7,7 +7,7 @@
 > **注記**: 本文書は初期設計(σ_eff=11.5dB, dB減算モデル)に対する数値検証である。
 > BSモデルでは数値が大幅に異なる。**現行設計値は`design/13_performance.md`を参照。**
 > 主な差異: σ_eff 11.5→10.8dB(理論限界)/≈9.3dB(Phase 2+ PIC現実的)/8.5dB(Phase 1)、
-> p_phys 5×10⁻⁴→9.9×10⁻⁴(理論限界)/7.5×10⁻³(Phase 1)
+> p_phys 5×10⁻⁴→≈1.0×10⁻³(理論限界)/9.3×10⁻³(Phase 1)
 
 **手法**: Python (NumPy/SciPy) による独立計算。erfc関数、noise budgetの全チェーン検証。
 **関連文書**: シミュレーション実験の詳細は `experiments/02_virtual-experiments.md` を参照。

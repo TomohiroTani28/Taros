@@ -198,7 +198,7 @@ Z=0   ◯              ◯            ◯        ◯ ゴム脚
 
 配置: Zone A/B/Cは横並び (左→右)。PTFE断熱層(Z=93)は
       Zone A/B上部に水平配置し、電子系の熱を光学系から遮断。
-      Zone CはZ=5-137の全高を使用 (FPGA+DC-DC縦スタック)。
+      Zone CはZ=5-139の全高を使用 (FPGA+DC-DC縦スタック)。
 
 熱流: Zone C (FPGA 25W + ADC 10W + DC-DC 9W = 44W) → Cu HP → 天板フィン右側1/3領域 → 強制対流
       Zone A (OPA TEC 8W + Laser 12W) → 底面ファン吸気で冷却
@@ -224,7 +224,7 @@ Taros Edu (d=3)           Taros Pro (d=5)          Taros Max (d=7)
 │   4.3 kg    │           │    7.5 kg       │      │     9.7 kg        │
 │   PMF 37m   │           │    PMF 102m      │      │     PMF 200m      │
 │   WDM 5ch   │           │    WDM 8ch      │      │     WDM 7ch       │
-│   100W      │           │    109W         │      │     112W          │
+│   104W      │           │    109W         │      │     112W          │
 │   約1,350万円      │           │    約1,800万円        │      │     約2,550万円         │
 └─────────────┘           └─────────────────┘      └───────────────────┘
   ↑ iPad Pro大              ↑ Mac Studio大           ↑ Mac Pro mini大

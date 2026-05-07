@@ -112,7 +112,7 @@ T11                       ██████████████████
 ### 4.2 判定ロジック
 
 ```
-G1(GKP) AND G5(OPO) → CV+ハイブリッド方式 Primary Go
+G1(GKP) AND G5(OPA) → CV+ハイブリッド方式 Primary Go
     |
     +-- AND G2(InP QD) → InP QD直接（QFC-Free）構成
     |
