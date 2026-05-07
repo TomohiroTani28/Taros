@@ -1,13 +1,12 @@
 # Taros パラメータレジストリ (Single Source of Truth)
 
-**Document ID**: PQC-PARAMS-v1.0 [v3.6]
-**Last Updated**: 2026-05-06
+**Document ID**: PQC-PARAMS-v1.0
 **Status**: 確定版
 
 > 本文書はプロジェクト全体のパラメータ定義の単一真実源（SSOT）です。
 > 他の文書がパラメータ値を引用する場合、本文書を参照元とすること。
 >
-> **SSOT階層 (v3.5明確化)**:
+> **SSOT階層 **:
 > - **本文書 `_parameters.md`**: プロジェクト全体のSSOT。全方式(CV/DV)横断のパラメータ定義
 > - **`00_overview.md` 正規パラメータ表**: CV方式の詳細パラメータ。本文書の値を展開・詳細化したもの
 > - **各design文書 (01-14)**: 個別サブシステムの設計詳細。パラメータ値は上位2文書に準拠
@@ -17,16 +16,16 @@
 
 ## 1. Phase 定義（統一版）
 
-プロジェクト全体で統一するPhase番号と年代の対応表。
+プロジェクト全体で統一するPhase番号と期間の対応表。
 
-| Phase | 年代 | CV方式（主軸） | DV-FBQC方式（凍結） | 主要マイルストーン |
+| Phase | 期間 | CV方式（主軸） | DV-FBQC方式（凍結） | 主要マイルストーン |
 |-------|------|---------------|--------------------|--------------------|
-| **-1** | 2026 | $3.08M, GKP実験+Stim検証 | — | Go/No-Go判定 |
-| **0a** | 2027 Q1-Q2 | Taros Edu プロトタイプ (d=3) | — | QEC break-even |
-| **0b** | 2027 Q3-Q4 | Taros Pro プロトタイプ (d=5) | — | 製品プロトタイプ |
-| **1** | 2028 | Taros Max プロトタイプ (d=7) | Phase 1: 8ラック構成 | 製品設計完了 |
-| **2** | 2029-2030 | 量産設計 (100台/年) | Phase 2: クライオPIC | 量産立ち上げ |
-| **3** | 2030+ | WDM 20ch フルスペック | — | 高性能FTQC |
+| **-1** | 開始後0-6ヶ月 | 約4.6億円, GKP実験+Stim検証 | — | Go/No-Go判定 |
+| **0a** | 開始後約9-12ヶ月 | Taros Edu プロトタイプ (d=3) | — | QEC break-even |
+| **0b** | 開始後約15-18ヶ月 | Taros Pro プロトタイプ (d=5) | — | 製品プロトタイプ |
+| **1** | 開始後約2年 | Taros Max プロトタイプ (d=7) | Phase 1: 8ラック構成 | 製品設計完了 |
+| **2** | 開始後約3-4年 | 量産設計 (100台/年) | Phase 2: クライオPIC | 量産立ち上げ |
+| **3** | 開始後約4年以降 | WDM 20ch フルスペック | — | 高性能FTQC |
 
 > **注**: archive/ 配下のDV方式文書では「Phase 0/1/2/3」が上記と異なる定義で使用されている場合があります。
 > archive/のPhase定義は凍結されており、本表のCV方式列が正式です。
@@ -62,7 +61,7 @@
 | 閾値 (soft-info MWPM) | p_th_eff | 1.5% | Noh-Chamberland 2022 | design/08_decoder |
 | 閾値 (保守 hard MWPM) | p_th | 0.59% | 文献値 | design/13_performance |
 | 論理エラー率 d=7 (MWPM, Phase 2+ PIC理論限界) | p_L | 6.1×10⁻⁷ | L=0.15dB, Δ=0, QE=99% | design/13_performance |
-| 論理エラー率 d=7 (MWPM, Phase 2+ PIC現実的) | p_L | **~3.3×10⁻⁴** | L=0.27dB, QE≥99%, non-loss noise込み。v3.6修正: 06_noise-budget §2.3。≲10⁻³。L≤0.22dBで≲10⁻⁴ | design/06_noise-budget |
+| 論理エラー率 d=7 (MWPM, Phase 2+ PIC現実的) | p_L | **~3.3×10⁻⁴** | L=0.27dB, QE≥99%, non-loss noise込み。06_noise-budget §2.3。≲10⁻³。L≤0.22dBで≲10⁻⁴ | design/06_noise-budget |
 | デコーダ遅延 (MWPM製品) | t_dec | 510 ns | @400MHz | design/08_decoder |
 | デコーダ遅延 (UF実験) | t_dec | 350 ns | @400MHz | design/08_decoder |
 | フィードフォワード (FF-1) | t_FF | 27 ns | @400MHz | design/07_feedforward |
@@ -74,14 +73,14 @@
 | 表面符号距離 | d=3 | d=5 | d=7 | design/00_overview |
 | 重量 | ~4.3 kg | ~7.5 kg | ~9.7 kg | design/00_overview |
 | 消費電力 | ~104 W | ~109 W | ~112 W | design/00_overview, design/10_portable |
-| 原価 | $56K | $75K | $95K | analysis/bom |
-| 販売価格 | $90K | $120K | $170K | analysis/bom |
+| 原価 | 約840万円 | 約1,125万円 | 約1,425万円 | analysis/bom |
+| 販売価格 | 約1,350万円 | 約1,800万円 | 約2,550万円 | analysis/bom |
 
 ---
 
 ## 3. DV-FBQC方式パラメータ（凍結・参考）
 
-> **⚠ 凍結**: 以下の値は DV-FBQC v4.0 R6 (2026-05-04) 時点で凍結されています。
+> **⚠ 凍結**: 以下の値は DV-FBQC v4.0 R6  時点で凍結されています。
 > archive/ 配下の文書を参照する際のリファレンスとしてのみ使用してください。
 
 ### 3.1 光源
@@ -143,9 +142,9 @@ DV/CV方式で共通の物理コンポーネントの正規値。
 
 | 文書 | 内容 | 最終更新 |
 |------|------|----------|
-| `analysis/bom.md` | 製品BOM（原価・販売価格・TCO） | 2026-05-05 |
-| `analysis/development-cost-summary.md` | 開発費全体（Phase -1~2: $5.78M） | 2026-05-06 |
-| `analysis/phase-minus1-execution.md` | Phase -1 詳細実行計画 ($3.08M) | 2026-05-05 |
+| `analysis/bom.md` | 製品BOM（原価・販売価格・TCO） |  |
+| `analysis/development-cost-summary.md` | 開発費全体（Phase -1~2: 約8.7億円） |  |
+| `analysis/phase-minus1-execution.md` | Phase -1 詳細実行計画 (約4.6億円) |  |
 
 > 他の文書がコスト数値を引用する場合、上記3文書のいずれかを参照元として明記すること。
 
@@ -159,7 +158,7 @@ DV/CV方式で共通の物理コンポーネントの正規値。
 | `analysis/` | **生きた文書（正式）** | コスト・リスク・ロードマップ |
 | `experiments/` | **生きた文書（正式）** | 実験計画・数値検証 |
 | `fallback/` | **参考（DV代替）** | DV-FBQC v5.0 Desktop フォールバック |
-| `archive/` | **凍結（レガシー）** | DV-FBQC v4.0 R6 設計（2026-05-04凍結） |
+| `archive/` | **凍結（レガシー）** | DV-FBQC v4.0 R6 設計（凍結） |
 
 ---
 

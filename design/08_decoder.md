@@ -1,7 +1,6 @@
 # GKP→表面符号デコーダ ブリッジ仕様書
 
 **Document ID**: PQC-CV-DECODER-v1.4
-**Last Updated**: 2026-05-05
 **Status**: Draft
 **前提**: macronode TDM + GKP postselection + 表面符号 d=3-7
 
@@ -56,7 +55,7 @@
 ### 1.2 DV方式デコーダとの本質的差異
 
 | 項目 | DV方式 (erasure) | **CV方式 (GKP soft info)** |
-|------|:---:|:---:|
+|------|---------|---|
 | 入力 | binary (検出/非検出) | **continuous (ホモダイン値)** |
 | エラーモデル | erasure + depolarizing | **Gaussian displacement noise** |
 | 情報量 | 1 bit/measurement | **14 bits/measurement** |
@@ -169,19 +168,19 @@ QECサイクル = 7 rounds (d=7のsingle-shot近似)
 
 **MWPMとの比較**:
 | 項目 | MWPM (Blossom-V) | **Union-Find** |
-|------|:---:|:---:|
+|------|---------|---|
 | 計算量 | O(n³) worst case | **O(n α(n)) ≈ 線形** |
 | d=7レイテンシ (FPGA) | 400-800ns (未検証) | **200-300ns (実証済み)** |
 | ソフト情報統合 | エッジ重み変更 | **クラスタ成長重み** |
 | 復号性能 | 最適 | 最適の~0.1dB以内 |
 | FPGA実装複雑度 | 高（グラフ探索） | **低（union操作のみ）** |
 
-> **v3.2: 製品要件p_L<10⁻⁵。Phase 2+ PIC現実的(L=0.27dB, σ_eff≈9.5-9.7dB)ではUF d=7のp_L≈5×10⁻⁴が製品要件を大幅超過。**
+> **製品要件p_L<10⁻⁵。Phase 2+ PIC現実的(L=0.27dB, σ_eff≈9.5-9.7dB)ではUF d=7のp_L≈5×10⁻⁴が製品要件を大幅超過。**
 > **製品デコーダはMWPM d=7を第一選択とする。** MWPM d=7でp_L≈2-5×10⁻⁵(境界達成)。UFはPhase 0-1実験用ベースライン。
 > 注: 理論限界(L=0.15dB)ではUF d=7=6.7×10⁻⁶<10⁻⁵で要件達成するが、現実的条件では不達。
 > MWPMレイテンシ+160ns(合計510ns)は6.86μs QECサイクルの7.4%で十分余裕。
 >
-> **v3.1追加: パイプラインハザード制約**:
+> **パイプラインハザード制約**:
 > - クリフォードゲート: Pauli frameは古典追跡のみ。デコーダ完了を待たず次サイクル開始可能。
 > - **Tゲート**: Pauli frame確定が必須。MWPMデコーダ(510ns)+frame更新(50ns)=560ns。
 >   前QECサイクル最終モード測定後560ns以内にTゲートを実行してはならない。
@@ -189,7 +188,7 @@ QECサイクル = 7 rounds (d=7のsingle-shot近似)
 > - MWPM最悪ケース(O(n³)): 高シンドロームカウント時に510nsを超過する可能性あり。
 >   対策: タイムアウト閾値設定(700ns) + UFフォールバック。Phase -1 T11で実装検証。
 >
-> **[v3.4追記] MWPM 510ns 概算サイクル分解（Blossom-V FPGA実装の推定値、Phase -1でのシリコン検証必須）**:
+> **MWPM 510ns 概算サイクル分解（Blossom-V FPGA実装の推定値、Phase -1でのシリコン検証必須）**:
 >
 > | Phase | 処理内容 | サイクル数 | 時間 (@ 400MHz) |
 > |---|---|---:|---:|
@@ -205,7 +204,7 @@ QECサイクル = 7 rounds (d=7のsingle-shot近似)
 ### 3.3 FPGA実装
 
 | リソース | Stage 1 | Stage 2 | 合計 | VE2302 | 使用率 |
-|---------|:---:|:---:|:---:|:---:|:---:|
+|---------|---------|---|---------|---|---------|
 | LUT | 5K | 70K | 75K | 350K | 21% |
 | DSP | 20 | 80 | 100 | 700 | 14% |
 | BRAM | 1KB | 1.5MB | ~1.5MB | 1.5MB(BRAM) | **~100% (v1.3: UF化でBRAM内収容)** |
@@ -213,16 +212,16 @@ QECサイクル = 7 rounds (d=7のsingle-shot近似)
 
 **d≤5: VE2302 1枚で収容可能（BRAM使用率~40%、十分な余裕）。d=7: VE2302ではBRAM使用率~100%でタイミングクロージャ困難 → VE2802必須（確定方針）。**
 
-**BRAM余裕リスク**: d=7でBRAM使用率~100%はタイミングクロージャに余裕がない。緩和策: (1) syndrome historyを外部DDR4にオフロード (追加レイテンシ~20ns), (2) VE2802へのアップグレード ($2K追加, BRAM 3MB), (3) d=5運用でBRAM使用率を~40%に低減。Phase 0ではd=5で検証し、d=7はPhase 1でVE2802を使用する戦略を推奨。
+**BRAM余裕リスク**: d=7でBRAM使用率~100%はタイミングクロージャに余裕がない。緩和策: (1) syndrome historyを外部DDR4にオフロード (追加レイテンシ~20ns), (2) VE2802へのアップグレード (約30万円追加, BRAM 3MB), (3) d=5運用でBRAM使用率を~40%に低減。Phase 0ではd=5で検証し、d=7はPhase 1でVE2802を使用する戦略を推奨。
 
 **確定方針**: d≤5はVE2302で実装。d=7はVE2802必須（BRAM 3MB、使用率~50%）。
 VE2302でのd=7は設計検証（合成のみ）とし、実機動作は保証しない。
 
 **Phase別FPGA戦略 (v1.6追加)**:
 | Phase | 距離d | FPGA | BRAM使用率 | 根拠 |
-|-------|:-----:|------|:----------:|------|
+|-------|-----------|------|----------------|------|
 | Phase 0 | d=3,5 | VE2302 | 10-40% | 十分な余裕、timing closure容易 |
-| Phase 1 | d=7 | VE2802 | ~50% | BRAM 3MBで余裕確保、$2K追加 |
+| Phase 1 | d=7 | VE2802 | ~50% | BRAM 3MBで余裕確保、約30万円追加 |
 | Phase 2量産 | d=7 | VE2802 | ~50% | 製品標準構成 |
 
 VE2302→VE2802はピン互換(同一基板で搭載可能)。Phase -1 T11ではVE2302でd=5 RTL検証を実施し、
@@ -284,7 +283,7 @@ Union-Find (d=7): ~120 cycles  ← 線形時間、d=5: ~60 cycles
 ### 4.2 数値例（Taros Pro, d=5）
 
 | パラメータ | 全モード利用 (ベースライン) | strict postselection |
-|-----------|:---:|:---:|
+|-----------|---------|---|
 | TDMクロック | 100MHz | 100MHz |
 | postselection閾値 δ_max | — (全モード利用) | 0.19√π (per-mode 93%) |
 | d=5表面符号: モード/cycle | 250 (10×5×5) | 250 |
@@ -331,7 +330,7 @@ Tゲートモード: LO位相 θ = π/8
 │  ┌──────────────────────────────────────────────┐   │
 │  │ FF-1 Pipeline (高速パス)                      │   │
 │  │  LVDS_RX ×16 → Flash_ADC_IF → GKP_LUT →     │   │
-│  │  Basis_LUT → DAC_TX (5 cycle = 12.5ns @400MHz) │   │ [v3.2: 旧4cycle=8nsは500MHz値の誤記]
+│  │  Basis_LUT → DAC_TX (5 cycle = 12.5ns @400MHz) │   │ 旧4cycle=8nsは500MHz値の誤記
 │  └──────────────────────────────────────────────┘   │
 │  ┌──────────────────────────────────────────────┐   │
 │  │ Soft-Info Pipeline (低速パス)                  │   │
@@ -368,12 +367,12 @@ Tゲートモード: LO位相 θ = π/8
 
 **Phase別実装スケジュール**:
 | Layer | 内容 | Phase | 予算 |
-|-------|------|:-----:|:----:|
-| L1 (PL制御) | FF-1 + GKP LUT + TDM clock | Phase -1 T11 | $40K |
-| L2 (PL decoder) | UF Stage 2 + PLL controller | Phase -1 T11 | $40K |
-| L3 (PS runtime) | REST API + Job Queue + Telemetry | Phase 0 | $60K |
-| L4 (Compiler) | Qiskit→TDM角度変換 + 最適化 | Phase 0-1 | $80K |
-| L5 (SDK) | Python SDK + Cirq plugin + docs | Phase 1 | $40K |
+|-------|------|-----------|----|
+| L1 (PL制御) | FF-1 + GKP LUT + TDM clock | Phase -1 T11 | 約600万円 |
+| L2 (PL decoder) | UF Stage 2 + PLL controller | Phase -1 T11 | 約600万円 |
+| L3 (PS runtime) | REST API + Job Queue + Telemetry | Phase 0 | 約900万円 |
+| L4 (Compiler) | Qiskit→TDM角度変換 + 最適化 | Phase 0-1 | 約1,200万円 |
+| L5 (SDK) | Python SDK + Cirq plugin + docs | Phase 1 | 約600万円 |
 
 ---
 
