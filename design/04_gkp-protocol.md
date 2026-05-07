@@ -199,8 +199,8 @@ Vasconcelos+ (2010) + Bourassa+ (2021) のbreeding protocolをQD支援で改良:
 | QD数 | 4 (2 pairs) | 2 entangled pairs for breeding |
 | Cat state amplitude α | 1.25 | √(π/2), GKP格子間隔に整合 |
 | Breeding成功確率 | **~49%** (理論値、未検証) | 2段breeding, 各段~70% (0.70²=0.49)。Vasconcelos+ 2010 + Bourassa+ 2021の超伝導系理論を光学系に外挿。**Phase 0でGaussian state simulationによる独立検証必須**。光学実装での実効成功率は30-49%の範囲と見込む。 |
-| GKP忠実度 F | **0.96** | breeding + 12dBスクイージング |
-| 有効GKP σ_eff | **~14dB** | F=0.96に相当 |
+| GKP忠実度 F | **0.98** | breeding + 高スクイージング |
+| 有効GKP σ_eff | **~14dB** | F=0.98に相当（表§1の値と統一） |
 | **GKPヘラルドレート** | **~49MHz** | 100MHz × 0.49 |
 
 ---

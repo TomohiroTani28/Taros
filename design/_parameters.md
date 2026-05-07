@@ -82,6 +82,18 @@
 | 原価 | 約840万円 | 約1,125万円 | 約1,425万円 | analysis/bom |
 | 販売価格 | 約1,350万円 | 約1,800万円 | 約2,550万円 | analysis/bom |
 
+### 2.5 Rack CV+QD 仕様
+
+| パラメータ | 正規値 | 根拠文書 |
+|-----------|--------|----------|
+| ラックサイズ | 20U ハーフラック (482×890×450mm) | design/09_rack-design |
+| ラック内重量 | ~30kg | design/09_rack-design |
+| システム総重量 | ~42kg (ラック30kg + クライオ12kg) | design/09_rack-design |
+| ラック内消費電力 | ~185W | design/09_rack-design |
+| システム総消費電力 | ~1.5kW (ラック185W + PT205 1.3kW) | design/09_rack-design |
+| 原価 (量産100台) | 約2,925万円 | design/09_rack-design |
+| 販売価格 | 約5,700万円 | design/09_rack-design |
+
 ---
 
 ## 3. DV-FBQC方式パラメータ（凍結・参考）

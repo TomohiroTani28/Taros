@@ -31,7 +31,7 @@
 | 実効スクイージング | σ_eff | 10dB | **8.5dB (Ph1) / ≈9.3dB (Ph2+ 現実的, L=0.27dB) / 10.8dB (理論限界)** | V_eff=η×V_sqz+(1−η)+V_non-loss, σ_eff=−10log₁₀(V_eff)  V_non-loss=0.010 SNU補正 |
 | QD不可弁別性 | V | 0.95 | 0.95 | InP QD目標（不変） |
 | QD数 | N_QD | 2 | **0（基本）/ 2（拡張）** | QDなしで要件達成 |
-| GKP忠実度 | F_GKP | 0.93 | **0.87-0.91（QD=0, Phase依存）/ 0.98（QD=2）** | `04_gkp-protocol.md` §2参照。Phase依存で変動 |
+| GKP忠実度 | F_GKP | 0.93 | **0.87-0.91（QD=0, Phase依存）/ 0.95（QD=2, Step B）/ 0.98（QD=4, Step C）** | `04_gkp-protocol.md` §2-4参照。Phase・QD数依存で変動 |
 | 表面符号距離 | d | 7 | **5-7** | d=5で十分な場合あり |
 | 論理qubit数 | N_L | 10-50 | **10-1,000+ (逐次†)** | TDM時間方向拡張 |
 
@@ -281,7 +281,7 @@ PPLN OPA + macronode TDMのみ（冷却不要）:
 | 論理qubit | 10-1,000+ | 10-1,000+ |
 | GKP成功率 | 10⁻³ (postselection) | 10⁻¹ (QD支援) |
 | 有効GKPレート | 100kHz | 10MHz |
-| コスト | **~約1,590万円 (原価, 量産時)** | ~約2,925万円 (原価) |
+| コスト | **~約2,055万円 (原価, 量産時)** | ~約2,925万円 (原価) |
 
 ### 6.2 QDなし構成の制約
 
@@ -292,7 +292,7 @@ PPLN OPA + macronode TDMのみ（冷却不要）:
 ### 6.3 段階的QD追加戦略
 
 ```
-Phase 0a: QDなし pure CV (30kg, 0.15kW, 約1,590万円原価)
+Phase 0a: QDなし pure CV (30kg, 0.15kW, 約2,055万円原価)
     │   → QEC break-even実証
     │   → 投資家・ユーザーへのデモ
     │

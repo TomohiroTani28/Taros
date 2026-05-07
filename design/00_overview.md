@@ -87,7 +87,7 @@ macronode TDMクラスタ (100MHz, OPA×2 + BS×3)
     │ PMF 20-200m delay
     ▼
 ホモダイン検出 (InGaAs PD×2, 室温)
-    │ 14bit ADC 1GSPS
+    │ Flash ADC 6bit 1.5GSPS + Pipeline 14bit 400MSPS (dual-path)
     ▼
 FPGA (Versal VE2302)
     ├── GKP内部デコーダ (18.5ns @400MHz: TIA 3ns + ADC 3ns + FPGA 12.5ns)
