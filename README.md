@@ -90,12 +90,14 @@ Taros/
 ├── drawings/              # 製造図面 (CadQuery STEP/DXF + 仕様書)
 │   ├── DWG-001_enclosure_body.*     # 筐体本体 (.py/.step/.dxf/.md)
 │   ├── DWG-002_top_plate.*          # 天板フィン一体 (.py/.step/.dxf/.md)
-│   └── DWG-003_assembly.md          # 総組立図
+│   └── DWG-003_assembly.*           # 総組立図 (.py/.md/.svg)
 │
 ├── assets/                # 画像・レンダリング・資料
 │   ├── taros-pro-6view.png         # Taros Pro 6面レンダリング (README サムネイル)
 │   ├── TAROS_Investor_Pitch.pdf           # 投資家向けピッチデック (PDF, GitHub閲覧可)
 │   └── TAROS_Investor_Pitch_Revised.pptx  # 投資家向けピッチデック (編集用)
+│
+├── note.md               # プロジェクトピッチノート (概要・投資家向け要約)
 │
 ├── fallback/              # DV-FBQCフォールバック設計
 │   ├── 01_deskside-vision.md       # DV-FBQC版デスクサイドQC

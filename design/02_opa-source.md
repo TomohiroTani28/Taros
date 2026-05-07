@@ -102,20 +102,20 @@ TDM方式に最適な2つの駆動オプション:
 - パルスポンプのタイミングジッターがスクイージング品質に直結（GS-DFBジッター<5ps）
 - ポンプ-シグナルの時間重なり制御が重要
 - SHG変換効率~25% (800mW入力時)。back-conversion領域近傍のため、SOA出力安定性±3%以内が必要（Phase -1 T3で検証）
-- **実効スクイージング: 13dB**
+- **OPA出力段スクイージング: 13dB** (σ_gen。全損失込みのσ_effはPhase依存: 8.5-10.8dB。06_noise-budget参照)
 
-**選択: **Option B（パルスポンプOPA）を推奨**（EO gate 0.3dB損失が閾値マージンに致命的）。** Option AはEO gate挿入損失0.3dBが実効スクイージングを~0.9dB劣化させ、閾値マージンを大幅に削減する。Option BはEO gateを排除し、この損失を完全に回避する。
+**選択**: **Option B（パルスポンプOPA）を推奨**（EO gate 0.3dB損失が閾値マージンに致命的）。** Option AはEO gate挿入損失0.3dBが実効スクイージングを~0.9dB劣化させ、閾値マージンを大幅に削減する。Option BはEO gateを排除し、この損失を完全に回避する。
 
 > **フォームファクタ別ポンプ構成**
 >
 > | フォームファクタ | ポンプ構成 | 詳細 |
 > |---|---|---|
 > | **Portable (2 OPA)** | Option B — パルス | GS-DFB 1550nm + SOA 1.6W peak + PPLN SHG → 775nm パルス ~400mW peak → 1×2 split → 200mW/OPA |
-> | **Rack (8 OPA)** | CW 775nm DFB + TA 2.5W | 1×8 splitter → ~250mW/OPA [05_phase-lock.md §3参照] |
+> | **Rack (8 OPA)** | Option B — パルス (推奨) | GS-DFB 1550nm + TA 6.4W + PPLN SHG 1.6W@775nm → 1×8 split → 200mW/OPA。EO gate不要 |
 >
 > **理由**: Portable=低消費電力(SOA 8W vs TA 65W)・小型化優先。Rack=高出力安定性・8 OPA同時駆動に十分なパワーバジェット。
 >
-> Option BのEO gate不要利点はPortableにのみ適用。Rack版はCWポンプのため従来型TDM（EO gate使用 or CWモードスロット方式）。
+> Option B（EO gate排除）は**Portable・Rack共に適用**。Rack版もパルスポンプで統一し、損失バジェットの整合性を維持する。CW+EO gate方式は非推奨（0.3dB損失増がσ_effを~0.9dB劣化）。Phase -1 T3でRack用高出力パルス構成を検証。
 
 ---
 

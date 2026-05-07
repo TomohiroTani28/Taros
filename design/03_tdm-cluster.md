@@ -222,7 +222,7 @@ macronode lattice上の配置:
 | 表面符号距離 d | 7 | |
 | 1シンドロームラウンド | 980ns | 14 steps × 7 cols × 10ns |
 | フルQECサイクル (d rounds) | **~7μs** | 7 × 980ns = 6.86μs |
-| TDM直接レート (postselection無視) | ~143kHz | 1/7μs |
+| TDM直接レート (postselection無視) | ~146kHz | 1/6.86μs |
 | **postselection込み有効レート** | | **以下参照** |
 
 **ゲートレート定義 (P_s→P_round/p_acc記号分離)**:
