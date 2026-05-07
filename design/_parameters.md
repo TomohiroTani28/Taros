@@ -64,8 +64,10 @@
 |-----------|------|--------|------|----------|
 | 閾値 (soft-info MWPM) | p_th_eff | 1.5% | Noh-Chamberland 2022 | design/08_decoder |
 | 閾値 (保守 hard MWPM) | p_th | 0.59% | 文献値 | design/13_performance |
+| 論理エラー率 d=7 (MWPM, Phase 1) | p_L | ~4.4×10⁻³ | L=0.39dB, σ_eff=8.5dB, break-even境界 | design/06_noise-budget |
+| 論理エラー率 d=7 (MWPM, Phase 2+ PIC現実的) | p_L | **~3.3×10⁻⁴** | L=0.27dB, QE≥99%, non-loss noise込み。≲10⁻³。L≤0.22dBで≲10⁻⁴。L≤0.17dBで<10⁻⁵ | design/06_noise-budget |
 | 論理エラー率 d=7 (MWPM, Phase 2+ PIC理論限界) | p_L | 6.1×10⁻⁷ | L=0.15dB, Δ=0, QE=99% | design/13_performance |
-| 論理エラー率 d=7 (MWPM, Phase 2+ PIC現実的) | p_L | **~3.3×10⁻⁴** | L=0.27dB, QE≥99%, non-loss noise込み。06_noise-budget §2.3。≲10⁻³。L≤0.22dBで≲10⁻⁴ | design/06_noise-budget |
+| 論理エラー率 d=7 (UF, L=0.27dB) | p_L | ~4.0×10⁻³ | 製品要件(≲10⁻³)未達→MWPM必須 | design/06_noise-budget |
 | デコーダ遅延 (MWPM製品) | t_dec | 510 ns | @400MHz | design/08_decoder |
 | デコーダ遅延 (UF実験) | t_dec | 350 ns | @400MHz | design/08_decoder |
 | フィードフォワード (FF-1) | t_FF | 27 ns | @400MHz | design/07_feedforward |

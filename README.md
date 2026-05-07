@@ -22,10 +22,10 @@
 
 | 指標 | 値 |
 |------|-----|
-| 方式 | ハイブリッドCV+QD（PPLN導波路OPA + macronode TDM） |
+| 方式 | CV pure（PPLN導波路OPA + macronode TDM, 完全室温）— QD拡張はPhase 3オプション |
 | 実効スクイージング | σ_eff = 5.0dB (現離散光学) / 8.5dB (Phase 1) / **≈9.3dB** (Phase 2+ PIC 現実的, L=0.27dB) — BSモデル |
 | 物理エラー率 | Phase 2+ PIC現実的: p_err ≈ 4.9×10⁻³ (L=0.27dB) |
-| 論理エラー率 (d=7, Phase 2+ PIC) | **製品仕様: p_L ≈3.3×10⁻⁴ (L=0.27dB, QE≥99%, MWPM)**† / L≤0.17dBで<10⁻⁵ / 理論限界: 6.1×10⁻⁷ (全条件達成時) |
+| 論理エラー率 (d=7, Phase 2+ PIC) | **製品仕様: p_L ≈3.3×10⁻⁴ (L=0.27dB, QE≥99%, MWPM)**† / L≤0.22dBで≲10⁻⁴ / L≤0.17dBで<10⁻⁵ / 理論限界: 6.1×10⁻⁷ (全条件達成時) |
 | 性能段階 | Phase 1: break-even(p_L~10⁻³) / Phase 2+: 製品FTQC(p_L≲10⁻³, L=0.27dB; <10⁻⁵, L≤0.17dB) / 理論限界(p_L<10⁻⁶) |
 | 閾値マージン | 現離散光学→閾値未達; Phase 2+ PIC現実的(σ_eff≈9.3dB)→**+1.8dB** (postselection閾値7.5dB基準, Stafford-Menicucci 2025) |
 | フィードフォワード | 27ns設計ベースライン(400MHz) / 22ns楽観(500MHz)、3モード遅延 |

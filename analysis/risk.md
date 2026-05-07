@@ -134,7 +134,7 @@ CV方式とDV方式の並行開発により:
 
 | シナリオ | 確率 | 方式 | スペック |
 |---------|------|------|---------|
-| CV pure レベルA (soft-info) | 50% | PPLN OPA + TDM + WDM (Portable Max) | 9.7kg, 109W, 2,550万円 |
+| CV pure レベルA (soft-info) | 50% | PPLN OPA + TDM + WDM (Portable Max) | 9.7kg, 112W, 2,550万円 |
 | CV+QD レベルA (soft-info) | 65% | +QD2 + PT205 | 42kg, 約1.5kW, 約5,700万円 |
 | CV pure レベルB以上 | 70% | (上記と同一) | — |
 | CV+QD レベルB以上 | 80% | (上記と同一) | — |
