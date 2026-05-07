@@ -149,7 +149,9 @@ QECサイクル = 7 rounds (d=7のsingle-shot近似)
 **製品デコーダ: MWPM (Blossom-V) d=7、510ns @400MHz。**
 **実験用ベースライン: Union-Find (UF) d=7、350ns @400MHz。**
 
-**UF採用理由（Phase 0-1実験用）**:
+**デコーダ選択方針（§7.3 2026年ベンチマーク結果で更新）**:
+- **Phase -1/0 (d≤5)**: MWPM primary推奨（510nsでもQECサイクル7.4%で許容、soft-info活用で最高精度）
+- **Phase 1+ (d=7)**: UF primary (350ns) + MWPM fallback (510ns, 700ns timeout)
 - MWPM d=7: O(n³) 最悪ケース → FPGA 400nsは未検証で楽観的
 - Union-Find: O(n×α(n)) ≈ 線形時間 → d=7でも200-300ns確実
 - Delfosse & Nickerson (2021): FPGA UF decoder実証済み
@@ -426,7 +428,7 @@ Tゲートモード: LO位相 θ = π/8
 | 符号 | 物理/論理比 (d=7) | デコーダ | Phase |
 |------|-----------------|---------|-------|
 | 表面符号 (現行) | ~1000:1 | UF/MWPM | Phase 0-1 |
-| **qLDPC [[144,12,12]]** | **~50:1** | BP+OSD | Phase 2+ |
+| **qLDPC [[144,12,12]]** | **~50:1** (raw 12:1 + ancilla/routing overhead) | BP+OSD | Phase 2+ |
 | **SHYPS** | **~50:1** | BP | Phase 2+ |
 | Color Code | ~200:1 | lookup | Phase 2+ (代替) |
 
@@ -446,9 +448,9 @@ Tゲートモード: LO位相 θ = π/8
 
 ### 7.4 erasure変換とCV方式の自然な優位性
 
-CV系の光損失は本質的にerasure（消失）ノイズとして扱える。erasure符号はdepolarizing符号より閾値が2-5倍高い。
+CV系の光損失はGKP postselection後に**erasure的に扱える**（損失が大きいモードを低信頼として棄却→位置既知のerasureとして処理）。これは06_noise-budget §1.2の連続ノイズモデル(V_eff=η×V_sqz+(1-η))とは異なる層の概念であり、デコーダ側の戦略。erasure符号はdepolarizing符号より閾値が2-5倍高い。
 
-- 光子検出なし = erasure位置が自動的に判明（ancilla不要）
+- GKP postselectionでの低信頼モード = erasure位置が判明（ancilla不要）
 - biased noise decoding: CV系の損失バイアスを活用して閾値を向上
 - **Phase 2+でerasure-aware qLDPCデコーダに移行することで、p_Lをさらに桁で改善可能**
 
