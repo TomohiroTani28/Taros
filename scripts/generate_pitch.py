@@ -285,7 +285,7 @@ for i, (title, desc) in enumerate(chev_data):
     add_text(s, x + 0.5, 2.0, 3.0, 0.35, title, size=14, bold=True,
              color=chev_txt[i], align=PP_ALIGN.CENTER)
     add_text(s, x + 0.5, 2.35, 3.0, 0.6, desc, size=10,
-             color=TEXT_GRAY if i < 2 else TEXT_LIGHT, align=PP_ALIGN.CENTER)
+             color=TEXT_GRAY if i < 2 else TEXT_WHITE, align=PP_ALIGN.CENTER)
 
 # Mode revenue pills
 add_text(s, 0.6, 3.4, 12, 0.3, "購入初日から稼働する6モードの商用価値",
@@ -349,10 +349,10 @@ add_text(s, 0.6, 4.2, 12, 0.4,
          "閾値マージン — Phase 2+ PIC 統合での量子誤り訂正成立余裕", size=13, bold=True, color=TEXT_DARK)
 add_rect(s, 0.6, 4.7, 9.5, 0.45, GREEN)
 add_text(s, 0.8, 4.72, 4, 0.4, "実効 σ_eff (Phase 2+ PIC現実)", size=10, color=TEXT_WHITE)
-add_text(s, 9.2, 4.72, 1.5, 0.4, "9.3 dB", size=12, bold=True, color=TEXT_WHITE, align=PP_ALIGN.RIGHT)
+add_text(s, 8.2, 4.72, 1.5, 0.4, "9.3 dB", size=12, bold=True, color=TEXT_WHITE, align=PP_ALIGN.RIGHT)
 add_rect(s, 0.6, 5.25, 7.2, 0.45, PURPLE)
 add_text(s, 0.8, 5.27, 3, 0.4, "閾値 (postselection)", size=10, color=TEXT_WHITE)
-add_text(s, 6.8, 5.27, 1.5, 0.4, "7.5 dB", size=12, bold=True, color=TEXT_WHITE, align=PP_ALIGN.RIGHT)
+add_text(s, 5.8, 5.27, 1.5, 0.4, "7.5 dB", size=12, bold=True, color=TEXT_WHITE, align=PP_ALIGN.RIGHT)
 add_text(s, 0.6, 5.85, 12, 0.4,
          "→ Phase 2+ PIC 余裕 +1.8dB — 製品要件 p_L ≈ 3.3×10⁻⁴ を達成", size=12, color=TEXT_DARK)
 
