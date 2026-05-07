@@ -214,6 +214,12 @@ TDM方式に最適な2つの駆動オプション:
 | **Phase 1 (開始後約3-5年)** | **1U OPAモジュール ×1 (最適化、Option B)** | **σ_gen=13dB, L=0.39dB → σ_eff=8.5dB (break-even実証)** | 1U |
 | **Phase 2+ (開始後約7年-)** | **LNOI PIC統合** | **σ_gen=13dB, L=0.27dB(現実的) → σ_eff≈9.3dB (製品FTQC)** | PIC内蔵 |
 
+**Phase 2+ PIC化の産業基盤 (2025-2026動向)**:
+- **QCI TFLN Foundry** (Tempe, AZ, 2025/5開所): 初の商用TFLN PICファウンドリ。150mmウェーハ、ISO認証、NIST契約受注。外注PIC製造が現実的選択肢に
+- **On-chip squeezing**: PPLN on TFLN で~10dB on-chip squeezing達成 (arXiv:2508.08599)。σ_gen≥12.5dB目標まで残り~2.5dB
+- **OPA gain**: TFLN上で71.5dB peak gain / 160nm帯域 (Nature Sci Reports 2025), 13.9dB CW-pump (Aug 2025)
+- **中空コアファイバ (HCF)**: Microsoft/Southampton, 0.091dB/km @1550nm (Nature Photonics 2025) — PMF 0.35dB/km比で4倍低損失。200m遅延線: 0.070dB → 0.018dBに改善可能（偏波保持特性の検証要）
+
 ---
 
 ## 6. スクイージング増強技術（最新研究, 2025-2026）

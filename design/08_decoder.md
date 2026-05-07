@@ -391,7 +391,13 @@ Tゲートモード: LO位相 θ = π/8
 | L2 (PL decoder) | UF Stage 2 + PLL controller | Phase -1 T11 | 約600万円 |
 | L3 (PS runtime) | REST API + Job Queue + Telemetry | Phase 0 | 約900万円 |
 | L4 (Compiler) | Qiskit→TDM角度変換 + 最適化 | Phase 0-1 | 約1,200万円 |
-| L5 (SDK) | Python SDK + Cirq plugin + docs | Phase 1 | 約600万円 |
+| L5 (SDK) | **PennyLane plugin (pennylane-taros)** + Hybridlane互換 | Phase 0-1 | 約600万円 |
+
+**SDK戦略 (2026年動向反映)**:
+- **Hybridlane** (PNNL, arXiv:2603.10919): CV-DVハイブリッド量子計算のオープンソースSDK。PennyLaneベースで自動wire型推論（qubit/qumode）。GKP+表面符号に最適
+- **PennyLane Catalyst**: JIT compiler → MLIR → GPU加速。Taros SDKはPennyLane pluginとして構築し、エコシステムを活用
+- **Strawberry Fields**: GBS/CV量子計算の標準フレームワーク（Xanadu）。GBS/CIM/QRCモード用にStrawberry Fields互換レイヤも提供
+- **CIM/QRCモード**: FTQC SDKとは別に、CIM solver API / QRC inference API を提供（Phase -1即時）
 
 ---
 
