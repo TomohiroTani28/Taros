@@ -163,7 +163,10 @@ def build_enclosure_body(p: EnclosureParams = None):
     )
 
     # 3. 天板嵌合段差 (上端内側にリップ)
-    # リップ領域: 298×248mm (= W_inner+2*LIP_W × D_inner+2*LIP_W)、面中心に対称
+    # リップ口: 298×248mm (= W_inner + 2*LIP_W × D_inner + 2*LIP_W)
+    # 棚幅 = (298-294)/2 = LIP_W = 2mm。壁厚 = (300-298)/2 = 1mm (リップ部のみ)
+    # 天板突起 296×246 (DWG-002) vs リップ口 298×248 → クリアランス 1mm/辺
+    # TODO(設計判断要): クリアランス1mmは仕様0.15mmより過大。DWG-002側の突起寸法修正を検討
     body = (
         body
         .faces(">Z")
