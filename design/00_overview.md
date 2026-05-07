@@ -161,7 +161,7 @@ FPGA (Versal VE2302)
 4. **閾値マージン**: 現離散光学(σ_eff=5.0dB)では閾値未達。
    Phase 1(8.5dB, 13dB)でbreak-even境界、Phase 2+ PIC現実的(≈9.3dB, L=0.27dB)で製品グレード境界、
    理論限界(10.8dB, L=0.15dB)で十分マージン。ロードマップ実行が必須
-5. **775nm TA小型化**: 2W DFB-LDは存在せず、DFB+TA構成。ポータブル実装は500mW TA butterfly package想定
+5. **ポンプ光源 (Option B)**: Portable: 1550nm GS-DFB+SOA(1.6W peak)+SHG。Rack: GS-DFB+TA(6.4W peak)+SHG。TA小型化はRack版のみ課題
 6. **LO電力確保**: EO comb + ミニEDFA構成。EDFA ASEノイズは理論上無視可能だが要実験検証
 7. **AWG挿入損失**: 0.2dB目標は市販品限界。AWG損失増はビームスプリッタモデルでσ_effをさらに低下させる
 8. **有限エネルギーGKP**: 製品要件Δ<0.15 (postselection δ=0.19√πでΔ≈0.12-0.15)。
