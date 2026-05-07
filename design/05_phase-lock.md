@@ -121,7 +121,7 @@ CV量子計算では、スクイーズド光の位相がスクイージング品
 | 分配 | 1×2 splitter | 1×8 splitter (挿入損失~1dB) |
 | OPA当たり (peak) | 200mW | 200mW (損失込み) |
 | OPAポンプ要件 | 200mW/OPA (パルスピーク) | 同左 |
-| 平均パワー | ~20mW/OPA (duty 10%) | ~20mW/OPA (duty 10%) |
+| 平均パワー | ~60mW/OPA (duty 30%) | ~60mW/OPA (duty 30%) |
 
 ---
 
@@ -130,14 +130,15 @@ CV量子計算では、スクイーズド光の位相がスクイージング品
 ### 4.1 アーキテクチャ
 
 ```
-775nm DFB-LD + TA (2.5W) ──► 1×8 splitter (~250mW/OPA) ──┬─► OPA#1
-                                                           ├─► OPA#2
-                                                           ├─► OPA#3
-                                                           ├─► OPA#4
-                                                           ├─► OPA#5
-                                                           ├─► OPA#6
-                                                           ├─► OPA#7
-                                                           └─► OPA#8
+1550nm GS-DFB + TA (6.4W peak) → SHG → 775nm 1.6W peak
+  ──► 1×8 splitter (~200mW/OPA) ──┬─► OPA#1
+                                   ├─► OPA#2
+                                   ├─► OPA#3
+                                   ├─► OPA#4
+                                   ├─► OPA#5
+                                   ├─► OPA#6
+                                   ├─► OPA#7
+                                   └─► OPA#8
 ```
 
 ### 4.2 位相安定性

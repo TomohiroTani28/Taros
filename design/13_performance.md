@@ -293,7 +293,7 @@ PPLN OPA + macronode TDMのみ（冷却不要）:
 ### 6.3 段階的QD追加戦略
 
 ```
-Phase 0a: QDなし pure CV (30kg, 0.15kW, 約2,055万円原価)
+Phase 0a: QDなし pure CV (30kg, 0.185kW, 約2,055万円原価)
     │   → QEC break-even実証
     │   → 投資家・ユーザーへのデモ
     │

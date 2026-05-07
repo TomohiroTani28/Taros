@@ -221,7 +221,7 @@ Master LD (1550nm, 100mW) ──► [PM: 25GHz RF] ──► [IM: 25GHz RF]
 **モデル別電力 (OPA構成反映、RF電力修正)**:
 - Taros Edu (OPA×2, WDM 5ch): 86W + 8W + 10W(RF修正) = **104W** OPA×2必須(macronode要件)。旧OPA×1(100W)は撤廃
 - Taros Pro (OPA×2, WDM 8ch): 86W + 12W + 11W(RF修正) = **109W** SOA +3W。旧106W
-- Taros Max (OPA×2, WDM 7ch): 89.5W + 11W + 11W(RF修正) = **112W** SOA +3W。旧109W
+- Taros Max (OPA×2, WDM 7ch): 89.5W + 12W + 11W(RF修正) = **112.5W ≈ 112W** SOA +3W。旧109W。WDM 7ch: (7×2-2)×0.5W=12W(PD+ADC追加分)
 
 **ベース電力の導出透明化**:
 
