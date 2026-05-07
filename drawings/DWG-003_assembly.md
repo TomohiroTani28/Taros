@@ -41,7 +41,7 @@
 | 3 | NKT E15 OEM | Master Laser 1550nm | 120×60×30mm, 10mW | 1 | [出典: design/12_mechanical.md:L72] |
 | 4 | — | 775nm GS-DFB+SOA+SHG | Option B pump, 200mW peak | 1 | [出典: design/10_portable.md:L207] |
 | 5 | NTT/HC Photonics | PPLN OPA | 50×20×10mm, pigtail fusion IL ≤ 0.10dB | 2 | [出典: design/12_mechanical.md:L75-L76] |
-| 6 | — | Peltier TEC (OPA共用1台 + SHG1台) | 60×50×5mm (OPA共用), 60×35×5mm (SHG), ΔT_max=50K | 2 | [出典: design/12_mechanical.md:L77, design/10_portable.md:L109] ※OPA TEC 1台で#1,#2両方カバー(Y=152-202)。SHG用TEC位置: Y=120-155 (SHG直下)。12_mech §1.4の Y=80-115 は旧配置、更新要 |
+| 6 | — | Peltier TEC (OPA共用1台 + SHG1台) | 60×50×5mm (OPA共用), 60×35×5mm (SHG), ΔT_max=50K | 2 | [出典: design/12_mechanical.md:L77, design/10_portable.md:L109] ※OPA TEC 1台で#1,#2両方カバー(Y=152-202)。SHG用TEC位置: Y=120-155 (SHG直下)。12_mech §1.4は Y=120-155 に更新済み |
 | 7 | iXblue/HyperLight | LNOI EOM (LO位相変調/基底切替用) | 40×20×10mm | 2 | [出典: design/12_mechanical.md:L78-L79, 03_tdm-cluster §4.3] |
 | 8 | — | BS カプラ 50:50 | PMF1550 pigtail融着品, excess IL ≤ 0.05dB/個 (選別品) | 3 | [出典: design/12_mechanical.md:L80] |
 | 9 | — | Balanced PD (InGaAs) | 35×20×20mm, QE ≥ 98% (カスタムPD必須, 市販95%不可), 目標QE ≥ 99% | 2 | [出典: design/12_mechanical.md:L81-L82, 06_noise-budget §2.2†] |

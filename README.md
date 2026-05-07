@@ -71,7 +71,7 @@ Taros/
 │   └── 14_clock-distribution.md   # クロック分配・同期設計
 │
 ├── experiments/           # 実験計画
-│   ├── 01_gkp-optical.md           # GKP光学生成実験（装置約630万円/完全コスト約3,000万円/5ヶ月）
+│   ├── 01_gkp-optical.md           # GKP光学生成実験（装置約560万円/完全コスト約2,970万円/5ヶ月）
 │   ├── 02_virtual-experiments.md   # 仮想実験シミュレーション
 │   ├── 03_numerical-verification.md # 数値検証レポート（独立再計算）
 │   ├── 04_ibm-quantum-verification.md # IBM Quantum実機検証（ibm_fez 156q）

@@ -246,7 +246,7 @@ Level 2: GKP光学実験 (G-EXP1)          約585万円  ──┘── 約1,42
                                                 │ ※Level 1 & 2 は依存関係なし → 並列実行推奨
                                                 │   並列時クリティカルパス: 6ヶ月 (Level 2律速)
                                                 │
-Level 3: TDM macronode                  約810万円  ──── 約2,235万円  [+3ヶ月 = 9ヶ月]
+Level 3: TDM macronode                  約803万円  ──── 約2,228万円  [+3ヶ月 = 9ヶ月]
                                                 │
 Level 4: Full prototype (Taros Edu)   約3,330万円  ──── 約5,550万円  [+4ヶ月 = 13ヶ月]
 ```
