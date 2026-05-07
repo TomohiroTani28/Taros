@@ -25,7 +25,7 @@
 | 閾値 (soft-info) | p_th_eff | 1.5% | soft-info MWPM (Noh-Chamberland 2022); UF時≈0.8-1.2%. 製品デコーダはMWPM (現実的L=0.27dBでUF~5×10⁻⁴>10⁻⁵) | 08_decoder |
 | 閾値 (保守) | p_th | 0.59% | hard-syndrome MWPM | 文献値 |
 | 論理エラー率 d=7 (Δ=0理想) | p_L | **6.1×10⁻⁷ (MWPM, Phase 2+ PIC)** [理論上限値] | 製品目標p_L≲10⁻³(L=0.27dB)。現実的PIC(L=0.27dB, QE≥99%)でMWPM~3.3×10⁻⁴。L≤0.22dBで≲10⁻⁴。UF~5×10⁻⁴(超過)→MWPM必須 | 13_performance |
-| 論理エラー率 d=7 (現実Δ=0.12) | p_L | **~3.3×10⁻⁴ (MWPM, L=0.27dB)** [対外基準値] | 13_performance §3シナリオ「現実」行 | 13_performance |
+| 論理エラー率 d=7 (現実Δ=0.12) | p_L | **~3.3×10⁻⁴ (MWPM, L=0.27dB)** [対外基準値] | 13_performance §3.2 性能予測表「現実」行 | 13_performance |
 | QD等価スクイージング | — | +2.7dB (QD=2) | σ_eff等価13.6dB (10.9+2.7, 旧14.2dBは11.5dB基準) | 01_system-arch |
 | TDMクロック | f_TDM | 100MHz | Option B パルスOPA | 03_tdm-cluster |
 | macronode列数 | N_col | 2d² (18/50/98) | d=3/5/7 | 03_tdm-cluster |
