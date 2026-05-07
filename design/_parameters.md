@@ -65,7 +65,7 @@
 | 閾値 (soft-info MWPM) | p_th_eff | 1.5% | Noh-Chamberland 2022 | design/08_decoder |
 | 閾値 (保守 hard MWPM) | p_th | 0.59% | 文献値 | design/13_performance |
 | 論理エラー率 d=7 (MWPM, Phase 1) | p_L | ~4.4×10⁻³ | L=0.39dB, σ_eff=8.5dB, break-even境界 | design/06_noise-budget |
-| 論理エラー率 d=7 (MWPM, Phase 2+ PIC現実的) | p_L | **~3.3×10⁻⁴** | L=0.27dB, QE≥99%, non-loss noise込み。≲10⁻³。L≤0.22dBで≲10⁻⁴。L≤0.17dBで<10⁻⁵ | design/06_noise-budget |
+| 論理エラー率 d=7 (MWPM, Phase 2+ PIC現実的) | p_L | **~3.3×10⁻⁴** | L=0.27dB, QE≥99%, V_non-loss込み, **Δ・RIN未包含**。Δ+RIN全込み推定: 5-9×10⁻⁴（p_L≲10⁻³達成）。Phase -1実測で確定。L≤0.22dBで≲10⁻⁴ | design/06_noise-budget |
 | 論理エラー率 d=7 (MWPM, Phase 2+ PIC理論限界) | p_L | 6.1×10⁻⁷ | L=0.15dB, Δ=0, QE=99% | design/13_performance |
 | 論理エラー率 d=7 (UF, L=0.27dB) | p_L | ~4.0×10⁻³ | 製品要件(≲10⁻³)未達→MWPM必須 | design/06_noise-budget |
 | デコーダ遅延 (MWPM製品) | t_dec | 510 ns | @400MHz | design/08_decoder |
@@ -106,7 +106,7 @@
 | 6 | **Imaging** | 量子イメージング（サブショットノイズ） | 通常 | なし(SW) | Phase -1† | design/13_performance §8.7 |
 | 7 | **Tensor** | フォトニックテンソル処理（AI推論加速） | コヒーレント光 | なし(SW) | Phase -1† | design/13_performance §8.9 |
 
-†初期SW設定1-2週間を含む。全モード共通HW: OPA + BS網 + PMF遅延線 + ホモダイン + FPGA + EOM
+†開発フェーズではPhase -1から利用可能。製品出荷後は購入即日（初期SW設定1-2週間）。全モード共通HW: OPA + BS網 + PMF遅延線 + ホモダイン + FPGA + EOM
 
 ### 2.7 SNSPD材料（Phase別推奨）
 

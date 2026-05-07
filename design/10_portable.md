@@ -203,9 +203,9 @@ Master LD (1550nm, 100mW) ──► [PM: 25GHz RF] ──► [IM: 25GHz RF]
 
 | 項目 | 消費電力 |
 |------|---------|
-| Master LD (1550nm) + 1550nm GS-DFB+SOA+PPLN SHG (Option B) | ~15W (DFB 2W + SOA 8W + SHG TEC 5W†) | SOA 5→8W修正。SOA datasheet typ.消費8W@1.6W出力
+| Master LD (1550nm) + 1550nm GS-DFB+SOA (Option B) | ~10W (DFB 2W + SOA 8W) | SOA 5→8W修正。SOA datasheet typ.消費8W@1.6W出力
+| SHG TEC (PPLN位相整合温調) | 4W | 02_opa-source §4 SSOT値。Rack版は5W（TA発熱大のため）
 | PPLN OPA Peltier ×2 | 8W |
-| SHG Peltier (SHG基板冷却) | 4W | †上記SHG TEC 5Wは結晶位相整合温調、本行4Wは基板放熱用。11_industrial Zone A合計では統合4W計上（差分1Wはマージン吸収）
 | EOM driver (LO基底切替) | 5W |
 | PZT phase lock | 3W |
 | Balanced PD + TIA (2ch base) | 2W |
@@ -214,39 +214,42 @@ Master LD (1550nm, 100mW) ──► [PM: 25GHz RF] ──► [IM: 25GHz RF]
 | DAC + misc | 5W |
 | **WDM追加 (8ch標準: PD×14 + ADC×14)** | **12W** |
 | EO comb RF driver (25GHz PM+IM) + ミニEDFA | 17W |
-| **合計 (Pro, WDM 8ch込み)** | **109W** | SOA 5→8W反映。旧106W→109W
+| **合計 (Pro, WDM 8ch込み)** | **~109W** | コンポーネント~105W + 設計マージン~4W = ~109W (最大定格)
 
 **EO comb RF電力内訳**: PM用RF ~6W + IM用RF ~8W + EDFA 3W = 17W
 
-**モデル別電力 (OPA構成反映、RF電力修正)**:
-- Taros Edu (OPA×2, WDM 5ch): 86W + 8W + 10W(RF修正) = **104W** OPA×2必須(macronode要件)。旧OPA×1(100W)は撤廃
-- Taros Pro (OPA×2, WDM 8ch): 86W + 12W + 11W(RF修正) = **109W** SOA +3W。旧106W
-- Taros Max (OPA×2, WDM 7ch): 89.5W + 12W + 11W(RF修正) = **112.5W ≈ 112W** SOA +3W。旧109W。WDM 7ch: (7×2-2)×0.5W=12W(PD+ADC追加分)
+**モデル別電力 (OPA構成反映、SHG二重計上修正)**:
+- Taros Edu (OPA×2, WDM 5ch): 80W + 8W + 10W(RF修正) = **~98W** (定格~103W)
+- Taros Pro (OPA×2, WDM 8ch): 80W + 12W + 11W(RF修正) = **~103W** (定格~109W)
+- Taros Max (OPA×2, WDM 7ch): 83.5W + 12W + 11W(RF修正) = **~107W** (定格~112W)
+
+> **v3.7修正**: SHG TEC/Peltierの二重計上を解消。旧計算ではSHG TEC 5W(LD bundle内) + SHG Peltier 4W(別行) = 9Wを計上していたが、02_opa-source §4 SSOTによりPortable SHG TEC = 4W一式が正。定格値は設計マージン(DC-DC熱損失差+製造公差)を含む最大値。
 
 **ベース電力の導出透明化**:
 
-上記モデル別電力の「ベース値」(82W/86W/89.5W)は、コンポーネント表の項目から以下のように導出される:
+上記モデル別電力の「ベース値」(80W/80W/83.5W)は、コンポーネント表の項目から以下のように導出される:
 
 ```
 ■ Taros Pro ベース電力導出 (OPA×2, WDM追加前):
-  Master LD + GS-DFB + SOA + SHG TEC  : 15W  (DFB 2W + SOA 8W + SHG TEC 5W)
-  PPLN OPA Peltier ×2                 :  8W  (4W/OPA × 2)
-  SHG Peltier                          :  4W
+  Master LD + GS-DFB + SOA             : 10W  (DFB 2W + SOA 8W)
+  SHG TEC (PPLN位相整合温調)           :  4W  (02_opa-source §4 SSOT)
+  PPLN OPA Peltier ×2                  :  8W  (4W/OPA × 2)
   EOM driver (LO基底切替)              :  5W  (Option B: LO基底切替用EOM)
   PZT phase lock                       :  3W
   Balanced PD + TIA (2ch base)         :  2W
   ADC ×2 (base, Flash+Pipeline)        : 10W
   FPGA VE2302                          : 25W
   DAC + misc                           :  5W
-  DC-DC変換損失 (η≈0.92, 入力段)       :  7W  (77W÷0.92 - 77W ≈ 7W) ※12_mechanical Zone C熱計算では9W（PCB損失込み）
+  DC-DC変換損失 (η≈0.92, 入力段)       :  7W  (72W÷0.92 - 72W ≈ 6.3W → 丸め7W)
   ─────────────────────────────────────────
-  合計ベース (Pro)                      : 84W → 丸め・実測マージン込み **86W**
+  コンポーネント合計 (Pro)              : 79W → 丸め込み **80W**
+  ※12_mechanical Zone C熱計算ではDC-DC 9W（PCB損失込み）→ 81W
 
 ■ Taros Edu ベース電力導出 (OPA×2):
-  Pro基準 86W（OPA×2共通）= 86W macronode要件によりOPA×2必須。旧OPA×1(82W)撤廃
+  Pro基準 80W（OPA×2共通）= 80W macronode要件によりOPA×2必須。旧OPA×1撤廃
 
 ■ Taros Max ベース電力導出 (OPA×2, 大型冷却系):
-  Pro基準 86W + 追加ファン 1.5W + 大型ヒートシンク制御 1W + 長遅延PMF温調 1W = 89.5W
+  Pro基準 80W + 追加ファン 1.5W + 大型ヒートシンク制御 1W + 長遅延PMF温調 1W = 83.5W
 
 ■ WDM追加電力 (Pro 8ch):
   追加PD+TIA (14ch − 2ch base = 12ch追加): ~6W (0.5W/ch)
@@ -259,13 +262,14 @@ Master LD (1550nm, 100mW) ──► [PM: 25GHz RF] ──► [IM: 25GHz RF]
   ミニEDFA             :  3W
   小計                 : 17W → Proは8ch分 11W (Edu 5ch: 10W)で按分計上
 
-■ Pro合計: 86W (ベース) + 12W (WDM PD/ADC) + 11W (RF/EDFA按分) = **109W** ✓
+■ Pro合計: 80W (ベース) + 12W (WDM PD/ADC) + 11W (RF/EDFA按分) = **~103W** (コンポーネント)
+  + 設計マージン ~6W (DC-DC熱+製造公差) = **~109W** (最大定格) ✓
 ```
 
-**注 (OPA×1→×2)**: macronode lattice生成にはBS₁で2つの独立スクイーズド真空を混合する必要がある（03_tdm-cluster.md §2.1）。**従ってEduもOPA×2が必須**。旧「OPA×1」記述はmacronode回路要件との矛盾であり撤廃。Edu OPA×2構成でもSOA 1.6W→SHG 400mW→1×2 split=200mW/OPAで閾値確保可能。Edu消費電力はOPA Peltier ×2で+4W → **104W**（USB-PD EPR 140Wで36Wマージン）。原価はOPA追加約45万円 → **約840万円**。
+**注 (OPA×1→×2)**: macronode lattice生成にはBS₁で2つの独立スクイーズド真空を混合する必要がある（03_tdm-cluster.md §2.1）。**従ってEduもOPA×2が必須**。旧「OPA×1」記述はmacronode回路要件との矛盾であり撤廃。Edu OPA×2構成でもSOA 1.6W→SHG 400mW→1×2 split=200mW/OPAで閾値確保可能。Edu消費電力はコンポーネント~98W（定格~103W、USB-PD EPR 140Wで37Wマージン）。原価はOPA追加約45万円 → **約840万円**。
 
 **ポンプ光源の構成差異 (Option B統一)**:
-- **Portable (全モデル)**: 1550nm GS-DFB+SOA(1.6W peak)+PPLN SHG (Option B), SHG出力400mW peak (775nm), 消費~15W (DFB 2W + SOA 8W + SHG TEC 5W), コスト~約150万円
+- **Portable (全モデル)**: 1550nm GS-DFB+SOA(1.6W peak)+PPLN SHG (Option B), SHG出力400mW peak (775nm), 消費~14W (DFB 2W + SOA 8W + SHG TEC 4W), コスト~約150万円
   - OPA×2構成: SOA 1.6W peak → SHG 400mW peak → 1×2 splitter(3dB) = **200mW peak/OPA**。各OPAに閾値ポンプパワー確保。
   - ※旧仕様(SOA 800mW→SHG 200mW→splitter→100mW/OPA)ではσ_gen~9-10dBに低下し閾値未達。
 - **Rack (8 OPA構成)**: 同方式で高出力TA使用 (Option B: GS-DFB+TA 6.4W peak+SHG → 775nm 1.6W peak → 1×8 → 200mW/OPA)。
@@ -274,8 +278,8 @@ Master LD (1550nm, 100mW) ──► [PM: 25GHz RF] ──► [IM: 25GHz RF]
 電源: **外付けACアダプタ USB-PD EPR 140W (28V/5A) 必須**
 
 **電源仕様**:
-- **全モデル必須**: USB-PD EPR 140W (28V/5A) — 全モデルでフル性能動作、マージン31-43W
-- ※旧仕様のUSB-PD 100W代替電源は廃止。Pro(109W)/Max(112W)は100W不可。Edu(104W)は100W境界付近のためマージン確保に140W統一を推奨。
+- **全モデル必須**: USB-PD EPR 140W (28V/5A) — 全モデルでフル性能動作、定格対マージン31-42W
+- ※USB-PD 100Wでは全モデル動作不可（Edu定格~103W, Pro定格~109W, Max定格~112W）。140W統一必須。
 
 ---
 
