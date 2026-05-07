@@ -87,23 +87,24 @@ CV量子計算では、スクイーズド光の位相がスクイージング品
 | 候補 | NKT Koheras BASIK E15 | 約225万円, 商用品 |
 | (代替) | OEwaves OE4040 | 約300万円, 超狭線幅 |
 
-### 3.2 ポンプ光源: 775nm直接LD + SHG位相参照
+### 3.2 ポンプ光源: Option B パルスポンプ + SHG位相参照
 
-**変更**: 50mW SHG→光増幅の方式を廃止。775nm直接LDに変更。
+> **注**: 以下はOption B（パルスポンプOPA）統一後の構成。旧CW 775nm直接LD方式は非推奨。
 
-| パラメータ | 仕様 |
-|-----------|------|
-| **主ポンプ光源** | **775nm DFB-LD + TA (2.5W)** |
-| 位相参照 | 1550nm master → PPLN SHG → 775nm参照光 (10mW) |
-| 位相ロック | 775nm LD出力を SHG参照光に位相ロック（ヘテロダイン検出） |
-| 位相関係 | φ_pump = φ_SHG_ref + const = 2×φ_master + const |
+| パラメータ | Portable (2 OPA) | Rack (8 OPA) |
+|-----------|-------------------|--------------|
+| **主ポンプ光源** | **1550nm GS-DFB + SOA 1.6W peak** | **1550nm GS-DFB + TA 6.4W peak** |
+| SHG | PPLN SHG → 775nm ~400mW peak | PPLN SHG → 775nm ~1.6W peak |
+| 分配 | 1×2 → 200mW/OPA | 1×8 → 200mW/OPA |
+| 位相参照 | 1550nm master → PPLN SHG → 775nm参照光 (10mW) | 同左 |
+| 位相ロック | パルスポンプをSHG参照光に位相ロック（ヘテロダイン検出） | 同左 |
+| 位相関係 | φ_pump = φ_SHG_ref + const = 2×φ_master + const | 同左 |
 
-**方式の変更理由**:
-- 旧方式: 50mW@1550nm → SHG → 5-10mW@775nm → 光増幅500mW。SHG効率問題あり。
-- **新方式**: 775nm DFB-LD + TA (テーパードアンプ) で2.5W出力 + SHG参照光で位相ロック。
-  - DFB+TA: Eagleyard DFB seed + Toptica BoosTA相当、約120万円。butterfly package可。
-  - SHG参照: 10mW程度で十分（位相検出用のみ）。1550nm 100mW → SHG ~5mW@775nm。
-  - 2.5W ÷ 8 OPA = 312mW/OPA（1×8スプリッタ損失込みで~250mW/OPA、要件200mWに対し25%マージン）。
+**Option B統一の理由**:
+- EO gate損失0.3dBが閾値マージンに致命的→パルスポンプでEO gate完全排除。
+- Portable: SOA 1.6W peak → SHG ~25%効率 → 400mW → 1×2 → 200mW/OPA。
+- Rack: TA 6.4W peak → SHG → 1.6W → 1×8 → 200mW/OPA。**注**: SHG変換効率25%@6.4W入力はback-conversion領域近傍。Phase -1 T3で高入力SHG効率を検証。代替案: SHG×2並列(各3.2W入力)。
+- SHG参照: 10mW程度で十分（位相検出用のみ）。1550nm 100mW → SHG ~5mW@775nm。
 | 位相ロック手法 | 仕様 |
 |-------------|------|
 | ヘテロダイン検出 | 775nm LD出力と SHG参照を合波 → ビート周波数検出 |
@@ -112,15 +113,15 @@ CV量子計算では、スクイーズド光の位相がスクイージング品
 
 **SHGの位相優位性は維持**: ポンプ(775nm)と信号(1550nm)の位相関係は、SHG参照を介して原理的にロック。bow-tie OPOの共振器位相ロックより圧倒的に簡素。
 
-### 3.3 ポンプパワー分配
+### 3.3 ポンプパワー分配 (Option B)
 
-| パラメータ | 仕様 |
-|-----------|------|
-| 775nm LD出力 | **2.5W** (20%マージン込み、02_opa-source §3.1準拠) |
-| 1×8 splitter | 挿入損失 ~1dB (各ポート312mW → 実効~250mW/OPA、要件200mW) |
-| OPAポンプ要件 (CW) | 200mW/OPA → **全OPA同時駆動可能** |
-| OPAポンプ要件 (パルス) | 50mW (平均)/OPA → 大幅余裕 |
-| 代替: 4W LD + 余裕 | Toptica TA-SHG pro級 (将来、冗長性確保用) |
+| パラメータ | Portable | Rack |
+|-----------|----------|------|
+| SHG出力 (peak) | ~400mW (SOA 1.6W, 25%効率) | ~1.6W (TA 6.4W, 25%効率) |
+| 分配 | 1×2 splitter | 1×8 splitter (挿入損失~1dB) |
+| OPA当たり (peak) | 200mW | 200mW (損失込み) |
+| OPAポンプ要件 | 200mW/OPA (パルスピーク) | 同左 |
+| 平均パワー | ~20mW/OPA (duty 10%) | ~20mW/OPA (duty 10%) |
 
 ---
 

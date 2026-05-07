@@ -22,9 +22,9 @@
 | 全劣化 (GAWBS込み) | L_total | 1.42dB (離散光学) / 0.39dB (Phase 1 離散光学) / 0.15dB (Phase 2+ PIC) | ビームスプリッタモデル: η=10^(-L/10) | 06_noise-budget |
 | 実効スクイージング | σ_eff | **5.0dB** (現離散光学) / 8.5dB (Phase 1, 13dB) / **≈9.3dB** (Phase 2+ PIC 現実的, L=0.27dB, non-loss込み) / 10.8dB (理論限界, L=0.15dB) | Phase 1を8.5dBに、Phase 2+ PIC現実的を9.3dBに修正。理論限界10.8dB。 | 06_noise-budget |
 | 物理エラー率 | p_phys | 現離散(5.0dB): 閾値未達 / Phase 1(13dB, 8.5dB): 9.3×10⁻³ / Phase 2+ PIC現実的(13dB, L=0.27dB): ~4.9×10⁻³ | erfc再計算。Phase 1: σ=0.266→erfc(1.664)/2≈9.3×10⁻³ | 13_performance |
-| 閾値 (soft-info) | p_th_eff | 1.5% | soft-info MWPM (Noh-Chamberland 2022); UF時≈0.8-1.2%. 製品デコーダはMWPM (現実的L=0.27dBでUF~5×10⁻⁴>10⁻⁵) | 08_decoder |
+| 閾値 (soft-info) | p_th_eff | 1.5% | soft-info MWPM (Noh-Chamberland 2022); UF時≈0.8-1.2%. 製品デコーダはMWPM (現実的L=0.27dBでUF~4×10⁻³>10⁻³) | 08_decoder |
 | 閾値 (保守) | p_th | 0.59% | hard-syndrome MWPM | 文献値 |
-| 論理エラー率 d=7 (Δ=0理想) | p_L | **6.1×10⁻⁷ (MWPM, Phase 2+ PIC)** [理論上限値] | 製品目標p_L≲10⁻³(L=0.27dB)。現実的PIC(L=0.27dB, QE≥99%)でMWPM~3.3×10⁻⁴。L≤0.22dBで≲10⁻⁴。UF~5×10⁻⁴(超過)→MWPM必須 | 13_performance |
+| 論理エラー率 d=7 (Δ=0理想) | p_L | **6.1×10⁻⁷ (MWPM, Phase 2+ PIC)** [理論上限値] | 製品目標p_L≲10⁻³(L=0.27dB)。現実的PIC(L=0.27dB, QE≥99%)でMWPM~3.3×10⁻⁴。L≤0.22dBで≲10⁻⁴。UF~4×10⁻³(超過)→MWPM必須 | 13_performance |
 | 論理エラー率 d=7 (現実Δ=0.12) | p_L | **~3.3×10⁻⁴ (MWPM, L=0.27dB)** [対外基準値] | 13_performance §3.2 性能予測表「現実」行 | 13_performance |
 | QD等価スクイージング | — | +2.7dB (QD=2) | σ_eff等価13.5dB (10.8+2.7, 旧14.2dBは11.5dB基準) | 01_system-arch |
 | TDMクロック | f_TDM | 100MHz | Option B パルスOPA | 03_tdm-cluster |
@@ -36,7 +36,7 @@
 | 反スクイージング | — | **~13dB** (単一パスOPA: sq≈anti-sq) | 旧20dBは共振器OPO誤引用 | 02_opa-source |
 | PLL残留位相 | φ_res | <0.05° (BW≥500kHz) | 位相ノイズ**<0.002dB** (anti-sq 13dBで事実上無視可能) | 05_phase-lock |
 | 有限エネルギーGKP | Δ | <0.15 (必須要件) | Δ≥0.2でFAIL | 04_gkp-protocol |
-| ポンプ源 | — | Option B: 1550nm GS-DFB + SOA + PPLN SHG → 775nm | Rack: SOA 800mW→SHG 200mW→8分配; Portable: SOA 1.6W→SHG 400mW→1×2→200mW/OPA | 02_opa-source |
+| ポンプ源 | — | Option B: 1550nm GS-DFB + SOA/TA + PPLN SHG → 775nm パルス | Portable: SOA 1.6W→SHG 400mW→1×2→200mW/OPA; Rack: TA 6.4W→SHG 1.6W→1×8→200mW/OPA | 02_opa-source |
 | LO生成 | — | 100mW Master + EO comb + EDFA → 10mW/ch | — | 05_phase-lock |
 | 電源 | — | USB-PD EPR 140W (28V/5A) 推奨 | Pro 109W / Max 112W で100W不可。Edu(104W)は100W超 (OPA×2で100→104W) | 10_portable |
 
@@ -115,7 +115,7 @@ FPGA (Versal VE2302)
 | **閾値マージン (現離散光学, Option A+AWG)** | **閾値未達** | 5.0dB < 7.5dB。**注: Phase -1実験はOption B(AWGなし, L=0.39dB, σ_eff=8.5dB)で実施。閾値超過+1.0dB** |
 | 物理エラー率 p_err | Phase 1(13dB): 9.3×10⁻³ / Phase 2+ PIC現実的(13dB, L=0.27dB): ~4.9×10⁻³ / 理論限界(L=0.15dB): ≈1.0×10⁻³ | erfc再計算+V_non-loss修正 |
 | 表面符号閾値 p_th_eff | 1.5% | soft-info MWPM (Noh&Chamberland 2022); UF時≈0.8-1.2%. 製品デコーダはMWPM |
-| **論理エラー率 p_L (d=7, Phase 2+ PIC)** | **製品仕様: ~3.3×10⁻⁴ (L=0.27dB, QE≥99%, MWPM)** / L≤0.22dBで≲10⁻⁴ / 理論限界: 6.1×10⁻⁷ | non-loss noise込み統一計算。L=0.27dBでp_L=3.3×10⁻⁴(≲10⁻³)。L≤0.22dBで≲10⁻⁴達成。理論限界(L=0.15dB, Δ=0) 6.1×10⁻⁷。UFは現実的条件で~5×10⁻⁴(超過)→MWPM必須 |
+| **論理エラー率 p_L (d=7, Phase 2+ PIC)** | **製品仕様: ~3.3×10⁻⁴ (L=0.27dB, QE≥99%, MWPM)** / L≤0.22dBで≲10⁻⁴ / 理論限界: 6.1×10⁻⁷ | non-loss noise込み統一計算。L=0.27dBでp_L=3.3×10⁻⁴(≲10⁻³)。L≤0.22dBで≲10⁻⁴達成。理論限界(L=0.15dB, Δ=0) 6.1×10⁻⁷。UFは現実的条件で~4×10⁻³(超過)→MWPM必須 |
 
 ---
 
