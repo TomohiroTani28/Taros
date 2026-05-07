@@ -476,7 +476,7 @@ add_text(s, 0.6, 1.1, 12, 0.6,
 
 validations = [
     ("100M shots", "Stim 量子シミュレーション",
-     "p_err sweep (10⁻⁴~10⁻²), d=3/5/7 全論理エラー率予測を約1億ショットで再現。", 1.0),
+     "標準depolarizing noise, d=3/5/7 全論理エラー率スケーリングを約1億ショットで確認。", 1.0),
     ("9件 文献照合", "公開文献との独立照合",
      "Noh-Chamberland 2022, Stafford-Menicucci 2025 など9件の査読済論文と数値突合。", 1.0),
     ("156q 実機", "IBM Quantum 実機検証",
