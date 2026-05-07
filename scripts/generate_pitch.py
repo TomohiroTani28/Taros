@@ -129,7 +129,7 @@ def add_header(slide, section_label, page_num=None):
 s = prs.slides.add_slide(prs.slide_layouts[6])
 add_bg(s, BG_DARK)
 add_accent_line(s, 0.8, 1.2, 0.06)
-add_text(s, 0.95, 0.8, 10, 1.5, "TAROS", size=96, bold=True, color=TEXT_WHITE)
+add_text(s, 0.95, 0.8, 10, 1.8, "TAROS", size=96, bold=True, color=TEXT_WHITE)
 add_text(s, 0.95, 2.1, 10, 0.5,
          "D e s k t o p   P h o t o n i c   Q u a n t u m   C o m p u t e r",
          size=14, color=ACCENT)
@@ -356,7 +356,7 @@ add_rect(s, 0.6, 5.25, 7.2, 0.45, PURPLE)
 add_text(s, 0.8, 5.27, 3, 0.4, "閾値 (postselection)", size=10, color=TEXT_WHITE)
 add_text(s, 5.8, 5.27, 1.5, 0.4, "7.5 dB", size=12, bold=True, color=TEXT_WHITE, align=PP_ALIGN.RIGHT)
 add_text(s, 0.6, 5.85, 12, 0.4,
-         "→ Phase 2+ PIC 余裕 +1.8dB — 製品要件 p_L ≈ 3.3×10⁻⁴ を達成", size=12, color=TEXT_DARK)
+         "→ Phase 2+ PIC 余裕 +1.8dB — 製品要件 p_L ≈ 3.3×10⁻⁴ を達成 †Δ・RIN込み推定 5-9×10⁻⁴, Phase -1で確定", size=11, color=TEXT_DARK)
 
 # ════════════════════════════════════════════════════
 # SLIDE 7: CV ADVANTAGES — numbered horizontal bars (unique)
@@ -577,7 +577,7 @@ add_oval(s, dcx - 0.9, dcy - 0.9, 1.8, 1.8, BG_WHITE)
 # Center text
 add_text(s, dcx - 0.85, dcy - 0.6, 1.7, 0.4, "81%", size=26, bold=True, color=GREEN, align=PP_ALIGN.CENTER)
 add_text(s, dcx - 0.85, dcy - 0.15, 1.7, 0.25, "Level B以上", size=9, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
-add_text(s, dcx - 0.85, dcy + 0.1, 1.7, 0.25, "FTQC実現確率", size=9, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
+add_text(s, dcx - 0.85, dcy + 0.1, 1.7, 0.25, "成功確率", size=9, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
 # Labels
 add_text(s, 8.2, 1.9, 4.2, 0.3, "フォールバック完備", size=13, bold=True, color=TEXT_DARK, align=PP_ALIGN.CENTER)
 add_text(s, 8.3, 5.3, 4.0, 0.25, "Level A 63% / Level B以上 81%", size=10, bold=True, color=TEXT_DARK, align=PP_ALIGN.CENTER)
@@ -656,7 +656,7 @@ add_text(s, 2.3, 4.05, 1.5, 0.3, "規模効果で逓増", size=9, color=TEXT_GRA
 chart_x = 4.8
 chart_bottom = 5.5
 chart_max_h = 3.5  # max bar height
-add_text(s, chart_x, 1.85, 8, 0.3, "A R R   成 長 予 測", size=11, bold=True, color=ACCENT)
+add_text(s, chart_x, 1.85, 8, 0.3, "A R R   成 長 予 測（計画値）", size=11, bold=True, color=ACCENT)
 
 arr_data = [
     ("Y1", "3.6億", 0.1, RGBColor(0xB2, 0xEB, 0xF2)),
@@ -671,15 +671,21 @@ for i, (year, amount, ratio, color) in enumerate(arr_data):
     bh = max(0.3, chart_max_h * ratio)
     by = chart_bottom - bh
     add_rect(s, bx, by, bar_w, bh, color)
-    # Amount on top of bar
+    # Amount label — above bar for short bars, inside for tall bars
     txt_c = TEXT_WHITE if ratio >= 0.5 else TEXT_DARK
     if ratio > 0:
-        add_text(s, bx, by + 0.1, bar_w, 0.4, amount, size=16, bold=True, color=txt_c, align=PP_ALIGN.CENTER)
+        label_y = by - 0.35 if bh < 0.5 else by + 0.1
+        label_c = TEXT_DARK if bh < 0.5 else txt_c
+        add_text(s, bx, label_y, bar_w, 0.4, amount, size=16, bold=True, color=label_c, align=PP_ALIGN.CENTER)
     # Year label below
     add_text(s, bx, chart_bottom + 0.05, bar_w, 0.3, year, size=11, bold=True, color=TEXT_DARK, align=PP_ALIGN.CENTER)
     # Unit count
     units = ["20台", "50台", "100台", "200台"]
     add_text(s, bx, chart_bottom + 0.3, bar_w, 0.25, units[i], size=9, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
+
+add_text(s, chart_x, chart_bottom + 0.55, 8, 0.25,
+         "※ Y1-Y4 = 製品出荷開始後1-4年（プロジェクト開始後約4-7年）",
+         size=9, color=TEXT_GRAY)
 
 # Bottom investment logic bar
 add_rect(s, 0.6, 6.2, 12, 0.6, BG_DARK)
@@ -718,7 +724,7 @@ moonshots = [
      "宇宙: 光子m=0 → 量子重力デコヒーレンス免疫"),
     (0.6, 5.0, 4.5, 1.7,
      "量子ホログラム — QGH",
-     "QFT: O(N×d³)→O(d³) 10⁶×高速化\n"
+     "QFT: O(N×d³)→O(d³) 理論的高速化\n"
      "GKPフーリエ構造 = ホログラム構造\n"
      "医療: 分子→細胞→臓器の量子3D可視化\n"
      "エンタメ: 空間没入ホログラムフェス / 6G対応"),
@@ -757,7 +763,7 @@ add_text(s, 0.6, 1.1, 12, 0.6,
 
 add_rect(s, 0.6, 2.0, 4.5, 3.5, BG_DARK)
 add_text(s, 0.8, 2.1, 4.1, 0.3, "R A I S E", size=10, bold=True, color=ACCENT)
-add_text(s, 0.8, 2.5, 4.1, 0.8, "4.6 億円", size=48, bold=True, color=TEXT_WHITE)
+add_text(s, 0.8, 2.5, 4.1, 1.0, "4.6 億円", size=48, bold=True, color=TEXT_WHITE)
 add_text(s, 0.8, 3.4, 4.1, 0.7,
          "シード資金で全14タスクを実行し、\nPhase 0 移行判定の全データを取得", size=11, color=TEXT_LIGHT)
 add_text(s, 0.8, 4.3, 4.1, 0.3, "K E Y   M I L E S T O N E", size=10, bold=True, color=ACCENT)
@@ -779,7 +785,7 @@ add_text(s, 5.5 + total_w * 0.83 + 0.05, 2.42, 1.1, 0.45, "他 17%", size=9, bol
 funds = [
     ("人件費 (11名 × 12ヶ月)", "理論2 + 光源2 + CV計算2 + PIC1 + 冷却2 + 制御SW2", "約 2.9 億円", ACCENT),
     ("光学実験装置・部品", "PPLN OPA, EOM, AWG, ホモダイン検出系, 位相ロック", "約 9,200万円", PURPLE),
-    ("GPU 計算 / 外部委託 / 施設", "Stim シミュレーション, GKP実験委託, クリーンブース", "約 8,300万円", GREEN),
+    ("GPU 計算 / 外部委託 / 施設", "Stim シミュレーション, GKP実験委託, クリーンブース", "約 7,820万円", GREEN),
 ]
 for i, (title, desc, amount, clr) in enumerate(funds):
     y = 3.2 + i * 1.0
