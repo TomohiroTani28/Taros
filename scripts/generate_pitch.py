@@ -6,9 +6,8 @@ v4.2: Eliminate pattern duplicates, add visual variety
 from pptx import Presentation
 from pptx.util import Inches, Pt, Emu
 from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
+from pptx.enum.text import PP_ALIGN
 from pptx.enum.shapes import MSO_SHAPE
-import os, math
 
 # ── Design System ──
 BG_DARK = RGBColor(0x1A, 0x23, 0x32)
@@ -464,7 +463,7 @@ add_text(s, cx + 0.7, cy - 0.95, 1.5, 0.25, "S A M", size=9, bold=True, color=AC
 add_text(s, cx + 0.7, cy - 0.7, 1.8, 0.25, "650機関 · 117億円", size=10, bold=True, color=TEXT_DARK)
 # SOM circle (innermost)
 add_oval(s, cx - 0.75, cy - 0.55, 1.5, 1.1, ACCENT)
-add_text(s, cx - 0.7, cy - 0.4, 1.4, 0.25, "SOM Y3", size=8, bold=True, color=TEXT_WHITE, align=PP_ALIGN.CENTER)
+add_text(s, cx - 0.7, cy - 0.4, 1.4, 0.25, "SOM Y3", size=9, bold=True, color=TEXT_WHITE, align=PP_ALIGN.CENTER)
 add_text(s, cx - 0.7, cy - 0.15, 1.4, 0.25, "100機関 · 18億円", size=9, bold=True, color=TEXT_WHITE, align=PP_ALIGN.CENTER)
 
 # ════════════════════════════════════════════════════
@@ -540,7 +539,7 @@ for i, (name, dur, desc, cost, bg, txt) in enumerate(phases):
 
 add_rect(s, 0.6, 6.1, 12, 0.7, CARD_BG)
 add_text(s, 0.8, 6.15, 11.6, 0.6,
-         "最重要マイルストーン: G-EXP1 (開始後2ヶ月) — 約800万円で Level A 成功確率を 25-35% → 50%超",
+         "最重要マイルストーン: G-EXP1 (開始後2ヶ月) — 約800万円で Level A 成功確率を 35%(保守的) → 50%超",
          size=13, bold=True, color=TEXT_DARK)
 
 # ════════════════════════════════════════════════════
@@ -655,9 +654,8 @@ add_text(s, 2.3, 4.05, 1.5, 0.3, "規模効果で逓増", size=9, color=TEXT_GRA
 # Right: vertical bar chart showing ARR growth
 chart_x = 4.8
 chart_bottom = 5.5
-chart_max_h = 3.5  # max bar height
+chart_max_h = 3.0  # max bar height (3.5 overlapped chart title)
 add_text(s, chart_x, 1.85, 8, 0.3, "A R R   成 長 予 測（計画値・出荷開始後1〜4年）", size=11, bold=True, color=ACCENT)
-add_text(s, chart_x, 2.1, 8, 0.25, "※出荷Y1 = 開始後約4年目（Phase -1〜1 完了後）", size=9, color=TEXT_GRAY)
 
 arr_data = [
     ("出荷Y1", "3.6億", 0.1, RGBColor(0xB2, 0xEB, 0xF2)),
@@ -684,14 +682,14 @@ for i, (year, amount, ratio, color) in enumerate(arr_data):
     units = ["20台", "50台", "100台", "200台"]
     add_text(s, bx, chart_bottom + 0.3, bar_w, 0.25, units[i], size=9, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
 
-add_text(s, chart_x, chart_bottom + 0.55, 8, 0.25,
+add_text(s, chart_x, chart_bottom + 0.35, 8, 0.25,
          "※ Y1-Y4 = 製品出荷開始後1-4年（プロジェクト開始後約4-7年）",
          size=9, color=TEXT_GRAY)
 
 # Bottom investment logic bar
 add_rect(s, 0.6, 6.2, 12, 0.6, BG_DARK)
 add_text(s, 0.8, 6.25, 11.6, 0.5,
-         "投資論理: 段階投資で失敗損失を限定 (最大 4.6億円)。成功時 Y4 ARR 36億円 / 総開発費 8.7億円",
+         "投資論理: 段階投資で失敗損失を限定 (最大 4.6億円)。成功時 Y4 ARR 36億円 (粗利~12億円) / 総開発費 8.7億円",
          size=13, bold=True, color=ACCENT, align=PP_ALIGN.CENTER)
 
 # ════════════════════════════════════════════════════
@@ -807,7 +805,7 @@ add_text(s, 0.8, 1.5, 11, 0.5,
 add_text(s, 0.8, 2.2, 11, 2.0,
          "デスクトップに来る。", size=72, bold=True, color=TEXT_WHITE)
 add_text(s, 0.8, 4.2, 11, 0.8,
-         "室温 109W で動く誤り訂正型量子コンピュータを、世界の研究室・教室・企業 R&D に。\n"
+         "室温 104-112W で動く誤り訂正型量子コンピュータを、世界の研究室・教室・企業 R&D に。\n"
          "購入初日から6つのモードで価値を届ける。FTQCはFW更新で段階的に進化。",
          size=14, color=TEXT_LIGHT)
 add_accent_line(s, 0.8, 5.2, 0.8)
