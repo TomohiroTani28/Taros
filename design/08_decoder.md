@@ -310,7 +310,7 @@ Phase 4: Output formatting + byproduct update        ~24 cycles   60ns
 | Stage 2デコード時間 | 350ns (UF@400MHz) | 350ns |
 | **論理ゲートレート (単一ch)** | **~400kHz** | ~10kHz |
 | **論理ゲートレート (WDM 8ch)** | **~3.2MHz** | ~86kHz |
-| p_L品質 | ~10⁻⁴ (Δ=0.12) | ~10⁻⁶ (Δ→0) |
+| p_L品質 | ~10⁻⁴ (Δ=0.12, MWPM) | ~10⁻⁵ (Δ→0, MWPM, L=0.15dB) |
 
 ---
 

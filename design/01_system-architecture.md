@@ -233,6 +233,7 @@ CVクラスタ状態に注入してGKP状態の高品質ヘラルディング生
 > **定量的GKP忠実度分析**(レガシー参考): `../archive/03_logical-layer/gkp/01_gkp-design.md` を参照。
 > QD 2個使用時のGKP忠実度は0.93（sigma_eff=10dB、損失2dB）と推定。
 > Stimシミュレーションで確定予定。
+> **注(BSモデル修正後)**: 現行BSモデルではQD=2 Step B F_GKP=0.95（04_gkp-protocol.md §3.3）。上記0.93はdB減算モデルによるレガシー値。
 
 ### 4.2 QFC（量子周波数変換）
 
@@ -325,7 +326,7 @@ Layer 3: 表面符号論理量子ビット
 | 論理エラー率（d=7, Phase2+ PIC, QD=0） | **製品: ≈3.3×10⁻⁴ (MWPM, L=0.27dB)** / L≤0.22dBで≲10⁻⁴ / 理論限界: 6.1×10⁻⁷ (L=0.15dB) | erfc再計算+V_non-loss全項目合算。L=0.27dBでp_L=3.3×10⁻⁴(≲10⁻³)→MWPM必須 |
 | 論理エラー率（d=7, QD=2） | **~10⁻¹⁶** | QD等価+2.7dB |
 | TDMクロック | **100MHz** | Option B パルスOPA (GS-DFB+SOA+SHG) |
-| 論理ゲートレート (d=7, 単一ch, strict) | **~120Hz** | P_round=0.93^98≈7×10⁻⁴, 146kHz×7×10⁻⁴≈102Hz→概算~120Hz |
+| 論理ゲートレート (d=7, 単一ch, strict) | **~120Hz** | P_round=0.93^98≈8×10⁻⁴, 146kHz×8×10⁻⁴≈117Hz→概算~120Hz |
 | 論理ゲートレート (d=7, WDM 7ch, strict) | **~840Hz** | ~120Hz × 7ch |
 | 非クリフォードゲート | **native T (θ=π/8測定)** | Webster-Bartlett-Brown 2024、蒸留不要 |
 
