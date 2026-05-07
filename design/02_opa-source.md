@@ -209,12 +209,12 @@ TDM方式に最適な2つの駆動オプション:
 
 | Phase | OPA構成 | σ_gen / σ_eff (BS model) | モジュールサイズ |
 |-------|---------|-------------|----------------|
-| Phase -1 (2026) | OptQC G-QuAT評価 + PPLN OPA単体評価 | 12-15dB (単体生成値) | 評価機 |
+| Phase -1 (現在) | OptQC G-QuAT評価 + PPLN OPA単体評価 | 12-15dB (単体生成値) | 評価機 |
 | Phase 0 (開始後約1年-開始後約2年) | 1U OPAモジュール ×1 (8本) | σ_gen=13dB / σ_eff~8-9dB (離散、高損失) | 1U |
 | **Phase 1 (開始後約3-5年)** | **1U OPAモジュール ×1 (最適化、Option B)** | **σ_gen=13dB, L=0.39dB → σ_eff=8.5dB (break-even実証)** | 1U |
 | **Phase 2+ (開始後約7年-)** | **LNOI PIC統合** | **σ_gen=13dB, L=0.27dB(現実的) → σ_eff≈9.3dB (製品FTQC)** | PIC内蔵 |
 
-**Phase 2+ PIC化の産業基盤 (2025-2026動向)**:
+**Phase 2+ PIC化の産業基盤 (最新動向)**:
 - **QCI TFLN Foundry** (Tempe, AZ, 2025/5開所): 初の商用TFLN PICファウンドリ。150mmウェーハ、ISO認証、NIST契約受注。外注PIC製造が現実的選択肢に
 - **On-chip squeezing**: PPLN on TFLN で~10dB on-chip squeezing達成 (arXiv:2508.08599)。σ_gen≥12.5dB目標まで残り~2.5dB
 - **OPA gain**: TFLN上で71.5dB peak gain / 160nm帯域 (Nature Sci Reports 2025), 13.9dB CW-pump (Aug 2025)
@@ -222,7 +222,7 @@ TDM方式に最適な2つの駆動オプション:
 
 ---
 
-## 6. スクイージング増強技術（最新研究, 2025-2026）
+## 6. スクイージング増強技術（最新研究）
 
 ### 6.1 ML-SLM空間モード最適化（即時適用可能, P0推奨）
 

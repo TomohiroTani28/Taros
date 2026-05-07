@@ -149,7 +149,7 @@ QECサイクル = 7 rounds (d=7のsingle-shot近似)
 **製品デコーダ: MWPM (Blossom-V) d=7、510ns @400MHz。**
 **実験用ベースライン: Union-Find (UF) d=7、350ns @400MHz。**
 
-**デコーダ選択方針（§7.3 2026年ベンチマーク結果で更新）**:
+**デコーダ選択方針（§7.3 最新ベンチマーク結果で更新）**:
 - **Phase -1/0 (d≤5)**: MWPM primary推奨（510nsでもQECサイクル7.4%で許容、soft-info活用で最高精度）
 - **Phase 1+ (d=7)**: UF primary (350ns) + MWPM fallback (510ns, 700ns timeout)
 - MWPM d=7: O(n³) 最悪ケース → FPGA 400nsは未検証で楽観的
@@ -395,7 +395,7 @@ Tゲートモード: LO位相 θ = π/8
 | L4 (Compiler) | Qiskit→TDM角度変換 + 最適化 | Phase 0-1 | 約1,200万円 |
 | L5 (SDK) | **PennyLane plugin (pennylane-taros)** + Hybridlane互換 | Phase 0-1 | 約600万円 |
 
-**SDK戦略 (2026年動向反映)**:
+**SDK戦略 (最新動向反映)**:
 - **Hybridlane** (PNNL, arXiv:2603.10919): CV-DVハイブリッド量子計算のオープンソースSDK。PennyLaneベースで自動wire型推論（qubit/qumode）。GKP+表面符号に最適
 - **PennyLane Catalyst**: JIT compiler → MLIR → GPU加速。Taros SDKはPennyLane pluginとして構築し、エコシステムを活用
 - **Strawberry Fields**: GBS/CV量子計算の標準フレームワーク（Xanadu）。GBS/CIM/QRCモード用にStrawberry Fields互換レイヤも提供
@@ -403,7 +403,7 @@ Tゲートモード: LO位相 θ = π/8
 
 ---
 
-## 7. 次世代デコーダ技術（最新研究, 2025-2026）
+## 7. 次世代デコーダ技術（最新研究）
 
 ### 7.1 FPGA NNデコーダ（Phase 0+候補）
 
@@ -436,7 +436,7 @@ Tゲートモード: LO位相 θ = π/8
 
 **出典**: arXiv:2505.06385 (2025/5) qLDPC-GKP soft-info比較
 
-2026年ベンチマーク結果: **MWPMがUF・neural-guided・BP全てを上回る**（GKP soft-info活用時）。
+最新ベンチマーク結果: **MWPMがUF・neural-guided・BP全てを上回る**（GKP soft-info活用時）。
 
 | Phase | 推奨デコーダ | 根拠 |
 |-------|------------|------|

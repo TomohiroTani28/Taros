@@ -36,7 +36,7 @@ v3.0ではHCF（Hollow Core Fiber）単一パス遅延を採用する。
 | パラメータ | 仕様値 | 根拠・出典 |
 |---|---|---|
 | ファイバ種別 | ホローコアファイバ（NANF: Nested Anti-resonant Nodeless Fiber） | Jasion+ 2022, OFC Th4C.7; Lumenisity (現 Microsoft) NANF |
-| 損失 | 0.11 dB/km @ 1550nm | Jasion+ 2022 実証値 0.174 dB/km（世界記録）; 0.11 dB/kmは2026年目標値; 最悪ケースでも0.2 dB/km |
+| 損失 | 0.11 dB/km @ 1550nm | Jasion+ 2022 実証値 0.174 dB/km（世界記録）; 0.11 dB/kmは現時点の目標値; 最悪ケースでも0.2 dB/km |
 | 遅延長 | 600 m（対応遅延: 2.0 μs） | 光速 c/n_eff ≈ 2.998×10⁸ m/s（HCFのn_eff ≈ 1.000）; 600m / (3.0×10⁸ m/s) = 2.0 μs |
 | 遅延精度 | ± 1 ps | ファイバ長精度 ± 0.3mm; 温度安定化により達成 |
 | 損失（600m） | 0.07 dB（@ 0.11 dB/km）; 最悪0.12 dB（@ 0.2 dB/km） | 0.11 × 0.6 = 0.066; 0.2 × 0.6 = 0.12 |
