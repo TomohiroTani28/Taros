@@ -4,7 +4,7 @@ v4.2: Eliminate pattern duplicates, add visual variety
 - Chevron flow, concentric circles, progress bars, staircase, bar chart, radial spoke"""
 
 from pptx import Presentation
-from pptx.util import Inches, Pt, Emu
+from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN
 from pptx.enum.shapes import MSO_SHAPE
@@ -54,16 +54,6 @@ def add_text(slide, left, top, width, height, text, size=18, bold=False,
     p.alignment = align
     return tf
 
-
-def add_para(tf, text, size=18, bold=False, color=TEXT_DARK, align=PP_ALIGN.LEFT):
-    p = tf.add_paragraph()
-    p.text = text
-    p.font.size = Pt(size)
-    p.font.bold = bold
-    p.font.color.rgb = color
-    p.alignment = align
-    p.font.name = "Meiryo"
-    return p
 
 
 def add_rect(slide, left, top, width, height, fill_color, border_color=None):
@@ -208,7 +198,7 @@ for i in range(4):
     col, row = i % 2, i // 2
     x, y = 6.8 + col * 3.1, 1.2 + row * 2.1
     add_rect(s, x, y, 2.9, 1.9, CARD_BG)
-    add_rect(s, x, y, 2.9, Inches(0.04).inches, RED_SOFT)
+    add_rect(s, x, y, 2.9, 0.04, RED_SOFT)
     add_text(s, x + 0.15, y + 0.15, 2.6, 0.3, labels[i], size=11, color=TEXT_GRAY)
     add_text(s, x + 0.15, y + 0.5, 2.6, 0.5, values[i], size=22, bold=True, color=TEXT_DARK)
     add_text(s, x + 0.15, y + 1.1, 2.6, 0.5, descs[i], size=10, color=TEXT_GRAY)
@@ -681,10 +671,6 @@ for i, (year, amount, ratio, color) in enumerate(arr_data):
     # Unit count
     units = ["20台", "50台", "100台", "200台"]
     add_text(s, bx, chart_bottom + 0.3, bar_w, 0.25, units[i], size=9, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
-
-add_text(s, chart_x, chart_bottom + 0.35, 8, 0.25,
-         "※ Y1-Y4 = 製品出荷開始後1-4年（プロジェクト開始後約4-7年）",
-         size=9, color=TEXT_GRAY)
 
 # Bottom investment logic bar
 add_rect(s, 0.6, 6.2, 12, 0.6, BG_DARK)
