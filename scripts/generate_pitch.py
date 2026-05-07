@@ -703,16 +703,32 @@ add_oval(s, cx - 1.0, cy - 0.5, 2.0, 1.0, ACCENT)
 add_text(s, cx - 0.9, cy - 0.3, 1.8, 0.6, "Taros\n7-in-1", size=14, bold=True,
          color=TEXT_WHITE, align=PP_ALIGN.CENTER)
 
-# 4 spoke cards at compass positions
+# 4 moonshot cards — redesigned with deeper content
 moonshots = [
-    (0.6, 1.8, 4.5, 1.6, "量子脳 (NeuroQ)",
-     "CV量子直接互換フレームワーク\nC.elegans 302ニューロン→ロボット知能\n市場: $20B→$130B (2029)"),
-    (7.8, 1.8, 4.9, 1.6, "量子ホログラム (QGH)",
-     "QFTで干渉パターンN≈10⁶倍高速計算\nGKPフーリエ構造=ホログラム構造\n6G要件: 4.32Tbps"),
-    (0.6, 5.0, 4.5, 1.6, "量子創薬・不老長寿",
-     "プロトントンネリング(DNA変異の量子起源)\nセノリティクス分子の量子設計\nP450精度 71%→94%"),
-    (7.8, 5.0, 4.9, 1.6, "ロボット知能",
-     "CIMで50ms制御壁突破\nスクイーズド光でSQL超え力覚\n量子モジュール供給TAM ~$500M"),
+    (0.6, 1.8, 4.5, 1.7,
+     "量子脳 — NeuroQ",
+     "FitzHugh-Nagumo神経モデル→Schrödinger変換\n"
+     "→ CV量子で神経回路を直接シミュレーション\n"
+     "Phase 1: C.elegans 302ニューロン (600 qumode)\n"
+     "Phase 2+: ショウジョウバエ 127,400ニューロン"),
+    (7.8, 1.8, 4.9, 1.7,
+     "量子シミュレーション — 万物の設計者",
+     "創薬: P450精度 71%→94% / PETase 87×活性\n"
+     "不老長寿: プロトントンネリング(DNA変異4×)\n"
+     "マテリアル / 仮想生物 / Bose-Hubbard\n"
+     "宇宙: 光子m=0 → 量子重力デコヒーレンス免疫"),
+    (0.6, 5.0, 4.5, 1.7,
+     "量子ホログラム — QGH",
+     "QFT: O(N×d³)→O(d³) 10⁶×高速化\n"
+     "GKPフーリエ構造 = ホログラム構造\n"
+     "医療: 分子→細胞→臓器の量子3D可視化\n"
+     "エンタメ: 空間没入ホログラムフェス / 6G対応"),
+    (7.8, 5.0, 4.9, 1.7,
+     "ヒューマノイドロボット",
+     "CIM経路最適化で50ms制御壁を突破\n"
+     "スクイーズド光でSQL超え力覚フィードバック\n"
+     "NeuroQ量子脳→ロボット運動制御を直接駆動\n"
+     "ロボット市場 $20B→$130B / モジュールTAM $500M"),
 ]
 
 # Connector lines (thin rects as spokes)
@@ -729,7 +745,7 @@ for x, y, w, h, title, desc in moonshots:
     add_rect(s, x, y, w, h, NAVY2)
     add_accent_line(s, x, y, w)
     add_text(s, x + 0.15, y + 0.15, w - 0.3, 0.35, title, size=13, bold=True, color=TEXT_WHITE)
-    add_text(s, x + 0.15, y + 0.5, w - 0.3, 1.0, desc, size=10, color=TEXT_LIGHT)
+    add_text(s, x + 0.15, y + 0.55, w - 0.3, 1.1, desc, size=9, color=TEXT_LIGHT)
 
 # ════════════════════════════════════════════════════
 # SLIDE 16: THE ASK — split layout (unique)
