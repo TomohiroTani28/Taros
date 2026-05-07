@@ -53,10 +53,10 @@ GKP状態生成を3段階に分割し、各段階でGo/No-Goを判定する。
 | スクイージング | **σ_eff=8.5dB (Phase 1, L=0.39dB) / ≈9.3dB (Phase 2+ PIC現実的, L=0.27dB) / 10.8dB (理論限界, L=0.15dB)** | BSモデル: V_eff=η×V_sqz+(1-η)+V_nl。erfc再計算+V_non-loss全項目合算 |
 | Postselection窓 δ | 0.19 √π (運用値) | per-mode合格率93%を達成する閾値。Stafford+ 2025最適値0.15√πは高品質モード選択用(P_mode~84%) |
 | per-mode高信頼率 | **93%** (δ<0.19√π) | 各モード独立。低信頼7%はerasure weight |
-| P_round (全モード高信頼/round) | ~10⁻³ | 0.93^98≈7×10⁻⁴。strict postselection時のみ関連。**旧P_s記号は廃止** |
+| P_round (全モード高信頼/round) | ~10⁻³ | 0.93^98≈8×10⁻⁴。strict postselection時のみ関連。**旧P_s記号は廃止** |
 | TDMクロック | 100MHz | |
 | **実効QECレート (全モード利用)** | **~146kHz** | 1/T_QEC = 1/6.86μs。全モードsoft-info UF |
-| **実効QECレート (strict post.)** | **~120Hz** | P_round=7×10⁻⁴, 146kHz×7×10⁻⁴≈102Hz→概算~120Hz |
+| **実効QECレート (strict post.)** | **~120Hz** | P_round=8×10⁻⁴, 146kHz×8×10⁻⁴≈117Hz→概算~120Hz |
 | GKP忠実度 F | **0.87 (Phase -1 discrete) / 0.91 (Phase 2+ PIC)** | BSモデル修正。旧0.93/0.94はdB減算による過大推定 |
 | 有効GKP σ_eff | **8.5-10.8dB** (Phase依存、BSモデル) | Phase 1: 8.5dB, Phase 2+現実的: ≈9.3dB, 理論限界: 10.8dB。erfc再計算+V_non-loss修正。06_noise-budget §2.3参照 |
 | 有限エネルギー Δ | **< 0.15** (製品要件) / < 0.10 (目標) | δ=0.19√π運用窓でΔ≈0.12-0.15。δ=0.15√π厳格窓でΔ<0.10。(06_noise-budget §3, 03_numerical-verification §2.5) |
@@ -66,7 +66,7 @@ GKP状態生成を3段階に分割し、各段階でGo/No-Goを判定する。
 | 記号 | 定義 | 値 | 用途 |
 |------|------|-----|------|
 | **p_acc** | 単一モード acceptance rate | ~93% (@δ=0.19√π) | Go/No-Go基準、設計パラメータ |
-| **P_round** | 1ラウンド全モード同時高信頼率 | p_acc^98 ≈ 7×10⁻⁴ | strict mode参考値のみ |
+| **P_round** | 1ラウンド全モード同時高信頼率 | p_acc^98 ≈ 8×10⁻⁴ | strict mode参考値のみ |
 
 - 全モードが100MHzでホモダイン測定され、bit+confidence値としてデコーダに入力される（破棄なし）
 - p_acc=93%: 格子偏差δ<δ_maxの判定。低信頼モード(7%)もerasure weightで利用

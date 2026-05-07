@@ -70,7 +70,7 @@
 | 用途 | 教育・QEC研究 | 研究・VQE | **FTQC・量子化学 (Phase 2+ PIC)** |
 
 †Max WDM 7ch: d=7ではQECサイクルが長い(6.86μs)ため、7chでターゲット論理ゲートレート~840Hzを達成。8ch化は消費電力増(+1W)に対し性能改善が限定的。
-**Tゲートレート モード区分**: 上表の値はstrict postselection(全QECラウンド高信頼)モード。P_round=0.93^98≈7×10⁻⁴, 146kHz×7×10⁻⁴≈102Hz→概算~120Hz。
+**Tゲートレート モード区分**: 上表の値はstrict postselection(全QECラウンド高信頼)モード。P_round=0.93^98≈8×10⁻⁴, 146kHz×8×10⁻⁴≈117Hz→概算~120Hz。
 全モード(postselectionなし)では最小間隔=7.42μs(d=7, デコーダ遅延560ns込み)→単一ch ~135kHz, 7ch ~945kHz。
 Edu OPA×2必須(macronode要件)で100→104W。
 Strictモードは最高品質だが低レートとなる。用途に応じてモード選択可能。
