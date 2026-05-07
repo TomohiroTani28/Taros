@@ -94,6 +94,44 @@
 | 原価 (量産100台) | 約2,925万円 | design/09_rack-design |
 | 販売価格 | 約5,700万円 | design/09_rack-design |
 
+### 2.6 7-in-1 動作モード定義
+
+| Mode | 名称 | 説明 | OPA動作 | 追加HW | 利用開始 | 根拠文書 |
+|------|------|------|---------|--------|---------|----------|
+| 1 | **FTQC** | GKP+表面符号→qLDPC 誤り訂正型量子計算 | 閾値以上 | なし | Phase 0+ | design/08_decoder, design/13_performance §8.1-8.2 |
+| 2 | **CIM** | コヒーレントイジングマシン（組合せ最適化） | **閾値以下** | なし(SW) | Phase -1† | design/13_performance §8.4 |
+| 3 | **QRC** | 量子リザーバコンピューティング（時系列予測） | 通常 | なし(SW) | Phase -1† | design/13_performance §8.5 |
+| 4 | **QRNG** | 量子乱数生成（真空ゆらぎホモダイン） | OFF可 | なし(SW) | Phase -1† | design/13_performance §8.6 |
+| 5 | **Sensing** | 量子センシング（SQL以下精密測定） | 通常 | なし(SW) | Phase -1† | design/13_performance §8.6 |
+| 6 | **Imaging** | 量子イメージング（サブショットノイズ） | 通常 | なし(SW) | Phase -1† | design/13_performance §8.7 |
+| 7 | **Tensor** | フォトニックテンソル処理（AI推論加速） | コヒーレント光 | なし(SW) | Phase -1† | design/13_performance §8.9 |
+
+†初期SW設定1-2週間を含む。全モード共通HW: OPA + BS網 + PMF遅延線 + ホモダイン + FPGA + EOM
+
+### 2.7 SNSPD材料（Phase別推奨）
+
+| Phase | 推奨材料 | SDE | 動作温度 | 根拠 |
+|-------|---------|-----|---------|------|
+| Phase 0-1 | **MoSi** | 87% @2.3K | PT205 (2.5K) | 01_system-architecture §4.3 |
+| Phase 2+ | **MgB2** (候補) | 未公表(飽和確認@3.7K) | 最大20K | Nature Comms 2024 |
+| 商用候補 | ID Quantique ID281 | 88% (28px PNR) | <2.5K | 01_system-architecture §4.3 |
+
+### 2.8 スクイージング増強技術（研究候補）
+
+| 技術 | 効果 | コスト | Phase | 根拠文書 |
+|------|------|--------|-------|----------|
+| ML-SLM空間モード最適化 | σ_eff +0.6-1.0dB (離散光学系) | ~40万円 | Phase -1 T0a | design/02_opa-source §6.1 |
+| 非エルミートEP増強 | σ_gen 15dB+ (理論) | 研究費 | Phase 1+ | design/02_opa-source §6.2 |
+| GKP低入力ブリーディング | 3dB入力→9.75dB等価GKP | なし(プロトコル) | Phase 1+ | design/02_opa-source §6.3 |
+
+### 2.9 QEC Phase 2+移行候補
+
+| 符号 | 物理/論理比 | デコーダ | 特徴 | 根拠文書 |
+|------|-----------|---------|------|----------|
+| 表面符号 (現行) | ~1000:1 | UF/MWPM | Phase 0-1 | design/08_decoder §3 |
+| qLDPC [[144,12,12]] | ~50:1 (raw 12:1) | BP+OSD | 20倍効率化 | design/08_decoder §7.2 |
+| Color Code | ~200:1 | lookup | transversal CNOT | design/08_decoder §7.2 |
+
 ---
 
 ## 3. DV-FBQC方式パラメータ（凍結・参考）
@@ -148,11 +186,13 @@ DV/CV方式で共通の物理コンポーネントの正規値。
 
 | コンポーネント | パラメータ | 正規値 | 注記 |
 |--------------|-----------|--------|------|
-| HCF (NANF) | 損失 | 0.11 dB/km | Lumenisity 2023 |
-| PMF | 損失 | 0.35 dB/km | 標準PMF @1550nm |
+| HCF (DNANF) | 損失 | **0.091 dB/km** (2025記録) / 0.11 dB/km (2023) | Microsoft/Southampton, Nature Photonics 2025 |
+| PMF | 損失 | 0.35 dB/km | 標準PMF @1550nm (現行設計採用) |
 | LNOI EO MZM | 挿入損失 | 0.3 dB (arm loss) | DC arm + RF core |
+| TFLN OPA | on-chip gain | 10 dB net (23.5dB gross) | UT Austin 2026, arxiv:2602.05982 |
 | Si₃N₄ PIC | 導波路損失 | 0.01 dB/cm | Ligentec ANT |
-| InGaAs PD | 量子効率 | 99% (設計目標) / 95% (市販品) | QE≥98%必須 |
+| InGaAs PD | 量子効率 | 99% (設計目標) / 95% (市販品) | QE≥98%必須。商用: Noisy Labs HQE |
+| TFLN Foundry | 商用アクセス | QCI (AZ), CCRAFT (CH), Lightium (CH) | 150mmウェーハ、Phase 2+ PIC外注候補 |
 
 ---
 
