@@ -27,7 +27,7 @@ DV-FBQC方式のレベルA/B/Cに対応するCV方式の成功基準:
 | PPLN OPA >12dB (パルス) | NTT実績12.1dB(CW), SiN clad改良で13dB見込み | **80%** | CW→パルス損失約2dB, 改良後13-2=11dB≧要求 |
 | macronode TDM安定動作 | 100MHzで10^6モード持続 | **85%** | Asavanant+ 2019で実証済み(規模は小さい) |
 | 3層位相ロック ±1° | ファイバ系全体で達成 | **80%** | Xanadu Auroraで類似技術実証 |
-| GKP postselection生成 | F_GKP > 0.85, P_s>10^-3 | **75%** | Campagne-Ibarcq+ 2020(超伝導系GKP初実証)を光学に転用、未実証 |
+| GKP postselection生成 | F_GKP > 0.85, p_acc>93% | **75%** | Campagne-Ibarcq+ 2020(超伝導系GKP初実証)を光学に転用、未実証 |
 | Soft-info MWPM実装 | p_th_eff>1% on FPGA (8bit LUT) | **85%** | Noh&Chamberland 2022で理論確立、FPGA実装は標準的 |
 | WDM 5-8ch並列化 | チャネル間クロストーク<-30dB | **90%** | テレコム標準技術(DWDM)の直接転用 |
 | フィードフォワード27ns(設計ベースライン) | 100MHzクロック、3モード遅延 | **90%** | Flash ADC + パラレルDAC。旧21ns→27ns(400MHz)に修正 |

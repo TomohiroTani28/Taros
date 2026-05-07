@@ -212,7 +212,7 @@ macronode lattice上の配置:
   1 syndrome round = 14 time steps × 7 columns = 98 modes × 10ns = 980ns ≈ 1μs
   d syndrome rounds for full QEC cycle = 7 × 980ns = 6.86μs ≈ 7μs
 
-  ※注: postselection (P_s≈10⁻³) 考慮後の実効レートは §5.2 参照
+  ※注: postselection (P_round≈10⁻³) 考慮後の実効レートは §5.2 参照
 ```
 
 ### 5.2 QEC速度
@@ -233,7 +233,7 @@ macronode lattice上の配置:
 | 運用モード | ゲートレート計算 | d=7 値 | 備考 |
 |-----------|----------------|--------|------|
 | **全モード利用 (soft-info UF, ベースライン)** | 1 / T_QEC = 1 / 6.86μs | **~146kHz** | 全モードを信頼度重み付きで利用。p_L~10⁻⁵(現実Δ=0.12) |
-| 高信頼モード待機 (strict postselection) | 686 modes / (100MHz×P_s) | **~146Hz** | 高信頼モード98個×7ラウンド分待機。p_L~4×10⁻⁷(Δ=0理想) |
+| 高信頼モード待機 (strict postselection) | 686 modes / (100MHz×P_round) | **~146Hz** | 高信頼モード98個×7ラウンド分待機。p_L~4×10⁻⁷(Δ=0理想) |
 | **WDM並列 (製品スペック)** | 146kHz × 7ch (全モード) / 146Hz × 7ch (strict) | **~1MHz (QECレート) / ~1kHz (strict論理ゲート)** | WDM 7ch並列。注: ~1MHzはQECサイクル処理レート、論理ゲートレート(strict)は~1kHz |
 
 ```
@@ -269,11 +269,11 @@ postselectionは「破棄」ではなく「信頼度分類」として機能:
 2. ホモダイン測定でCV entanglementが古典相関（シンドローム情報）に変換される
 3. **全モード**のbit値+confidence値がデコーダに入力される（破棄なし）
 4. 低confidence モード(7%)はweight小としてUFクラスタ成長で自然に扱われる
-5. → 実効ゲートレート = 1/T_QEC ≈ 146kHz (P_s無関係)
+5. → 実効ゲートレート = 1/T_QEC ≈ 146kHz (P_round無関係)
 
-**P_s=10⁻³の正確な意味**: 98モード全てが高信頼(δ<δ_max)で揃う確率 = 0.93^98 ≈ 10⁻³。
+**P_round=10⁻³の正確な意味**: 98モード全てが高信頼(δ<δ_max)で揃う確率 = 0.93^98 ≈ 10⁻³。
 これは「strict postselection」モードで最高品質のQECを行う場合のみ関連。
-通常運用（全モード利用）ではP_sはゲートレートに影響しない。
+通常運用（全モード利用）ではP_roundはゲートレートに影響しない。
 
 **Native Tゲート (蒸留不要)**: 論理ゲートレート = Tゲートレート
 
