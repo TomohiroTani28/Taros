@@ -84,7 +84,7 @@ PPLN OPA#2 (CW squeezing 13dB) ──┘        │
 - これは厳密にはGKP状態ではなく**approximate GKP state conditioned on EPR measurement**。
 - 2スクイーザ方式は Vasconcelos+ (2010) のbreeding protocol第1段階に相当。
 
-**理論予測値 (v2.2追加)**:
+**理論予測値**:
 - 13dBスクイージング(V_sqz=0.05)のEPR相関からpostselection幅δ=0.1√πで条件付けた場合:
   - 有限エネルギーGKPパラメータ: Δ ≈ 0.12-0.15
     (Eaton+ 2022解析に基づく推定)
@@ -92,7 +92,7 @@ PPLN OPA#2 (CW squeezing 13dB) ──┘        │
   - **F>0.80は「達成見込み範囲内だが余裕なし」** — 楽観シナリオ
 - 単一モードpostselection通過率:
   p_acc ≈ 2δ/√π ≈ 11%（CW、δ=0.1√πの場合。運用値δ=0.19√πでは~93%）
-- **Δ測定方法 (v2.2追加)**:
+- **Δ測定方法**:
   Wigner tomography格子ピーク幅 σ_W ≈ Δ（位相空間直接）。
   ホモダイン測定ではσ_meas ≈ Δ/√2（片quadrature）。
   Phase -1ではWigner再構成を使用するためσ_W=Δを適用。Go基準: Δ < 0.15
@@ -121,7 +121,7 @@ Phase -1aの成功後に実施:
 | 測定項目 | 成功基準 | 測定手法 |
 |---------|---------|---------|
 | OPAスクイージング | >12dB (CW) | ホモダインスペクトラム |
-| 反スクイージング | ≤15dB (単一パスOPA理論値=σ_gen。excess noise margin +2dB) | 同上 [v3.2: 旧<20dBは共振器OPO値。単一パスOPAではV_sqz×V_anti=1、13dB sqz→13dB anti-sqz] |
+| 反スクイージング | ≤15dB (単一パスOPA理論値=σ_gen。excess noise margin +2dB) | 同上 (旧<20dBは共振器OPO値。単一パスOPAではV_sqz×V_anti=1、13dB sqz→13dB anti-sqz) |
 | GKP Wigner関数 | 格子構造確認 (F>0.80) | ホモダイントモグラフィー |
 | postselection成功確率 | **>5×10⁻⁴** | 判定回数/全ショット数 |
 | GKP忠実度 (合格時) | >0.85 | 理想GKPとのfidelity |
@@ -172,7 +172,7 @@ Phase -1aの成功後に実施:
 | -1b (パルスTDM) | +約120万円 | +2ヶ月 | パルスGKP + TDM検証 |
 | **合計 (装置BOM)** | **約630万円** | **5ヶ月** | Taros実現可能性の最終判定 |
 
-> **コスト定義 (v3.3明確化)**: 約630万円=装置BOM直接費。予備・消耗品込み約870万円。人件費(2名×5ヶ月)込み完全コスト約2,970万円。
+> **コスト定義**: 約630万円=装置BOM直接費。予備・消耗品込み約870万円。人件費(2名×5ヶ月)込み完全コスト約2,970万円。
 
 ---
 

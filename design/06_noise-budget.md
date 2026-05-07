@@ -25,7 +25,7 @@
          → GKP qubitの論理エラー率 p_err = erfc(√π / (4σ)) / 2,  σ=√(σ²)
 ```
 
-**v2.0重要修正**: 旧版の `σ_eff = σ_gen − L(dB)` は**物理的に不正確**。
+**重要修正**: 旧版の `σ_eff = σ_gen − L(dB)` は**物理的に不正確**。
 この公式は `V_eff = V_sqz / η`（古典信号減衰モデル）と等価だが、量子光学では
 各損失段階でビームスプリッターモデルにより真空ノイズ (1 SNU) が混入する。
 高スクイージング領域 (V_sqz << 1 SNU) では、わずかな損失でも (1−η) >> V_sqz となり、
@@ -86,23 +86,23 @@ SNU = Shot Noise Unit (真空ノイズ = 1 SNU)
 | 4 | EO gate | 0.30 (Option A) / **0** (Option B採用) | 0.071 / **0** | 0.30 / **0** | |
 | 5 | BS ×3 | 0.30 | 0.071 | 0.30 |
 | 6 | 短遅延PMF | 0.004 | 0.001 | 0.004 |
-| 7 | 長遅延PMF 200m (v1.1: DNANF→PMF変更) | 0.070 | 0.016 | 0.070 |
+| 7 | 長遅延PMF 200m (DNANF→PMF変更) | 0.070 | 0.016 | 0.070 |
 | 8 | ホモダイン効率 (†QE注記参照) | 0.04 | 0.010 | 0.04 |
 | 9 | 電子ノイズ | — | 0.005 | 0.02 |
-| 10 | 位相ノイズ×反スクイージング混入 (v1.8: 単一パスOPA 13dB基準) | — | 1.5×10⁻⁵ | **<0.002** |
+| 10 | 位相ノイズ×反スクイージング混入 (単一パスOPA 13dB基準) | — | 1.5×10⁻⁵ | **<0.002** |
 | 11 | ADC量子化雑音 (14bit) | — | 0.003 | 0.01 |
 | 12 | PMF偏波消光比 (>30dB) | — | 0.001 | 0.005 |
 | 13 | WDMチャネル間クロストーク (>30dB isolation) | — | <0.001 | <0.005 |
-| **14** | **WDM AWG挿入損失 (v1.3追加)** | **0.20** | **0.047** | **0.20** |
-| 15 | EO gate消光比 (25dB) (v1.4追加) | — | ~0.003 | ~0.02 |
-| 16 | GAWBS (200m PMF) (v1.4追加) | — | ~1×10⁻⁴ | ~0.005 |
+| **14** | **WDM AWG挿入損失** | **0.20** | **0.047** | **0.20** |
+| 15 | EO gate消光比 (25dB) | — | ~0.003 | ~0.02 |
+| 16 | GAWBS (200m PMF) | — | ~1×10⁻⁴ | ~0.005 |
 | **合計** | | **1.12dB (光学#1-8+#14, Option B: EO gate除外)** | **0.288 SNU** | **(旧1.42dBからEO gate 0.30dB除外。Option B採用)** |
 
 **注**:
-- WDM AWG(#14, v1.3追加): 低損失AWG (NTT-AT 100GHz 8ch) 0.15-0.2dB。0.2dBを設計値とする。
+- WDM AWG(#14): 低損失AWG (NTT-AT 100GHz 8ch) 0.15-0.2dB。0.2dBを設計値とする。
   通信用AWG(0.5dB)では性能27倍劣化のため使用禁止。調達先: NTT-AT, Enablence, 約45万円。
 - WDMクロストーク(#13): チャネル間隔100GHz以上で<0.005dB。Phase -1実験で確認。
-- 位相ノイズ(#10, v2.2修正): **単一パスPPLN OPA（共振器なし）では反スクイージング方向のvariance V_anti = 1/V_sqz = 20 SNU (13dB anti-squeezed)**。
+- 位相ノイズ(#10): **単一パスPPLN OPA（共振器なし）では反スクイージング方向のvariance V_anti = 1/V_sqz = 20 SNU (13dB anti-squeezed)**。
   旧値20dB(V_anti=100)は共振器型OPOの値が混入していた誤り — 単一パスOPAのパラメトリック利得は
   squeezed/anti-squeezed方向に対称: V_sqz×V_anti=1 (最小不確定性状態)。V_sqz=0.05 → V_anti=20。
   テーブル値: V_anti × sin²(0.05°) = 20 × 7.6×10⁻⁷ = 1.5×10⁻⁵ SNU → **<0.002dB（事実上無視可能）**。
@@ -112,36 +112,36 @@ SNU = Shot Noise Unit (真空ノイズ = 1 SNU)
   **PLL未補正時(φ=0.5°)**: V_anti×sin²(0.5°)=20×7.6×10⁻⁵=1.5×10⁻³ SNU。
   Phase 2+ PIC基準(V_eff=0.0813): V_degraded=0.0828 → σ_eff=10.82dB → **劣化~0.08dB**。
   Phase -1 discrete基準(V_eff=0.316): V_degraded=0.318 → σ_eff=4.98dB → **劣化~0.02dB**。
-  (v2.2修正: 旧0.17dBはBWの帯域積分値との混同。単一周波数0.5°では上記が正確。
+  (旧0.17dBはBWの帯域積分値との混同。単一周波数0.5°では上記が正確。
   **BW=100kHz時の全帯域積分位相ノイズ**: 05_phase-lock §6のφ_RSS=0.5°はPLL補正前値であり、
   BW=100kHz残留時は広帯域積分で~0.17dB相当の劣化が残る — Phase 2+ PIC σ_eff 10.9→10.7dB。)
   PLL BW≥500kHzは依然として推奨だが、PLL失敗(BW=100kHz)時でもσ_eff≈10.7dBでFTQC動作可能。
 
-> **PLL要件検証（v1.6追加）**: PMF 200m系でのPLL BW≥500kHz達成はPhase -1 T0a最優先実験項目。
+> **PLL要件検証**: PMF 200m系でのPLL BW≥500kHz達成はPhase -1 T0a最優先実験項目。
 > PMF固有の位相ノイズがSMF比2-5倍の場合: φ_res=0.1-0.25° → σ_eff 0.02-0.15dB劣化。
 > フォールバック: free-space delay line（位相ノイズ1/10）への切替。
-- GAWBS(#16, v1.4追加): PMF 200m遅延線での導波音響ブリルアン散乱(GAWBS)。
+- GAWBS(#16): PMF 200m遅延線での導波音響ブリルアン散乱(GAWBS)。
   PMFではストレスロッドによる弾性モード構造変調により特定GAWBS周波数が抑制され~1×10⁻⁴ SNU。
   (注: 0.01 SNUは単一モードファイバkm級の値。PMF 200mでは散乱長が短く10⁻⁴ SNU級。Shelby+ 1985。)
   温度安定化(±0.01℃)で更に低減可能。劣化0.005dBは保守的上限値。
-- **EO gate挿入損失0.30dBの定義 (v1.5明確化)**: LNOI MZM変調アーム通過損失（ファイバ結合損失を含まない）。LNOI MZMのfull fiber-to-fiber挿入損失は典型2-3dBだが、本設計ではOPA→EOM→BSがall-fiber spliced接続のため、I/O結合損失は項目#2(OPA結合)に含まれる。EO gate固有の損失はDC arm loss (~0.15dB) + RF modulator core loss (~0.15dB) = 0.30dB。
-  **EOM損失リスク (v1.7)**: 0.3dBはLNOI MZMの最良ケース。on-chip propagation loss実測がPhase -1確認項目。0.5dB到達時: σ_eff=11.3dB (p_L(d=7)×3-5悪化)。Go/No-Go: EOM固有損失≤0.5dB。
-- **配線損失と本テーブルの対応関係 (v1.6明確化)**: 12_mechanical.md §2.4で配線損失合計0.64dBと計算されている。
+- **EO gate挿入損失0.30dBの定義**: LNOI MZM変調アーム通過損失（ファイバ結合損失を含まない）。LNOI MZMのfull fiber-to-fiber挿入損失は典型2-3dBだが、本設計ではOPA→EOM→BSがall-fiber spliced接続のため、I/O結合損失は項目#2(OPA結合)に含まれる。EO gate固有の損失はDC arm loss (~0.15dB) + RF modulator core loss (~0.15dB) = 0.30dB。
+  **EOM損失リスク**: 0.3dBはLNOI MZMの最良ケース。on-chip propagation loss実測がPhase -1確認項目。0.5dB到達時: σ_eff=11.3dB (p_L(d=7)×3-5悪化)。Go/No-Go: EOM固有損失≤0.5dB。
+- **配線損失と本テーブルの対応関係**: 12_mechanical.md §2.4で配線損失合計0.64dBと計算されている。
   本テーブルとの対応: #2(OPA結合0.30dB)=#OPA出力FC/APC×2 + #5(BS 0.30dB)=BS融着含む + #3(PMF 0.01dB)。
   合計0.61dBに対し実装値0.64dB → 差分0.03dBは設計マージン(丸めマージン+0.03dB)に含まれる。
   **全ファイバ融着設計**により、FC/APCコネクタはOPA I/O(2箇所)のみ。その他16箇所は全て融着接続(0.02dB/箇所)。
   fiber-to-fiber EOM(2-3dB)の問題は発生しない — EOMはPMFピグテール品(input/output fusion spliced)を使用。
 - **EO gate消光比の物理機構**: EO Mach-Zehnder変調器(LNOI)の消光比25dBは、OFF状態でのリーク光が10^(-2.5)=0.32%。このリーク光は未スクイーズ真空(1 SNU)であるため、スクイーズドモードに0.0032 SNUのノイズとして混入。100MHz動作のduty比50%を考慮すると寄与は0.0032×0.5≈0.002 SNU。テーブル値0.003 SNUはduty比変動マージンを含む保守値。
-- **LO生成EDFA ASEノイズ (v1.4追加)**: EO comb + EDFAでLO生成する場合、EDFA後のASE excess photon ratio =
+- **LO生成EDFA ASEノイズ**: EO comb + EDFAでLO生成する場合、EDFA後のASE excess photon ratio =
   nsp×(G-1) ≈ 16 (NF=5dB, G=+10dB)。LO 10mW, 検出帯域1GHzでASE/shot≈16:1となりshot-noise limited動作が破壊される。
   **必須対策**: EDFA後にFP etalon (FSR=100GHz, F=50, 透過帯域2GHz) を挿入。
   フィルタ後ASE < 1μW (検出帯域内) → shot noise以下に抑制。
   フィルタ挿入損失 ~0.5dB はLO側のみでありスクイーズド光路に影響なし。
   コスト: FP etalon 約8万円×2ch = 約15万円。ノイズバジェット影響なし。
 - WDMチャネル配置: 縮退点(1550nm)片側のみ使用（信号-アイドラー相関回避）。
-- **†ホモダイン効率リスク注記 (v1.6追加)**:
+- **†ホモダイン効率リスク注記**:
   テーブル値QE=99%(0.04dB)は設計目標。市販InGaAs PIN-PD(Thorlabs等)のQEは~95%(=0.22dB損失)。
-  **v2.1 BSモデルによるQE=95%影響評価**:
+  **BSモデルによるQE=95%影響評価**:
   Phase 2+ PIC構成(L_base=0.15dB)でQE=95%(+0.18dB): L_total=0.33dB, η=0.927
   V_eff = 0.927×0.0501+0.073 = 0.046+0.073 = 0.119 → σ_eff=**9.2dB** (QE=99%の10.8dBから1.6dB低下)
   p_err = erfc(√π/(4×√(0.119/2)))/2 = erfc(1.822)/2 ≈ 5.3×10⁻³
@@ -153,23 +153,23 @@ SNU = Shot Noise Unit (真空ノイズ = 1 SNU)
   **結論**: L=0.27dBバジェットは**QE≥99%前提**。QE=98%の場合はL≤0.20dB必須、またはd=9で対応。
   Phase 1(離散光学)ではQE影響はσ_eff=8.5→7.4dBでbreak-even困難。旧8.8→8.5dB
   **Go/No-Go G6**: Phase 0a終了時にPD QE≥98%達成を確認。QE≥99%は製品L=0.27dBバジェットの前提条件。未達時はd=9+MWPM、またはQD追加。
-- **WDMチャネル数制約 (v1.6追加)**: PPLN OPA type-0 PDCの片側帯域は~400-500GHz (50mm導波路)。
+- **WDMチャネル数制約**: PPLN OPA type-0 PDCの片側帯域は~400-500GHz (50mm導波路)。
   100GHz間隔AWGで最大4-5ch/OPA出力。2 OPA出力で最大8-10ch。ただし帯域端(-3dB)では
   スクイージングが0.5-1dB低下するため、実効的には**中心4ch/OPAが高品質** (>12.5dBスクイージング)、
   端2ch/OPAは品質低下(11.5-12dB)。Portable Max(7ch)は中心4+端3構成で全ch≥11.5dB確保。
   Phase -1 T0aでOPA帯域を実測し、チャネル配置を最適化する。
-  **チャネル品質分布 (v1.7追加)**: WDM 8chの実効σ_eff分布は中心4ch≥12.5dB、端4ch~11.5-12.0dB。
+  **チャネル品質分布**: WDM 8chの実効σ_eff分布は中心4ch≥12.5dB、端4ch~11.5-12.0dB。
   製品仕様(σ_gen≥11.5dB)は最悪チャネルに基づく保守値であり全chで達成。端chの有効GKP品質は
   中心chより~5-10%低下するため、デコーダはチャネル別confidence重みを適用する（Phase 0 FW実装）。
 
-**v2.0 正しい値 (beamsplitterモデル)**:
+**正しい値 (beamsplitterモデル)**:
 - 現行設計 (Option A, WDM込み, L=1.42dB): σ_eff = **5.0dB** (閾値未満)
 - 損失削減設計 (Option B, WDMなし, L=0.39dB, 13dB生成): σ_eff = **8.5dB** (閾値境界) V_non-loss全項目合算
 - PIC統合現実的 (L=0.27dB, 13dB生成): σ_eff = **≈9.3dB** (製品級FTQC) erfc再計算+V_non-loss修正
 - PIC統合理論限界 (L=0.15dB, 13dB生成, V_nl=0): σ_eff = **10.8dB** (理論上限)
-旧値 11.5dB/11.7dB は誤った dB減算公式 σ_eff=σ_gen−L による — v2.0で廃止
+旧値 11.5dB/11.7dB は誤った dB減算公式 σ_eff=σ_gen−L による — 廃止
 
-**p_phys保守値の根拠 (v2.0更新)**: Phase 2+ PIC構成 σ_eff=10.8dBでp_phys≈1.0×10⁻³。
+**p_phys保守値の根拠**: Phase 2+ PIC構成 σ_eff=10.8dBでp_phys≈1.0×10⁻³。
 設計保守値5×10⁻⁴(+50%)は以下のマージンを包含する:
 (a) 有限エネルギーGKP(Δ=0.10-0.15)の追加ノイズ、(b) WDMチャネル品質ばらつき(端ch -0.5dB)、
 (c) 動作中温度変動(±0.05℃)による位相ドリフト。11.5-11.75dBの範囲上限値として採用。
@@ -179,7 +179,7 @@ SNU = Shot Noise Unit (真空ノイズ = 1 SNU)
 **注**: WDM AWGはPhase 2+で再導入予定（PIC統合で低損失化後）。Phase 0-1は単一ch動作。
 低損失AWG (NTT-AT製, 0.15-0.2dB) を指定。通信用安価品(0.5dB)は使用不可。
 
-### 2.3 実効スクイージング（v2.0: beamsplitterモデル全面改訂）
+### 2.3 実効スクイージング（beamsplitterモデル）
 
 ```
 σ_gen = 13.0 dB → V_sqz = 10^(−13/10) = 0.0501 SNU
@@ -284,7 +284,7 @@ SNU = Shot Noise Unit (真空ノイズ = 1 SNU)
     Phase -1実験での位相ノイズ実測が最重要確認項目の一つ。
 ```
 
-**閾値定義の検証課題 (v2.0 — 未解決)**:
+**閾値定義の検証課題 (未解決)**:
 
 Stafford-Menicucci-Walshe 2025の閾値7.5dBの正確な定義を確認する必要がある:
 - **解釈A** (post-loss σ_eff基準): 7.5dB = 損失後の実効スクイージング最低値
@@ -298,7 +298,7 @@ Stafford-Menicucci-Walshe 2025の閾値7.5dBの正確な定義を確認する必
 x軸の定義と損失モデルを正確に特定。並行してStim GKP displacement noise + loss channel
 シミュレーションで独自に閾値曲線を算出。
 
-**macronode BS混合ノイズの計上状況 (v1.4確認)**:
+**macronode BS混合ノイズの計上状況**:
 macronode内のBS網通過時には (1)excess損失由来の真空ノイズ混入 と (2)隣接モードの反スクイージング混入 の2種がある。
 - (1) excess損失: §2.2 #5「BS ×3: 0.3dB」として計上済み（50:50分割自体は entanglement生成であり損失ではない）。
 - (2) 反スクイージング混入: 適応的測定基底選択により最小化するプロトコルが前提。
@@ -320,7 +320,7 @@ GKP符号状態の忠実度は実効スクイージングの関数:
 | 12.0 | 3.98 | 0.25 | 0.95 | 2.0×10⁻⁴ |
 | 15.0 | 5.62 | 0.18 | 0.98 | 2.0×10⁻⁶ |
 
-**Taros CV方式 (v2.0: 段階的性能ロードマップ)**:
+**Taros CV方式 (段階的性能ロードマップ)**:
 - **Phase -1/0** (ディスクリート光学, Option B, 13dB, L=0.39dB): σ_eff≈**8.5dB** → p_err≈9.3×10⁻³ (閾値境界)
 - **Phase 1** (ディスクリート光学, Option B, 13dB, L=0.39dB): σ_eff≈**8.5dB** → p_err≈9.3×10⁻³ (break-even実証)
 - **Phase 2+ 現実的** (PIC統合, 13dB, L=0.27dB): σ_eff≈**9.3dB** → p_err≈4.9×10⁻³ (製品級FTQC)
@@ -344,7 +344,7 @@ QD photon subtractionによるスクイージング等価緩和:
 
 **GKP物理エラー率の導出**:
 
-*理論的注記 (v1.4)*:
+*理論的注記*:
 - 公式 `erfc(√π/(4σ))/2` はmacronode BS通過後のnoise variance σ²に対する式。
   教科書の単一モード理想GKP公式 `erfc(√π/(2√2·σ))/2` とは√2の差がある。
   これはmacronode BSネットワークでのnoise folding (×2 variance)を反映。
@@ -368,7 +368,7 @@ QD photon subtractionによるスクイージング等価緩和:
 ```
 σ² = (1/2) × 10^(-σ_eff_dB / 10)   [displacement noise variance, post-BS]
 
-v2.0: beamsplitterモデルによるσ_eff計算結果を使用
+beamsplitterモデルによるσ_eff計算結果を使用
 
 ■ Phase 1 (Option B, 13dB, L=0.39dB) V_non-loss込み再計算:
   σ_eff = 8.5dB → σ² = (1/2) × 10^(-0.85) = 0.071 → σ = 0.266
@@ -421,7 +421,7 @@ MWPM: p_err/p_th = 2.4×10⁻⁴ / 0.015 = 0.016
   d=7: 0.03 × 0.016⁴ = **2.0×10⁻⁹** → 高性能FTQC
 ```
 
-### 4.2 論理エラー率予測（v2.0: beamsplitterモデル全面改訂）
+### 4.2 論理エラー率予測（beamsplitterモデル）
 
 | Phase | 構成 | σ_eff | p_err | d=7 p_L (UF) | d=7 p_L (MWPM) |
 |-------|------|-------|-------|-------------|---------------|
@@ -430,7 +430,7 @@ MWPM: p_err/p_th = 2.4×10⁻⁴ / 0.015 = 0.016
 | **Phase 2+ PIC** | PIC, 13dB, L=0.15dB | **10.8dB** | 1.0×10⁻³ | 7.0×10⁻⁶ | **6.1×10⁻⁷** |
 | Phase 2+ 高性能 | PIC, 15dB, L=0.15dB | **11.9dB** | 2.4×10⁻⁴ | 2.8×10⁻⁸ | **2.0×10⁻⁹** |
 
-**v2.0の結論**:
+**結論**:
 - **ディスクリート光学（Phase 0-1）**: 13dB+損失削減(L=0.39dB)でσ_eff=8.5dB。MWPM d=7でbreak-even境界。
   p_err/p_th=0.62で指数的抑制の入口。製品級p_Lには不足。
 - **PIC統合現実的（Phase 2+, L=0.27dB）**: σ_eff≈9.3dB、p_L(d=7,MWPM)≈**3.3×10⁻⁴** (≲10⁻³)。L≤0.20dBで<10⁻⁴達成。
@@ -495,9 +495,9 @@ MWPM: p_err/p_th = 2.4×10⁻⁴ / 0.015 = 0.016
 
 ## 7. `design/13_performance.md` への更新事項
 
-暫定性能モデルからの更新履歴（v1.3最終値は§2-4を参照）:
+暫定性能モデルからの更新履歴（最終値は§2-4を参照）:
 
-| 項目 | v1.x (旧dB減算) | **v2.0 (BSモデル)** | 根拠 |
+| 項目 | 旧 (dB減算) | **BSモデル** | 根拠 |
 |------|-----------|---------------|------|
 | σ_eff (現行設計, L=1.42dB) | 11.5dB (誤り) | **5.0dB** (閾値未満) | BSモデル: η×V_sqz+(1−η) |
 | σ_eff (Phase 1, L=0.39dB, 13dB) | — | **8.5dB** (break-even境界) | 損失削減 |
@@ -508,4 +508,4 @@ MWPM: p_err/p_th = 2.4×10⁻⁴ / 0.015 = 0.016
 
 ---
 
-*本文書はCV方式固有のノイズバジェットを構築し、DV方式のerasureモデルとの対応関係を明確化したものである。v2.0で正しいbeamsplitterモデルに全面改訂。現行ディスクリート光学(L=1.42dB)ではσ_eff=5.0dBで閾値未満。損失削減(Option B, L=0.39dB, 13dB)でσ_eff=8.5dB(break-even境界)。PIC統合現実的(L=0.27dB)でσ_eff≈9.3dB, p_L(d=7,MWPM)≈3.3×10⁻⁴。PIC統合理論限界(L=0.15dB)でσ_eff=10.8dB, p_L≈6.1×10⁻⁷。erfc再計算+V_non-loss全項目合算*
+*本文書はCV方式固有のノイズバジェットを構築し、DV方式のerasureモデルとの対応関係を明確化したものである。正しいbeamsplitterモデルに全面改訂。現行ディスクリート光学(L=1.42dB)ではσ_eff=5.0dBで閾値未満。損失削減(Option B, L=0.39dB, 13dB)でσ_eff=8.5dB(break-even境界)。PIC統合現実的(L=0.27dB)でσ_eff≈9.3dB, p_L(d=7,MWPM)≈3.3×10⁻⁴。PIC統合理論限界(L=0.15dB)でσ_eff=10.8dB, p_L≈6.1×10⁻⁷。erfc再計算+V_non-loss全項目合算*

@@ -19,7 +19,7 @@
 | パラメータ | 記号 | 正規値 | 条件 | 根拠文書 |
 |-----------|------|--------|------|----------|
 | 生成スクイージング | σ_gen | 13dB | CW PPLN OPA (NTT) | 02_opa-source |
-| 全劣化 (GAWBS込み) | L_total | 1.42dB (離散光学) / 0.39dB (Phase 1 離散光学) / 0.15dB (Phase 2+ PIC) | ビームスプリッタモデル: η=10^(-L/10) | 06_noise-budget v2.0 |
+| 全劣化 (GAWBS込み) | L_total | 1.42dB (離散光学) / 0.39dB (Phase 1 離散光学) / 0.15dB (Phase 2+ PIC) | ビームスプリッタモデル: η=10^(-L/10) | 06_noise-budget |
 | 実効スクイージング | σ_eff | **5.0dB** (現離散光学) / 8.5dB (Phase 1, 13dB) / **≈9.3dB** (Phase 2+ PIC 現実的, L=0.27dB, non-loss込み) / 10.8dB (理論限界, L=0.15dB) | Phase 1を8.5dBに、Phase 2+ PIC現実的を9.3dBに修正。理論限界10.8dB。 | 06_noise-budget |
 | 物理エラー率 | p_phys | 現離散(5.0dB): 閾値未達 / Phase 1(13dB, 8.5dB): 7.5×10⁻³ / Phase 2+ PIC現実的(13dB, L=0.27dB): ~4.9×10⁻³ | p_phys 4.9×10⁻³ for L=0.27dB | 13_performance |
 | 閾値 (soft-info) | p_th_eff | 1.5% | soft-info MWPM (Noh-Chamberland 2022); UF時≈0.8-1.2%. 製品デコーダはMWPM (現実的L=0.27dBでUF~5×10⁻⁴>10⁻⁵) | 08_decoder |
@@ -33,7 +33,7 @@
 | デコーダ遅延 | t_dec | **510ns (MWPM製品) / 350ns (UF実験)** (400MHz) | MWPM: Blossom-V, 製品デコーダ; UF: Phase 0-1実験用 | 08_decoder |
 | GKP忠実度 | F_GKP | Phase依存 | σ_eff=5.0dB(現行)では低忠実度; Phase 2+ PIC σ_eff=10.8dBで高忠実度 | 04_gkp-protocol |
 | 閾値マージン | — | 現離散光学→閾値未達; Phase 1→+1.0dB(PS)/−1.5dB(全モード); Phase 2+ PIC→+3.3dB(PS)/+0.8dB(全モード) | vs 7.5dB / 10.0dB (Phase 1は8.5dB基準) | 06_noise-budget |
-| 反スクイージング | — | **~13dB** (単一パスOPA: sq≈anti-sq) | v1.8修正: 旧20dBは共振器OPO誤引用 | 02_opa-source |
+| 反スクイージング | — | **~13dB** (単一パスOPA: sq≈anti-sq) | 旧20dBは共振器OPO誤引用 | 02_opa-source |
 | PLL残留位相 | φ_res | <0.05° (BW≥500kHz) | 位相ノイズ**<0.002dB** (anti-sq 13dBで事実上無視可能) | 05_phase-lock |
 | 有限エネルギーGKP | Δ | <0.15 (必須要件) | Δ≥0.2でFAIL | 04_gkp-protocol |
 | ポンプ源 | — | Option B: 1550nm GS-DFB + SOA + PPLN SHG → 775nm | Rack: SOA 800mW→SHG 200mW→8分配; Portable: SOA 1.6W→SHG 400mW→1×2→200mW/OPA | 02_opa-source |
@@ -104,7 +104,7 @@ FPGA (Versal VE2302)
 | パラメータ | 値 | 根拠 |
 |-----------|-----|------|
 | PPLN OPA生成スクイージング | 13dB | NTT PPLN導波路 CW 12.1dB実証、SiN clad改良で13dB見込み |
-| 全経路劣化 (AWG+EO消光比込み) | 1.42dB (離散光学) / 0.39dB (Phase 1) / 0.15dB (Phase 2+ PIC) | CVノイズバジェット v2.0 |
+| 全経路劣化 (AWG+EO消光比込み) | 1.42dB (離散光学) / 0.39dB (Phase 1) / 0.15dB (Phase 2+ PIC) | CVノイズバジェット |
 | **実効スクイージング σ_eff** | **5.0dB (現離散光学) / 8.5dB (Phase 1, 13dB) / 10.8dB (Phase 2+ PIC理論限界)** | Phase 1を8.5dB、理論限界を10.8dBに統一。現実的(L=0.27dB)は9.3dB |
 | GKP+表面符号閾値 (postselection) | 7.5dB | Stafford-Menicucci-Walshe 2025 (P_round=10⁻³, strict mode時) |
 | GKP+表面符号閾値 (全モード重み付け) | ~10dB | Noh-Chamberland 2022 unconditional相当 |
@@ -113,7 +113,7 @@ FPGA (Versal VE2302)
 | **閾値マージン (Phase 1, postsel)** | **+1.0dB** | 8.5 - 7.5 (break-even境界、8.8→8.5dB修正) |
 | **閾値マージン (現離散光学, Option A+AWG)** | **閾値未達** | 5.0dB < 7.5dB。**注: Phase -1実験はOption B(AWGなし, L=0.39dB, σ_eff=8.5dB)で実施。閾値超過+1.0dB** |
 | 物理エラー率 p_err | Phase 1(13dB): 7.5×10⁻³ / Phase 2+ PIC現実的(13dB, L=0.27dB): ~4.9×10⁻³ / 理論限界(L=0.15dB): 9.9×10⁻⁴ | erfc再計算+V_non-loss修正 |
-| 表面符号閾値 p_th_eff | 1.5% | soft-info MWPM (Noh&Chamberland 2022); UF時≈0.8-1.2%. v2.1: 製品デコーダはMWPM |
+| 表面符号閾値 p_th_eff | 1.5% | soft-info MWPM (Noh&Chamberland 2022); UF時≈0.8-1.2%. 製品デコーダはMWPM |
 | **論理エラー率 p_L (d=7, Phase 2+ PIC)** | **製品仕様: ~3.3×10⁻⁴ (L=0.27dB, QE≥99%, MWPM)** / L≤0.22dBで≲10⁻⁴ / 理論限界: 6.1×10⁻⁷ | non-loss noise込み統一計算。L=0.27dBでp_L=3.3×10⁻⁴(≲10⁻³)。L≤0.22dBで≲10⁻⁴達成。理論限界(L=0.15dB, Δ=0) 6.1×10⁻⁷。UFは現実的条件で~5×10⁻⁴(超過)→MWPM必須 |
 
 ---
@@ -142,7 +142,7 @@ FPGA (Versal VE2302)
 | B（エラー抑制） | **70%** | **80%** | 55% |
 | C（コンポーネント実証） | **95%** | 95% | 80% |
 
-### レッドチーム評価による補正（v1.3）
+### レッドチーム評価による補正
 
 独立評価チーム（VC向けデューデリジェンス想定）による確率修正:
 - Level A CV pure: 50% → **25-35%** (リスク複合: OPA 90% × GKP 75% × PLL 80% × Decoder不確定)
@@ -212,7 +212,7 @@ Phase 3  (開始後約4年以降): WDM 20ch フルスペック (60kHz Tゲート
 |--------|-----------|------|
 | **必読** | `design/01-13` | CV方式全設計（OPA, TDM, GKP, 位相ロック, ノイズ, ラック, FF, Portable, 実験, デコーダ） |
 | 重要 | `design/01_system-architecture.md` | ハイブリッドCV+QD設計（QD追加版） |
-| 参考 | `design/13_performance.md` | CV性能モデル v2.4 |
+| 参考 | `design/13_performance.md` | CV性能モデル |
 | 参考 | `analysis/bom.md` | 4構成コスト比較 |
 | フォールバック | `../fallback/` | DV-FBQC方式（代替） |
 | レガシー | `../archive/` | DV-FBQC v4.0 R6基盤設計 |

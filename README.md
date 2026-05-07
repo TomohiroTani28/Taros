@@ -27,7 +27,7 @@
 | 物理エラー率 | Phase 2+ PIC現実的: p_err ≈ 4.9×10⁻³ (L=0.27dB) |
 | 論理エラー率 (d=7, Phase 2+ PIC) | **製品仕様: p_L ≈3.3×10⁻⁴ (L=0.27dB, QE≥99%, MWPM)**† / L≤0.17dBで<10⁻⁵ / 理論限界: 6.1×10⁻⁷ (全条件達成時) |
 | 性能段階 | Phase 1: break-even(p_L~10⁻³) / Phase 2+: 製品FTQC(p_L≲10⁻³, L=0.27dB; <10⁻⁵, L≤0.17dB) / 理論限界(p_L<10⁻⁶) |
-| 閾値マージン | 現離散光学→閾値未達; Phase 2+ PIC→+0.9dB (Noh-Chamberland基準) / +3.4dB (Stafford-Menicucci基準) |
+| 閾値マージン | 現離散光学→閾値未達; Phase 2+ PIC現実的(σ_eff≈9.3dB)→**+1.8dB** (postselection閾値7.5dB基準, Stafford-Menicucci 2025) |
 | フィードフォワード | 27ns設計ベースライン(400MHz) / 22ns楽観(500MHz)、3モード遅延 |
 | デコーダ | 350ns (UF, Phase 0-1実験用, 400MHz) / **510ns (MWPM, 製品用, 400MHz)**（パイプライン動作、FF非律速） |
 | 消費電力 | ~109W (Portable Pro) / ~1.5kW (Rack) |

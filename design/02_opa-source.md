@@ -2,7 +2,7 @@
 
 **Document ID**: PQC-CV-OPA-v2.0
 **Status**: Draft
-**変更**: bow-tie PPKTP OPO → PPLN導波路OPA に全面変更; v2.0: σ_eff公式修正 + Option B推奨; erfc再計算+V_non-loss=0.010 SNU補正
+**変更**: bow-tie PPKTP OPO → PPLN導波路OPA に全面変更; σ_eff公式修正 + Option B推奨; erfc再計算+V_non-loss=0.010 SNU補正
 
 ---
 
@@ -63,7 +63,7 @@ PPLN導波路OPAはAmplifier（単一パス増幅）であり:
 |-----------|--------|-------------------|
 | ポンプ波長 | 775nm | 775nm |
 | ポンプパワー | 200mW | 200mW (CW同等) / 3ns パルス時 peak 667mW (Option B推奨) |
-| パルス幅 | — | **3ns (Option B推奨, 100MHz, duty=30%, peak=667mW)** / CW (Option A, v2.0非推奨) 旧1ns→3ns。TIA帯域500MHzとの整合条件(≥3ns)に基づき修正 |
+| パルス幅 | — | **3ns (Option B推奨, 100MHz, duty=30%, peak=667mW)** / CW (Option A, 非推奨) 旧1ns→3ns。TIA帯域500MHzとの整合条件(≥3ns)に基づき修正 |
 | スクイージング (生成) | **13dB** 設計目標値（実証12.1dB、SiN clad改良で到達見込み） | **13dB** 設計目標値（実証12.1dB、SiN clad改良で到達見込み） |
 | 反スクイージング | **V_anti=20 SNU (13dB anti-squeezed)** 単一パスOPA: V_sqz×V_anti=1 | **V_anti=20 SNU** |
 | スクイージング帯域 | DC-500GHz | DC-500GHz |
@@ -73,7 +73,7 @@ PPLN導波路OPAはAmplifier（単一パス増幅）であり:
 
 TDM方式に最適な2つの駆動オプション:
 
-**Option A: CW OPA + PIC側パルスゲーティング（v2.0: 非推奨）**
+**Option A: CW OPA + PIC側パルスゲーティング（非推奨）**
 ```
 775nm CW pump ──→ [PPLN OPA] ──→ CW squeezed vacuum
                                         │
@@ -85,7 +85,7 @@ TDM方式に最適な2つの駆動オプション:
 ```
 - OPAは定常状態で動作 → 最大安定性
 - EO gateでパルス化 → タイミング精度 <1ps (LNOI EO)
-- 追加損失: EO gate 挿入損失 0.3dB → ビームスプリッタモデルで実効スクイージング劣化（v2.0: dB直接減算は物理的に不正確。V_eff = η×V_sqz + (1−η), σ_eff = −10×log₁₀(V_eff)。06_noise-budget v2.0 §2.3参照）
+- 追加損失: EO gate 挿入損失 0.3dB → ビームスプリッタモデルで実効スクイージング劣化（dB直接減算は物理的に不正確。V_eff = η×V_sqz + (1−η), σ_eff = −10×log₁₀(V_eff)。06_noise-budget §2.3参照）
 - **実効スクイージング: 約9.4dB**（η=0.933でV_eff=0.933×0.0501+(1−0.933)=0.1137, σ_eff=−10log₁₀(0.1137)=9.4dB）BSモデル修正。旧12.1dBはdB減算(13-0.9)による過大推定
 
 **Option B: パルスポンプOPA (1550nm GS-DFB + SOA + PPLN SHG)**
@@ -93,7 +93,7 @@ TDM方式に最適な2つの駆動オプション:
 1550nm GS-DFB (100MHz, ≥3ns) ──→ [SOA 800mW-1.6W peak] ──→ [PPLN SHG → 775nm 200-400mW peak] ──→ [PPLN OPA] ──→ pulsed squeezed vacuum
 ```
 - 1550nm gain-switched DFB (約30万円) + SOA (約45万円) + PPLN SHG (約45万円) = **~約150万円 total**
-- **Rack構成 (v2.2未解決)**: SOA 800mW→SHG 200mW→8分配=25mW/OPAは**不足**(13dBに200mW/OPA必要)。
+- **Rack構成 (未解決)**: SOA 800mW→SHG 200mW→8分配=25mW/OPAは**不足**(13dBに200mW/OPA必要)。
   **解決案**: (a) SOA→TA 6.4W@1550nm→SHG 1.6W@775nm→8分配=200mW/OPA、
   (b) 775nm TA 2.5W直接→1×8→250mW/OPA(但しOption Aスタイル、EO gate問題再発)、
   (c) 個別SHG×8(コスト増約360万円)。Phase -1 T3で最適構成を決定
@@ -104,7 +104,7 @@ TDM方式に最適な2つの駆動オプション:
 - SHG変換効率~25% (800mW入力時)。back-conversion領域近傍のため、SOA出力安定性±3%以内が必要（Phase -1 T3で検証）
 - **実効スクイージング: 13dB**
 
-**選択: **Option B（パルスポンプOPA）を推奨**（v2.0: EO gate 0.3dB損失が閾値マージンに致命的）。** Option AはEO gate挿入損失0.3dBが実効スクイージングを~0.9dB劣化させ、閾値マージンを大幅に削減する。Option BはEO gateを排除し、この損失を完全に回避する。
+**選択: **Option B（パルスポンプOPA）を推奨**（EO gate 0.3dB損失が閾値マージンに致命的）。** Option AはEO gate挿入損失0.3dBが実効スクイージングを~0.9dB劣化させ、閾値マージンを大幅に削減する。Option BはEO gateを排除し、この損失を完全に回避する。
 
 > **フォームファクタ別ポンプ構成**
 >
@@ -143,7 +143,7 @@ TDM方式に最適な2つの駆動オプション:
 └───────────────────────────────────────────────────────────────────────────────┘
 ```
 
-**v2.1注記**: 上記はRack 8-OPA構成(Phase 1+)の参考図。Portable(2-OPA)ではOption B (GS-DFB+SOA+SHG, §2.3) を使用。Rack構成でもEO gate損失回避のためOption Bへの移行を推奨。
+**注記**: 上記はRack 8-OPA構成(Phase 1+)の参考図。Portable(2-OPA)ではOption B (GS-DFB+SOA+SHG, §2.3) を使用。Rack構成でもEO gate損失回避のためOption Bへの移行を推奨。
 
 ### 3.2 コスト
 
@@ -170,17 +170,17 @@ TDM方式に最適な2つの駆動オプション:
 | PPLN OPA内部損失 | 0.2dB | |
 | OPA→PMF結合 | 0.3dB | |
 | PMF伝搬 (1m) | 0.01dB | |
-| EO gate | **0dB（v2.0: Option B採用によりEO gate排除）** | 旧: 0.3dB (Option A) |
-| BS ×3 | 0.3dB | v1.1: ファイバカプラ |
+| EO gate | **0dB（Option B採用によりEO gate排除）** | 旧: 0.3dB (Option A) |
+| BS ×3 | 0.3dB | ファイバカプラ |
 | 短遅延PMF 2m | 0.004dB | |
-| 長遅延PMF 200m | 0.07dB | v1.5: PMF損失実測値反映 (0.35dB/km) |
+| 長遅延PMF 200m | 0.07dB | PMF損失実測値反映 (0.35dB/km) |
 | ホモダイン検出効率 (>99%) | 0.04dB | |
 | 非損失ノイズ (電子/位相/ADC/偏波/WDM/EO消光) | 0.10dB等価 (V_non-loss=0.010 SNU) | 個別合計0.07dB+安全マージン0.03dB → V_non-loss=0.010 SNU。詳細は06_noise-budget §2.2 |
-| **合計 (Option B, AWG除く)** | **0.92dB (光学) + 0.10dB (非損失) = 1.02dB** | v2.0: EO gate排除で旧1.32dBから0.3dB改善 |
+| **合計 (Option B, AWG除く)** | **0.92dB (光学) + 0.10dB (非損失) = 1.02dB** | EO gate排除で旧1.32dBから0.3dB改善 |
 
-> **v2.0 σ_eff公式修正**: 旧版の「スクイージング劣化」列は挿入損失(dB)をそのままスクイージング劣化(dB)として等値していたが、これは物理的に不正確である。正しい実効スクイージングはビームスプリッタモデルで計算する: **V_eff = η × V_sqz + (1−η)**、**σ_eff = −10 × log₁₀(V_eff)**。ここでη = 10^(−L/10)は全透過率、V_sqz = 10^(−σ_gen/10)は生成スクイーズド分散。dB減算 (σ_gen − L) は損失が大きい場合に実効スクイージングを大幅に過大評価する。詳細は06_noise-budget v2.0 §2.3参照。
+> **σ_eff公式修正**: 旧版の「スクイージング劣化」列は挿入損失(dB)をそのままスクイージング劣化(dB)として等値していたが、これは物理的に不正確である。正しい実効スクイージングはビームスプリッタモデルで計算する: **V_eff = η × V_sqz + (1−η)**、**σ_eff = −10 × log₁₀(V_eff)**。ここでη = 10^(−L/10)は全透過率、V_sqz = 10^(−σ_gen/10)は生成スクイーズド分散。dB減算 (σ_gen − L) は損失が大きい場合に実効スクイージングを大幅に過大評価する。詳細は06_noise-budget §2.3参照。
 
-**フェーズ別実効スクイージング (v2.0ビームスプリッタモデル)**:
+**フェーズ別実効スクイージング (ビームスプリッタモデル)**:
 
 | フェーズ | σ_gen | 全損失L | η | V_eff | **σ_eff** | 備考 |
 |---------|-------|---------|---|-------|-----------|------|
@@ -189,9 +189,9 @@ TDM方式に最適な2つの駆動オプション:
 | Phase 2+ (理論限界) | 13dB | 0.15dB | 0.966 | 0.083 | 10.8dB | 全条件達成時（QE99%, 結合0.02dB/facet） |
 | 参考: 旧計算 (誤) | 13dB | 1.53dB | — | — | ~~11.5dB~~ | dB減算は不正確 |
 
-**v1.2変更履歴**: 位相ノイズ×反スクイージング混入の正確な計算反映(PLL BW≥500kHz前提)。
-**v2.2注記: 反スクイージング表記統一**: 単一パスOPA（共振器なし）ではV_sqz×V_anti=1（最小不確定性状態）。V_sqz=0.05 SNU(13dB squeezed)→V_anti=20 SNU(13dB anti-squeezed)。旧σ_anti²=20表記はV_anti=20 SNUと同値だが混乱を招くため廃止。旧値20dB(V_anti=100)は共振器型OPOからの誤引用。位相ノイズ項は事実上無視可能(<0.002dB)。
-詳細ノイズバジェットは `06_noise-budget.md` v1.8を参照。
+**変更履歴**: 位相ノイズ×反スクイージング混入の正確な計算反映(PLL BW≥500kHz前提)。
+**反スクイージング表記統一**: 単一パスOPA（共振器なし）ではV_sqz×V_anti=1（最小不確定性状態）。V_sqz=0.05 SNU(13dB squeezed)→V_anti=20 SNU(13dB anti-squeezed)。旧σ_anti²=20表記はV_anti=20 SNUと同値だが混乱を招くため廃止。旧値20dB(V_anti=100)は共振器型OPOからの誤引用。位相ノイズ項は事実上無視可能(<0.002dB)。
+詳細ノイズバジェットは `06_noise-budget.md` を参照。
 
 ### 4.2 GKP+表面符号閾値との比較
 
@@ -207,7 +207,7 @@ TDM方式に最適な2つの駆動オプション:
 
 ## 5. Phase別移行計画
 
-| Phase | OPA構成 | σ_gen / σ_eff (v2.0 BS model) | モジュールサイズ |
+| Phase | OPA構成 | σ_gen / σ_eff (BS model) | モジュールサイズ |
 |-------|---------|-------------|----------------|
 | Phase -1 (2026) | OptQC G-QuAT評価 + PPLN OPA単体評価 | 12-15dB (単体生成値) | 評価機 |
 | Phase 0 (開始後約1年-開始後約2年) | 1U OPAモジュール ×1 (8本) | σ_gen=13dB / σ_eff~8-9dB (離散、高損失) | 1U |
