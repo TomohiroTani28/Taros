@@ -201,7 +201,7 @@ TDM方式に最適な2つの駆動オプション:
 | Stafford-Menicucci (2025) postselection | 7.5dB | **+1.0dB** | **+3.3dB** | 両Phase達成 |
 | QD支援時 (2個) | 7dB | **+1.5dB** | **+3.8dB** | 両Phase達成 |
 
-ビームスプリッタモデル+V_non-loss補正によるσ_eff修正。Phase 1(離散光学系)ではNoh & Chamberland閾値に対するマージンが消失。Phase 2+(PIC統合)で+0.8dBマージン回復。Phase 2+ PIC構成(13dB, L=0.15dB)でσ_eff=10.8dB、p_err=1.1×10⁻³、p_L(d=7, MWPM) ≈ 6.1×10⁻⁷。
+ビームスプリッタモデル+V_non-loss補正によるσ_eff修正。Phase 1(離散光学系)ではNoh & Chamberland閾値に対するマージンが消失。Phase 2+(PIC統合)で+0.8dBマージン回復。Phase 2+ PIC構成(13dB, L=0.15dB)でσ_eff=10.8dB、p_err≈1.0×10⁻³、p_L(d=7, MWPM) ≈ 6.1×10⁻⁷。
 
 ---
 
