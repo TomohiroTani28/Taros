@@ -427,7 +427,7 @@ add_header(s, "M A R K E T   &   C O M P E T I T I O N", "9")
 add_text(s, 0.6, 1.1, 12, 0.6,
          "「量子コンピュータの Raspberry Pi」— ブルーオーシャン", size=26, bold=True, color=TEXT_DARK)
 
-# Competition table (left side)
+# Competition table — full width across top
 comp_headers = ["製品", "方式", "サイズ", "消費電力", "冷却", "価格"]
 comp_data = [
     ["IBM QS Two", "超伝導", "部屋", "200kW+", "15mK", "22.5億円+"],
@@ -436,37 +436,34 @@ comp_data = [
     ["Taros Pro", "CV 光子", "7.5kg", "109W", "完全室温", "1,800万円"],
 ]
 for j, h in enumerate(comp_headers):
-    x = 0.6 + j * 1.35
-    add_rect(s, x, 1.85, 1.3, 0.35, BG_DARK)
-    add_text(s, x + 0.05, 1.87, 1.2, 0.3, h, size=8, bold=True, color=TEXT_WHITE)
+    x = 0.6 + j * 2.0
+    add_rect(s, x, 1.85, 1.95, 0.35, BG_DARK)
+    add_text(s, x + 0.08, 1.87, 1.8, 0.3, h, size=9, bold=True, color=TEXT_WHITE)
 
 for ri, row in enumerate(comp_data):
     y = 2.25 + ri * 0.38
     bg = ACCENT if ri == 3 else (CARD_BG if ri % 2 == 0 else BG_WHITE)
     txt = TEXT_WHITE if ri == 3 else TEXT_DARK
     for j, val in enumerate(row):
-        x = 0.6 + j * 1.35
-        add_rect(s, x, y, 1.3, 0.36, bg)
-        add_text(s, x + 0.05, y + 0.02, 1.2, 0.3, val, size=8, bold=(ri == 3), color=txt)
+        x = 0.6 + j * 2.0
+        add_rect(s, x, y, 1.95, 0.36, bg)
+        add_text(s, x + 0.08, y + 0.02, 1.8, 0.3, val, size=9, bold=(ri == 3), color=txt)
 
-# TAM/SAM/SOM — concentric circles (right side)
-add_text(s, 9.0, 1.85, 4, 0.3, "市場規模", size=13, bold=True, color=TEXT_DARK)
-cx, cy = 10.4, 4.3  # center
+# TAM/SAM/SOM — concentric circles centered below table
+add_text(s, 0.6, 4.1, 5, 0.3, "市場規模 — TAM / SAM / SOM", size=13, bold=True, color=TEXT_DARK)
+cx, cy = 6.4, 5.7  # center of circles
 # TAM circle (outermost)
-add_oval(s, cx - 2.2, cy - 2.2, 4.4, 4.4, RGBColor(0xE0, 0xF7, 0xFA), ACCENT)
-add_text(s, cx - 2.1, cy - 2.0, 1.8, 0.3, "T A M", size=9, bold=True, color=ACCENT)
-add_text(s, cx - 2.1, cy - 1.7, 2.2, 0.3, "1,250機関", size=10, color=TEXT_DARK)
-add_text(s, cx - 2.1, cy - 1.4, 2.2, 0.3, "225億円", size=12, bold=True, color=TEXT_DARK)
+add_oval(s, cx - 2.0, cy - 1.5, 4.0, 3.0, RGBColor(0xE0, 0xF7, 0xFA), ACCENT)
+add_text(s, cx - 1.9, cy - 1.3, 1.5, 0.25, "T A M", size=9, bold=True, color=ACCENT)
+add_text(s, cx - 1.9, cy - 1.05, 2.0, 0.25, "1,250機関 · 225億円", size=10, bold=True, color=TEXT_DARK)
 # SAM circle (middle)
-add_oval(s, cx - 1.5, cy - 1.5, 3.0, 3.0, RGBColor(0xB2, 0xEB, 0xF2), ACCENT)
-add_text(s, cx + 0.3, cy - 1.3, 1.8, 0.3, "S A M", size=9, bold=True, color=ACCENT)
-add_text(s, cx + 0.3, cy - 1.0, 1.5, 0.3, "650機関", size=10, color=TEXT_DARK)
-add_text(s, cx + 0.3, cy - 0.7, 1.5, 0.3, "117億円", size=12, bold=True, color=TEXT_DARK)
+add_oval(s, cx - 1.3, cy - 1.0, 2.6, 2.0, RGBColor(0xB2, 0xEB, 0xF2), ACCENT)
+add_text(s, cx + 0.2, cy - 0.85, 1.5, 0.25, "S A M", size=9, bold=True, color=ACCENT)
+add_text(s, cx + 0.2, cy - 0.6, 1.5, 0.25, "650機関 · 117億円", size=10, bold=True, color=TEXT_DARK)
 # SOM circle (innermost)
-add_oval(s, cx - 0.7, cy - 0.7, 1.4, 1.4, ACCENT)
-add_text(s, cx - 0.6, cy - 0.35, 1.2, 0.25, "SOM Y3", size=8, bold=True, color=TEXT_WHITE, align=PP_ALIGN.CENTER)
-add_text(s, cx - 0.6, cy - 0.1, 1.2, 0.25, "100機関", size=9, color=TEXT_WHITE, align=PP_ALIGN.CENTER)
-add_text(s, cx - 0.6, cy + 0.15, 1.2, 0.3, "18億円", size=11, bold=True, color=TEXT_WHITE, align=PP_ALIGN.CENTER)
+add_oval(s, cx - 0.75, cy - 0.55, 1.5, 1.1, ACCENT)
+add_text(s, cx - 0.7, cy - 0.4, 1.4, 0.25, "SOM Y3", size=8, bold=True, color=TEXT_WHITE, align=PP_ALIGN.CENTER)
+add_text(s, cx - 0.7, cy - 0.15, 1.4, 0.25, "100機関 · 18億円", size=9, bold=True, color=TEXT_WHITE, align=PP_ALIGN.CENTER)
 
 # ════════════════════════════════════════════════════
 # SLIDE 10: VALIDATION — ★ NEW: Checklist with progress bars
@@ -621,8 +618,8 @@ for i, (cost, dur, title, desc) in enumerate(gates):
 
 # Competitor bar chart (bottom)
 add_text(s, 0.6, 4.3, 12, 0.35, "競合の累計調達額 — 桁違いの資本効率", size=13, bold=True, color=TEXT_DARK)
-comps = [("PsiQuantum", "約1,500億円超", 9.0), ("IonQ", "約1,350億円", 8.1),
-         ("Xanadu", "約560億円", 3.4), ("Taros (計画)", "約8.7億円", 0.4)]
+comps = [("PsiQuantum", "約1,050億円超", 9.0), ("IonQ", "約900億円超", 7.7),
+         ("Xanadu", "約375億円超", 3.2), ("Taros (計画)", "約8.7億円", 0.4)]
 for i, (name, amount, bar_w) in enumerate(comps):
     y = 4.8 + i * 0.55
     is_taros = i == 3
