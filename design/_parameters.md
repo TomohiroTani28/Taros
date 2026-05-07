@@ -98,11 +98,11 @@
 
 | Mode | 名称 | 説明 | OPA動作 | 追加HW | 利用開始 | 根拠文書 |
 |------|------|------|---------|--------|---------|----------|
-| 1 | **FTQC** | GKP+表面符号→qLDPC 誤り訂正型量子計算 | 閾値以上 | なし | Phase 0+ | design/08_decoder, design/13_performance §8.1-8.2 |
+| 1 | **FTQC** | GKP+表面符号→qLDPC 誤り訂正型量子計算 | 閾値以上 | なし | Phase 0+ | design/08_decoder, design/13_performance §1-4 |
 | 2 | **CIM** | コヒーレントイジングマシン（組合せ最適化） | **閾値以下** | なし(SW) | Phase -1† | design/13_performance §8.4 |
 | 3 | **QRC** | 量子リザーバコンピューティング（時系列予測） | 通常 | なし(SW) | Phase -1† | design/13_performance §8.5 |
-| 4 | **QRNG** | 量子乱数生成（真空ゆらぎホモダイン） | OFF可 | なし(SW) | Phase -1† | design/13_performance §8.6 |
-| 5 | **Sensing** | 量子センシング（SQL以下精密測定） | 通常 | なし(SW) | Phase -1† | design/13_performance §8.6 |
+| 4 | **QRNG** | 量子乱数生成（真空ゆらぎホモダイン） | OFF可 | なし(SW) | Phase -1† | design/13_performance §8.11 (Mode 4) |
+| 5 | **Sensing** | 量子センシング（SQL以下精密測定） | 通常 | なし(SW) | Phase -1† | design/13_performance §8.11 (Mode 5) |
 | 6 | **Imaging** | 量子イメージング（サブショットノイズ） | 通常 | なし(SW) | Phase -1† | design/13_performance §8.7 |
 | 7 | **Tensor** | フォトニックテンソル処理（AI推論加速） | コヒーレント光 | なし(SW) | Phase -1† | design/13_performance §8.9 |
 

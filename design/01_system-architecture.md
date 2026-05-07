@@ -410,6 +410,9 @@ Phase 2+以降の研究候補。詳細は `09_rack-design.md` §7.2 参照。
 
 ### 7.3 Go/No-Go判定
 
+> **⚠️ 旧計画**: 以下はCV+QDハイブリッド方式の旧Go/No-Go体系。
+> 現行CV pure主軸のGo/No-Go判定は `experiments/05_verification-plan.md` および `analysis/phase-minus1-execution.md` を参照。
+
 | 時期 | 判定 | Go条件 | No-Go時の対応 |
 |------|------|--------|-------------|
 | **開始後約2年** | ハイブリッド原理実証 | QD支援GKP忠実度 >0.90 | DV-FBQC方式（Taros原設計）に回帰 |
@@ -431,6 +434,8 @@ Phase 2+以降の研究候補。詳細は `09_rack-design.md` §7.2 参照。
 ---
 
 ## 9. 即時アクション
+
+> **⚠️ 旧計画**: 以下はCV+QDハイブリッド方式の旧アクション計画。現行Phase -1計画は `analysis/phase-minus1-execution.md` を参照。
 
 | 優先度 | アクション | 投資 | 期間 | 意思決定への影響 |
 |--------|----------|------|------|----------------|

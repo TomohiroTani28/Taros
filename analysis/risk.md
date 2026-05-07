@@ -84,7 +84,7 @@ WDMとsoft-info MWPMは独立に達成可能で、いずれかが失敗しても
 | FPGA 500MHz timing closure | 15% | FF-1レイテンシ超過 | 6bit LUT化で乗算回避; Vivado合成実験(Phase -1 T11) |
 | GKP光学実験スケジュール遅延 | 40% | Phase -1期間超過 | NTT OPA早期発注; 実験2+予備2ヶ月を確保 |
 | PPLN光屈折損傷(photorefractive) @50℃ | 20% | 経時劣化(年約2%暗化で13→12.7dB) | MgOドープ+Phase -1で500hバーンイン試験実施; 劣化>1%/1000h時は動作温度40℃に変更(0.5dB損失増) |
-| ホモダインPD QE<97% (市販品95%限界) | 30% | σ_eff劣化約0.18dB (BSモデル: Phase 2+ PIC現実的 9.3→約9.1dB) | Phase 0aでカスタムPD開発; 未達時d=9 or QD追加。**QE=95%ではp_L≈7x10^-5(MWPM d=7)でLevel A(10^-5)未達** (旧値8x10^-7は誤り。QE≥98%必須を再確認) |
+| ホモダインPD QE<97% (市販品95%限界) | 30% | σ_eff劣化約0.18dB (BSモデル: Phase 2+ PIC現実的 9.3→約9.1dB) | Phase 0aでカスタムPD開発; 未達時d=9 or QD追加。**QE=95%ではσ_eff≈9.2dB、p_L≈1.7×10⁻⁴(MWPM d=7, L=0.27dB基準, 06_noise-budget §2.3準拠)でLevel A(10⁻⁵)未達** (QE≥98%必須を再確認) |
 | WDM AWGチャネル間クロストーク>-25dB | 15% | チャネル間ノイズ混入 | NTT-AT低損失品(-30dB)指定; Phase -1で実測。未達時チャネル数5に制限 |
 
 ### 追加リスク項目

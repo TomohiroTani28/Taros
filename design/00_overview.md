@@ -32,7 +32,7 @@
 | フィードフォワード | t_FF | **27ns** (設計ベースライン400MHz) / 22ns (楽観500MHz) | TIA 3 + ADC 3 + FPGA 12.5 + DAC 5 + EOM 3 = 26.5≈27ns | 07_feedforward |
 | デコーダ遅延 | t_dec | **510ns (MWPM製品) / 350ns (UF実験)** (400MHz) | MWPM: Blossom-V, 製品デコーダ; UF: Phase 0-1実験用 | 08_decoder |
 | GKP忠実度 | F_GKP | Phase依存 | σ_eff=5.0dB(現行)では低忠実度; Phase 2+ PIC σ_eff=10.8dBで高忠実度 | 04_gkp-protocol |
-| 閾値マージン | — | 現離散光学→閾値未達; Phase 1→+1.0dB(PS)/−1.5dB(全モード); Phase 2+ PIC→+3.3dB(PS)/+0.8dB(全モード) | vs 7.5dB / 10.0dB (Phase 1は8.5dB基準) | 06_noise-budget |
+| 閾値マージン | — | 現離散光学→閾値未達; Phase 1→+1.0dB(PS); **Phase 2+ PIC現実的(L=0.27dB)→+1.8dB(PS)**; Phase 2+ PIC理論限界→+3.3dB(PS)/+0.8dB(全モード) | vs 7.5dB(PS) / 10.0dB(全モード) | 06_noise-budget |
 | 反スクイージング | — | **~13dB** (単一パスOPA: sq≈anti-sq) | 旧20dBは共振器OPO誤引用 | 02_opa-source |
 | PLL残留位相 | φ_res | <0.05° (BW≥500kHz) | 位相ノイズ**<0.002dB** (anti-sq 13dBで事実上無視可能) | 05_phase-lock |
 | 有限エネルギーGKP | Δ | <0.15 (必須要件) | Δ≥0.2でFAIL | 04_gkp-protocol |
@@ -105,7 +105,7 @@ FPGA (Versal VE2302)
 | パラメータ | 値 | 根拠 |
 |-----------|-----|------|
 | PPLN OPA生成スクイージング | 13dB | NTT PPLN導波路 CW 12.1dB実証、SiN clad改良で13dB見込み |
-| 全経路劣化 (AWG+EO消光比込み) | 1.42dB (離散光学) / 0.39dB (Phase 1) / 0.15dB (Phase 2+ PIC) | CVノイズバジェット |
+| 全経路劣化 (AWG+EO消光比込み) | 1.42dB (離散光学) / 0.39dB (Phase 1) / **0.27dB (Phase 2+ PIC現実的)** / 0.15dB (Phase 2+ PIC理論限界) | CVノイズバジェット |
 | **実効スクイージング σ_eff** | **5.0dB (現離散光学) / 8.5dB (Phase 1, 13dB) / 10.8dB (Phase 2+ PIC理論限界)** | Phase 1を8.5dB、理論限界を10.8dBに統一。現実的(L=0.27dB)は9.3dB |
 | GKP+表面符号閾値 (postselection) | 7.5dB | Stafford-Menicucci-Walshe 2025 (P_round=10⁻³, strict mode時) |
 | GKP+表面符号閾値 (全モード重み付け) | ~10dB | Noh-Chamberland 2022 unconditional相当 |
@@ -151,7 +151,7 @@ FPGA (Versal VE2302)
 - Level B: 70% → **60-70%** (GKP F>0.80は高確率で達成)
 - Level C: 95% → **90-95%** (部品調達リスク: NTT単一ソース)
 
-**約560万円 Phase -1実験（G-EXP1）がLevel A確率を50%超に引き上げる最重要マイルストーン。**
+**約560万円（装置BOM）Phase -1実験（G-EXP1、タスク費約4,760万円の一部。人件費込み完全コスト約2,900万円）がLevel A確率を50%超に引き上げる最重要マイルストーン。**
 
 ### 主要リスク（レッドチーム指摘 + 物理監査、未解消）
 
@@ -165,7 +165,7 @@ FPGA (Versal VE2302)
 6. **LO電力確保**: EO comb + ミニEDFA構成。EDFA ASEノイズは理論上無視可能だが要実験検証
 7. **AWG挿入損失**: 0.2dB目標は市販品限界。AWG損失増はビームスプリッタモデルでσ_effをさらに低下させる
 8. **有限エネルギーGKP**: 製品要件Δ<0.15 (postselection δ=0.19√πでΔ≈0.12-0.15)。
-   Δ=0.15時p_L≈6.8×10⁻⁶ (03_numerical-verification §2.5) → d=9で回復可能。
+   Δ=0.15時p_L≈6.8×10⁻⁶ (experiments/03_numerical-verification §2.5) → d=9で回復可能。
    δ=0.15√π厳格窓でΔ<0.10確保も可能(P_mode 84%に低下)
 9. **p_th_eff=1.5%の厳密性**: Noh-Chamberland 2022からの近似読み取り値。独立Stim検証が必要
 10. **Native Tゲート品質**: Phase 2+ PIC σ_eff=10.8dBでのT gate infidelity未定量。蒸留不要の条件要検証
@@ -176,7 +176,8 @@ FPGA (Versal VE2302)
 ## ロードマップ
 
 ```
-Phase -1 (開始後0-12ヶ月): CV固有: 約560万円 GKP実験 + 約4,200万円基盤 = 約4,760万円 (タスク費のみ。人件費込み総額: 約4.6億円)
+Phase -1 (開始後0-12ヶ月): タスク費合計約1.7億円 (新規約9,190万円+既存約8,250万円)。人件費込み総額: 約4.6億円
+    │  うちCV固有: GKP実験約560万円 + 基盤約4,200万円 = 約4,760万円
     │
     ├── G-EXP1 (開始後約2ヶ月): CW GKP F>0.80, p_acc>85%, Δ<0.15
     │       [Option B, AWGなし, σ_eff=8.5dB]
