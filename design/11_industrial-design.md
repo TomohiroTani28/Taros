@@ -200,10 +200,10 @@ Z=0   ◯              ◯            ◯        ◯ ゴム脚
       Zone A/B上部に水平配置し、電子系の熱を光学系から遮断。
       Zone CはZ=5-139の全高を使用 (FPGA+DC-DC縦スタック)。
 
-熱流: Zone C (FPGA 25W + ADC 10W + DC-DC 9W = 44W) → Cu HP → 天板フィン右側1/3領域 → 強制対流
-      Zone A (OPA TEC 8W + Laser 12W) → 底面ファン吸気で冷却
-      Zone B (発熱<1W) → 自然放熱
-      ※Zone C 44W + Zone A 23W + Zone B 1W + EO comb RF 17W + SOA 8W + その他 = ~109W (Pro) SOA +3W
+熱流: Zone C (FPGA 25W + ADC 10W + DAC 5W + DC-DC 9W = 49W) → Cu HP → 天板フィン右側1/3領域 → 強制対流
+      Zone A (OPA TEC 8W + SHG TEC 4W + LD 2W + EOM 5W + PZT 3W + PD 2W = 24W) → 底面ファン吸気で冷却
+      Zone B (遅延線温調 <1W) → 自然放熱
+      ※Zone C 49W + Zone A 24W + Zone B 1W + EO comb RF 17W(按分11W) + SOA 8W = 93W + WDM 12W + マージン ≈ 109W (Pro)
 
 冷却方式 (v1.3更新):
   底面: 80mm低速ファン×1 (Noctua NF-A8, 1400rpm, <25dBA)

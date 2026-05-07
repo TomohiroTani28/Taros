@@ -268,7 +268,7 @@ Master LD (1550nm, 100mW) ──► [PM: 25GHz RF] ──► [IM: 25GHz RF]
 - **Portable (全モデル)**: 1550nm GS-DFB+SOA(1.6W peak)+PPLN SHG (Option B), SHG出力400mW peak (775nm), 消費~15W (DFB 2W + SOA 8W + SHG TEC 5W), コスト~約150万円
   - OPA×2構成: SOA 1.6W peak → SHG 400mW peak → 1×2 splitter(3dB) = **200mW peak/OPA**。各OPAに閾値ポンプパワー確保。
   - ※旧仕様(SOA 800mW→SHG 200mW→splitter→100mW/OPA)ではσ_gen~9-10dBに低下し閾値未達。
-- **Rack (8 OPA構成)**: 同方式で高出力SOA使用、またはDFB+TA 2.5Wで対応。
+- **Rack (8 OPA構成)**: 同方式で高出力TA使用 (Option B: GS-DFB+TA 6.4W peak+SHG → 775nm 1.6W peak → 1×8 → 200mW/OPA)。
 - コスト構成: GS-DFB 約30万円 + SOA 約45万円 + PPLN SHG 約45万円 + 制御・筐体 約30万円 = **~約150万円**
 
 電源: **外付けACアダプタ USB-PD EPR 140W (28V/5A) 必須**

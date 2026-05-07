@@ -105,15 +105,15 @@ Z軸: 高さ方向 (→上, 0-160mm フィン込み, 筐体本体0-142mm)
 | 銅ヒートパイプ ×3 | 210-290 | — | 55-139 | φ6×84L | クランプ固定 |
 
 **熱設計リスク注記**:
-FPGA VE2302 TDP=25W + DC-DC損失9W + ADC 10W = Zone C合計44W（+DAC 5W=49W）。
-Cu HP ×3 (各50W容量) → HP合計150W容量で44W負荷 → 十分。
-ただしHP熱抵抗: R_HP≈0.5K/W (sintered wick, φ6mm, 84mm) × 44W/3本 = 7.3K。
-FPGA T_j = T_ambient(25℃) + ΔT_enclosure(15K) + ΔT_HP(7.3K) + ΔT_TIM(3K) = **50.3℃**。
-VE2302 T_j,max = 100℃ (industrial grade)。マージン= 100 - 50.3 = **49.7℃** → 十分。
-(注: 民生grade=85℃でもマージン34.7℃で十分。初期解析でT_j=87℃と見積もる場合は
-3本HP並列の分散効果を見落としている。1本集中時: 44W×0.5=22K → T_j=65K。)
+FPGA VE2302 TDP=25W + DC-DC損失9W + ADC 10W + DAC 5W = Zone C合計**49W**。
+Cu HP ×3 (各50W容量) → HP合計150W容量で49W負荷 → 十分。
+ただしHP熱抵抗: R_HP≈0.5K/W (sintered wick, φ6mm, 84mm) × 49W/3本 = 8.2K。
+FPGA T_j = T_ambient(25℃) + ΔT_enclosure(15K) + ΔT_HP(8.2K) + ΔT_TIM(3K) = **51.2℃**。
+VE2302 T_j,max = 100℃ (industrial grade)。マージン= 100 - 51.2 = **48.8℃** → 十分。
+(注: 民生grade=85℃でもマージン33.8℃で十分。初期解析でT_j=87℃と見積もる場合は
+3本HP並列の分散効果を見落としている。1本集中時: 49W×0.5=24.5K → T_j=67.5K。)
 **Phase 0a検証**: 実機でFPGA junction温度をXSDBで読み取り、T_j<70℃を確認。
-ambient 35℃環境でもT_j<60℃(35+15+7.3+3=60.3℃)と予測。
+ambient 35℃環境でもT_j<61℃(35+15+8.2+3=61.2℃)と予測。
 
 ### 1.5 断面図 (Y=125mm, 中央断面)
 
