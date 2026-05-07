@@ -227,8 +227,8 @@ add_text(s, 0.6, 1.1, 12, 0.6,
          "光だから、室温で動く。光だから、デスクに置ける。",
          size=30, bold=True, color=TEXT_DARK)
 
-sol = [("重量", "7.5kg", "Pro モデル"), ("消費電力", "109W", "USB-PD EPR"),
-       ("冷凍機", "0K", "完全室温"), ("価格", "1,800万円", "Pro モデル")]
+sol = [("重量", "7.5kg", "Pro モデル"), ("消費電力", "109W", "USB-PD 140W給電"),
+       ("冷凍機", "不要", "完全室温"), ("価格", "1,800万円", "Pro モデル")]
 for i, (label, val, desc) in enumerate(sol):
     x = 0.6 + i * 3.05
     add_rect(s, x, 1.9, 2.85, 1.6, CARD_BG)
@@ -254,7 +254,7 @@ add_text(s, 6.8, 3.9, 5.6, 0.3, "W H Y   N O W  —  今 、 成 立 す る 理
 for j, (t, d) in enumerate([
     ("PPLN導波路の量産化", "NTT・住友・nLight 商用ライン稼働"),
     ("Soft-info MWPM 閾値確立", "Noh-Chamberland 2022 で1.5%確定"),
-    ("Versal FPGA 27ns FF", "光-電気-光ループが ns級で閉じる時代"),
+    ("Versal FPGA 27ns フィードフォワード", "光-電気-光ループが ns級で閉じる時代"),
     ("CVBQP ⊇ BQP 証明", "ITCS 2025: CV量子計算≧標準QC"),
 ]):
     y_off = 4.35 + j * 0.6
@@ -366,7 +366,7 @@ add_text(s, 0.6, 1.1, 12, 0.6, "CV方式の3つの決定的優位性", size=30, 
 
 advs = [
     ("1", "14bit soft-info",
-     "全競合方式は binary シンドローム。CV方式は14bitアナログ情報をデコーダに供給。MWPM閾値 1.5% は soft-info で達成。同一物理エラー率で論理エラー率を桁違いに低減。"),
+     "全競合方式はbinaryシンドローム。CV方式は14bitアナログ情報をデコーダに供給。\n閾値1.5%はsoft-infoで達成。同一物理エラー率で論理エラー率を桁違いに低減。"),
     ("2", "qumode = 無限次元ヒルベルト空間",
      "ボソニック場理論をネイティブにシミュレーション。格子ゲージ理論、Bose-Hubbard、分子振動。CVBQP ⊇ BQP 証明済み (ITCS 2025)。"),
     ("3", "7-in-1 プラットフォーム",
@@ -393,7 +393,7 @@ products = [
     ("Taros Edu", "", "1,350万円", [("重量", "~4.3kg"), ("消費電力", "~104W"),
      ("論理 qubit", "1-10"), ("p_L", "~10⁻² (MWPM)")], "教育・QEC研究", "d = 3"),
     ("Taros Pro", "FLAGSHIP", "1,800万円", [("重量", "~7.5kg"), ("消費電力", "~109W"),
-     ("論理 qubit", "10-100"), ("p_L", "~10⁻⁴ (MWPM)")], "研究・VQE / QAOA", "d = 5"),
+     ("論理 qubit", "10-100"), ("p_L", "~10⁻³ (MWPM)")], "研究・VQE / QAOA", "d = 5"),
     ("Taros Max", "", "2,550万円", [("重量", "~9.7kg"), ("消費電力", "~112W"),
      ("論理 qubit", "10-1,000+"), ("p_L", "~3.3×10⁻⁴ (MWPM)")], "FTQC・量子化学", "d = 7"),
 ]
@@ -409,8 +409,8 @@ for i, (name, badge, price, specs, use, d_val) in enumerate(products):
     add_text(s, x + 0.2, 2.7, 3.45, 0.5, price, size=26, bold=True, color=TEXT_DARK)
     for j, (label, val) in enumerate(specs):
         y = 3.3 + j * 0.4
-        add_text(s, x + 0.2, y, 1.7, 0.35, label, size=10, color=TEXT_GRAY)
-        add_text(s, x + 1.9, y, 1.75, 0.35, val, size=10, color=TEXT_DARK, align=PP_ALIGN.RIGHT)
+        add_text(s, x + 0.2, y, 1.5, 0.35, label, size=10, color=TEXT_GRAY)
+        add_text(s, x + 1.7, y, 1.95, 0.35, val, size=10, color=TEXT_DARK, align=PP_ALIGN.RIGHT)
     add_rect(s, x + 0.2, 5.2, 3.45, 0.01, RGBColor(0xE0, 0xE0, 0xE0))
     add_text(s, x + 0.2, 5.3, 3.45, 0.4, use, size=12, bold=True, color=TEXT_DARK)
 
@@ -450,7 +450,7 @@ for ri, row in enumerate(comp_data):
         add_text(s, x + 0.08, y + 0.02, 1.8, 0.3, val, size=9, bold=(ri == 3), color=txt)
 
 # TAM/SAM/SOM — concentric circles centered below table
-add_text(s, 0.6, 4.1, 5, 0.3, "市場規模 — TAM / SAM / SOM", size=13, bold=True, color=TEXT_DARK)
+add_text(s, 0.6, 3.95, 5, 0.3, "市場規模 — TAM / SAM / SOM", size=13, bold=True, color=TEXT_DARK)
 cx, cy = 6.4, 5.7  # center of circles
 # TAM circle (outermost)
 add_oval(s, cx - 2.0, cy - 1.5, 4.0, 3.0, RGBColor(0xE0, 0xF7, 0xFA), ACCENT)
@@ -476,7 +476,7 @@ add_text(s, 0.6, 1.1, 12, 0.6,
 
 validations = [
     ("100M shots", "Stim 量子シミュレーション",
-     "p_phys=5×10⁻⁴, d=3/5/7 すべての論理エラー率予測を約1億ショットで再現。", 1.0),
+     "p_err sweep (10⁻⁴~10⁻²), d=3/5/7 全論理エラー率予測を約1億ショットで再現。", 1.0),
     ("9件 文献照合", "公開文献との独立照合",
      "Noh-Chamberland 2022, Stafford-Menicucci 2025 など9件の査読済論文と数値突合。", 1.0),
     ("156q 実機", "IBM Quantum 実機検証",
@@ -522,7 +522,7 @@ phases = [
     ("Phase -1", "12ヶ月", "原理検証", "4.6億円", BG_DARK, TEXT_WHITE),
     ("Phase 0", "12-18ヶ月", "Edu試作 / Break-even", "1.8億円", CARD_BG, TEXT_DARK),
     ("Phase 1", "12-18ヶ月", "Pro 製品化", "1.5億円", CARD_BG, TEXT_DARK),
-    ("Phase 2", "6-12ヶ月", "量産 (100台/年)", "0.8億円", CARD_BG, TEXT_DARK),
+    ("Phase 2", "6-12ヶ月", "量産 (100台/年)", "7,500万円", CARD_BG, TEXT_DARK),
 ]
 for i, (name, dur, desc, cost, bg, txt) in enumerate(phases):
     x = 0.6 + i * 3.05
@@ -573,9 +573,9 @@ add_oval(s, dcx - 1.6, dcy - 1.6, 3.2, 3.2, GREEN)
 # Inner hole (white to create donut)
 add_oval(s, dcx - 0.9, dcy - 0.9, 1.8, 1.8, BG_WHITE)
 # Center text
-add_text(s, dcx - 0.85, dcy - 0.55, 1.7, 0.5, "81-90%", size=22, bold=True, color=GREEN, align=PP_ALIGN.CENTER)
-add_text(s, dcx - 0.85, dcy + 0.0, 1.7, 0.3, "FTQC", size=10, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
-add_text(s, dcx - 0.85, dcy + 0.25, 1.7, 0.3, "実現確率", size=10, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
+add_text(s, dcx - 0.85, dcy - 0.6, 1.7, 0.4, "81-90%", size=22, bold=True, color=GREEN, align=PP_ALIGN.CENTER)
+add_text(s, dcx - 0.85, dcy - 0.15, 1.7, 0.25, "Level B以上", size=9, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
+add_text(s, dcx - 0.85, dcy + 0.1, 1.7, 0.25, "FTQC実現確率", size=9, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
 # Labels
 add_text(s, 8.2, 1.9, 4.2, 0.3, "フォールバック完備", size=13, bold=True, color=TEXT_DARK, align=PP_ALIGN.CENTER)
 add_text(s, 8.3, 5.3, 4.0, 0.25, "CV pure 81% / CV+QD 90%", size=10, bold=True, color=TEXT_DARK, align=PP_ALIGN.CENTER)
@@ -618,15 +618,15 @@ for i, (cost, dur, title, desc) in enumerate(gates):
 
 # Competitor bar chart (bottom)
 add_text(s, 0.6, 4.3, 12, 0.35, "競合の累計調達額 — 桁違いの資本効率", size=13, bold=True, color=TEXT_DARK)
-comps = [("PsiQuantum", "約1,050億円超", 9.0), ("IonQ", "約900億円超", 7.7),
-         ("Xanadu", "約375億円超", 3.2), ("Taros (計画)", "約8.7億円", 0.4)]
+comps = [("PsiQuantum", "約1,050億円超", 7.5), ("IonQ", "約900億円超", 6.4),
+         ("Xanadu", "約375億円超", 2.7), ("Taros (計画)", "約8.7億円", 0.4)]
 for i, (name, amount, bar_w) in enumerate(comps):
     y = 4.8 + i * 0.55
     is_taros = i == 3
     add_rect(s, 2.5, y, bar_w, 0.4, ACCENT if is_taros else CARD_BG)
     add_text(s, 0.6, y + 0.02, 1.8, 0.35, name, size=11,
              bold=is_taros, color=ACCENT if is_taros else TEXT_DARK)
-    add_text(s, 2.5 + bar_w + 0.15, y + 0.02, 2.5, 0.35, amount, size=11,
+    add_text(s, 2.5 + bar_w + 0.15, y + 0.02, 1.8, 0.35, amount, size=11,
              bold=True, color=ACCENT if is_taros else TEXT_DARK)
 
 # ════════════════════════════════════════════════════
@@ -647,7 +647,7 @@ add_text(s, 0.8, 2.3, 3.1, 0.5, "Phase 2完了後\n1〜2年", size=18, bold=True
 add_rect(s, 0.6, 3.6, 3.5, 1.2, CARD_BG)
 add_accent_line(s, 0.6, 3.6, 3.5)
 add_text(s, 0.8, 3.7, 3.1, 0.25, "粗利率", size=10, color=TEXT_GRAY)
-add_text(s, 0.8, 3.95, 3.1, 0.5, "~33%", size=28, bold=True, color=TEXT_DARK)
+add_text(s, 0.8, 3.95, 3.1, 0.5, "~32.5%", size=28, bold=True, color=TEXT_DARK)
 add_text(s, 2.3, 4.05, 1.5, 0.3, "規模効果で逓増", size=9, color=TEXT_GRAY)
 
 # Right: vertical bar chart showing ARR growth
@@ -657,8 +657,8 @@ chart_max_h = 3.5  # max bar height
 add_text(s, chart_x, 1.85, 8, 0.3, "A R R   成 長 予 測", size=11, bold=True, color=ACCENT)
 
 arr_data = [
-    ("Y1", "0", 0.0, CARD_BG),
-    ("Y2", "4.5億", 0.125, RGBColor(0xB2, 0xEB, 0xF2)),
+    ("Y1", "3.6億", 0.1, RGBColor(0xB2, 0xEB, 0xF2)),
+    ("Y2", "9億", 0.25, RGBColor(0xB2, 0xEB, 0xF2)),
     ("Y3", "18億", 0.5, ACCENT2),
     ("Y4", "36億", 1.0, ACCENT),
 ]
@@ -676,7 +676,7 @@ for i, (year, amount, ratio, color) in enumerate(arr_data):
     # Year label below
     add_text(s, bx, chart_bottom + 0.05, bar_w, 0.3, year, size=11, bold=True, color=TEXT_DARK, align=PP_ALIGN.CENTER)
     # Unit count
-    units = ["—", "25台", "100台", "200台"]
+    units = ["20台", "50台", "100台", "200台"]
     add_text(s, bx, chart_bottom + 0.3, bar_w, 0.25, units[i], size=9, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
 
 # Bottom investment logic bar
@@ -799,7 +799,7 @@ add_text(s, 0.8, 2.2, 11, 2.0,
          "デスクトップに来る。", size=72, bold=True, color=TEXT_WHITE)
 add_text(s, 0.8, 4.2, 11, 0.8,
          "室温 109W で動く誤り訂正型量子コンピュータを、世界の研究室・教室・企業 R&D に。\n"
-         "購入初日から7つのモードで価値を届ける。",
+         "購入初日から6つのモードで価値を届ける。FTQCはFW更新で段階的に進化。",
          size=14, color=TEXT_LIGHT)
 add_accent_line(s, 0.8, 5.2, 0.8)
 add_text(s, 0.8, 5.4, 11, 0.3, "次 の ス テ ッ プ", size=10, bold=True, color=ACCENT)
