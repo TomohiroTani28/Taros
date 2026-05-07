@@ -219,7 +219,7 @@ Master LD (1550nm, 100mW) ──► [PM: 25GHz RF] ──► [IM: 25GHz RF]
 **EO comb RF電力内訳**: PM用RF ~6W + IM用RF ~8W + EDFA 3W = 17W
 
 **モデル別電力 (OPA構成反映、SHG二重計上修正)**:
-- Taros Edu (OPA×2, WDM 5ch): 80W + 8W + 10W(RF修正) = **~98W** (定格~103W)
+- Taros Edu (OPA×2, WDM 5ch): 80W + 8W + 10W(RF修正) = **~98W** (定格~104W)
 - Taros Pro (OPA×2, WDM 8ch): 80W + 12W + 11W(RF修正) = **~103W** (定格~109W)
 - Taros Max (OPA×2, WDM 7ch): 83.5W + 12W + 11W(RF修正) = **~107W** (定格~112W)
 
@@ -266,7 +266,7 @@ Master LD (1550nm, 100mW) ──► [PM: 25GHz RF] ──► [IM: 25GHz RF]
   + 設計マージン ~6W (DC-DC熱+製造公差) = **~109W** (最大定格) ✓
 ```
 
-**注 (OPA×1→×2)**: macronode lattice生成にはBS₁で2つの独立スクイーズド真空を混合する必要がある（03_tdm-cluster.md §2.1）。**従ってEduもOPA×2が必須**。旧「OPA×1」記述はmacronode回路要件との矛盾であり撤廃。Edu OPA×2構成でもSOA 1.6W→SHG 400mW→1×2 split=200mW/OPAで閾値確保可能。Edu消費電力はコンポーネント~98W（定格~103W、USB-PD EPR 140Wで37Wマージン）。原価はOPA追加約45万円 → **約840万円**。
+**注 (OPA×1→×2)**: macronode lattice生成にはBS₁で2つの独立スクイーズド真空を混合する必要がある（03_tdm-cluster.md §2.1）。**従ってEduもOPA×2が必須**。旧「OPA×1」記述はmacronode回路要件との矛盾であり撤廃。Edu OPA×2構成でもSOA 1.6W→SHG 400mW→1×2 split=200mW/OPAで閾値確保可能。Edu消費電力はコンポーネント~98W（定格~104W、USB-PD EPR 140Wで36Wマージン）。原価はOPA追加約45万円 → **約840万円**。
 
 **ポンプ光源の構成差異 (Option B統一)**:
 - **Portable (全モデル)**: 1550nm GS-DFB+SOA(1.6W peak)+PPLN SHG (Option B), SHG出力400mW peak (775nm), 消費~14W (DFB 2W + SOA 8W + SHG TEC 4W), コスト~約150万円
@@ -279,7 +279,7 @@ Master LD (1550nm, 100mW) ──► [PM: 25GHz RF] ──► [IM: 25GHz RF]
 
 **電源仕様**:
 - **全モデル必須**: USB-PD EPR 140W (28V/5A) — 全モデルでフル性能動作、定格対マージン31-42W
-- ※USB-PD 100Wでは全モデル動作不可（Edu定格~103W, Pro定格~109W, Max定格~112W）。140W統一必須。
+- ※USB-PD 100Wでは全モデル動作不可（Edu定格~104W, Pro定格~109W, Max定格~112W）。140W統一必須。
 
 ---
 

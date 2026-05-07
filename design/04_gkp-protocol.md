@@ -16,7 +16,7 @@ GKP状態生成を3段階に分割し、各段階でGo/No-Goを判定する。
 | **B** | QD photon subtraction | 2 | ~2×10⁻³ (herald rate) | 200kHz | 0.95 | Phase 0後期 |
 | **C** | QD deterministic breeding | 4 | ~0.5 (breeding成功率) | 50MHz | 0.98 | Phase 1 |
 
-†: F値はBS modelに基づく。Phase -1 discrete (Option B, 13dB, L=0.39dB) σ_eff=8.5dB→F≈0.87。Phase 2+ PIC (L=0.15dB, 13dB) σ_eff=10.8dB→F≈0.91。旧値F=0.93-0.94はdB減算公式σ_eff=σ_gen−Lによる過大推定 — 06_noise-budget §2.3参照。「成功確率」欄はp_acc(単一モード acceptance rate)を使用。旧P_s記号は廃止(§2.2参照)。σ_eff 8.8→8.5, 10.9→10.8
+†: F値はBS modelに基づく。Phase -1 discrete (Option B, 13dB, L=0.39dB) σ_eff=8.5dB→F≈0.87。Phase 2+ PIC (L=0.15dB, 13dB) σ_eff=10.8dB→F≈0.91。旧値F=0.93-0.94はdB減算公式σ_eff=σ_gen−Lによる過大推定 — 06_noise-budget §2.3参照。「特徴的確率」欄はStep Aではp_acc(acceptance rate)、Step Bではherald rate、Step Cではbreeding成功率を使用。旧P_s記号は廃止(§2.2参照)。σ_eff 8.8→8.5, 10.9→10.8
 
 **根拠**: Step Aだけで表面符号break-even（Menicucci postselection閾値7.5dB）を実証可能。QDがなくてもCV方式のFTQCが成立する。
 
