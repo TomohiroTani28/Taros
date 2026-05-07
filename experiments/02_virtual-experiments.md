@@ -1,8 +1,14 @@
 # 仮想実験レポート: Taros CV設計の数値検証
 
+> **WARNING: 旧パラメータ基準文書**
+> 本文書のシミュレーション結果は旧dB減算モデル(σ_eff=11.5dB, p_phys=5×10⁻⁴)に基づく。
+> BSモデル適用後の現行設計値: σ_eff≈9.3dB(Phase 2+ PIC, L=0.27dB), p_L≈3.3×10⁻⁴(MWPM d=7)。
+> **現行設計値は `design/06_noise-budget.md` および `design/13_performance.md` を参照。**
+> 本文書のStimスケーリング検証(指数、関数形)は依然有効だが、絶対値は旧基準である。
+
 **Document ID**: PQC-CV-VEXP-v1.1
 **Last Updated**: Phase -1 開始前
-**Status**: Verified (Stim + NumPy + Analytical + Web Research)
+**Status**: Verified (Stim + NumPy + Analytical + Web Research) — 旧パラメータ基準
 **実行環境**: Stim 1.15.0, PyMatching 2.3.1, NumPy 1.24+, SciPy 1.14.1
 **実行マシン**: macOS Darwin 23.6.0, Python 3.11.6
 **検証チーム**: 設計チーム

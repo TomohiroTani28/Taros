@@ -144,11 +144,12 @@ QECサイクル = 7 rounds (d=7のsingle-shot近似)
 時間: 686 × 10ns = 6.86μs
 ```
 
-### 3.2 重み付きUnion-Find デコーダ（MWPM→UF変更）
+### 3.2 表面符号デコーダ: MWPM（製品）+ UF（実験用ベースライン）
 
-**変更**: MWPM (Blossom-V) → **Union-Find (UF)** に変更。
+**製品デコーダ: MWPM (Blossom-V) d=7、510ns @400MHz。**
+**実験用ベースライン: Union-Find (UF) d=7、350ns @400MHz。**
 
-**変更理由**:
+**UF採用理由（Phase 0-1実験用）**:
 - MWPM d=7: O(n³) 最悪ケース → FPGA 400nsは未検証で楽観的
 - Union-Find: O(n×α(n)) ≈ 線形時間 → d=7でも200-300ns確実
 - Delfosse & Nickerson (2021): FPGA UF decoder実証済み
@@ -234,7 +235,9 @@ d=7はVE2802ターゲットでの合成のみ確認（実機は不要）。
   → d=5以下: ~0.5MB (BRAM内、十分な余裕)。
   → 旧MWPM設計(3MB, DDR4必要)から大幅改善。
 
-### 3.4 Stage 2レイテンシ (Union-Find)
+### 3.4 Stage 2レイテンシ
+
+#### 3.4.1 Union-Find (Phase 0-1 実験用ベースライン)
 
 ```
 シンドローム計算: 10 cycles
@@ -251,13 +254,29 @@ Union-Find (d=7): ~120 cycles  ← 線形時間、d=5: ~60 cycles
 ■ 楽観ケース (500MHz, 2.0ns/cycle): 140 × 2.0ns = **280ns**
 ```
 
-**Stage 1 + Stage 2合計**:
-- 設計ベースライン(400MHz): 18.5ns + 350ns = **368.5ns** < 500ns目標（マージン26%）
-- 楽観ケース(500MHz): 13ns + 280ns = 293ns
-
-**注**: デコーダはパイプライン動作しQECサイクル(6.86μs)内に完了すれば良い。350nsでも十分余裕あり（6860ns中の5%）。
-
 参考: Riverlane (2024) FPGA UF decoder d=5: 150ns(@500MHz)実測。d=7 350ns(@400MHz)は線形外挿+クロック差で整合。
+
+#### 3.4.2 MWPM Blossom-V (製品デコーダ第一選択)
+
+```
+Phase 1: Syndrome parsing + edge weight computation  ~40 cycles  100ns
+Phase 2: Minimum-weight matching (Blossom-V kernel)  ~120 cycles 300ns
+Phase 3: Correction chain extraction                 ~20 cycles   50ns
+Phase 4: Output formatting + byproduct update        ~24 cycles   60ns
+───────────────────────────────────────────────────────────────────────
+合計:                                                ~204 cycles **510ns** (@400MHz)
+```
+
+タイムアウト(700ns) + UFフォールバック: タイムアウト発生率0.1%以下で実効p_Lへの影響は無視可能。
+
+#### 3.4.3 Stage 1 + Stage 2合計
+
+| デコーダ | Stage 1 + Stage 2 (400MHz) | QECサイクル占有率 | 用途 |
+|----------|---------------------------|-----------------|------|
+| UF | 18.5ns + 350ns = **368.5ns** | 5.4% | Phase 0-1 実験 |
+| **MWPM** | **18.5ns + 510ns = 528.5ns** | **7.7%** | **製品 (Phase 2+)** |
+
+**注**: デコーダはパイプライン動作しQECサイクル(6.86μs)内に完了すれば良い。MWPM 528.5nsでも十分余裕あり（マージン92%）。
 
 ---
 

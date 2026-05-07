@@ -22,7 +22,7 @@
 
 [8] Zaske, S. et al., "Visible-to-telecom quantum frequency conversion of light from a single quantum emitter," *Physical Review Letters* **109**, 147404 (2012). — 単一光子の波長変換の先駆的研究。
 
-## フォトニック量子計算・符号
+## 光量子計算・符号
 
 [9] Bartolucci, S. et al., "Fusion-based quantum computation," *Nature Communications* **14**, 912 (2023). — Fusion-based QCの基本アーキテクチャ。本設計の基礎。
 
@@ -84,11 +84,11 @@
 
 [32] Gidney, C. & Fowler, A.G., "Efficient magic state factories with a catalyzed |CCZ⟩ to 2|T⟩ transformation," *Quantum* **3**, 135 (2019). — 蒸留ファクトリの設計。
 
-## フォトニック量子計算（全般）
+## 光量子計算（全般）
 
-[33] Madsen, L.S. et al., "Quantum computational advantage with a programmable photonic processor," *Nature* **606**, 75 (2022). — Xanaduのフォトニック量子優位性実証。
+[33] Madsen, L.S. et al., "Quantum computational advantage with a programmable photonic processor," *Nature* **606**, 75 (2022). — Xanaduの光量子優位性実証。
 
-[34] Bourassa, J.E. et al., "Blueprint for a scalable photonic fault-tolerant quantum computer," *Quantum* **5**, 392 (2021). — フォトニック量子コンピュータのスケーラブル設計。
+[34] Bourassa, J.E. et al., "Blueprint for a scalable photonic fault-tolerant quantum computer," *Quantum* **5**, 392 (2021). — 光量子コンピュータのスケーラブル設計。
 
 [35] Raussendorf, R. & Briegel, H.J., "A one-way quantum computer," *Physical Review Letters* **86**, 5188 (2001). — 測定型量子計算の基礎。
 
@@ -98,7 +98,7 @@
 
 [37] Knill, E. et al., "A scheme for efficient quantum computation with linear optics," *Nature* **409**, 46 (2001). — KLM提案。linear optical QCの理論的基盤。
 
-[38] O'Brien, J.L. et al., "Photonic quantum technologies," *Nature Photonics* **3**, 687 (2009). — フォトニック量子技術の包括的レビュー。
+[38] O'Brien, J.L. et al., "Photonic quantum technologies," *Nature Photonics* **3**, 687 (2009). — 光量子技術の包括的レビュー。
 
 [39] Browne, D.E. & Rudolph, T., "Resource-efficient linear optical quantum computation," *Physical Review Letters* **95**, 010501 (2005). — cluster stateベースの線形光学QC。
 

@@ -284,9 +284,9 @@ SNU = Shot Noise Unit (真空ノイズ = 1 SNU)
     Phase -1実験での位相ノイズ実測が最重要確認項目の一つ。
 ```
 
-**閾値定義の検証課題 (未解決)**:
+**閾値定義の検証課題**:
 
-Stafford-Menicucci-Walshe 2025の閾値7.5dBの正確な定義を確認する必要がある:
+Stafford-Menicucci-Walshe 2025の閾値7.5dBの正確な定義について3つの解釈がある:
 - **解釈A** (post-loss σ_eff基準): 7.5dB = 損失後の実効スクイージング最低値
   → 現設計(5.0dB)は閾値未満。損失削減+PIC化が必須。
 - **解釈B** (input squeezing基準、損失はモデルに内包):
@@ -294,9 +294,13 @@ Stafford-Menicucci-Walshe 2025の閾値7.5dBの正確な定義を確認する必
 - **解釈C** (2Dパラメータ空間): squeezing × loss の閾値曲線で判定
   → 単一数値比較は不適切。閾値論文のlossモデルに依存。
 
-**Phase -1最優先アクション**: 閾値論文(Stafford-Menicucci-Walshe 2025 Fig.3)を精読し、
+**設計上の作業仮定**: 本設計では**解釈Aを採用**する。すなわち閾値7.5dBはpost-loss σ_effに対する
+最低要件であり、Phase 2+ PIC現実的(σ_eff≈9.3dB)で+1.8dBマージンを確保。
+この解釈は最も保守的であり、他の解釈が正しい場合にはマージンがさらに拡大する方向となる。
+
+**Phase -1必須検証(T0b)**: 閾値論文(Stafford-Menicucci-Walshe 2025 Fig.3)を精読し、
 x軸の定義と損失モデルを正確に特定。並行してStim GKP displacement noise + loss channel
-シミュレーションで独自に閾値曲線を算出。
+シミュレーションで独自に閾値曲線を算出。作業仮定の妥当性を確認する。
 
 **macronode BS混合ノイズの計上状況**:
 macronode内のBS網通過時には (1)excess損失由来の真空ノイズ混入 と (2)隣接モードの反スクイージング混入 の2種がある。

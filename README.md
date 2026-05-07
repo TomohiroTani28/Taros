@@ -100,7 +100,7 @@ Taros/
 ├── note.md               # プロジェクトピッチノート (概要・投資家向け要約)
 │
 ├── fallback/              # DV-FBQCフォールバック設計
-│   ├── 01_deskside-vision.md       # DV-FBQC版デスクサイドQC
+│   ├── 01_deskside-vision.md       # DV-FBQC版デスクトップQC
 │   ├── 02_dv-fbqc-desktop-v5.0.md  # DV-FBQC Desktop v5.0 (28kg/2.1kW)
 │   └── 03_hybrid-pic-design.md     # ハイブリッドPIC設計
 │
