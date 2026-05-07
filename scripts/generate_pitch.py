@@ -23,6 +23,7 @@ CARD_BG = RGBColor(0xF5, 0xF5, 0xF5)
 HIGHLIGHT = RGBColor(0xFF, 0x98, 0x00)
 RED_SOFT = RGBColor(0xEF, 0x53, 0x50)
 GREEN = RGBColor(0x66, 0xBB, 0x6A)
+GREEN_FILL = RGBColor(0x2E, 0x7D, 0x32)  # darker green for fills with white text
 PURPLE = RGBColor(0x7E, 0x57, 0xC2)
 NAVY2 = RGBColor(0x26, 0x32, 0x48)
 
@@ -137,7 +138,7 @@ add_text(s, 0.95, 3.5, 11, 0.6,
          "デスクトップ誤り訂正型光量子コンピュータ",
          size=28, bold=True, color=TEXT_WHITE)
 add_text(s, 0.95, 4.2, 11, 0.5,
-         "7-in-1 Quantum Platform  |  完全室温・109W  |  1,350万〜2,550万円",
+         "7-in-1 Quantum Platform  |  完全室温・104-112W  |  1,350万〜2,550万円",
          size=14, color=TEXT_LIGHT)
 add_text(s, 0.95, 4.8, 11, 0.5,
          "購入初日から6つの商用モードが稼働 — 量子優位証明を待たずに価値を提供",
@@ -173,7 +174,8 @@ for i, (mode, name, desc, avail, clr) in enumerate(modes):
     add_text(s, x + 0.08, y + 0.15, 1.44, 0.25, mode, size=9, color=TEXT_GRAY)
     add_text(s, x + 0.08, y + 0.4, 1.44, 0.35, name, size=18, bold=True, color=TEXT_DARK)
     add_text(s, x + 0.08, y + 0.85, 1.44, 0.7, desc, size=10, color=TEXT_GRAY)
-    add_rect(s, x + 0.08, y + 2.1, 1.3, 0.35, clr)
+    pill_bg = GREEN_FILL if clr == GREEN else clr
+    add_rect(s, x + 0.08, y + 2.1, 1.3, 0.35, pill_bg)
     add_text(s, x + 0.08, y + 2.12, 1.3, 0.35, avail,
              size=10, bold=True, color=TEXT_WHITE, align=PP_ALIGN.CENTER)
 
@@ -253,7 +255,7 @@ add_text(s, 6.8, 3.9, 5.6, 0.3, "W H Y   N O W  —  今 、 成 立 す る 理
          size=11, bold=True, color=ACCENT)
 for j, (t, d) in enumerate([
     ("PPLN導波路の量産化", "NTT・住友・nLight 商用ライン稼働"),
-    ("Soft-info MWPM 閾値確立", "Noh-Chamberland 2022 で1.5%確定"),
+    ("Soft-info MWPM 閾値報告", "Noh-Chamberland 2022 で p_th≈1.5%"),
     ("Versal FPGA 27ns フィードフォワード", "光-電気-光ループが ns級で閉じる時代"),
     ("CVBQP ⊇ BQP 証明", "ITCS 2025: CV量子計算≧標準QC"),
 ]):
@@ -340,14 +342,14 @@ for i, (val, desc) in enumerate(chain):
     txt_c = TEXT_WHITE if i == 4 else TEXT_DARK
     add_rect(s, x, 2.0, 2.3, 1.8, bg_c)
     add_text(s, x + 0.1, 2.1, 2.1, 0.5, val, size=20, bold=True, color=txt_c, align=PP_ALIGN.CENTER)
-    add_text(s, x + 0.1, 2.65, 2.1, 0.8, desc, size=9,
+    add_text(s, x + 0.1, 2.65, 2.1, 0.8, desc, size=10,
              color=TEXT_WHITE if i == 4 else TEXT_GRAY, align=PP_ALIGN.CENTER)
     if i < 4:
         add_text(s, x + 2.15, 2.4, 0.4, 0.4, "→", size=18, bold=True, color=ACCENT)
 
 add_text(s, 0.6, 4.2, 12, 0.4,
          "閾値マージン — Phase 2+ PIC 統合での量子誤り訂正成立余裕", size=13, bold=True, color=TEXT_DARK)
-add_rect(s, 0.6, 4.7, 9.5, 0.45, GREEN)
+add_rect(s, 0.6, 4.7, 9.5, 0.45, GREEN_FILL)
 add_text(s, 0.8, 4.72, 4, 0.4, "実効 σ_eff (Phase 2+ PIC現実)", size=10, color=TEXT_WHITE)
 add_text(s, 8.2, 4.72, 1.5, 0.4, "9.3 dB", size=12, bold=True, color=TEXT_WHITE, align=PP_ALIGN.RIGHT)
 add_rect(s, 0.6, 5.25, 7.2, 0.45, PURPLE)
@@ -405,7 +407,7 @@ for i, (name, badge, price, specs, use, d_val) in enumerate(products):
     add_text(s, x + 0.2, 2.35, 2.5, 0.25, d_val, size=11, color=ACCENT)
     if badge:
         add_rect(s, x + 2.6, 2.0, 1.05, 0.3, HIGHLIGHT)
-        add_text(s, x + 2.6, 2.0, 1.05, 0.3, badge, size=9, bold=True, color=TEXT_WHITE, align=PP_ALIGN.CENTER)
+        add_text(s, x + 2.6, 2.0, 1.05, 0.3, badge, size=9, bold=True, color=TEXT_DARK, align=PP_ALIGN.CENTER)
     add_text(s, x + 0.2, 2.7, 3.45, 0.5, price, size=26, bold=True, color=TEXT_DARK)
     for j, (label, val) in enumerate(specs):
         y = 3.3 + j * 0.4
@@ -490,7 +492,7 @@ for i, (badge, title, desc, progress) in enumerate(validations):
     # Full-width row with check + badge + text + progress bar
     add_rect(s, 0.6, y, 12, 1.0, CARD_BG)
     # Check circle
-    add_oval(s, 0.8, y + 0.2, 0.5, 0.5, GREEN)
+    add_oval(s, 0.8, y + 0.2, 0.5, 0.5, GREEN_FILL)
     add_text(s, 0.8, y + 0.22, 0.5, 0.45, "✓", size=18, bold=True, color=TEXT_WHITE, align=PP_ALIGN.CENTER)
     # Badge
     add_rect(s, 1.5, y + 0.2, 2.0, 0.5, ACCENT)
@@ -501,7 +503,7 @@ for i, (badge, title, desc, progress) in enumerate(validations):
     # Progress bar (right side)
     bar_x = 9.5
     add_rect(s, bar_x, y + 0.3, 2.8, 0.3, RGBColor(0xE0, 0xE0, 0xE0))
-    add_rect(s, bar_x, y + 0.3, 2.8 * progress, 0.3, GREEN)
+    add_rect(s, bar_x, y + 0.3, 2.8 * progress, 0.3, GREEN_FILL)
     add_text(s, bar_x, y + 0.3, 2.8, 0.3, "完了", size=9, bold=True, color=TEXT_WHITE, align=PP_ALIGN.CENTER)
 
 add_text(s, 0.6, 6.6, 12, 0.4,
@@ -569,18 +571,18 @@ for i, (title, desc) in enumerate(risks):
 # Donut chart for success probability (right side)
 dcx, dcy = 10.2, 3.5
 # Outer ring = success (green)
-add_oval(s, dcx - 1.6, dcy - 1.6, 3.2, 3.2, GREEN)
+add_oval(s, dcx - 1.6, dcy - 1.6, 3.2, 3.2, GREEN_FILL)
 # Inner hole (white to create donut)
 add_oval(s, dcx - 0.9, dcy - 0.9, 1.8, 1.8, BG_WHITE)
 # Center text
-add_text(s, dcx - 0.85, dcy - 0.6, 1.7, 0.4, "81-90%", size=22, bold=True, color=GREEN, align=PP_ALIGN.CENTER)
+add_text(s, dcx - 0.85, dcy - 0.6, 1.7, 0.4, "81%", size=26, bold=True, color=GREEN, align=PP_ALIGN.CENTER)
 add_text(s, dcx - 0.85, dcy - 0.15, 1.7, 0.25, "Level B以上", size=9, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
 add_text(s, dcx - 0.85, dcy + 0.1, 1.7, 0.25, "FTQC実現確率", size=9, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
 # Labels
 add_text(s, 8.2, 1.9, 4.2, 0.3, "フォールバック完備", size=13, bold=True, color=TEXT_DARK, align=PP_ALIGN.CENTER)
-add_text(s, 8.3, 5.3, 4.0, 0.25, "CV pure 81% / CV+QD 90%", size=10, bold=True, color=TEXT_DARK, align=PP_ALIGN.CENTER)
+add_text(s, 8.3, 5.3, 4.0, 0.25, "Level A 63% / Level B以上 81%", size=10, bold=True, color=TEXT_DARK, align=PP_ALIGN.CENTER)
 add_text(s, 8.3, 5.6, 4.0, 0.5,
-         "CV不成立時は DV-FBQC 方式 (28kg / 2.1kW / 約6,480万円)\nにフォールバック — 投資リスクを限定",
+         "CV不成立時は DV-FBQC 方式 (本体28kg+冷却23kg / 2.1kW / 約6,480万円)\nにフォールバック — 投資リスクを限定",
          size=9, color=TEXT_GRAY, align=PP_ALIGN.CENTER)
 
 # ════════════════════════════════════════════════════
@@ -610,11 +612,11 @@ for i, (cost, dur, title, desc) in enumerate(gates):
     add_rect(s, x, y, 2.85, h, bg)
     add_text(s, x + 0.15, y + 0.15, 2.55, 0.4, cost, size=20, bold=True, color=txt, align=PP_ALIGN.CENTER)
     add_text(s, x + 0.15, y + 0.55, 2.55, 0.2, dur, size=9,
-             color=TEXT_LIGHT if i == 3 else TEXT_GRAY, align=PP_ALIGN.CENTER)
+             color=TEXT_WHITE if i == 3 else TEXT_GRAY, align=PP_ALIGN.CENTER)
     add_text(s, x + 0.15, y + 0.8, 2.55, 0.3, title, size=12, bold=True, color=txt, align=PP_ALIGN.CENTER)
     if h > 1.5:
         add_text(s, x + 0.15, y + 1.1, 2.55, 0.3, desc, size=9,
-                 color=TEXT_LIGHT if i == 3 else TEXT_GRAY, align=PP_ALIGN.CENTER)
+                 color=TEXT_WHITE if i == 3 else TEXT_GRAY, align=PP_ALIGN.CENTER)
 
 # Competitor bar chart (bottom)
 add_text(s, 0.6, 4.3, 12, 0.35, "競合の累計調達額 — 桁違いの資本効率", size=13, bold=True, color=TEXT_DARK)
@@ -682,7 +684,7 @@ for i, (year, amount, ratio, color) in enumerate(arr_data):
 # Bottom investment logic bar
 add_rect(s, 0.6, 6.2, 12, 0.6, BG_DARK)
 add_text(s, 0.8, 6.25, 11.6, 0.5,
-         "投資論理: 失敗時上限 4.6億円 (Phase -1)、成功時 ARR 36億円 (Y4) — リスク調整後リターン ~3.5倍",
+         "投資論理: 段階投資で失敗損失を限定 (最大 4.6億円)。成功時 Y4 ARR 36億円 / 総開発費 8.7億円",
          size=13, bold=True, color=ACCENT, align=PP_ALIGN.CENTER)
 
 # ════════════════════════════════════════════════════
