@@ -656,13 +656,14 @@ add_text(s, 2.3, 4.05, 1.5, 0.3, "規模効果で逓増", size=9, color=TEXT_GRA
 chart_x = 4.8
 chart_bottom = 5.5
 chart_max_h = 3.5  # max bar height
-add_text(s, chart_x, 1.85, 8, 0.3, "A R R   成 長 予 測（計画値）", size=11, bold=True, color=ACCENT)
+add_text(s, chart_x, 1.85, 8, 0.3, "A R R   成 長 予 測（計画値・出荷開始後1〜4年）", size=11, bold=True, color=ACCENT)
+add_text(s, chart_x, 2.1, 8, 0.25, "※出荷Y1 = 開始後約4年目（Phase -1〜1 完了後）", size=9, color=TEXT_GRAY)
 
 arr_data = [
-    ("Y1", "3.6億", 0.1, RGBColor(0xB2, 0xEB, 0xF2)),
-    ("Y2", "9億", 0.25, RGBColor(0xB2, 0xEB, 0xF2)),
-    ("Y3", "18億", 0.5, ACCENT2),
-    ("Y4", "36億", 1.0, ACCENT),
+    ("出荷Y1", "3.6億", 0.1, RGBColor(0xB2, 0xEB, 0xF2)),
+    ("出荷Y2", "9億", 0.25, RGBColor(0xB2, 0xEB, 0xF2)),
+    ("出荷Y3", "18億", 0.5, ACCENT2),
+    ("出荷Y4", "36億", 1.0, ACCENT),
 ]
 bar_w = 1.6
 bar_gap = 0.3
