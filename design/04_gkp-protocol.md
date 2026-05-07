@@ -130,7 +130,7 @@ GKP状態生成を3段階に分割し、各段階でGo/No-Goを判定する。
 | パラメータ | 値 | 根拠 |
 |-----------|-----|------|
 | QD数 | 2 | 1つ=photon subtraction, 1つ=photon addition |
-| QD種 | InP QD 1550nm | QFC不要 |
+| QD種 | InAs/InP QD 1550nm (C-band) | QFC不要。最新: 不識別性91.7%、g²(0)=0.0028、1.28GHz動作実証 (Nature Comms 2026) |
 | QD繰り返し率 | 100MHz (クロック同期) | 電気的トリガ |
 | Photon subtraction成功率 | ~10% per trial | BS R=0.1 × SNSPD 95% |
 | QD実効光子供給率 | **2%** | 輝度0.40 × spectral filter透過率5% |

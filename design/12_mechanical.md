@@ -107,6 +107,11 @@ Z軸: 高さ方向 (→上, 0-160mm フィン込み, 筐体本体0-142mm)
 **熱設計リスク注記**:
 FPGA VE2302 TDP=25W + DC-DC損失9W + ADC 10W + DAC 5W = Zone C合計**49W**。
 Cu HP ×3 (各50W容量) → HP合計150W容量で49W負荷 → 十分。
+
+**次世代熱管理材料候補 (Phase 1+)**:
+- グラフェン熱スプレッダー: **3200 W/mK**（銅390 W/mKの8倍）→ FPGA T_j余裕をさらに拡大
+- Vapor-Pad TIM: **800-1200 W/mK**（標準TIM 15 W/mKの50-80倍）→ HP→天板間の熱抵抗を劇的低減
+- 適用時T_j推定: 51.2℃ → ~45℃（マージン100-45=55℃）
 ただしHP熱抵抗: R_HP≈0.5K/W (sintered wick, φ6mm, 84mm) × 49W/3本 = 8.2K。
 FPGA T_j = T_ambient(25℃) + ΔT_enclosure(15K) + ΔT_HP(8.2K) + ΔT_TIM(3K) = **51.2℃**。
 VE2302 T_j,max = 100℃ (industrial grade)。マージン= 100 - 51.2 = **48.8℃** → 十分。
