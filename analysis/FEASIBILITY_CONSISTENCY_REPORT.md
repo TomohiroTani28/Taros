@@ -334,6 +334,68 @@ P(FTQC) = 0.56×0.973 + 0.14×0.55 + 0.10×0.775 + 0.15×0.55 + 0.05×0.55
 | **Fallback readiness** | ✓ PASS | **80%** — DV v5.0 frozen and costed, but Phase 0 transition plan not detailed |
 | **Overall Phase -1 readiness** | ✓ PASS | **90%** — Approved to proceed; recommend Team Lead verify design/09 before investor presentation |
 
+### 7.1 新規: デコーダ戦略の SSOT 化（§1.1a）
+
+**論点1 (Beam phase2分析)** により、**Union-Find vs MWPM 段階的選択戦略**が初めて明確化された。従来、design/08_decoder.md では両方式を列挙するのみで、phase 間の遷移ロジックが undefined だった。
+
+**新規 §1.1a: Decoder Strategy SSOT Table**
+
+| パラメータ | Phase 0-1 (UF primary) | Phase 2+ (MWPM primary) | Go/No-Go | 備考 |
+|-----------|----------------------|------------------------|---------|------|
+| **Primary decoder** | Union-Find 350ns | MWPM Blossom-V 510ns | — | cost/complexity tradeoff |
+| **Soft-info model** | Cluster growth weights | Edge weight (Noh-Chamberland) | — | p_th_UF≥0.9% ← T0b で検証 |
+| **Performance** | p_L ~4×10⁻³ (d=7) | p_L ≈3.3×10⁻⁴ (d=7) | MWPM必須 (Phase 2+) | Phase 1: break-even, Phase 2+: product |
+| **FPGA** | VE2302 (200-300ns) | VE2802 (510ns) | — | d=7時 BRAM使用率の差 |
+| **Fallback timeout** | 700ns (→MWPM) | 700ns (→UF) | — | 相互 fallback for safety |
+| **T0b criterion** | p_th_UF ≥ 0.9% @ 95% CL | MWPM d=7 ≤700ns @ 400MHz | **G1c** | New Go/No-Go criterion |
+
+**Cost Impact**:
+- Phase 1 UF success (p_th_UF≥0.9%): +$0 (計画通り)
+- Phase 1b Conditional Go (0.8%≤p_th<0.9%): +$200K FPGA parallel (UF+MWPM evaluate)
+- Phase 0 MWPM forced (p_th_UF<0.8%): +$50万円 (~Phase 0コスト+10%)
+
+**Risk**: 15%失敗率 (p_th_UF落ちる確率)。Phase -1 T0b-2 (UF soft-info検証) で mitigate。
+
+---
+
+### 7.2 新規: コスト影響検証（§2.1a）
+
+**論点6** では「Cost SSOT」が完成していると見なされていたが、decoder strategy 追加により「decoder選択による Phase 0-1 コスト差分」が未考慮だった。以下の 3 シナリオに分けて定量化:
+
+**§2.1a: Decoder Cost Impact Verification**
+
+| シナリオ | 条件 | Phase 0 cost | Phase 1 cost | 説明 |
+|--------|------|-------------|------------|------|
+| **シナリオ1** | p_th_UF≥0.9% (Full Go) | base (3,450万円) | base (1,200万円) | UF primary 計画通り |
+| **シナリオ2** | 0.8%≤p_th<0.9% (Conditional) | base | base + $200K | FPGA parallel評価分 |
+| **シナリオ3** | p_th_UF<0.8% (No-Go) | base + $50万円 | base + $50万円 | MWPM forced, Phase 0-1通じて |
+
+**統合 Phase -1 コスト**:
+- シナリオ1 (確率65%): 4.6億円 (計画通り)
+- シナリオ2 (確率20%): 4.62億円 (+$200K)
+- シナリオ3 (確率15%): 4.65億円 (+$50万円×2phases)
+- **期待値**: 4.6 + 0.20×0.02 + 0.15×0.05 = **4.62億円** (vs. 計画 4.6億円、差分 +0.02 ≈ +200万円)
+
+**マージン**: 既存 Phase -1 budget 4.6億円 で 15% risk reserve 含まれているため、期待値増加は十分内。
+
+---
+
+### 7.3 新規: デコーダ選択リスク評価（§4.a）
+
+**§4.a: Decoder Selection Risk Assessment**
+
+| リスク項目 | 確率 | 影響 | 対策 | 所有者 |
+|----------|------|------|------|--------|
+| **UF soft-info threshold p_th<0.9%** | 15% | Phase 0 cost +$50万円、FPGA複雑度+20% | T0b-2で詳細検証、3週延長 | Beam |
+| **MWPM 510ns timeout exceeds 700ns** | 8% | Phase 1b+ で fallback不可、UF forced | T0b-3 FPGA timing closure検証 | Akira |
+| **Phase 1b PIC coupler最適化失敗** | 12% | σ_eff 8.8dB達成不可、Phase 2遅延 | dual design approach (2案並行) | PIC team |
+| **複合: 全て失敗** | 2% | Phase 2延期、DV fallback へ | DV v5.0 as true fallback (costed) | Team lead |
+
+**Mitigation**:
+- T0b-2 (UF validation): 1000-pattern syndrome sets × 5万shot/pattern × d=3/5/7 → p_th_UF 統計確定
+- T0b-3 (MWPM FPGA): Blossom-V d=7 timing closure on VE2802 @ 400MHz、timeout 700ns guarantee
+- Phase 1b: Early coupler prototype (M6開始)、並列 design iteration
+
 ---
 
 ## 11. Recommendations
