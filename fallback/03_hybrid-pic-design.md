@@ -9,6 +9,44 @@
 
 ---
 
+## 📍 ポジショニング明確化 (2026-05-08 Phase 2 論点4)
+
+### 本文書の位置付け
+
+本ハイブリッド設計は**「緊急フェイルセーフ」ではなく「Phase 3 計画的機能拡張」**です。
+
+| 項目 | 本ハイブリッド設計 |
+|------|------------------|
+| **性質** | CV pure (Phase 0-1) の成功後、Phase 3で段階的にQD能力を追加するオプション |
+| **なぜ fallback/ にあるのか** | 技術的には DV-FBQC v5.0 と同じ LNOI/SiN/QD 統合技術を活用 → 組織的に DV-FBQC トラック配置 |
+| **実際の用途** | Phase 3 で CV pure から "CV+QD" へのスムーズな移行パス |
+| **費用** | 約 ¥1K/unit (QD screening + ハード部品追加費用) |
+| **スケジュール** | Phase 0-1 完了後、Phase 3 開始時に設計詳細化 |
+| **成功確率に対する影響** | 増加 (QD photon subtraction により σ_eff +1-2dB) |
+
+### 判断フレームワーク
+
+| タイミング | 意思決定 |
+|----------|--------|
+| **現在（Phase 0-1 計画）** | CV pure 設計に集中。本ハイブリッド設計は "参考" のみ |
+| **Phase 1 終了時（月24）** | CV pure Level B+ 性能が確実かを評価 |
+| **Phase 1 成功時** | Phase 3 で本ハイブリッド設計を活用し、 σ_eff 改善 (8.5dB→10dB+) |
+| **Phase 1 限界時** | QD photon subtraction を早期導入 (Phase 2 late) してマージン確保 |
+
+### CV pure との関係
+
+```
+Phase 0-1: CV pure (d=3/5, σ_eff≈8.5dB, QD不要)
+    ↓
+Phase 1 成功かつ Phase 3 予算有→ Phase 3 で QD 導入
+    ↓
+Phase 3+: CV+QD (d=5, σ_eff≈10-12dB, deterministic breeding 可能)
+```
+
+**本ハイブリッド設計の役割**: この Phase 3 移行を技術的に可能にする PIC 統合戦略
+
+---
+
 ## 1. PIC統合ロードマップ
 
 ### 1.1 Phase別PIC構成
