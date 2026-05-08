@@ -204,6 +204,49 @@ QECサイクル = 7 rounds (d=7のsingle-shot近似)
 > タイムアウト(700ns) + UFフォールバックの実効p_Lへの影響:
 > タイムアウト発生率が0.1%以下であれば、実効p_Lへの影響は無視可能（製品スペック L=0.27dBでUF単独p_L~4×10⁻³がタイムアウト頻度で重み付け: 実効p_L ≈ p_L_MWPM + 0.001×p_L_UF ≈ 3.3×10⁻⁴ + 4×10⁻⁶ ≈ p_L_MWPM）。
 
+### 3.3 段階的デコーダ戦略（Phase -1→0→1→2）
+
+**Phase -1 T0b で p_th_UF ≥ 0.9% を検証し、以下を決定する：**
+
+| Phase | σ_eff | d値 | Primary Decoder | Fallback | FPGA | 検証 | 備考 |
+|-------|-------|-----|---------|---------|------|------|------|
+| **Phase 0** | 8.5dB (L=0.39dB) | 3 | UF 350ns | MWPM 510ns (700ns TO) | VE2302 | T0b p_th_UF | break-even確認 |
+| **Phase 1a** | 8.5dB | 3-5 | UF + MWPM parallel評価 | Ambiguity Clustering (backup) | VE2302×2 | T11完了 | UF vs MWPM性能確定 |
+| **Phase 1b** | 8.8dB (L=0.50dB) | 5 | 決定した方を継続 | 相互fallback | VE2302 or VE2802 | PIC coupler最適化 | d=5安定化、WDM 5ch固定 |
+| **Phase 2** | 9.3-10.8dB (L=0.27dB) | 7 | MWPM 510ns | UF 350ns (backup) | VE2802 | Phase -1完了 | 製品仕様 p_L≈3.3×10⁻⁴ |
+
+**Go/No-Go Decision Tree**:
+
+```
+T0b結果: p_th_UF ≥ 0.9% ?
+├─ YES (Full Go):
+│  ├─ Phase 0: UF primary 採用
+│  ├─ Phase 0-1a: soft-info UF で 8.5dB/d=3-5 実証
+│  ├─ Phase 1b: PIC統合で σ_eff→8.8dB 達成、d=5 stable化
+│  └─ Phase 2: MWPM d=7 で製品仕様達成 (p_L≈3.3×10⁻⁴)
+│
+├─ CONDITIONAL (0.8%≤p_th<0.9%):
+│  ├─ Phase 0: UF or MWPM どちらでも実行可能（タイムアウト 700ns で safety margin）
+│  ├─ Phase 1a: UF + MWPM 並列運用、どちらが d=7 へ進むか確定
+│  └─ Phase 2: 並列検証結果に基づき選択 (UF soft-info or MWPM)
+│
+└─ NO-GO (p_th_UF<0.8%):
+   ├─ Phase 0: MWPM forced primary (phase-minus1-execution.md §4でコスト+10%)
+   ├─ Phase 1: MWPM 単一選択、UF はバックアップのみ
+   └─ Phase 2: MWPM d=7 (FPGA複雑度+20%, コスト+50万円)
+```
+
+**理由**:
+- **UF (350ns)**: O(n×α(n)) 線形時間、soft-info 統合容易、FPGA 実装シンプル。ただし **GKP displacement noise での threshold p_th_UF は未検証** → Phase -1 T0b で要検証
+- **MWPM (510ns)**: 最適性能（p_L ≈ 3.3×10⁻⁴）、ただし FPGA O(n³) 最悪ケース時に timeout 可能性。→ fallback 層必須
+- **3層 fallback**: Primary (UF/MWPM) → Secondary (相互) → Emergency (Ambiguity Clustering, <10ns, archive v4.0 legacy)
+
+**パイプライン制約**:
+- Clifford gate: Pauli frame は古典追跡のみ、デコーダ待たず次サイクル開始可
+- **T-gate**: Pauli frame 確定必須。MWPM decoder (510ns) + frame update (50ns) = 560ns
+  - T-gate 最小間隔 = T_QEC + 560ns = 6.86μs + 560ns ≈ **7.42μs**
+  - Archive/07_control-decoding.md による従来実装では 100ns で loop 可能（CV の利点）
+
 ### 3.3 FPGA実装
 
 | リソース | Stage 1 | Stage 2 | 合計 | VE2302 | 使用率 |

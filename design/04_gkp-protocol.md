@@ -88,6 +88,66 @@ GKP状態生成を3段階に分割し、各段階でGo/No-Goを判定する。
 - Conditional Go: F_GKP > 0.80 AND Δ < 0.18（Phase 2+ PICでの改善を前提に続行）
 - No-Go: F_GKP < 0.80 OR Δ > 0.20 → 原因究明（損失 or スクイージング不足 or postselection窓最適化）
 
+### 2.4 有限エネルギーGKPの設計 (Δパラメータ)
+
+**背景**: Ideal GKP状態 |0_GKP⟩ は無限光子数を要する。実装可能なGKP状態は有限エネルギーで格子構造が崩れ始める。この劣化を定量化するのが Δ (finite-energy parameter)。
+
+**Δの定義**:
+- Wigner関数が理想的な格子ピーク(delta functions)から広がった幅を σ_W で測定
+- Δ ≈ σ_W（ホモダイン測定では σ_meas ≈ Δ/√2）
+- **Δ < 0.15 が CV FTQC の hard requirement** (Menicucci 2014, Stafford-Menicucci 2025)
+
+**Phase -1 T0a での測定プロトコル**:
+
+| 手法 | 測定ショット数 | 精度 | 実装難易度 | 推奨性 |
+|------|-----------|------|----------|--------|
+| **Wigner tomography** | 18,000 ホモダイン点 + GPU再構成 | ±0.02 | 中 | ★★★ **推奨** |
+| Adaptive Bayesian | 100-300 点/quadrature, 反復改善 | ±0.03 | 高 | ★★ （高速化可） |
+| Homodyne variance | 粗推定 | ±0.05 | 低 | ★ （参考値のみ） |
+
+**Wigner tomography 詳細**:
+1. ホモダイン検出器: 位相 θ = 0°, 45°, ..., 355° (360°/2° = 180 points)
+2. 各位相で 100 quadratures スイープ (position q or momentum p)
+3. 合計 180 × 100 = 18,000 測定点
+4. GPU で inverse Radon transform + Fourier reconstruction (200ms/result)
+5. **精度**: ±0.02 (Δ < 0.15 判別に十分)
+
+**Go/No-Go 判定マトリクス**:
+
+| Δ値範囲 | F_GKP への影響 | Phase 0 判定 | Phase 1b 必須条件 | DV fallback |
+|--------|----------|----------|------------|----------|
+| **Δ < 0.10** | F > 0.88 | **Full Go** | 不要 | — |
+| **0.10 ≤ Δ < 0.12** | F ≈ 0.86-0.88 | **Go** | σ_gen 最適化 optional | — |
+| **0.12 ≤ Δ < 0.15** | F ≈ 0.84-0.86 | **Conditional** | σ_gen ≥ 13dB required, OPA tuning (M3-M8, +6週) | QD Step B必須 |
+| **Δ ≥ 0.15** | F < 0.84 | **No-Go** | — | → DV v5.0 fallback 確定 |
+
+**根拠**:
+- Menicucci (2014): d=3 break-even で F ≥ 0.85 必要、Δ < 0.12 で達成可
+- Stafford-Menicucci (2025): threshold は Δ ≤ 0.15 (soft margin), 推奨 Δ < 0.10 (hard margin)
+- CV GKP では Δ が増加すると: (1) 論理エラー率上昇, (2) soft-info decoder効果減少, (3) break-even σ_eff 要件上昇
+
+**Phase -1 実施スケジュール**:
+
+```
+Week 1-2: Wigner tomography 初期測定 (3独立測定)
+        → Δ値決定 (±0.02 tolerance)
+        → Go/Conditional/No-Go 即座判定
+
+Week 3-8 (Conditional時のみ): σ_gen 最適化実験
+        → OPA tuning (パラメータスイープ)
+        → GKP protocol Step A→B 遷移条件検討
+        → bi-weekly Δ trending (安定性確認)
+
+Month 2-3 (T0b-T0c 並行): Δ 月次測定継続
+        → 全 Phase -1 期間で Δ 監視
+```
+
+**Cost & Timeline**:
+- Wigner 測定装置: ~$150K (ホモダイン検出+光学系)
+- 外部解析委託: ~$50K (NTT/学内ラボ協業)
+- Total T0a cost addition: +$200K
+- Timeline impact: +2週 (nominal), +6週 (Conditional with optimization)
+
 ---
 
 ## 3. Step B: QD Photon Subtraction GKP
