@@ -266,6 +266,47 @@ SNU = Shot Noise Unit (真空ノイズ = 1 SNU)
   ■ 結論: 製品スペック(L=0.27dB, QE≥99%)での正規p_L = **3.3×10⁻⁴ (≲10⁻³)**
     L≤0.22dBで≲10⁻⁴達成。L≤0.17dBで<10⁻⁵達成。理論限界(L=0.15dB, V_nl=0)で6.1×10⁻⁷。
 
+### 2.4 WDM & PIC統合による段階的損失スケーリング (Phase依存)
+
+**背景**: 従来の計画では、Phase 0→1→2 において WDM チャネル数を 5→8 に拡張することで scalability を達成しようとしていた。しかし、Beam の Phase 2 分析により、**WDM 8ch 導入時の fiber-PIC coupler loss増加(0.06dB→0.26dB = +0.20dB)が σ_eff を 8.5dB→8.2dB に低下させ、d=5 不可能化**することが判明した。
+
+**解決策**: **Phase 1b (PIC integration) を新設**し、WDM スケーリングと PIC 成熟を分離。
+
+| Phase | WDM CH数 | Fiber-PIC Coupler Loss | 全パス損失L | σ_eff (13dB生成) | d値 | 目標 |
+|-------|---------|------|---------|-------|------|------|
+| **Phase 0-1a** | **5ch fixed** | 0.06dB | 0.39dB | 8.5dB | 3-5 | Break-even実証 |
+| **Phase 1b** (新) | 5ch maintained | 0.15dB (optimized) | 0.50dB | 8.8dB | 5 **stable** | **PIC coupler成熟化** |
+| **Phase 2** | 8ch ready | 0.06dB (mature) | 0.27dB | 9.3dB | 7 | 製品仕様 |
+
+**Root cause**: Fiber-PIC coupler loss は以下による:
+1. **WDM multiplexing 効果** (5ch → 8ch): ピグテール MMI (multimode interference) で複数波長の干渉増加
+2. **Wavelength-dependent phase matching 劣化**: センター ch vs edge ch で光学品質差 (中央±200GHz: 高品質, 端部±400GHz: 低品質)
+3. **Back-reflection 増加**: PIC facet での多数の波長リフレクション
+4. **PMF-to-waveguide taper 最適化限界**: Single optimum taper は 1 波長向け、複数波長では平均化により loss増加
+
+**Phase 1b 実装 (6-9ヶ月)**:
+- Coupler MMI 再設計 (モード保存構造)
+- Taper 幾何最適化 (polynomical profile, Γ shape)
+- Mode-field diameter (MFD) マッチング改善
+- 目標: 0.26dB (naive 8ch) → 0.15dB (Phase 1b optimized) → 0.06dB (Phase 2 fully mature)
+
+**損失削減パス**:
+```
+Phase 0 (fiber coupler only, 0.06dB)
+   ↓ [WDM 5ch 固定、design for 8ch future capability]
+Phase 1b (early PIC coupler, 0.15dB)
+   ↓ [PIC化進む、loss最適化]
+Phase 2 (mature PIC coupler, 0.06dB) + optional 8ch expansion
+```
+
+**Go/No-Go**:
+- Phase 1a 完了時点で「Phase 1b の費用対効果判定」実施
+- IF σ_eff(Phase 1a) = 8.5dB (d=5 marginal): Phase 1b実施 (cost +$500K, timeline +6-9mo)
+- IF σ_eff = 9.0dB以上 (予期外高性能): Phase 1b短縮 or スキップ可
+- 従来計画との比較: Phase 1b 追加により「PIC scalability risk」を軽減し、CMM Level 3 整合性を維持
+
+**Cost Impact**: Neutral (PIC開発 $500K は Phase 0→Phase 1b へのスケジュール移行、新規投資ではない)
+
   【理論限界 (L=0.15dB, QE=99%, Δ=0)】
   η = 10^(-0.15/10) = 0.966
   σ_gen = 13dB:
