@@ -4,7 +4,7 @@
 
 *Independent Researcher*
 
-**Target journal**: PRX Quantum / Physical Review Applied (via arXiv:quant-ph)
+**Target**: viXra preprint
 
 ---
 

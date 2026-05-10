@@ -4,7 +4,7 @@
 
 *独立研究者*
 
-**投稿先**: 未定
+**投稿先**: viXra
 
 ---
 
@@ -204,7 +204,7 @@ GNNはグラフ畳み込みにより局所的なエッジ重みの*非一様な*
 
 ## 参考文献
 
-[1] T. Tani, "Fault-tolerant quantum error correction at room temperature: The correct noise model for continuous-variable photonic architectures," arXiv:quant-ph (2026). [本シリーズ Paper 1]
+[1] T. Tani, "Fault-tolerant quantum error correction at room temperature: The correct noise model for continuous-variable photonic architectures," viXra (2026). [本シリーズ Paper 1]
 
 [2] C. Gidney, "Stim: A fast stabilizer circuit simulator," Quantum **5**, 497 (2021).
 
