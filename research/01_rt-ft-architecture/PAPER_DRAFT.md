@@ -182,6 +182,9 @@ We conducted six experiments, summarized in Table I:
 
 We first establish the lower bound on logical error rates using code-capacity simulations with soft-information MWPM. Figure 2 shows the logical error rate $p_L$ as a function of code distance $d$ for all three operating points.
 
+![Figure 2: Code-capacity distance scaling with soft-info MWPM](results/fig_a2_distance_scaling.png)
+*Figure 2. Logical error rate $p_L$ vs code distance $d$ for three operating points (code-capacity + soft-info MWPM). Exponential suppression confirms operation below threshold.*
+
 At Phase 1 parameters ($\sigma_\text{eff} = 8.5$ dB, $p_\text{phys} = 9.28 \times 10^{-3}$), we observe clear exponential suppression of $p_L$ with increasing distance: $p_L(d=3) = 1.20 \times 10^{-3}$, $p_L(d=5) = 1.40 \times 10^{-4}$, $p_L(d=7) = 2.00 \times 10^{-5}$. The suppression rate $\Lambda = p_L(d) / p_L(d+2) \approx 8$--$10$ per distance increment confirms that the system is well below the code-capacity threshold.
 
 At Phase 2+ Real parameters ($\sigma_\text{eff} = 9.3$ dB), $p_L(d=5) < 2 \times 10^{-5}$, approaching the statistical floor of the simulation. At Phase 2+ Limit ($\sigma_\text{eff} = 10.8$ dB), $p_L$ drops below measurable levels even at $d = 5$.
@@ -191,6 +194,9 @@ These code-capacity results provide an optimistic lower bound, as they assume pe
 ### B. Circuit-level model overestimates error rates (Exp-A3)
 
 We next compare the three noise models at the same physical error rate to demonstrate the dramatic impact of model choice. Figure 3 shows the three-model comparison for Phase 1 parameters.
+
+![Figure 3: Three-model noise comparison](results/fig_a3_model_comparison.png)
+*Figure 3. Logical error rate under three noise models at Phase 1 parameters. Circuit-level (red) overestimates by 100×; phenomenological + soft-info (green) is the CV-correct model.*
 
 The circuit-level model yields $p_L(d=7) = 5.07 \times 10^{-2}$---and, critically, $p_L$ *increases* with code distance ($d = 3$: $3.2 \times 10^{-2}$; $d = 5$: $4.5 \times 10^{-2}$; $d = 7$: $5.07 \times 10^{-2}$). Under this model, Phase 1 hardware appears to be *above* the fault-tolerance threshold, and increasing the code distance makes performance worse. This would imply that room-temperature operation at $\sigma_\text{eff} = 8.5$ dB is fundamentally insufficient for fault-tolerant QEC.
 
@@ -265,11 +271,17 @@ Both operating points have comfortable margins to the fault-tolerance threshold,
 
 Ideal GKP states have infinite energy and infinitely sharp peaks in phase space. Physical GKP states have finite energy, parameterized by a squeezing envelope $\Delta$. We performed simulations incorporating finite-energy effects with $\Delta$ ranging from 0 to 0.15.
 
+![Figure A1: Finite-energy GKP sensitivity](results/fig_a4_finite_gkp.png)
+*Figure A1. Impact of finite-energy GKP parameter $\Delta$ on logical error rates.*
+
 For $\Delta \leq 0.12$ (the design target), the impact on logical error rates is a modest 1.6--1.8$\times$ degradation. At Phase 1 $d = 5$, the logical error rate increases from $2.67 \times 10^{-4}$ to $\sim 4.5 \times 10^{-4}$, still well below the $10^{-3}$ threshold. Even at $\Delta = 0.15$, the system remains within the product specification. We conclude that finite-energy effects do not threaten fault-tolerant operation.
 
 #### 2. Correlated noise from common pump RIN (Exp-A4b)
 
 In a practical system, the two OPA sources share a common pump laser, whose relative intensity noise (RIN) can introduce correlations between the displacement errors of different squeezed modes. We model this by adding a correlated noise component with correlation coefficient $\rho$ between pairs of modes derived from the same pump pulse.
+
+![Figure A2: Correlated noise sensitivity](results/fig_a4b_correlated.png)
+*Figure A2. Impact of inter-mode correlation $\rho$ on logical error rates (MWPM baseline).*
 
 At the design specification of $\rho \leq 0.03$, the impact on Phase 2+ Real performance is negligible---logical error rates remain unchanged within statistical uncertainty. At Phase 1, $d = 5$ shows a $7\times$ degradation for $\rho = 0.03$, but the resulting $p_L = 7 \times 10^{-4}$ remains below the $10^{-3}$ product threshold.
 
@@ -297,6 +309,9 @@ We systematically compared three decoders---standard soft-info MWPM, correlation
 | 0.08 | 5 | $1.4 \times 10^{-3}$ | $1.2 \times 10^{-3}$ | $8.0 \times 10^{-4}$ | $\mathbf{1.75\times}$ |
 | 0.10 | 5 | $2.4 \times 10^{-3}$ | $2.0 \times 10^{-3}$ | $4.0 \times 10^{-4}$ | $\mathbf{6.00\times}$ |
 | 0.15 | 5 | $5.2 \times 10^{-3}$ | $4.0 \times 10^{-3}$ | $8.0 \times 10^{-4}$ | $\mathbf{6.50\times}$ |
+
+![Figure 4: LER vs ρ — 3-decoder comparison](results/fig_ler_3decoder.png)
+*Figure 4. Logical error rate vs correlation strength $\rho$ for three decoders (corr-aware MWPM, per-$\rho$ GNN, mixed-$\rho$ GNN) at $d=3$ (left) and $d=5$ (right). Error bars: 95% Wilson CI.*
 
 Two key findings emerge:
 
@@ -338,6 +353,9 @@ The mixed-$\rho$ GNN exhibits three notable properties:
 2. **OOD generalization**: At $\rho = 0.20$---a noise level never seen during training and one at which standard MWPM approaches the fault-tolerance threshold---the mixed-$\rho$ GNN achieves $4.78\times$ improvement at $d = 5$, reducing $p_L$ from $8.6 \times 10^{-3}$ to $1.8 \times 10^{-3}$ and recovering the system to well below the $10^{-3}$ product threshold.
 
 3. **Single model, no retraining**: Unlike per-$\rho$ training, which requires a separate model for each noise condition, the mixed-$\rho$ GNN is a single 4,033-parameter model that adapts to varying noise levels without retraining. This is the operational definition of a hardware adaptive decoder.
+
+![Figure 5: GNN advantage ratio vs ρ](results/fig_advantage_v2.png)
+*Figure 5. Advantage ratio $p_L(\text{MWPM}) / p_L(\text{GNN})$ vs $\rho$. Per-$\rho$ trained (pink) and mixed-$\rho$ (blue) GNN. Orange shading: OOD region ($\rho > 0.15$). The mixed-$\rho$ GNN maintains advantage even at unseen $\rho = 0.20$.*
 
 These results demonstrate that graph neural network decoders can learn the structure of photonic-specific correlated noise in a way that classical MWPM decoders, due to their scale-invariance property, fundamentally cannot. The mixed-$\rho$ training protocol provides a practical path to deploying adaptive decoders that maintain fault-tolerant performance under realistic hardware noise variation.
 
