@@ -1,0 +1,38 @@
+{
+  "static": {
+    "mwpm_pL": 0.0026,
+    "film_pL": 0.003,
+    "mwpm_errors": 13,
+    "film_errors": 15,
+    "n_test": 5000,
+    "ratio": 0.8666666666666666,
+    "better": "MWPM"
+  },
+  "drift": {
+    "mwpm_pL": 0.0166,
+    "film_pL": 0.0208,
+    "mwpm_errors": 83,
+    "film_errors": 104,
+    "n_test": 5000,
+    "ratio": 0.7980769230769231,
+    "better": "MWPM"
+  },
+  "spike": {
+    "mwpm_pL": 0.0794,
+    "film_pL": 0.0964,
+    "mwpm_errors": 397,
+    "film_errors": 482,
+    "n_test": 5000,
+    "ratio": 0.8236514522821576,
+    "better": "MWPM"
+  },
+  "mismatch": {
+    "mwpm_pL": 0.0664,
+    "film_pL": 0.0806,
+    "mwpm_errors": 332,
+    "film_errors": 403,
+    "n_test": 5000,
+    "ratio": 0.8238213399503722,
+    "better": "MWPM"
+  }
+}

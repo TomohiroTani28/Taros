@@ -1,0 +1,56 @@
+{
+  "rho_0.00": {
+    "rho": 0.0,
+    "mwpm_pL": 0.0033,
+    "nn_pL": 0.0047,
+    "ratio": 0.7021276595744681,
+    "winner": "MWPM",
+    "mwpm_errors": 33,
+    "nn_errors": 47
+  },
+  "rho_0.01": {
+    "rho": 0.01,
+    "mwpm_pL": 0.0026,
+    "nn_pL": 0.0044,
+    "ratio": 0.5909090909090908,
+    "winner": "MWPM",
+    "mwpm_errors": 26,
+    "nn_errors": 44
+  },
+  "rho_0.03": {
+    "rho": 0.03,
+    "mwpm_pL": 0.0025,
+    "nn_pL": 0.0038,
+    "ratio": 0.6578947368421053,
+    "winner": "MWPM",
+    "mwpm_errors": 25,
+    "nn_errors": 38
+  },
+  "rho_0.05": {
+    "rho": 0.05,
+    "mwpm_pL": 0.0037,
+    "nn_pL": 0.0038,
+    "ratio": 0.9736842105263158,
+    "winner": "MWPM",
+    "mwpm_errors": 37,
+    "nn_errors": 38
+  },
+  "rho_0.10": {
+    "rho": 0.1,
+    "mwpm_pL": 0.0055,
+    "nn_pL": 0.0028,
+    "ratio": 1.9642857142857142,
+    "winner": "NN",
+    "mwpm_errors": 55,
+    "nn_errors": 28
+  },
+  "rho_0.15": {
+    "rho": 0.15,
+    "mwpm_pL": 0.0076,
+    "nn_pL": 0.0089,
+    "ratio": 0.8539325842696629,
+    "winner": "MWPM",
+    "mwpm_errors": 76,
+    "nn_errors": 89
+  }
+}

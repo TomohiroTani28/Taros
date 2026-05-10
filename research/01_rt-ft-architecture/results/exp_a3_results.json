@@ -1,0 +1,860 @@
+{
+  "comparison": {
+    "Phase 1": {
+      "params": {
+        "sigma_eff": 8.486272466976285,
+        "p_phys": 0.009279251855783483,
+        "L_dB": 0.39
+      },
+      "data": [
+        {
+          "code_capacity": {
+            "d": 3,
+            "rounds": 1,
+            "p_phys": 0.009279251855783483,
+            "n_shots": 200000,
+            "n_errors": 135,
+            "p_L": 0.000675,
+            "model": "code_capacity"
+          },
+          "phenomenological": {
+            "d": 3,
+            "rounds": 3,
+            "p_phys": 0.009279251855783483,
+            "n_shots": 200000,
+            "n_errors": 1523,
+            "p_L": 0.007615,
+            "model": "phenomenological"
+          },
+          "circuit_level": {
+            "d": 3,
+            "rounds": 3,
+            "p_phys": 0.009279251855783483,
+            "n_shots": 200000,
+            "n_errors": 6436,
+            "p_L": 0.03218,
+            "model": "circuit_level"
+          }
+        },
+        {
+          "code_capacity": {
+            "d": 5,
+            "rounds": 1,
+            "p_phys": 0.009279251855783483,
+            "n_shots": 200000,
+            "n_errors": 18,
+            "p_L": 9e-05,
+            "model": "code_capacity"
+          },
+          "phenomenological": {
+            "d": 5,
+            "rounds": 5,
+            "p_phys": 0.009279251855783483,
+            "n_shots": 200000,
+            "n_errors": 377,
+            "p_L": 0.001885,
+            "model": "phenomenological"
+          },
+          "circuit_level": {
+            "d": 5,
+            "rounds": 5,
+            "p_phys": 0.009279251855783483,
+            "n_shots": 200000,
+            "n_errors": 9162,
+            "p_L": 0.04581,
+            "model": "circuit_level"
+          }
+        },
+        {
+          "code_capacity": {
+            "d": 7,
+            "rounds": 1,
+            "p_phys": 0.009279251855783483,
+            "n_shots": 200000,
+            "n_errors": 3,
+            "p_L": 1.5e-05,
+            "model": "code_capacity"
+          },
+          "phenomenological": {
+            "d": 7,
+            "rounds": 7,
+            "p_phys": 0.009279251855783483,
+            "n_shots": 200000,
+            "n_errors": 97,
+            "p_L": 0.000485,
+            "model": "phenomenological"
+          },
+          "circuit_level": {
+            "d": 7,
+            "rounds": 7,
+            "p_phys": 0.009279251855783483,
+            "n_shots": 200000,
+            "n_errors": 10144,
+            "p_L": 0.05072,
+            "model": "circuit_level"
+          }
+        }
+      ]
+    },
+    "Phase 2+ Real": {
+      "params": {
+        "sigma_eff": 9.304265330877618,
+        "p_phys": 0.004843978987534239,
+        "L_dB": 0.27
+      },
+      "data": [
+        {
+          "code_capacity": {
+            "d": 3,
+            "rounds": 1,
+            "p_phys": 0.004843978987534239,
+            "n_shots": 200000,
+            "n_errors": 40,
+            "p_L": 0.0002,
+            "model": "code_capacity"
+          },
+          "phenomenological": {
+            "d": 3,
+            "rounds": 3,
+            "p_phys": 0.004843978987534239,
+            "n_shots": 200000,
+            "n_errors": 414,
+            "p_L": 0.00207,
+            "model": "phenomenological"
+          },
+          "circuit_level": {
+            "d": 3,
+            "rounds": 3,
+            "p_phys": 0.004843978987534239,
+            "n_shots": 200000,
+            "n_errors": 1998,
+            "p_L": 0.00999,
+            "model": "circuit_level"
+          }
+        },
+        {
+          "code_capacity": {
+            "d": 5,
+            "rounds": 1,
+            "p_phys": 0.004843978987534239,
+            "n_shots": 200000,
+            "n_errors": 3,
+            "p_L": 1.5e-05,
+            "model": "code_capacity"
+          },
+          "phenomenological": {
+            "d": 5,
+            "rounds": 5,
+            "p_phys": 0.004843978987534239,
+            "n_shots": 200000,
+            "n_errors": 63,
+            "p_L": 0.000315,
+            "model": "phenomenological"
+          },
+          "circuit_level": {
+            "d": 5,
+            "rounds": 5,
+            "p_phys": 0.004843978987534239,
+            "n_shots": 200000,
+            "n_errors": 1707,
+            "p_L": 0.008535,
+            "model": "circuit_level"
+          }
+        },
+        {
+          "code_capacity": {
+            "d": 7,
+            "rounds": 1,
+            "p_phys": 0.004843978987534239,
+            "n_shots": 200000,
+            "n_errors": 0,
+            "p_L": 0.0,
+            "model": "code_capacity"
+          },
+          "phenomenological": {
+            "d": 7,
+            "rounds": 7,
+            "p_phys": 0.004843978987534239,
+            "n_shots": 200000,
+            "n_errors": 5,
+            "p_L": 2.5e-05,
+            "model": "phenomenological"
+          },
+          "circuit_level": {
+            "d": 7,
+            "rounds": 7,
+            "p_phys": 0.004843978987534239,
+            "n_shots": 200000,
+            "n_errors": 1058,
+            "p_L": 0.00529,
+            "model": "circuit_level"
+          }
+        }
+      ]
+    },
+    "Phase 2+ Limit": {
+      "params": {
+        "sigma_eff": 10.842501380465858,
+        "p_phys": 0.0010077179131207279,
+        "L_dB": 0.15
+      },
+      "data": [
+        {
+          "code_capacity": {
+            "d": 3,
+            "rounds": 1,
+            "p_phys": 0.0010077179131207279,
+            "n_shots": 500000,
+            "n_errors": 4,
+            "p_L": 8e-06,
+            "model": "code_capacity"
+          },
+          "phenomenological": {
+            "d": 3,
+            "rounds": 3,
+            "p_phys": 0.0010077179131207279,
+            "n_shots": 500000,
+            "n_errors": 50,
+            "p_L": 0.0001,
+            "model": "phenomenological"
+          },
+          "circuit_level": {
+            "d": 3,
+            "rounds": 3,
+            "p_phys": 0.0010077179131207279,
+            "n_shots": 500000,
+            "n_errors": 258,
+            "p_L": 0.000516,
+            "model": "circuit_level"
+          }
+        },
+        {
+          "code_capacity": {
+            "d": 5,
+            "rounds": 1,
+            "p_phys": 0.0010077179131207279,
+            "n_shots": 500000,
+            "n_errors": 0,
+            "p_L": 0.0,
+            "model": "code_capacity"
+          },
+          "phenomenological": {
+            "d": 5,
+            "rounds": 5,
+            "p_phys": 0.0010077179131207279,
+            "n_shots": 500000,
+            "n_errors": 0,
+            "p_L": 0.0,
+            "model": "phenomenological"
+          },
+          "circuit_level": {
+            "d": 5,
+            "rounds": 5,
+            "p_phys": 0.0010077179131207279,
+            "n_shots": 500000,
+            "n_errors": 45,
+            "p_L": 9e-05,
+            "model": "circuit_level"
+          }
+        },
+        {
+          "code_capacity": {
+            "d": 7,
+            "rounds": 1,
+            "p_phys": 0.0010077179131207279,
+            "n_shots": 500000,
+            "n_errors": 0,
+            "p_L": 0.0,
+            "model": "code_capacity"
+          },
+          "phenomenological": {
+            "d": 7,
+            "rounds": 7,
+            "p_phys": 0.0010077179131207279,
+            "n_shots": 500000,
+            "n_errors": 0,
+            "p_L": 0.0,
+            "model": "phenomenological"
+          },
+          "circuit_level": {
+            "d": 7,
+            "rounds": 7,
+            "p_phys": 0.0010077179131207279,
+            "n_shots": 500000,
+            "n_errors": 3,
+            "p_L": 6e-06,
+            "model": "circuit_level"
+          }
+        }
+      ]
+    }
+  },
+  "threshold_phenom": [
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.0017727329826930178,
+      "n_shots": 200000,
+      "n_errors": 58,
+      "p_L": 0.00029,
+      "model": "phenomenological",
+      "L_dB": 0.15,
+      "sigma_eff": 10.344861813331539
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.0017727329826930178,
+      "n_shots": 200000,
+      "n_errors": 5,
+      "p_L": 2.5e-05,
+      "model": "phenomenological",
+      "L_dB": 0.15,
+      "sigma_eff": 10.344861813331539
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.0017727329826930178,
+      "n_shots": 200000,
+      "n_errors": 0,
+      "p_L": 0.0,
+      "model": "phenomenological",
+      "L_dB": 0.15,
+      "sigma_eff": 10.344861813331539
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.004843978987534239,
+      "n_shots": 200000,
+      "n_errors": 422,
+      "p_L": 0.00211,
+      "model": "phenomenological",
+      "L_dB": 0.27,
+      "sigma_eff": 9.304265330877618
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.004843978987534239,
+      "n_shots": 200000,
+      "n_errors": 51,
+      "p_L": 0.000255,
+      "model": "phenomenological",
+      "L_dB": 0.27,
+      "sigma_eff": 9.304265330877618
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.004843978987534239,
+      "n_shots": 200000,
+      "n_errors": 5,
+      "p_L": 2.5e-05,
+      "model": "phenomenological",
+      "L_dB": 0.27,
+      "sigma_eff": 9.304265330877618
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.009279251855783483,
+      "n_shots": 100000,
+      "n_errors": 758,
+      "p_L": 0.00758,
+      "model": "phenomenological",
+      "L_dB": 0.39,
+      "sigma_eff": 8.486272466976285
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.009279251855783483,
+      "n_shots": 100000,
+      "n_errors": 201,
+      "p_L": 0.00201,
+      "model": "phenomenological",
+      "L_dB": 0.39,
+      "sigma_eff": 8.486272466976285
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.009279251855783483,
+      "n_shots": 100000,
+      "n_errors": 39,
+      "p_L": 0.00039,
+      "model": "phenomenological",
+      "L_dB": 0.39,
+      "sigma_eff": 8.486272466976285
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.01417969437613191,
+      "n_shots": 100000,
+      "n_errors": 1739,
+      "p_L": 0.01739,
+      "model": "phenomenological",
+      "L_dB": 0.5,
+      "sigma_eff": 7.86701647459628
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.01417969437613191,
+      "n_shots": 100000,
+      "n_errors": 669,
+      "p_L": 0.00669,
+      "model": "phenomenological",
+      "L_dB": 0.5,
+      "sigma_eff": 7.86701647459628
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.01417969437613191,
+      "n_shots": 100000,
+      "n_errors": 230,
+      "p_L": 0.0023,
+      "model": "phenomenological",
+      "L_dB": 0.5,
+      "sigma_eff": 7.86701647459628
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.024180844106510065,
+      "n_shots": 100000,
+      "n_errors": 4492,
+      "p_L": 0.04492,
+      "model": "phenomenological",
+      "L_dB": 0.7,
+      "sigma_eff": 6.956820315424494
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.024180844106510065,
+      "n_shots": 100000,
+      "n_errors": 3053,
+      "p_L": 0.03053,
+      "model": "phenomenological",
+      "L_dB": 0.7,
+      "sigma_eff": 6.956820315424494
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.024180844106510065,
+      "n_shots": 100000,
+      "n_errors": 1881,
+      "p_L": 0.01881,
+      "model": "phenomenological",
+      "L_dB": 0.7,
+      "sigma_eff": 6.956820315424494
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.03977244241939367,
+      "n_shots": 100000,
+      "n_errors": 10537,
+      "p_L": 0.10537,
+      "model": "phenomenological",
+      "L_dB": 1.0,
+      "sigma_eff": 5.926388727808139
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.03977244241939367,
+      "n_shots": 100000,
+      "n_errors": 10615,
+      "p_L": 0.10615,
+      "model": "phenomenological",
+      "L_dB": 1.0,
+      "sigma_eff": 5.926388727808139
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.03977244241939367,
+      "n_shots": 100000,
+      "n_errors": 10718,
+      "p_L": 0.10718,
+      "model": "phenomenological",
+      "L_dB": 1.0,
+      "sigma_eff": 5.926388727808139
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.05452359141420284,
+      "n_shots": 100000,
+      "n_errors": 16761,
+      "p_L": 0.16761,
+      "model": "phenomenological",
+      "L_dB": 1.3,
+      "sigma_eff": 5.14501055111486
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.05452359141420284,
+      "n_shots": 100000,
+      "n_errors": 20951,
+      "p_L": 0.20951,
+      "model": "phenomenological",
+      "L_dB": 1.3,
+      "sigma_eff": 5.14501055111486
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.05452359141420284,
+      "n_shots": 100000,
+      "n_errors": 24969,
+      "p_L": 0.24969,
+      "model": "phenomenological",
+      "L_dB": 1.3,
+      "sigma_eff": 5.14501055111486
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.0678560840476477,
+      "n_shots": 100000,
+      "n_errors": 22637,
+      "p_L": 0.22637,
+      "model": "phenomenological",
+      "L_dB": 1.6,
+      "sigma_eff": 4.524188459141476
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.0678560840476477,
+      "n_shots": 100000,
+      "n_errors": 30078,
+      "p_L": 0.30078,
+      "model": "phenomenological",
+      "L_dB": 1.6,
+      "sigma_eff": 4.524188459141476
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.0678560840476477,
+      "n_shots": 100000,
+      "n_errors": 36862,
+      "p_L": 0.36862,
+      "model": "phenomenological",
+      "L_dB": 1.6,
+      "sigma_eff": 4.524188459141476
+    }
+  ],
+  "threshold_circuit": [
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.0017727329826930178,
+      "n_shots": 200000,
+      "n_errors": 313,
+      "p_L": 0.001565,
+      "model": "circuit_level",
+      "L_dB": 0.15,
+      "sigma_eff": 10.344861813331539
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.0017727329826930178,
+      "n_shots": 200000,
+      "n_errors": 84,
+      "p_L": 0.00042,
+      "model": "circuit_level",
+      "L_dB": 0.15,
+      "sigma_eff": 10.344861813331539
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.0017727329826930178,
+      "n_shots": 200000,
+      "n_errors": 11,
+      "p_L": 5.5e-05,
+      "model": "circuit_level",
+      "L_dB": 0.15,
+      "sigma_eff": 10.344861813331539
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.004843978987534239,
+      "n_shots": 200000,
+      "n_errors": 1973,
+      "p_L": 0.009865,
+      "model": "circuit_level",
+      "L_dB": 0.27,
+      "sigma_eff": 9.304265330877618
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.004843978987534239,
+      "n_shots": 200000,
+      "n_errors": 1642,
+      "p_L": 0.00821,
+      "model": "circuit_level",
+      "L_dB": 0.27,
+      "sigma_eff": 9.304265330877618
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.004843978987534239,
+      "n_shots": 200000,
+      "n_errors": 1080,
+      "p_L": 0.0054,
+      "model": "circuit_level",
+      "L_dB": 0.27,
+      "sigma_eff": 9.304265330877618
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.009279251855783483,
+      "n_shots": 100000,
+      "n_errors": 3330,
+      "p_L": 0.0333,
+      "model": "circuit_level",
+      "L_dB": 0.39,
+      "sigma_eff": 8.486272466976285
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.009279251855783483,
+      "n_shots": 100000,
+      "n_errors": 4528,
+      "p_L": 0.04528,
+      "model": "circuit_level",
+      "L_dB": 0.39,
+      "sigma_eff": 8.486272466976285
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.009279251855783483,
+      "n_shots": 100000,
+      "n_errors": 5034,
+      "p_L": 0.05034,
+      "model": "circuit_level",
+      "L_dB": 0.39,
+      "sigma_eff": 8.486272466976285
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.01417969437613191,
+      "n_shots": 100000,
+      "n_errors": 6732,
+      "p_L": 0.06732,
+      "model": "circuit_level",
+      "L_dB": 0.5,
+      "sigma_eff": 7.86701647459628
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.01417969437613191,
+      "n_shots": 100000,
+      "n_errors": 12105,
+      "p_L": 0.12105,
+      "model": "circuit_level",
+      "L_dB": 0.5,
+      "sigma_eff": 7.86701647459628
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.01417969437613191,
+      "n_shots": 100000,
+      "n_errors": 16825,
+      "p_L": 0.16825,
+      "model": "circuit_level",
+      "L_dB": 0.5,
+      "sigma_eff": 7.86701647459628
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.024180844106510065,
+      "n_shots": 100000,
+      "n_errors": 15383,
+      "p_L": 0.15383,
+      "model": "circuit_level",
+      "L_dB": 0.7,
+      "sigma_eff": 6.956820315424494
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.024180844106510065,
+      "n_shots": 100000,
+      "n_errors": 29946,
+      "p_L": 0.29946,
+      "model": "circuit_level",
+      "L_dB": 0.7,
+      "sigma_eff": 6.956820315424494
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.024180844106510065,
+      "n_shots": 100000,
+      "n_errors": 40581,
+      "p_L": 0.40581,
+      "model": "circuit_level",
+      "L_dB": 0.7,
+      "sigma_eff": 6.956820315424494
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.03977244241939367,
+      "n_shots": 100000,
+      "n_errors": 29328,
+      "p_L": 0.29328,
+      "model": "circuit_level",
+      "L_dB": 1.0,
+      "sigma_eff": 5.926388727808139
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.03977244241939367,
+      "n_shots": 100000,
+      "n_errors": 45775,
+      "p_L": 0.45775,
+      "model": "circuit_level",
+      "L_dB": 1.0,
+      "sigma_eff": 5.926388727808139
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.03977244241939367,
+      "n_shots": 100000,
+      "n_errors": 49517,
+      "p_L": 0.49517,
+      "model": "circuit_level",
+      "L_dB": 1.0,
+      "sigma_eff": 5.926388727808139
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.05452359141420284,
+      "n_shots": 100000,
+      "n_errors": 38979,
+      "p_L": 0.38979,
+      "model": "circuit_level",
+      "L_dB": 1.3,
+      "sigma_eff": 5.14501055111486
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.05452359141420284,
+      "n_shots": 100000,
+      "n_errors": 49220,
+      "p_L": 0.4922,
+      "model": "circuit_level",
+      "L_dB": 1.3,
+      "sigma_eff": 5.14501055111486
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.05452359141420284,
+      "n_shots": 100000,
+      "n_errors": 49936,
+      "p_L": 0.49936,
+      "model": "circuit_level",
+      "L_dB": 1.3,
+      "sigma_eff": 5.14501055111486
+    },
+    {
+      "d": 3,
+      "rounds": 3,
+      "p_phys": 0.0678560840476477,
+      "n_shots": 100000,
+      "n_errors": 43715,
+      "p_L": 0.43715,
+      "model": "circuit_level",
+      "L_dB": 1.6,
+      "sigma_eff": 4.524188459141476
+    },
+    {
+      "d": 5,
+      "rounds": 5,
+      "p_phys": 0.0678560840476477,
+      "n_shots": 100000,
+      "n_errors": 49771,
+      "p_L": 0.49771,
+      "model": "circuit_level",
+      "L_dB": 1.6,
+      "sigma_eff": 4.524188459141476
+    },
+    {
+      "d": 7,
+      "rounds": 7,
+      "p_phys": 0.0678560840476477,
+      "n_shots": 100000,
+      "n_errors": 49985,
+      "p_L": 0.49985,
+      "model": "circuit_level",
+      "L_dB": 1.6,
+      "sigma_eff": 4.524188459141476
+    }
+  ],
+  "cv_analysis": [
+    {
+      "meas_factor": 0.0,
+      "p_meas": 0.0,
+      "p_L": 0.000275,
+      "n_errors": 55
+    },
+    {
+      "meas_factor": 0.1,
+      "p_meas": 0.0009279251855783483,
+      "p_L": 0.00046,
+      "n_errors": 92
+    },
+    {
+      "meas_factor": 0.3,
+      "p_meas": 0.002783775556735045,
+      "p_L": 0.00088,
+      "n_errors": 176
+    },
+    {
+      "meas_factor": 0.5,
+      "p_meas": 0.004639625927891741,
+      "p_L": 0.00118,
+      "n_errors": 236
+    },
+    {
+      "meas_factor": 1.0,
+      "p_meas": 0.009279251855783483,
+      "p_L": 0.002135,
+      "n_errors": 427
+    }
+  ],
+  "metadata": {
+    "seed": "stim_internal",
+    "timestamp": "2026-05-09 22:33:26"
+  }
+}

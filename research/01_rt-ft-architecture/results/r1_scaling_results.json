@@ -1,0 +1,112 @@
+{
+  "d3_rho0.00": {
+    "d": 3,
+    "rho": 0.0,
+    "ne": 66,
+    "mwpm_pL": 0.0025,
+    "nn_pL": 0.0037,
+    "ratio": 0.6756756756756757,
+    "winner": "MWPM",
+    "mwpm_err": 25,
+    "nn_err": 37
+  },
+  "d3_rho0.03": {
+    "d": 3,
+    "rho": 0.03,
+    "ne": 66,
+    "mwpm_pL": 0.0031,
+    "nn_pL": 0.0037,
+    "ratio": 0.8378378378378377,
+    "winner": "MWPM",
+    "mwpm_err": 31,
+    "nn_err": 37
+  },
+  "d3_rho0.05": {
+    "d": 3,
+    "rho": 0.05,
+    "ne": 66,
+    "mwpm_pL": 0.0037,
+    "nn_pL": 0.004,
+    "ratio": 0.925,
+    "winner": "MWPM",
+    "mwpm_err": 37,
+    "nn_err": 40
+  },
+  "d3_rho0.08": {
+    "d": 3,
+    "rho": 0.08,
+    "ne": 66,
+    "mwpm_pL": 0.003,
+    "nn_pL": 0.0021,
+    "ratio": 1.4285714285714286,
+    "winner": "NN",
+    "mwpm_err": 30,
+    "nn_err": 21
+  },
+  "d3_rho0.10": {
+    "d": 3,
+    "rho": 0.1,
+    "ne": 66,
+    "mwpm_pL": 0.0049,
+    "nn_pL": 0.0026,
+    "ratio": 1.8846153846153846,
+    "winner": "NN",
+    "mwpm_err": 49,
+    "nn_err": 26
+  },
+  "d5_rho0.00": {
+    "d": 5,
+    "rho": 0.0,
+    "ne": 334,
+    "mwpm_pL": 0.0002,
+    "nn_pL": 0.0223,
+    "ratio": 0.008968609865470852,
+    "winner": "MWPM",
+    "mwpm_err": 2,
+    "nn_err": 223
+  },
+  "d5_rho0.03": {
+    "d": 5,
+    "rho": 0.03,
+    "ne": 334,
+    "mwpm_pL": 0.0005,
+    "nn_pL": 0.0251,
+    "ratio": 0.0199203187250996,
+    "winner": "MWPM",
+    "mwpm_err": 5,
+    "nn_err": 251
+  },
+  "d5_rho0.05": {
+    "d": 5,
+    "rho": 0.05,
+    "ne": 334,
+    "mwpm_pL": 0.0005,
+    "nn_pL": 0.0272,
+    "ratio": 0.01838235294117647,
+    "winner": "MWPM",
+    "mwpm_err": 5,
+    "nn_err": 272
+  },
+  "d5_rho0.08": {
+    "d": 5,
+    "rho": 0.08,
+    "ne": 334,
+    "mwpm_pL": 0.0013,
+    "nn_pL": 0.0291,
+    "ratio": 0.04467353951890034,
+    "winner": "MWPM",
+    "mwpm_err": 13,
+    "nn_err": 291
+  },
+  "d5_rho0.10": {
+    "d": 5,
+    "rho": 0.1,
+    "ne": 334,
+    "mwpm_pL": 0.0022,
+    "nn_pL": 0.0332,
+    "ratio": 0.06626506024096386,
+    "winner": "MWPM",
+    "mwpm_err": 22,
+    "nn_err": 332
+  }
+}

@@ -1,0 +1,146 @@
+[
+  {
+    "phase": "Phase 1",
+    "d": 3,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "pL": 0.00286,
+      "nerr": 143,
+      "ns": 50000,
+      "soft": true,
+      "ne": 66
+    },
+    "hard": {
+      "d": 3,
+      "rounds": 3,
+      "pL": 0.03852,
+      "nerr": 1926,
+      "ns": 50000,
+      "soft": false,
+      "ne": 66
+    }
+  },
+  {
+    "phase": "Phase 1",
+    "d": 5,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "pL": 0.0004333333333333333,
+      "nerr": 13,
+      "ns": 30000,
+      "soft": true,
+      "ne": 334
+    },
+    "hard": {
+      "d": 5,
+      "rounds": 5,
+      "pL": 0.02405,
+      "nerr": 481,
+      "ns": 20000,
+      "soft": false,
+      "ne": 334
+    }
+  },
+  {
+    "phase": "Phase 1",
+    "d": 7,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 7,
+      "rounds": 7,
+      "pL": 0.0002,
+      "nerr": 3,
+      "ns": 15000,
+      "soft": true,
+      "ne": 954
+    },
+    "hard": {
+      "d": 7,
+      "rounds": 7,
+      "pL": 0.015,
+      "nerr": 150,
+      "ns": 10000,
+      "soft": false,
+      "ne": 954
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "d": 3,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "pL": 0.0003,
+      "nerr": 15,
+      "ns": 50000,
+      "soft": true,
+      "ne": 66
+    },
+    "hard": {
+      "d": 3,
+      "rounds": 3,
+      "pL": 0.01158,
+      "nerr": 579,
+      "ns": 50000,
+      "soft": false,
+      "ne": 66
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "d": 5,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "pL": 3.3333333333333335e-05,
+      "nerr": 1,
+      "ns": 30000,
+      "soft": true,
+      "ne": 334
+    },
+    "hard": {
+      "d": 5,
+      "rounds": 5,
+      "pL": 0.0037,
+      "nerr": 74,
+      "ns": 20000,
+      "soft": false,
+      "ne": 334
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "d": 7,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 7,
+      "rounds": 7,
+      "pL": 0.0,
+      "nerr": 0,
+      "ns": 15000,
+      "soft": true,
+      "ne": 954
+    },
+    "hard": {
+      "d": 7,
+      "rounds": 7,
+      "pL": 0.0012,
+      "nerr": 12,
+      "ns": 10000,
+      "soft": false,
+      "ne": 954
+    }
+  }
+]

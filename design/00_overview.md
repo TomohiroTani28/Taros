@@ -26,6 +26,17 @@
 | 閾値 (保守) | p_th | 0.59% | hard-syndrome MWPM | 文献値 |
 | 論理エラー率 d=7 (Δ=0理想) | p_L | **6.1×10⁻⁷ (MWPM, Phase 2+ PIC)** [理論上限値] | 製品目標p_L≲10⁻³(L=0.27dB)。現実的PIC(L=0.27dB, QE≥99%)でMWPM~3.3×10⁻⁴。L≤0.22dBで≲10⁻⁴。UF~4×10⁻³(超過)→MWPM必須 | 13_performance |
 | 論理エラー率 d=7 (V_non-loss込み) | p_L | **~3.3×10⁻⁴ (MWPM, L=0.27dB)** [対外基準値, Δ・RIN未包含†³] | 13_performance §3.2 Phase 2+ PIC現実的行。†³Δ=0.10+RIN全込み推定: 5-9×10⁻⁴（p_L≲10⁻³は達成）。Phase -1実測で確定 | 13_performance |
+
+> **⚠ QECシミュレーション検証結果 (2026-05-09, Exp-A2〜A4b)**:
+> 上記p_L値はcircuit-level (CL) スケーリング公式 `p_L = A×(p_phys/p_th)^((d+1)/2)` による**保守的推定値**であり、
+> 実際のGKP表面符号ノイズモデルはphenomenological (p_meas = p_data) であるため、CL公式は**10〜22倍悲観的**。
+> シミュレーション検証値 (GKP MR+Soft-info MWPM, d=7):
+> - **Phase 1 (σ_eff=8.5dB)**: p_L = **2.00×10⁻⁴** (CL公式予測 4.4×10⁻³ の22倍良好)
+> - **Phase 2+ PIC現実的 (σ_eff≈9.3dB)**: p_L < **7×10⁻⁵** (CL公式予測 3.3×10⁻⁴ の5倍良好)
+> - スケーリング則: Phase 1 Λ=3.8, p_th=3.5%; Phase 2+ Real Λ=9.0, p_th=4.4%
+> - Soft-info MWPMが必須 (hard-decision比13〜75倍改善)
+> - 有限エネルギーGKP (Δ≤0.12): 影響無視可能; 相関ノイズ (ρ≤0.03): 安全域確認
+> CL公式値は保守的保証として維持。詳細: `research/` Exp-A2〜A4b, `design/06_noise-budget.md` §4.4
 | QD等価スクイージング | — | +2.7dB (QD=2) | σ_eff等価13.5dB (10.8+2.7, 旧14.2dBは11.5dB基準) | 01_system-arch |
 | TDMクロック | f_TDM | 100MHz | Option B パルスOPA | 03_tdm-cluster |
 | macronode列数 | N_col | 2d² (18/50/98) | d=3/5/7 | 03_tdm-cluster |
@@ -112,11 +123,11 @@ FPGA (Versal VE2302)
 | **閾値マージン (Phase 2+ PIC現実的, postsel)** | **+1.8dB** | 9.3 - 7.5 |
 | **閾値マージン (Phase 2+ PIC理論限界, postsel)** | **+3.3dB** | 10.8 - 7.5 |
 | **閾値マージン (Phase 2+ PIC理論限界, 全モード)** | **+0.8dB** | 10.8 - 10.0 |
-| **閾値マージン (Phase 1, postsel)** | **+1.0dB** | 8.5 - 7.5 (σ_eff閾値超過だがp_L(d=7)≈4.4×10⁻³でbreak-even境界) |
+| **閾値マージン (Phase 1, postsel)** | **+1.0dB** | 8.5 - 7.5 (σ_eff閾値超過。CL公式: p_L≈4.4×10⁻³; **シミュ検証: p_L=2.00×10⁻⁴**) |
 | **閾値マージン (現離散光学, Option A+AWG)** | **閾値未達** | 5.0dB < 7.5dB。**注: Phase -1実験はOption B(AWGなし, L=0.39dB, σ_eff=8.5dB)で実施。閾値超過+1.0dB** |
 | 物理エラー率 p_err | Phase 1(13dB): 9.3×10⁻³ / Phase 2+ PIC現実的(13dB, L=0.27dB): ~4.9×10⁻³ / 理論限界(L=0.15dB): ≈1.0×10⁻³ | erfc再計算+V_non-loss修正 |
 | 表面符号閾値 p_th_eff | 1.5% | soft-info MWPM (Noh&Chamberland 2022); UF時≈0.8-1.2%. 製品デコーダはMWPM |
-| **論理エラー率 p_L (d=7, Phase 2+ PIC)** | **製品仕様: ~3.3×10⁻⁴ (L=0.27dB, QE≥99%, MWPM)** / L≤0.22dBで≲10⁻⁴ / 理論限界: 6.1×10⁻⁷ | non-loss noise込み統一計算。L=0.27dBでp_L=3.3×10⁻⁴(≲10⁻³)。L≤0.22dBで≲10⁻⁴達成。理論限界(L=0.15dB, Δ=0) 6.1×10⁻⁷。UFは現実的条件で~4×10⁻³(超過)→MWPM必須 |
+| **論理エラー率 p_L (d=7, Phase 2+ PIC)** | **製品仕様(保守CL公式): ~3.3×10⁻⁴ (L=0.27dB, QE≥99%, MWPM)** / **シミュ検証(MR+Soft): <7×10⁻⁵** / L≤0.22dBで≲10⁻⁴ / 理論限界: 6.1×10⁻⁷ | non-loss noise込み。CL公式: 3.3×10⁻⁴(≲10⁻³)。**シミュ検証(2026-05-09): <7×10⁻⁵**。CL公式は10-22×悲観的(GKPノイズモデルがphenomenologicalのため)。UFは現実的条件で~4×10⁻³(超過)→MWPM必須 |
 
 ---
 

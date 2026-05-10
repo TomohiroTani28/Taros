@@ -1,0 +1,458 @@
+[
+  {
+    "phase": "Phase 1",
+    "rho": 0.0,
+    "d": 3,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.0,
+      "pL": 0.0028,
+      "nerr": 56,
+      "ns": 20000,
+      "soft": true
+    },
+    "hard": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.0,
+      "pL": 0.0378,
+      "nerr": 378,
+      "ns": 10000,
+      "soft": false
+    }
+  },
+  {
+    "phase": "Phase 1",
+    "rho": 0.0,
+    "d": 5,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.0,
+      "pL": 0.0001,
+      "nerr": 1,
+      "ns": 10000,
+      "soft": true
+    },
+    "hard": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.0,
+      "pL": 0.0267,
+      "nerr": 267,
+      "ns": 10000,
+      "soft": false
+    }
+  },
+  {
+    "phase": "Phase 1",
+    "rho": 0.01,
+    "d": 3,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.01,
+      "pL": 0.00295,
+      "nerr": 59,
+      "ns": 20000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 1",
+    "rho": 0.01,
+    "d": 5,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.01,
+      "pL": 0.0003,
+      "nerr": 3,
+      "ns": 10000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 1",
+    "rho": 0.03,
+    "d": 3,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.03,
+      "pL": 0.0031,
+      "nerr": 62,
+      "ns": 20000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 1",
+    "rho": 0.03,
+    "d": 5,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.03,
+      "pL": 0.0007,
+      "nerr": 7,
+      "ns": 10000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 1",
+    "rho": 0.05,
+    "d": 3,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.05,
+      "pL": 0.00355,
+      "nerr": 71,
+      "ns": 20000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 1",
+    "rho": 0.05,
+    "d": 5,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.05,
+      "pL": 0.0007,
+      "nerr": 7,
+      "ns": 10000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 1",
+    "rho": 0.1,
+    "d": 3,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.1,
+      "pL": 0.0049,
+      "nerr": 98,
+      "ns": 20000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 1",
+    "rho": 0.1,
+    "d": 5,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.1,
+      "pL": 0.0019,
+      "nerr": 19,
+      "ns": 10000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 1",
+    "rho": 0.2,
+    "d": 3,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.2,
+      "pL": 0.00985,
+      "nerr": 197,
+      "ns": 20000,
+      "soft": true
+    },
+    "hard": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.2,
+      "pL": 0.0463,
+      "nerr": 463,
+      "ns": 10000,
+      "soft": false
+    }
+  },
+  {
+    "phase": "Phase 1",
+    "rho": 0.2,
+    "d": 5,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.2,
+      "pL": 0.0102,
+      "nerr": 102,
+      "ns": 10000,
+      "soft": true
+    },
+    "hard": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.2,
+      "pL": 0.0424,
+      "nerr": 424,
+      "ns": 10000,
+      "soft": false
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "rho": 0.0,
+    "d": 3,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.0,
+      "pL": 0.0006,
+      "nerr": 12,
+      "ns": 20000,
+      "soft": true
+    },
+    "hard": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.0,
+      "pL": 0.0111,
+      "nerr": 111,
+      "ns": 10000,
+      "soft": false
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "rho": 0.0,
+    "d": 5,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.0,
+      "pL": 0.0,
+      "nerr": 0,
+      "ns": 10000,
+      "soft": true
+    },
+    "hard": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.0,
+      "pL": 0.0048,
+      "nerr": 48,
+      "ns": 10000,
+      "soft": false
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "rho": 0.01,
+    "d": 3,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.01,
+      "pL": 0.0006,
+      "nerr": 12,
+      "ns": 20000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "rho": 0.01,
+    "d": 5,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.01,
+      "pL": 0.0001,
+      "nerr": 1,
+      "ns": 10000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "rho": 0.03,
+    "d": 3,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.03,
+      "pL": 0.00055,
+      "nerr": 11,
+      "ns": 20000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "rho": 0.03,
+    "d": 5,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.03,
+      "pL": 0.0,
+      "nerr": 0,
+      "ns": 10000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "rho": 0.05,
+    "d": 3,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.05,
+      "pL": 0.00055,
+      "nerr": 11,
+      "ns": 20000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "rho": 0.05,
+    "d": 5,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.05,
+      "pL": 0.0001,
+      "nerr": 1,
+      "ns": 10000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "rho": 0.1,
+    "d": 3,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.1,
+      "pL": 0.00105,
+      "nerr": 21,
+      "ns": 20000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "rho": 0.1,
+    "d": 5,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.1,
+      "pL": 0.0003,
+      "nerr": 3,
+      "ns": 10000,
+      "soft": true
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "rho": 0.2,
+    "d": 3,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.2,
+      "pL": 0.00245,
+      "nerr": 49,
+      "ns": 20000,
+      "soft": true
+    },
+    "hard": {
+      "d": 3,
+      "rounds": 3,
+      "rho": 0.2,
+      "pL": 0.0183,
+      "nerr": 183,
+      "ns": 10000,
+      "soft": false
+    }
+  },
+  {
+    "phase": "Phase 2+ Real",
+    "rho": 0.2,
+    "d": 5,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239,
+    "soft": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.2,
+      "pL": 0.0014,
+      "nerr": 14,
+      "ns": 10000,
+      "soft": true
+    },
+    "hard": {
+      "d": 5,
+      "rounds": 5,
+      "rho": 0.2,
+      "pL": 0.0151,
+      "nerr": 151,
+      "ns": 10000,
+      "soft": false
+    }
+  }
+]

@@ -1,0 +1,176 @@
+{
+  "exp1": [
+    {
+      "d": 3,
+      "V_eff": 0.11737442207505741,
+      "p_phys": 0.004843978987534239,
+      "n_shots": 200000,
+      "n_edges": 7,
+      "static_pL": 0.000765,
+      "ploa_pL": 0.0001,
+      "static_errors": 153,
+      "ploa_errors": 20,
+      "time_s": 29.441622972488403
+    },
+    {
+      "d": 5,
+      "V_eff": 0.11737442207505741,
+      "p_phys": 0.004843978987534239,
+      "n_shots": 200000,
+      "n_edges": 21,
+      "static_pL": 0.000115,
+      "ploa_pL": 0.0,
+      "static_errors": 23,
+      "ploa_errors": 0,
+      "time_s": 36.938591957092285
+    },
+    {
+      "d": 7,
+      "V_eff": 0.11737442207505741,
+      "p_phys": 0.004843978987534239,
+      "n_shots": 100000,
+      "n_edges": 43,
+      "static_pL": 1e-05,
+      "ploa_pL": 0.0,
+      "static_errors": 1,
+      "ploa_errors": 0,
+      "time_s": 24.172222137451172
+    }
+  ],
+  "exp2": [
+    {
+      "d": 5,
+      "V_eff": 0.09236635776859657,
+      "p_phys": 0.0017727329826930178,
+      "n_shots": 200000,
+      "n_edges": 21,
+      "static_pL": 1e-05,
+      "ploa_pL": 0.0,
+      "static_errors": 2,
+      "ploa_errors": 0,
+      "time_s": 36.87858009338379
+    },
+    {
+      "d": 5,
+      "V_eff": 0.10287042321082783,
+      "p_phys": 0.002862589529118182,
+      "n_shots": 200000,
+      "n_edges": 21,
+      "static_pL": 2e-05,
+      "ploa_pL": 0.0,
+      "static_errors": 4,
+      "ploa_errors": 0,
+      "time_s": 37.00268816947937
+    },
+    {
+      "d": 5,
+      "V_eff": 0.11737442207505741,
+      "p_phys": 0.004843978987534239,
+      "n_shots": 200000,
+      "n_edges": 21,
+      "static_pL": 0.00013,
+      "ploa_pL": 0.0,
+      "static_errors": 26,
+      "ploa_errors": 0,
+      "time_s": 37.381458044052124
+    },
+    {
+      "d": 5,
+      "V_eff": 0.13366667498516288,
+      "p_phys": 0.007675213949160486,
+      "n_shots": 200000,
+      "n_edges": 21,
+      "static_pL": 0.000425,
+      "ploa_pL": 5e-05,
+      "static_errors": 85,
+      "ploa_errors": 10,
+      "time_s": 37.03836393356323
+    },
+    {
+      "d": 5,
+      "V_eff": 0.14369797960557773,
+      "p_phys": 0.009697100998566409,
+      "n_shots": 200000,
+      "n_edges": 21,
+      "static_pL": 0.00093,
+      "ploa_pL": 2.5e-05,
+      "static_errors": 186,
+      "ploa_errors": 5,
+      "time_s": 37.512742042541504
+    }
+  ],
+  "exp3": [
+    {
+      "d": 3,
+      "V_eff": 0.16341742108135077,
+      "p_phys": 0.01417969437613191,
+      "n_shots": 200000,
+      "n_edges": 7,
+      "static_pL": 0.006565,
+      "ploa_pL": 0.00156,
+      "static_errors": 1313,
+      "ploa_errors": 312,
+      "time_s": 29.414968967437744
+    },
+    {
+      "d": 3,
+      "V_eff": 0.1826879932679359,
+      "p_phys": 0.01906601538661828,
+      "n_shots": 200000,
+      "n_edges": 7,
+      "static_pL": 0.011815,
+      "ploa_pL": 0.00369,
+      "static_errors": 2363,
+      "ploa_errors": 738,
+      "time_s": 29.664154767990112
+    },
+    {
+      "d": 3,
+      "V_eff": 0.20151991367778282,
+      "p_phys": 0.024180844106510065,
+      "n_shots": 200000,
+      "n_edges": 7,
+      "static_pL": 0.018845,
+      "ploa_pL": 0.00702,
+      "static_errors": 3769,
+      "ploa_errors": 1404,
+      "time_s": 29.444199323654175
+    },
+    {
+      "d": 3,
+      "V_eff": 0.21992316724436256,
+      "p_phys": 0.029394218277495176,
+      "n_shots": 200000,
+      "n_edges": 7,
+      "static_pL": 0.027385,
+      "ploa_pL": 0.0117,
+      "static_errors": 5477,
+      "ploa_errors": 2340,
+      "time_s": 29.598291873931885
+    },
+    {
+      "d": 3,
+      "V_eff": 0.237907511616312,
+      "p_phys": 0.034613061655248224,
+      "n_shots": 200000,
+      "n_edges": 7,
+      "static_pL": 0.037225,
+      "ploa_pL": 0.01758,
+      "static_errors": 7445,
+      "ploa_errors": 3516,
+      "time_s": 29.605976819992065
+    },
+    {
+      "d": 3,
+      "V_eff": 0.25548248233106824,
+      "p_phys": 0.03977244241939367,
+      "n_shots": 200000,
+      "n_edges": 7,
+      "static_pL": 0.048855,
+      "ploa_pL": 0.025255,
+      "static_errors": 9771,
+      "ploa_errors": 5051,
+      "time_s": 29.658440828323364
+    }
+  ]
+}

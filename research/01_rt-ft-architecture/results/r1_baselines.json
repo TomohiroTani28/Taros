@@ -1,0 +1,34 @@
+{
+  "static_phase1": {
+    "mwpm_pL": 0.0026,
+    "mwpm_errors": 13,
+    "mwpm_evaluated": 5000,
+    "label_rate": 0.1804,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483
+  },
+  "static_phase2r": {
+    "mwpm_pL": 0.0008,
+    "mwpm_errors": 4,
+    "mwpm_evaluated": 5000,
+    "label_rate": 0.1044,
+    "sigma_eff": 9.304265330877618,
+    "p_phys": 0.004843978987534239
+  },
+  "drift_phase1": {
+    "mwpm_pL": 0.0084,
+    "mwpm_errors": 42,
+    "mwpm_evaluated": 5000,
+    "label_rate": 0.2594,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483
+  },
+  "spike_phase1": {
+    "mwpm_pL": 0.0028,
+    "mwpm_errors": 14,
+    "mwpm_evaluated": 5000,
+    "label_rate": 0.1831,
+    "sigma_eff": 8.486272466976285,
+    "p_phys": 0.009279251855783483
+  }
+}
