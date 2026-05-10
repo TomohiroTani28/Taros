@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2026.1.14)  11 MAY 2026 02:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2026.1.14)  11 MAY 2026 02:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -497,8 +497,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--60
  []
 
 
-Underfull \hbox (badness 3009) in paragraph at lines 59--60
- \OT1/cmr/m/n/10 prod-uct thresh-old, with ro-bust-ness con-firmed
+Underfull \hbox (badness 1418) in paragraph at lines 59--60
+ \OML/cmm/m/it/10 p[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 d[]\OT1/cmr/m/n/10 5) = 
+4\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 33 \OMS/cmsy/m/n/10 ^^B \OT1/cmr/m/n/10 10[]
+$ (13 er-rors / 30,000
  []
 
 
@@ -521,88 +523,87 @@ File: results/fig_a3_model_comparison.png Graphic file (type png)
 Package pdftex.def Info: results/fig_a3_model_comparison.png  used on input lin
 e 158.
 (pdftex.def)             Requested size: 246.0pt x 81.57085pt.
+
+Underfull \hbox (badness 1052) in paragraph at lines 159--159
+[]\OT1/cmr/m/n/9 FIG. 2. []Three-model com-par-i-son at Phase 1 pa-ram-e-
+ []
+
 [2]
 
 LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
  on input line 162.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
-[]\OT1/cmr/m/n/9 TABLE IV. []High-shot code-capacity re-sults (15,000
+Overfull \hbox (7.40166pt too wide) in alignment at lines 194--199
+ [] [] [] [] []
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 <results/fig_a4_finite_gkp.png, id=213, 1003.1076pt x 428.3202pt>
 File: results/fig_a4_finite_gkp.png Graphic file (type png)
 <use results/fig_a4_finite_gkp.png>
-Package pdftex.def Info: results/fig_a4_finite_gkp.png  used on input line 207.
+Package pdftex.def Info: results/fig_a4_finite_gkp.png  used on input line 216.
 
 (pdftex.def)             Requested size: 246.0pt x 105.04066pt.
 <results/fig_a4b_correlated.png, id=214, 1003.1076pt x 428.3202pt>
 File: results/fig_a4b_correlated.png Graphic file (type png)
 <use results/fig_a4b_correlated.png>
-Package pdftex.def Info: results/fig_a4b_correlated.png  used on input line 215
+Package pdftex.def Info: results/fig_a4b_correlated.png  used on input line 224
 .
 (pdftex.def)             Requested size: 246.0pt x 105.04066pt.
-
-Overfull \hbox (28.04442pt too wide) in alignment at lines 236--244
- [] [] [] [] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 2707) in paragraph at lines 250--251
-\OT1/cmr/m/n/10 i-nant cost and com-plex-ity bot-tle-neck. A room-
- []
-
 [3 <./results/fig_a2_distance_scaling.png> <./results/fig_a3_model_comparison.p
 ng>]
 
 LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 251.
+ on input line 230.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--265
+Overfull \hbox (28.04442pt too wide) in alignment at lines 245--253
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 2707) in paragraph at lines 259--260
+\OT1/cmr/m/n/10 i-nant cost and com-plex-ity bot-tle-neck. A room-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
  []\OT1/cmr/m/n/10 Room-temperature FTQC is achiev-able:
  []
 
 
-Underfull \hbox (badness 2790) in paragraph at lines 264--265
- \OT1/cmr/m/n/10 bust-ness con-firmed against finite-energy GKP
+Underfull \hbox (badness 1102) in paragraph at lines 273--274
+ \OT1/cmr/m/n/10 CI be-low $10[]$) at Phase 1 pa-ram-e-ters, with
  []
 
 
-Underfull \hbox (badness 2158) in paragraph at lines 271--272
+Underfull \hbox (badness 2158) in paragraph at lines 280--281
 []\OT1/cmr/m/n/10 The nu-mer-i-cal sim-u-la-tions were per-formed us-ing
  []
 
 [4 <./results/fig_a4_finite_gkp.png> <./results/fig_a4b_correlated.png>]
-Underfull \hbox (badness 1152) in paragraph at lines 329--332
+Underfull \hbox (badness 1152) in paragraph at lines 338--341
  \OT1/cmr/m/n/9 quan-tum com-put-ing with continuous-variable clus-ter
  []
 
 
-Underfull \hbox (badness 1596) in paragraph at lines 363--366
+Underfull \hbox (badness 1596) in paragraph at lines 372--375
  []\OT1/cmr/m/n/9 W. Asa-vanant \OT1/cmr/m/it/9 et al.\OT1/cmr/m/n/9 , ``Gen-er
 -a-tion of time-domain-
  []
 
 
-Underfull \hbox (badness 4595) in paragraph at lines 378--381
+Underfull \hbox (badness 4595) in paragraph at lines 387--390
  \OT1/cmr/m/n/9 she, ``Macronode-based fault-tolerant measurement-
  []
 
 
-Underfull \hbox (badness 6995) in paragraph at lines 378--381
+Underfull \hbox (badness 6995) in paragraph at lines 387--390
  \OT1/cmr/m/n/9 based quan-tum com-pu-ta-tion with GKP qubits,''
  []
 
 
-Underfull \hbox (badness 3907) in paragraph at lines 383--386
+Underfull \hbox (badness 3907) in paragraph at lines 392--395
  \OT1/cmr/m/n/9 temperature pho-tonic quan-tum com-put-ing,'' viXra
  []
 
@@ -616,13 +617,13 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 8471E908AF1C164EF21E9135C61CC843;5998.
  ) 
 Here is how much of TeX's memory you used:
- 12478 strings out of 473190
- 185755 string characters out of 5715800
- 617763 words of memory out of 5000000
- 35494 multiletter control sequences out of 15000+600000
+ 12477 strings out of 473190
+ 185744 string characters out of 5715800
+ 619851 words of memory out of 5000000
+ 35493 multiletter control sequences out of 15000+600000
  572004 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,10n,79p,1628b,614s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,1661b,578s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></
@@ -644,7 +645,7 @@ ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2025/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2025/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2025/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on paper.pdf (5 pages, 713717 bytes).
+Output written on paper.pdf (5 pages, 715195 bytes).
 PDF statistics:
  365 PDF objects out of 1000 (max. 8388607)
  303 compressed objects within 4 object streams

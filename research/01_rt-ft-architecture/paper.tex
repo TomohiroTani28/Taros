@@ -19,7 +19,7 @@ The Correct Noise Model for Continuous-Variable Photonic Architectures}
 \date{\today}
 
 \begin{abstract}
-We demonstrate that room-temperature continuous-variable (CV) photonic quantum computers based on GKP-encoded surface codes can achieve fault-tolerant error suppression without cryogenic infrastructure. Through systematic numerical simulations totaling over $10^7$ shots, we show that the standard circuit-level noise model---designed for discrete-variable systems with noisy entangling gates---overestimates logical error rates by one to two orders of magnitude when applied to CV homodyne architectures. We identify the phenomenological model with equal data and measurement error rates ($p_{\mathrm{meas}} = p_{\mathrm{data}}$) as the physically correct noise model for CV systems, where homodyne detection always succeeds and the sole noise source is GKP displacement noise propagated through passive beam-splitter networks. Furthermore, we establish that soft-information minimum-weight perfect matching (MWPM) decoding is not merely an optimization but a necessity: it provides $13$--$75\times$ improvement in multi-round simulations and determines whether the system is above or below threshold. At the operating parameters of a room-temperature PPLN OPA photonic system ($\sigma_{\mathrm{eff}} = 8.5$--$9.3$~dB), our CV-correct model yields $p_L(d{=}7) = 2.00 \times 10^{-4}$ for near-term hardware and $p_L(d{=}7) < 7 \times 10^{-5}$ for integrated photonic circuits, well below the $10^{-3}$ product threshold. These results establish that cryogenic infrastructure is not a fundamental requirement for fault-tolerant quantum computing.
+We demonstrate that room-temperature continuous-variable (CV) photonic quantum computers based on GKP-encoded surface codes can achieve fault-tolerant error suppression without cryogenic infrastructure. Through systematic numerical simulations totaling over $10^7$ shots, we show that the standard circuit-level noise model---designed for discrete-variable systems with noisy entangling gates---overestimates logical error rates by one to two orders of magnitude when applied to CV homodyne architectures. We identify the phenomenological model with equal data and measurement error rates ($p_{\mathrm{meas}} = p_{\mathrm{data}}$) as the physically correct noise model for CV systems, where homodyne detection always succeeds and the sole noise source is GKP displacement noise propagated through passive beam-splitter networks. Furthermore, we establish that soft-information minimum-weight perfect matching (MWPM) decoding is not merely an optimization but a necessity: it provides $13$--$85\times$ improvement in multi-round simulations and determines whether the system is above or below threshold. At the operating parameters of a room-temperature PPLN OPA photonic system ($\sigma_{\mathrm{eff}} = 8.5$--$9.3$~dB), our CV-correct model yields $p_L(d{=}5) = 4.33 \times 10^{-4}$ (13 errors in 30{,}000 shots) for near-term hardware and $p_L(d{=}5) = 3.33 \times 10^{-5}$ for integrated photonic circuits, well below the $10^{-3}$ product threshold. These results establish that cryogenic infrastructure is not a fundamental requirement for fault-tolerant quantum computing.
 \end{abstract}
 
 \maketitle
@@ -55,8 +55,8 @@ Despite these advantages, numerical studies of GKP surface codes have produced a
 In this work, we make three principal contributions:
 \begin{enumerate}
 \item \textbf{Noise model identification}: The phenomenological model with $p_{\mathrm{meas}} = p_{\mathrm{data}}$ is the physically correct noise model for CV homodyne QEC.
-\item \textbf{Soft-information necessity}: Soft-info MWPM provides $13$--$75\times$ improvement in multi-round simulations and is essential for fault tolerance.
-\item \textbf{Room-temperature fault tolerance}: $p_L(d{=}7) = 2.00 \times 10^{-4}$, well below the $10^{-3}$ product threshold, with robustness confirmed against finite-energy GKP effects and correlated pump noise.
+\item \textbf{Soft-information necessity}: Soft-info MWPM provides $13$--$85\times$ improvement in multi-round simulations and is essential for fault tolerance.
+\item \textbf{Room-temperature fault tolerance}: $p_L(d{=}5) = 4.33 \times 10^{-4}$ (13 errors / 30{,}000 shots), well below the $10^{-3}$ product threshold, with robustness confirmed against finite-energy GKP effects and correlated pump noise.
 \end{enumerate}
 
 %% ============================================================
@@ -150,56 +150,65 @@ We compare four configurations: (1)~Code-capacity + soft-info (CC+Soft), (2)~Mul
 \label{fig:distance_scaling}
 \end{figure}
 
-At Phase~1 parameters ($\sigma_{\mathrm{eff}} = 8.5$~dB), we observe clear exponential suppression: $p_L(d{=}3) = 1.20 \times 10^{-3}$, $p_L(d{=}5) = 1.40 \times 10^{-4}$, $p_L(d{=}7) = 2.00 \times 10^{-5}$, with $\Lambda \approx 8$--$10$.
+At Phase~1 parameters ($\sigma_{\mathrm{eff}} = 8.5$~dB), we observe clear exponential suppression: $p_L(d{=}3) = 1.20 \times 10^{-3}$ (60 errors / 50{,}000 shots), $p_L(d{=}5) = 1.40 \times 10^{-4}$ (7 / 50{,}000). The suppression rate $\Lambda \approx 8.6$ per distance increment confirms that the system operates well below the code-capacity threshold.
 
 \subsection{Circuit-level model overestimates error rates (Exp-A3)}
 
 \begin{figure}[t]
 \includegraphics[width=\columnwidth]{results/fig_a3_model_comparison.png}
-\caption{Three-model comparison at Phase~1 parameters. Circuit-level overestimates by $100\times$; MR+Soft (CV-correct) shows clear fault tolerance.}
+\caption{Three-model comparison at Phase~1 parameters. Circuit-level overestimates by $\sim 100\times$; MR+Soft (CV-correct) shows clear fault tolerance.}
 \label{fig:model_comparison}
 \end{figure}
 
-The circuit-level model yields $p_L(d{=}7) = 5.07 \times 10^{-2}$ with $p_L$ \emph{increasing} with $d$---an artifact of inappropriate noise modeling.
+The circuit-level model yields $p_L(d{=}5) = 4.5 \times 10^{-2}$ with $p_L$ \emph{increasing} with $d$---an artifact of inappropriate noise modeling. Under the circuit-level model, the system appears to be \emph{above} the fault-tolerance threshold.
 
 \subsection{CV-correct model (Exp-A3b)}
 
+The definitive result comes from the CV-correct model: phenomenological noise with $p_{\mathrm{meas}} = p_{\mathrm{data}}$ and soft-information MWPM.
+
 \begin{table}[h]
-\caption{Logical error rates under four noise models. Phase~1.}
+\caption{Logical error rates under four noise models. Phase~1 ($\sigma_{\mathrm{eff}} = 8.5$~dB). Error counts in parentheses.}
 \label{tab:cv_correct}
 \begin{ruledtabular}
-\begin{tabular}{lcccc}
+\begin{tabular}{lcccl}
 $d$ & CC+Soft & MR+Hard & \textbf{MR+Soft} & Circuit \\
 \hline
-3 & $1.20{\times}10^{-3}$ & $3.88{\times}10^{-2}$ & $\mathbf{2.93{\times}10^{-3}}$ & $3.2{\times}10^{-2}$ \\
-5 & $1.40{\times}10^{-4}$ & $2.27{\times}10^{-2}$ & $\mathbf{2.67{\times}10^{-4}}$ & $4.5{\times}10^{-2}$ \\
-7 & $2.00{\times}10^{-5}$ & $1.63{\times}10^{-2}$ & $\mathbf{2.00{\times}10^{-4}}$ & $5.07{\times}10^{-2}$ \\
+3 & $1.20{\times}10^{-3}$ & $3.88{\times}10^{-2}$ & $\mathbf{2.93{\times}10^{-3}}$ (88/30K) & $3.2{\times}10^{-2}$ \\
+5 & $1.40{\times}10^{-4}$ & $2.27{\times}10^{-2}$ & $\mathbf{2.67{\times}10^{-4}}$ (4/15K) & $4.5{\times}10^{-2}$ \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
 
-Soft-information gain: $13.2\times$ at $d=3$, $85.3\times$ at $d=5$, $>80\times$ at $d=7$.
+Soft-information gain in multi-round decoding: $13.2\times$ at $d=3$ (comparing MR+Hard $3.88 \times 10^{-2}$ vs.\ MR+Soft $2.93 \times 10^{-3}$) and $85.3\times$ at $d=5$ (comparing $2.27 \times 10^{-2}$ vs.\ $2.67 \times 10^{-4}$).
 
 \textbf{Why soft information matters more in multi-round decoding.} In single-round (code-capacity) simulations, the decoder operates in two spatial dimensions. In multi-round simulations, it operates in three dimensions (2~spatial + 1~temporal) and must distinguish \emph{space-like} errors from \emph{time-like} errors. Without soft information, these are indistinguishable. GKP soft information resolves this ambiguity: a large residual indicates a likely measurement error, while a small residual indicates a genuine data error.
 
 \subsection{High-shot precision (Exp-A2c)}
 
+To obtain precise values of $p_L$, we performed high-statistics multi-round simulations with $d$ rounds of syndrome extraction and soft-info MWPM.
+
 \begin{table}[h]
-\caption{High-shot code-capacity results (15,000 shots/point).}
+\caption{High-shot multi-round soft-info results. Error counts shown for statistical assessment.}
 \label{tab:highshot}
 \begin{ruledtabular}
 \begin{tabular}{lcccc}
-Phase & $d=3$ & $d=5$ & $d=7$ & $\Lambda$ \\
+Phase & $d=3$ (err/shots) & $d=5$ (err/shots) & $\Lambda$ \\
 \hline
-Phase 1 & $2.86{\times}10^{-3}$ & $4.33{\times}10^{-4}$ & $\mathbf{2.00{\times}10^{-4}}$ & 3.8 \\
-Ph.\ 2+ Real & $3.00{\times}10^{-4}$ & $3.33{\times}10^{-5}$ & $\mathbf{<7{\times}10^{-5}}$ & 9.0 \\
+Phase 1 & $2.86{\times}10^{-3}$ (143/50K) & $\mathbf{4.33{\times}10^{-4}}$ (13/30K) & 6.6 \\
+Ph.\ 2+ Real & $3.00{\times}10^{-4}$ (15/50K) & $3.33{\times}10^{-5}$ (1/30K) & 9.0 \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
 
+At Phase~1 parameters, $p_L(d{=}5) = 4.33 \times 10^{-4}$ based on 13 errors in 30{,}000 shots (95\% Wilson CI: $[2.5 \times 10^{-4},\; 7.3 \times 10^{-4}]$). This is a factor of $2.3\times$ below the $10^{-3}$ product threshold, with the entire confidence interval remaining below $10^{-3}$.
+
+At Phase~2+ Real parameters, $p_L(d{=}5) = 3.33 \times 10^{-5}$ (1 error in 30{,}000 shots). Due to the single error, this value carries large statistical uncertainty; the 95\% upper bound is $1.9 \times 10^{-4}$, still well below $10^{-3}$.
+
+The suppression rate $\Lambda = p_L(d{=}3)/p_L(d{=}5) = 6.6$ at Phase~1 confirms robust exponential error suppression with increasing code distance.
+
 \subsection{Threshold determination}
 
-The CV-correct model (MR+Soft) yields $p_{\mathrm{th}} \approx 2$--$3\%$ ($\sigma_{\mathrm{eff}} \approx 6.5$--$7.5$~dB). Operating margins: Phase~1 $2.7\times$, Phase~2+ Real $5.2\times$.
+The CV-correct model (MR+Soft) yields $p_{\mathrm{th}} \approx 2$--$3\%$ ($\sigma_{\mathrm{eff}} \approx 6.5$--$7.5$~dB), compared to the circuit-level threshold of $\sim 0.5$--$1\%$. Operating margins: Phase~1 $p_{\mathrm{phys}}/p_{\mathrm{th}} \approx 0.37$ ($2.7\times$ margin), Phase~2+ Real $0.19$ ($5.2\times$ margin).
 
 \subsection{Robustness analysis}
 
@@ -251,7 +260,7 @@ Eliminating cryogenic infrastructure removes the dominant cost and complexity bo
 
 \subsection{Limitations}
 
-(1)~Simplified i.i.d.\ GKP noise model; macronode beam-splitter correlations not modeled. (2)~Stim DEM independent-edge approximation. (3)~Magic state distillation not addressed. (4)~High-quality room-temperature GKP generation remains experimental. (5)~Under correlated noise ($\rho \geq 0.08$), MWPM performance degrades; ML-based decoders may provide improvements~\cite{tani2026gnn}.
+(1)~Simplified i.i.d.\ GKP noise model; macronode beam-splitter correlations not modeled. (2)~Stim DEM independent-edge approximation. (3)~Results presented for $d = 3$ and $d = 5$ only; $d \geq 7$ simulations require substantially more shots to achieve statistical significance at the low error rates expected, and are left to future work. (4)~Magic state distillation not addressed. (5)~High-quality room-temperature GKP generation remains experimental. (6)~Under correlated noise ($\rho \geq 0.08$), MWPM performance degrades; ML-based decoders may provide improvements~\cite{tani2026gnn}.
 
 %% ============================================================
 \section{Conclusion}
@@ -260,8 +269,8 @@ Eliminating cryogenic infrastructure removes the dominant cost and complexity bo
 We have presented three principal results:
 \begin{enumerate}
 \item The correct noise model for CV homodyne QEC is phenomenological ($p_{\mathrm{meas}} = p_{\mathrm{data}}$), not circuit-level. The wrong model overestimates $p_L$ by $10$--$100\times$.
-\item Soft-info MWPM is essential, providing $13$--$75\times$ improvement in multi-round decoding.
-\item Room-temperature FTQC is achievable: $p_L(d{=}7) = 2.00 \times 10^{-4}$ at Phase~1, with robustness confirmed against finite-energy GKP effects and correlated pump noise.
+\item Soft-info MWPM is essential, providing $13$--$85\times$ improvement in multi-round decoding. Without soft information, the system appears above threshold; with it, clear fault tolerance is demonstrated.
+\item Room-temperature FTQC is achievable: $p_L(d{=}5) = 4.33 \times 10^{-4}$ (13/30{,}000 shots, 95\% CI below $10^{-3}$) at Phase~1 parameters, with robustness confirmed against finite-energy GKP effects and correlated pump noise.
 \end{enumerate}
 
 The physics of CV photonic systems---telecom photons immune to thermal noise, deterministic homodyne detection, and passive beam-splitter entanglement---provides a qualitatively different noise landscape than DV platforms. Recognizing this through the correct noise model reveals that room-temperature fault tolerance is not merely aspirational but numerically demonstrated.
@@ -273,7 +282,7 @@ The numerical simulations were performed using Stim~\cite{gidney2021} and PyMatc
 
 %% ============================================================
 
-\begin{thebibliography}{27}
+\begin{thebibliography}{22}
 
 \bibitem{arute2019}
 F.~Arute \emph{et al.},
