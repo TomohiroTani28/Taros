@@ -1,10 +1,14 @@
-# 室温フォトニック量子計算のための Hardware-Adaptive GNNデコーダ：相関ノイズ下でのMWPMの根本的限界の克服
+# [MERGED into Paper 1] 室温フォトニック量子計算のための Hardware-Adaptive GNNデコーダ：相関ノイズ下でのMWPMの根本的限界の克服
+
+> **STATUS: MERGED** — 本論文の内容は `research/01_rt-ft-architecture/paper.tex` (Paper 1) の §IV-G, Appendix A に統合済み。
+> Paper 1 にはさらに d=7 GNN結果（14× advantage）、threshold scan、macronode BS導出が含まれる。
+> 本ファイルはアーカイブ参照用として保持。
 
 **著者**: 谷 智栄 (Tomohiro Tani)
 
 *独立研究者*
 
-**投稿先**: viXra
+**投稿先**: ~~viXra~~ → Paper 1 に統合
 
 ---
 

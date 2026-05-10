@@ -251,7 +251,11 @@ Operating margins: Phase~1 $\sigma_{\mathrm{eff}} = 8.5$~dB provides $2.0$~dB ma
 \label{fig:gnn_advantage}
 \end{figure}
 
-The degradation of MWPM under correlated noise motivates investigating decoders that can learn noise structure. We trained a lightweight GNN decoder (3-layer message-passing network, 4{,}033 parameters) on syndrome data generated with mixed correlation strengths $\rho \in \{0, 0.03, 0.05, 0.08, 0.10, 0.15\}$.
+The correlation parameter $\rho$ maps to physical hardware conditions: $\rho \leq 0.003$ corresponds to the design-spec pump RIN of $-150$~dB/Hz with 30~dB WDM isolation; $\rho \approx 0.03$ to the spec upper limit ($-130$~dB/Hz, 18~dB isolation); $\rho \approx 0.08$ to degraded conditions ($-127$~dB/Hz, 14~dB isolation); and $\rho \geq 0.20$ to system-level faults (see Appendix~\ref{app:macronode}).
+
+\textbf{Why MWPM fundamentally cannot exploit correlations.} MWPM edge weights are log-likelihood ratios $w(r) \propto 1/V_{\mathrm{eff}}$ [Eq.~(\ref{eq:llr})]. Correlated noise rescales $V_{\mathrm{eff}}$ uniformly across edges, but MWPM matching depends only on \emph{relative} weights (scale invariance). We verified this by implementing a correlation-aware MWPM that estimates and subtracts the common-mode displacement; across all tested conditions, the maximum improvement was $1.04\times$---confirming that classical weight adjustment cannot break the scale-invariance barrier.
+
+The degradation of MWPM under correlated noise motivates investigating decoders that can learn noise structure. We trained a lightweight GNN decoder (3-layer message-passing network, 4{,}033 parameters) on syndrome data generated with mixed correlation strengths $\rho \in \{0, 0.03, 0.05, 0.08, 0.10, 0.15\}$. Unlike MWPM, GNN graph convolutions learn \emph{non-uniform} edge weight corrections, breaking scale invariance and enabling exploitation of correlated noise structure.
 
 \begin{table}[h]
 \caption{GNN decoder vs.\ soft-info MWPM under correlated noise (Phase~1, $\sigma_{\mathrm{eff}} = 8.5$~dB). Advantage = $p_L(\mathrm{MWPM})/p_L(\mathrm{GNN})$.}
