@@ -1,8 +1,10 @@
 # Fault-Tolerant Quantum Error Correction at Room Temperature: The Correct Noise Model for Continuous-Variable Photonic Architectures
 
-**Authors**: [Author list to be finalized]
+**Authors**: Tomohiro Tani (谷 智栄)
 
-**Target journal**: PRX Quantum
+*Independent Researcher*
+
+**Target journal**: PRX Quantum (via arXiv:quant-ph preprint)
 
 ---
 
