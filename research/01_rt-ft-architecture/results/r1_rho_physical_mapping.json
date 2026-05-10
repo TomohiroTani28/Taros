@@ -1,0 +1,52 @@
+{
+  "0.0": {
+    "label": "Ideal (independent)",
+    "physical": "No correlations; theoretical baseline",
+    "achievable": true
+  },
+  "0.001": {
+    "label": "Shot-noise limited",
+    "physical": "RIN < -160 dB/Hz, no WDM crosstalk",
+    "achievable": true
+  },
+  "0.003": {
+    "label": "Design spec (RIN-limited)",
+    "physical": "RIN = -150 dB/Hz, WDM isolation 30dB, PLL BW \u2265 500kHz",
+    "achievable": true
+  },
+  "0.01": {
+    "label": "Moderate (WDM-limited)",
+    "physical": "WDM isolation 20dB or RIN = -140 dB/Hz",
+    "achievable": true
+  },
+  "0.03": {
+    "label": "Design spec boundary",
+    "physical": "\u03c1_RIN + \u03c1_WDM combined; upper bound of spec",
+    "achievable": true
+  },
+  "0.05": {
+    "label": "Degraded (thermal drift)",
+    "physical": "PLL BW < 100kHz or WDM isolation < 15dB",
+    "achievable": true
+  },
+  "0.08": {
+    "label": "GNN crossover (d=3)",
+    "physical": "Multiple degraded subsystems; ~500Hz PLL BW or RIN=-130dB/Hz",
+    "achievable": true
+  },
+  "0.1": {
+    "label": "Significant correlation",
+    "physical": "Pump RIN=-125dB/Hz or shared thermal drift >0.5\u00b0",
+    "achievable": true
+  },
+  "0.15": {
+    "label": "High correlation",
+    "physical": "Multi-pump RIN or broadband thermal instability",
+    "achievable": false
+  },
+  "0.2": {
+    "label": "FT boundary",
+    "physical": "System-level failure; FT collapse per Exp-A4b",
+    "achievable": false
+  }
+}
