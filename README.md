@@ -93,6 +93,81 @@ Tarosは4つの未来産業の**交差点**に位置する:
 
 ---
 
+## 研究成果: Hardware Adaptive GNN Decoder
+
+> **GNN decoderがMWPMを最大6.5倍上回ることを実証。訓練分布外（OOD ρ=0.20）でもMWPMの約5倍の性能を達成。**
+
+フォトニック量子コンピュータ固有の**相関ノイズ**（共通ポンプRIN、WDMクロストーク）に対し、
+従来のMWPM decoderは各エッジを独立に重み付けするため相関構造を捉えられない。
+GNN（Graph Neural Network）decoderはグラフ畳み込みで非線形な相関パターンを学習し、この根本的限界を突破する。
+
+### 主要結果
+
+#### サムネイル: OOD ρ=0.20 での GNN 優位性（d=3）
+
+<p align="center">
+  <img src="research/01_rt-ft-architecture/results/fig_thumbnail.png" alt="Mixed-ρ GNN: 2.12× advantage at OOD ρ=0.20" width="500">
+</p>
+
+#### Per-ρ訓練 GNN vs MWPM（d増加でGNN優位が加速）
+
+| ρ | d=3 GNN/MWPM | d=5 GNN/MWPM | スケーリング |
+|---|:---:|:---:|:---:|
+| 0.00 | 0.70× | 0.40× | MWPM優位 |
+| 0.05 | 0.62× | 0.43× | MWPM優位 |
+| **0.08** | **1.26×** | **1.75×** | **GNN優位 — GROWS** |
+| **0.10** | **1.93×** | **6.00×** | **GNN優位 — GROWS** |
+| **0.15** | **3.30×** | **6.50×** | **GNN優位 — GROWS** |
+
+- **Crossover ρ\***: d=3 ≈ 0.058、d=5 ≈ 0.065
+- **Correlated-aware MWPM**: 相関構造の知識を重みに組み込んでも ≤1.04× の改善にとどまり、MWPMの根本的限界を確認
+
+#### Mixed-ρ訓練: Hardware Adaptive Decoder の実証
+
+単一ρではなく **ρ∈{0, 0.03, 0.05, 0.08, 0.10, 0.15}** の混合分布で訓練 → 未知のρでも汎化:
+
+| ρ | d=3 Mixed/MWPM | d=5 Mixed/MWPM | 備考 |
+|---|:---:|:---:|:---|
+| 0.03 | 0.68× | **1.67×** | d=5は低ρでもGNN優位 |
+| 0.08 | **1.08×** | **2.00×** | 訓練分布内 |
+| 0.10 | **1.44×** | **2.40×** | 訓練分布内 |
+| 0.15 | **1.56×** | **5.00×** | 訓練分布内 |
+| **0.20** | **2.12×** | **4.78×** | **訓練分布外（OOD）** |
+
+<p align="center">
+  <img src="research/01_rt-ft-architecture/results/fig_advantage_v2.png" alt="GNN advantage ratio: per-ρ vs mixed-ρ" width="800">
+</p>
+
+<p align="center">
+  <img src="research/01_rt-ft-architecture/results/fig_ler_3decoder.png" alt="LER vs ρ: 3-decoder comparison" width="800">
+</p>
+
+#### ρ → 物理ノイズ対応
+
+| ρ | 物理的意味 | スクイージング劣化 |
+|---|-----------|:---:|
+| 0.003 | 設計仕様（RIN=-150dB/Hz, WDM 30dB） | 0.01 dB |
+| 0.03 | 仕様上限 | 0.06 dB |
+| 0.08 | GNN crossover（RIN≈-130dB/Hz相当） | 0.17 dB |
+| 0.15 | 高相関（複合劣化） | 0.31 dB |
+| 0.20 | FT境界（Exp-A4bで確認） | 0.41 dB |
+
+### 意義
+
+1. **MWPM のスケール不変性の壁**: Correlated-aware MWPM でも改善は ≤1.04× — 重みの線形調整では相関ノイズに対処不可能
+2. **GNN の非線形学習**: グラフ畳み込みが相関パターンを直接学習し、d増加とともに優位が加速（d=3: 3.3× → d=5: 6.5×）
+3. **Hardware Adaptive**: Mixed-ρ訓練により、**訓練分布外ρ=0.20でもMWPMの約5倍** — デコーダの再訓練なしでハードウェアのノイズ変動に適応
+
+### 実験詳細
+
+- モデル: GNN Lite（GCN 3層, hidden=32, **4,033パラメータ**）
+- 総ショット数: >10,000,000
+- デバイス: Apple Silicon MPS
+- 再現: `research/01_rt-ft-architecture/` 配下のスクリプトで完全再現可能
+- 全データ: `research/01_rt-ft-architecture/results/` にJSON + PNGで保存
+
+---
+
 ## ディレクトリ構造
 
 ```
@@ -127,6 +202,15 @@ Taros/
 │   ├── ibm_quantum_analysis.json    # IBM実機解析データ
 │   ├── ibm_quantum_job.json         # IBM実機ジョブ定義
 │   └── ibm_quantum_results.json     # IBM実機実行結果
+│
+├── research/              # 研究実験（GNN decoder, RT-FT architecture）
+│   ├── 01_rt-ft-architecture/     # 室温FT光量子アーキテクチャ研究
+│   │   ├── r1_gnn_lite.py         # Per-ρ GNN decoder実験
+│   │   ├── r1_gnn_mixed.py        # Mixed-ρ GNN decoder実験
+│   │   ├── r1_gnn_enhanced.py     # Correlated MWPM baseline
+│   │   ├── r1_figures_v2.py       # 論文用図表生成
+│   │   └── results/               # 全実験データ (JSON + PNG)
+│   └── theme.md                   # Sランク研究テーマ分類
 │
 ├── analysis/              # 分析・計画
 │   ├── risk.md                     # CV方式成功確率評価
