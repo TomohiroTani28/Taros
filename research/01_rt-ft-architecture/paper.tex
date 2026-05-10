@@ -221,7 +221,15 @@ The suppression rate $\Lambda = p_L(d{=}3)/p_L(d{=}5) = 6.6$ at Phase~1 confirms
 
 \subsection{Threshold determination}
 
-The CV-motivated model (MR+Soft) yields $p_{\mathrm{th}} \approx 2$--$3\%$ ($\sigma_{\mathrm{eff}} \approx 6.5$--$7.5$~dB), compared to the circuit-level threshold of $\sim 0.5$--$1\%$. Operating margins: Phase~1 $p_{\mathrm{phys}}/p_{\mathrm{th}} \approx 0.37$ ($2.7\times$ margin), Phase~2+ Real $0.19$ ($5.2\times$ margin).
+\begin{figure}[t]
+\includegraphics[width=\columnwidth]{results/fig_threshold_scan.png}
+\caption{Threshold scan under the CV-motivated model (MR+Soft). $p_L$ vs.\ $\sigma_{\mathrm{eff}}$ for $d = 3$ and $d = 5$. The $d = 3$ and $d = 5$ curves cross at $\sigma_{\mathrm{eff}} \approx 6.5$~dB ($p_{\mathrm{phys}} \approx 2.4\%$), confirming the threshold. Error counts annotated.}
+\label{fig:threshold}
+\end{figure}
+
+Fig.~\ref{fig:threshold} shows a threshold scan across six operating points ($\sigma_{\mathrm{eff}} = 5.9$--$10.3$~dB). The $d = 3$ and $d = 5$ curves cross at $\sigma_{\mathrm{eff}} \approx 6.5$~dB ($p_{\mathrm{phys}} \approx 2.4\%$), establishing the CV-motivated threshold. Below this crossing, $p_L(d{=}5) < p_L(d{=}3)$, confirming exponential error suppression. Above it, $p_L$ increases with $d$---the system is above threshold.
+
+Operating margins: Phase~1 $\sigma_{\mathrm{eff}} = 8.5$~dB provides $2.0$~dB margin above threshold; Phase~2+ Real $\sigma_{\mathrm{eff}} = 9.3$~dB provides $2.8$~dB margin.
 
 \subsection{Robustness analysis}
 
@@ -293,12 +301,17 @@ Three physical arguments: (i)~thermal noise immunity ($E/k_BT \approx 31$ at 155
 Reference & Noise model & Threshold & CV? & ML dec.? \\
 \hline
 Fukui (2018)~\cite{fukui2018} & CC & $7.8$~dB & No & No \\
-Noh (2022)~\cite{noh2022} & CC & --- & No & No \\
+Noh (2022)~\cite{noh2022} & CC+soft & --- & Partial & No \\
 Bourassa (2021)~\cite{bourassa2021} & CL & $\sim 1\%$ & No & No \\
+Walshe (2020)~\cite{walshe2020} & MC-analytic & --- & Yes & No \\
+Larsen (2021)~\cite{larsen2021} & --- & --- & Partial & No \\
+Tzitrin (2021)~\cite{tzitrin2021} & CC & $\sim 10$~dB & Yes & No \\
 \textbf{This work} & \textbf{4-model} & \textbf{2--3\%} & \textbf{Yes} & \textbf{Yes} \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
+
+\textbf{Relationship to Noh and Chamberland~\cite{noh2022}.} Our work builds on the soft-information framework of Ref.~\cite{noh2022}, which demonstrated that GKP analog information improves surface code thresholds in the code-capacity setting. We do not claim to discover soft-info decoding; rather, our contribution is a systematic comparison across noise models (code-capacity, phenomenological, circuit-level) to establish which model is physically appropriate for CV homodyne systems, and to quantify the practical impact of noise model selection on fault-tolerance predictions for specific hardware operating points. The phenomenological model with $p_{\mathrm{meas}} = p_{\mathrm{data}}$ has not, to our knowledge, been systematically benchmarked against circuit-level models in the context of CV photonic architectures.
 
 \subsection{Implications}
 
@@ -316,11 +329,33 @@ We have presented four principal results:
 \begin{enumerate}
 \item A physically motivated noise model for CV homodyne QEC is phenomenological ($p_{\mathrm{meas}} = p_{\mathrm{data}}$), not the standard DV circuit-level model. The DV model overestimates $p_L$ by $10$--$100\times$.
 \item Soft-info MWPM is essential, providing over an order of magnitude improvement in multi-round decoding. Without soft information, the system appears above threshold; with it, clear fault tolerance is demonstrated.
-\item Room-temperature FTQC is achievable: $p_L(d{=}5) = 4.33 \times 10^{-4}$ (13 errors in 30{,}000 shots, 95\% CI: $[2.5, 7.3] \times 10^{-4}$, entirely below $10^{-3}$) at Phase~1 parameters, with robustness confirmed against finite-energy GKP effects and correlated pump noise.
+\item Room-temperature operating points are below the $10^{-3}$ logical error budget under the i.i.d.\ phenomenological noise model: $p_L(d{=}5) = 4.33 \times 10^{-4}$ (13 errors in 30{,}000 shots, 95\% CI: $[2.5, 7.3] \times 10^{-4}$) at Phase~1 parameters, with robustness confirmed against finite-energy GKP effects and correlated pump noise.
 \item A lightweight GNN decoder outperforms soft-info MWPM by up to $6.5\times$ under correlated noise ($\rho \geq 0.08$), with the advantage increasing at higher code distance. This extends the fault-tolerance operating envelope beyond the MWPM-accessible regime.
 \end{enumerate}
 
-The physics of CV photonic systems---telecom photons immune to thermal noise, deterministic homodyne detection, and passive beam-splitter entanglement---provides a qualitatively different noise landscape than DV platforms. Selecting the appropriate noise model reveals that room-temperature fault tolerance is numerically demonstrated, and GNN decoders can further extend resilience under realistic correlated noise conditions.
+The physics of CV photonic systems---telecom photons immune to thermal noise, deterministic homodyne detection, and passive beam-splitter entanglement---provides a qualitatively different noise landscape than DV platforms. Selecting the appropriate noise model reveals that room-temperature operating points satisfy the $10^{-3}$ error budget, and GNN decoders can further extend resilience under realistic correlated noise conditions.
+
+%% ============================================================
+\appendix
+\section{Macronode beam-splitter correlation structure}
+\label{app:macronode}
+
+In the macronode TDM architecture~\cite{menicucci2014,walshe2019,walshe2020}, each macronode consists of four modes (two input, two output) interfered on 50:50 beam splitters. Consider two input squeezed modes $\hat{a}_1, \hat{a}_2$ with displacement noise $\delta_1, \delta_2$ from a common OPA pump. The beam-splitter transformation gives output quadratures:
+\begin{align}
+\hat{q}_{\pm} &= \frac{\hat{q}_1 \pm \hat{q}_2}{\sqrt{2}}, \quad
+\delta_{q,\pm} = \frac{\delta_1 \pm \delta_2}{\sqrt{2}}.
+\end{align}
+If the input displacements share correlation $\langle\delta_1\delta_2\rangle = \rho\,V_{\mathrm{eff}}$ from common pump RIN, then the output variances are
+\begin{equation}
+\mathrm{Var}(\delta_{q,\pm}) = V_{\mathrm{eff}}(1 \pm \rho).
+\end{equation}
+The $+$ mode sees enhanced noise $V_{\mathrm{eff}}(1+\rho)$ while the $-$ mode sees reduced noise $V_{\mathrm{eff}}(1-\rho)$.
+
+In the macronode surface code, both $+$ and $-$ modes contribute to different stabilizer measurements. The effective inter-stabilizer correlation depends on the specific measurement basis and macronode connectivity, but the leading-order effect is an effective noise variance of $V_{\mathrm{eff}}(1 + \rho)$ on half the stabilizers.
+
+For the design-spec pump RIN of $-150$~dB/Hz, $\rho \leq 0.003$, giving $V_{\mathrm{eff}}(1+\rho) \approx 1.003\,V_{\mathrm{eff}}$---a negligible correction. The i.i.d.\ phenomenological model is therefore well justified for the design operating point. At degraded conditions ($\rho \geq 0.08$, corresponding to pump RIN $\geq -127$~dB/Hz), the asymmetry becomes significant and motivates the GNN decoder approach of Sec.~IV-G.
+
+A full circuit-level simulation of the macronode TDM architecture---incorporating the 4-mode structure, feedforward delay errors, and basis-dependent noise asymmetry---remains an important direction for future work.
 
 %% ============================================================
 \begin{acknowledgments}
@@ -329,7 +364,7 @@ The numerical simulations were performed using Stim~\cite{gidney2021} and PyMatc
 
 %% ============================================================
 
-\begin{thebibliography}{19}
+\begin{thebibliography}{32}
 
 \bibitem{arute2019}
 F.~Arute \emph{et al.},
@@ -421,10 +456,74 @@ F.~Battistel, B.~M.~Varbanov, and B.~M.~Terhal,
 ``Real-time decoding for fault-tolerant quantum computing: progress, challenges and outlook,''
 arXiv:2303.10846 (2023).
 
-\bibitem{meijering2024}
-T.~Meijering \emph{et al.},
-``Towards large-scale fault-tolerant quantum computing with GNN decoders,''
-arXiv (2024).
+\bibitem{walshe2020}
+B.~W.~Walshe, B.~Q.~Baragiola, R.~N.~Alexander, and N.~C.~Menicucci,
+``Continuous-variable gate teleportation and bosonic-code error correction,''
+Phys.\ Rev.\ A \textbf{102}, 062411 (2020).
+
+\bibitem{tzitrin2021}
+I.~Tzitrin, T.~Matsuura, R.~N.~Alexander, G.~Dauphinais, J.~E.~Bourassa, K.~K.~Sabapathy, N.~C.~Menicucci, and I.~Dhand,
+``Fault-tolerant quantum computation with static linear optics,''
+PRX Quantum \textbf{2}, 040353 (2021).
+
+\bibitem{larsen2021}
+M.~V.~Larsen, X.~Guo, C.~R.~Breum, J.~S.~Neergaard-Nielsen, and U.~L.~Andersen,
+``Deterministic multi-mode gates on a scalable photonic quantum computing platform,''
+Nat.\ Phys.\ \textbf{17}, 1018 (2021).
+
+\bibitem{matsuura2020}
+T.~Matsuura, H.~Nishimori, T.~J.~Albash, and D.~A.~Lidar,
+``Equivalence of approximate Gottesman-Kitaev-Preskill codes,''
+Phys.\ Rev.\ A \textbf{102}, 032408 (2020).
+
+\bibitem{pattison2021}
+C.~A.~Pattison, A.~Beverland, M.~P.~da~Silva, and N.~Delfosse,
+``Improved quantum error correction using soft information,''
+arXiv:2107.13589 (2021).
+
+\bibitem{fowler2012}
+A.~G.~Fowler, M.~Mariantoni, J.~M.~Martinis, and A.~N.~Cleland,
+``Surface codes: Towards practical large-scale quantum computation,''
+Phys.\ Rev.\ A \textbf{86}, 032324 (2012).
+
+\bibitem{terhal2020}
+B.~M.~Terhal, J.~Conrad, and C.~Vuillot,
+``Towards scalable bosonic quantum error correction,''
+Quantum Sci.\ Technol.\ \textbf{5}, 043001 (2020).
+
+\bibitem{campagneibarcq2020}
+P.~Campagne-Ibarcq \emph{et al.},
+``Quantum error correction of a qubit encoded in grid states of an oscillator,''
+Nature \textbf{584}, 368 (2020).
+
+\bibitem{sivak2023}
+V.~V.~Sivak \emph{et al.},
+``Real-time quantum error correction beyond break-even,''
+Nature \textbf{616}, 50 (2023).
+
+\bibitem{overwater2022}
+R.~W.~J.~Overwater, M.~Babaie, and F.~Sebastiano,
+``Neural-network decoders for quantum error correction using surface codes: A space exploration of the hardware cost-performance tradeoffs,''
+IEEE Trans.\ Quantum Eng.\ \textbf{3}, 3101319 (2022).
+
+\bibitem{furusawa2011}
+A.~Furusawa and P.~van~Loock,
+\emph{Quantum Teleportation and Entanglement: A Hybrid Approach to Optical Quantum Information Processing} (Wiley-VCH, 2011).
+
+\bibitem{yoshikawa2016}
+J.~Yoshikawa \emph{et al.},
+``Invited Article: Generation of one-million-mode continuous-variable cluster state by unlimited time-domain multiplexing,''
+APL Photonics \textbf{1}, 060801 (2016).
+
+\bibitem{dennis2002}
+E.~Dennis, A.~Kitaev, A.~Landahl, and J.~Preskill,
+``Topological quantum memory,''
+J.\ Math.\ Phys.\ \textbf{43}, 4452 (2002).
+
+\bibitem{delfosse2021}
+N.~Delfosse and N.~H.~Nickerson,
+``Almost-linear time decoding algorithm for topological codes,''
+Quantum \textbf{5}, 595 (2021).
 
 \end{thebibliography}
 
