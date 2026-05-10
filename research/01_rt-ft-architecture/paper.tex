@@ -226,7 +226,7 @@ The CV-correct model (MR+Soft) yields $p_{\mathrm{th}} \approx 2$--$3\%$ ($\sigm
 \label{fig:correlated}
 \end{figure}
 
-\textbf{Correlated noise (Exp-A4b):} At design spec $\rho \leq 0.03$, impact is negligible. FT breaks down only at $\rho \geq 0.20$. At $\rho \geq 0.08$, MWPM performance degrades noticeably, suggesting that ML-based decoders capable of learning correlated noise structure may provide significant improvements in this regime---a direction we pursue in a companion paper~\cite{tani2026gnn}.
+\textbf{Correlated noise (Exp-A4b):} At design spec $\rho \leq 0.03$, impact is negligible. FT breaks down only at $\rho \geq 0.20$. At $\rho \geq 0.08$, MWPM performance degrades noticeably, suggesting that ML-based decoders capable of learning correlated noise structure may provide significant improvements in this regime.
 
 %% ============================================================
 \section{Discussion}
@@ -247,7 +247,6 @@ Reference & Noise model & Threshold & CV model? \\
 \hline
 Fukui (2018)~\cite{fukui2018} & CC & $7.8$~dB & No \\
 Noh (2022)~\cite{noh2022} & CC & --- & No \\
-Stafford (2025)~\cite{stafford2025} & Phenom. & $7.5$~dB & No \\
 Bourassa (2021)~\cite{bourassa2021} & CL & $\sim 1\%$ & No \\
 \textbf{This work} & \textbf{3-model comparison} & \textbf{2--3\%} & \textbf{Yes} \\
 \end{tabular}
@@ -260,7 +259,7 @@ Eliminating cryogenic infrastructure removes the dominant cost and complexity bo
 
 \subsection{Limitations}
 
-(1)~Simplified i.i.d.\ GKP noise model; macronode beam-splitter correlations not modeled. (2)~Stim DEM independent-edge approximation. (3)~Results presented for $d = 3$ and $d = 5$ only; $d \geq 7$ simulations require substantially more shots to achieve statistical significance at the low error rates expected, and are left to future work. (4)~Magic state distillation not addressed. (5)~High-quality room-temperature GKP generation remains experimental. (6)~Under correlated noise ($\rho \geq 0.08$), MWPM performance degrades; ML-based decoders may provide improvements~\cite{tani2026gnn}.
+(1)~Simplified i.i.d.\ GKP noise model; macronode beam-splitter correlations not modeled. (2)~Stim DEM independent-edge approximation. (3)~Results presented for $d = 3$ and $d = 5$ only; $d \geq 7$ simulations require substantially more shots to achieve statistical significance at the low error rates expected, and are left to future work. (4)~Magic state distillation not addressed. (5)~High-quality room-temperature GKP generation remains experimental. (6)~Under correlated noise ($\rho \geq 0.08$), MWPM performance degrades; ML-based decoders may provide improvements.
 
 %% ============================================================
 \section{Conclusion}
@@ -383,15 +382,6 @@ O.~Higgott and C.~Gidney,
 ``Sparse Blossom: correcting a million errors per core second with minimum-weight matching,''
 arXiv:2303.15933 (2023).
 
-\bibitem{stafford2025}
-M.~P.~Stafford, N.~C.~Menicucci, and B.~W.~Walshe,
-``Macronode-based fault-tolerant measurement-based quantum computation with GKP qubits,''
-arXiv:2502.xxxxx (2025).
-
-\bibitem{tani2026gnn}
-T.~Tani,
-``Hardware-adaptive GNN decoder for room-temperature photonic quantum computing,''
-viXra (2026).
 
 \end{thebibliography}
 

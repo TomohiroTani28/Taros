@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2026.1.14)  11 MAY 2026 02:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2026.1.14)  11 MAY 2026 03:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -557,54 +557,39 @@ LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
  on input line 230.
 
 
-Overfull \hbox (28.04442pt too wide) in alignment at lines 245--253
+Overfull \hbox (27.76108pt too wide) in alignment at lines 245--252
  [] [] [] [] 
  []
 
 
-Underfull \hbox (badness 2707) in paragraph at lines 259--260
+Underfull \hbox (badness 2707) in paragraph at lines 258--259
 \OT1/cmr/m/n/10 i-nant cost and com-plex-ity bot-tle-neck. A room-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 273--274
+Underfull \hbox (badness 10000) in paragraph at lines 272--273
  []\OT1/cmr/m/n/10 Room-temperature FTQC is achiev-able:
  []
 
 
-Underfull \hbox (badness 1102) in paragraph at lines 273--274
+Underfull \hbox (badness 1102) in paragraph at lines 272--273
  \OT1/cmr/m/n/10 CI be-low $10[]$) at Phase 1 pa-ram-e-ters, with
  []
 
 
-Underfull \hbox (badness 2158) in paragraph at lines 280--281
+Underfull \hbox (badness 2158) in paragraph at lines 279--280
 []\OT1/cmr/m/n/10 The nu-mer-i-cal sim-u-la-tions were per-formed us-ing
  []
 
 [4 <./results/fig_a4_finite_gkp.png> <./results/fig_a4b_correlated.png>]
-Underfull \hbox (badness 1152) in paragraph at lines 338--341
+Underfull \hbox (badness 1152) in paragraph at lines 337--340
  \OT1/cmr/m/n/9 quan-tum com-put-ing with continuous-variable clus-ter
  []
 
 
-Underfull \hbox (badness 1596) in paragraph at lines 372--375
+Underfull \hbox (badness 1596) in paragraph at lines 371--374
  []\OT1/cmr/m/n/9 W. Asa-vanant \OT1/cmr/m/it/9 et al.\OT1/cmr/m/n/9 , ``Gen-er
 -a-tion of time-domain-
- []
-
-
-Underfull \hbox (badness 4595) in paragraph at lines 387--390
- \OT1/cmr/m/n/9 she, ``Macronode-based fault-tolerant measurement-
- []
-
-
-Underfull \hbox (badness 6995) in paragraph at lines 387--390
- \OT1/cmr/m/n/9 based quan-tum com-pu-ta-tion with GKP qubits,''
- []
-
-
-Underfull \hbox (badness 3907) in paragraph at lines 392--395
- \OT1/cmr/m/n/9 temperature pho-tonic quan-tum com-put-ing,'' viXra
  []
 
 No file paper.bbl.
@@ -617,10 +602,10 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 8471E908AF1C164EF21E9135C61CC843;5998.
  ) 
 Here is how much of TeX's memory you used:
- 12477 strings out of 473190
- 185744 string characters out of 5715800
- 619851 words of memory out of 5000000
- 35493 multiletter control sequences out of 15000+600000
+ 12469 strings out of 473190
+ 185594 string characters out of 5715800
+ 617819 words of memory out of 5000000
+ 35487 multiletter control sequences out of 15000+600000
  572004 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,10n,79p,1661b,578s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -645,10 +630,10 @@ ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2025/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2025/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2025/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on paper.pdf (5 pages, 715195 bytes).
+Output written on paper.pdf (5 pages, 714200 bytes).
 PDF statistics:
- 365 PDF objects out of 1000 (max. 8388607)
- 303 compressed objects within 4 object streams
- 81 named destinations out of 1000 (max. 500000)
+ 359 PDF objects out of 1000 (max. 8388607)
+ 298 compressed objects within 3 object streams
+ 79 named destinations out of 1000 (max. 500000)
  269 words of extra memory for PDF output out of 10000 (max. 10000000)
 

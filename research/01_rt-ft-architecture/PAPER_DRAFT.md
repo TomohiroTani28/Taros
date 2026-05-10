@@ -200,7 +200,7 @@ For Delta <= 0.12 (design target), the impact is a modest 1.6--1.8x degradation.
 ![Figure 4: Correlated noise sensitivity](results/fig_a4b_correlated.png)
 *Figure 4. Impact of inter-mode correlation rho on logical error rates.*
 
-At design spec rho <= 0.03, impact is negligible. FT breaks down only at rho >= 0.20. At rho >= 0.08, MWPM performance degrades noticeably, suggesting that ML-based decoders capable of learning correlated noise structure may provide significant improvements---a direction pursued in a companion paper [22].
+At design spec rho <= 0.03, impact is negligible. FT breaks down only at rho >= 0.20. At rho >= 0.08, MWPM performance degrades noticeably, suggesting that ML-based decoders capable of learning correlated noise structure may provide significant improvements.
 
 ---
 
@@ -224,7 +224,6 @@ Three physical arguments explain why CV photonic quantum computing does not requ
 |-----------|-------------|-----------|------------------------------|
 | Fukui *et al.* (2018) [8] | Code-capacity | sigma ~ 7.8 dB | No |
 | Noh & Chamberland (2022) [7] | Code-capacity | --- | No |
-| Stafford *et al.* (2025) [21] | Phenomenological | sigma ~ 7.5 dB | No |
 | Bourassa *et al.* (2021) [5] | Circuit-level | ~1% | No (DV framework) |
 | **This work** | **3-model comparison** | **2--3%** | **Yes** |
 
@@ -239,7 +238,7 @@ Eliminating cryogenic infrastructure removes the dominant cost and complexity bo
 3. **d = 3 and d = 5 only**: d >= 7 simulations require substantially more shots to achieve statistical significance at the expected low error rates, and are left to future work.
 4. **Magic state distillation**: Only Clifford operations addressed.
 5. **GKP generation**: High-quality room-temperature GKP state generation remains an experimental challenge.
-6. **Correlated noise decoding**: Under correlated noise (rho >= 0.08), MWPM performance degrades; ML-based decoders may provide improvements [22].
+6. **Correlated noise decoding**: Under correlated noise (rho >= 0.08), MWPM performance degrades; ML-based decoders may provide improvements.
 
 ---
 
@@ -285,5 +284,3 @@ The numerical simulations were performed using Stim [19] and PyMatching [20].
 [18] W. Asavanant *et al.*, Science **366**, 373 (2019).
 [19] C. Gidney, Quantum **5**, 497 (2021).
 [20] O. Higgott and C. Gidney, arXiv:2303.15933 (2023).
-[21] M. P. Stafford *et al.*, arXiv:2502.xxxxx (2025).
-[22] T. Tani, "Hardware-adaptive GNN decoder for room-temperature photonic quantum computing," viXra (2026).

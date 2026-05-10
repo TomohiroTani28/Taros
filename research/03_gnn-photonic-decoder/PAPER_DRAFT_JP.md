@@ -204,12 +204,10 @@ GNNはグラフ畳み込みにより局所的なエッジ重みの*非一様な*
 
 ## 参考文献
 
-[1] T. Tani, "Fault-tolerant quantum error correction at room temperature: The correct noise model for continuous-variable photonic architectures," viXra (2026). [本シリーズ Paper 1]
+[1] C. Gidney, "Stim: A fast stabilizer circuit simulator," Quantum **5**, 497 (2021).
 
-[2] C. Gidney, "Stim: A fast stabilizer circuit simulator," Quantum **5**, 497 (2021).
+[2] O. Higgott and C. Gidney, "Sparse Blossom: correcting a million errors per core second with minimum-weight matching," arXiv:2303.15933 (2023).
 
-[3] O. Higgott and C. Gidney, "Sparse Blossom: correcting a million errors per core second with minimum-weight matching," arXiv:2303.15933 (2023).
+[3] K. Noh and C. Chamberland, "Low-overhead fault-tolerant quantum error correction with the surface-GKP code," Phys. Rev. X **12**, 011058 (2022).
 
-[4] K. Noh and C. Chamberland, "Low-overhead fault-tolerant quantum error correction with the surface-GKP code," Phys. Rev. X **12**, 011058 (2022).
-
-[5] D. Gottesman, A. Kitaev, and J. Preskill, "Encoding a qubit in an oscillator," Phys. Rev. A **64**, 012310 (2001).
+[4] D. Gottesman, A. Kitaev, and J. Preskill, "Encoding a qubit in an oscillator," Phys. Rev. A **64**, 012310 (2001).
