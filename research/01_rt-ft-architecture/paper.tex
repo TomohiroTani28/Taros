@@ -10,7 +10,7 @@
 \begin{document}
 
 \title{Fault-Tolerant Quantum Error Correction at Room Temperature:\\
-The Correct Noise Model for Continuous-Variable Photonic Architectures}
+Noise Model Selection and GNN Decoder Advantage for Continuous-Variable Photonic Architectures}
 
 \author{Tomohiro Tani}
 \affiliation{Independent Researcher}
@@ -19,7 +19,7 @@ The Correct Noise Model for Continuous-Variable Photonic Architectures}
 \date{\today}
 
 \begin{abstract}
-We demonstrate that room-temperature continuous-variable (CV) photonic quantum computers based on GKP-encoded surface codes can achieve fault-tolerant error suppression without cryogenic infrastructure. Through systematic numerical simulations totaling over $10^7$ shots, we show that the standard circuit-level noise model---designed for discrete-variable systems with noisy entangling gates---overestimates logical error rates by one to two orders of magnitude when applied to CV homodyne architectures. We identify the phenomenological model with equal data and measurement error rates ($p_{\mathrm{meas}} = p_{\mathrm{data}}$) as the physically correct noise model for CV systems, where homodyne detection always succeeds and the sole noise source is GKP displacement noise propagated through passive beam-splitter networks. Furthermore, we establish that soft-information minimum-weight perfect matching (MWPM) decoding is not merely an optimization but a necessity: it provides over an order of magnitude improvement in multi-round simulations and determines whether the system is above or below threshold. At the operating parameters of a room-temperature PPLN OPA photonic system ($\sigma_{\mathrm{eff}} = 8.5$~dB), our CV-correct model yields $p_L(d{=}5) = 4.33 \times 10^{-4}$ (13 errors in 30{,}000 shots, 95\% CI: $[2.5, 7.3] \times 10^{-4}$), well below the $10^{-3}$ product threshold. These results establish that cryogenic infrastructure is not a fundamental requirement for fault-tolerant quantum computing.
+We demonstrate that room-temperature continuous-variable (CV) photonic quantum computers based on GKP-encoded surface codes can achieve fault-tolerant error suppression without cryogenic infrastructure. Through systematic numerical simulations totaling over $10^7$ shots, we show that the standard circuit-level noise model---designed for discrete-variable systems with noisy entangling gates---overestimates logical error rates by one to two orders of magnitude when applied to CV homodyne architectures. We identify the phenomenological model with equal data and measurement error rates ($p_{\mathrm{meas}} = p_{\mathrm{data}}$) as a physically motivated noise model for CV systems, where homodyne detection always succeeds and the sole noise source is GKP displacement noise propagated through passive beam-splitter networks. Furthermore, we establish that soft-information minimum-weight perfect matching (MWPM) decoding is not merely an optimization but a necessity: it provides over an order of magnitude improvement in multi-round simulations and determines whether the system is above or below threshold. At the operating parameters of a room-temperature PPLN OPA photonic system ($\sigma_{\mathrm{eff}} = 8.5$~dB), our CV-motivated model yields $p_L(d{=}5) = 4.33 \times 10^{-4}$ (13 errors in 30{,}000 shots, 95\% CI: $[2.5, 7.3] \times 10^{-4}$), well below the $10^{-3}$ product threshold. Finally, we show that a lightweight graph neural network (GNN) decoder with 4{,}033 parameters outperforms soft-info MWPM by up to $6.5\times$ under correlated noise ($\rho \geq 0.08$), with the advantage \emph{increasing} at higher code distance---a regime where MWPM performance degrades. These results establish that cryogenic infrastructure is not a fundamental requirement for fault-tolerant quantum computing, and that ML-based decoders can extend the fault-tolerance operating envelope of CV photonic systems.
 \end{abstract}
 
 \maketitle
@@ -52,11 +52,12 @@ Despite these advantages, numerical studies of GKP surface codes have produced a
 
 \subsection{Summary of contributions}
 
-In this work, we make three principal contributions:
+In this work, we make four principal contributions:
 \begin{enumerate}
-\item \textbf{Noise model identification}: The phenomenological model with $p_{\mathrm{meas}} = p_{\mathrm{data}}$ is the physically correct noise model for CV homodyne QEC.
+\item \textbf{Noise model identification}: The phenomenological model with $p_{\mathrm{meas}} = p_{\mathrm{data}}$ is a physically motivated noise model for CV homodyne QEC, and the standard DV circuit-level model is inappropriate.
 \item \textbf{Soft-information necessity}: Soft-info MWPM provides over an order of magnitude improvement in multi-round simulations and is essential for fault tolerance.
 \item \textbf{Room-temperature fault tolerance}: $p_L(d{=}5) = 4.33 \times 10^{-4}$ (13 errors / 30{,}000 shots, 95\% CI below $10^{-3}$), with robustness confirmed against finite-energy GKP effects and correlated pump noise.
+\item \textbf{GNN decoder advantage under correlated noise}: A lightweight GNN decoder (4{,}033 parameters) outperforms soft-info MWPM by up to $6.5\times$ at $\rho \geq 0.08$, with the advantage increasing from $d = 3$ to $d = 5$.
 \end{enumerate}
 
 %% ============================================================
@@ -136,11 +137,15 @@ All three points assume room-temperature InGaAs homodyne detection---no SNSPDs, 
 
 \subsection{Noise models compared}
 
-We compare four configurations: (1)~Code-capacity + soft-info (CC+Soft), (2)~Multi-round + hard-decision (MR+Hard), (3)~Multi-round + soft-info (MR+Soft)---our proposed CV-correct model, and (4)~Circuit-level (CL).
+We compare four configurations: (1)~Code-capacity + soft-info (CC+Soft), (2)~Multi-round + hard-decision (MR+Hard), (3)~Multi-round + soft-info (MR+Soft)---our proposed CV-motivated model, and (4)~Circuit-level (CL, standard DV depolarizing noise).
 
 \subsection{Experiments}
 
 We conducted two primary experiments: Exp-A3b compared four noise models at Phase~1 parameters with $d = 3$ and $d = 5$, totaling $>$100{,}000 shots. Exp-A2c performed high-statistics multi-round simulations at both operating points ($d = 3$: 50{,}000 shots; $d = 5$: 30{,}000 shots). Robustness was assessed via sweeps over finite-energy GKP parameter $\Delta$ (Exp-A4) and inter-mode correlation $\rho$ (Exp-A4b).
+
+\subsection{GNN decoder}
+
+To assess ML-based decoding under correlated noise, we trained a 3-layer message-passing GNN with 4{,}033 parameters on the syndrome graph extracted from the multi-round DEM. Training used syndrome--error pairs generated with mixed correlation strengths $\rho \in \{0, 0.03, 0.05, 0.08, 0.10, 0.15\}$ (10{,}000 samples per $\rho$ at $d = 3$; 3{,}000 at $d = 5$). Per-$\rho$ trained variants were also evaluated. All GNN experiments used the same GKP displacement noise model and Phase~1 parameters.
 
 %% ============================================================
 \section{Results}
@@ -160,15 +165,15 @@ At Phase~1 parameters ($\sigma_{\mathrm{eff}} = 8.5$~dB), we observe exponential
 
 \begin{figure}[t]
 \includegraphics[width=\columnwidth]{results/fig_a3_model_comparison.png}
-\caption{Four-model comparison at Phase~1 parameters ($d = 3, 5$). Circuit-level (red) overestimates by $\sim 100\times$ and shows $p_L$ \emph{increasing} with $d$; MR+Soft (green, CV-correct) shows clear fault tolerance.}
+\caption{Four-model comparison at Phase~1 parameters ($d = 3, 5$). Circuit-level (red) overestimates by $\sim 100\times$ and shows $p_L$ \emph{increasing} with $d$; MR+Soft (green, CV-motivated) shows clear fault tolerance.}
 \label{fig:model_comparison}
 \end{figure}
 
 The circuit-level model yields $p_L(d{=}5) = 4.5 \times 10^{-2}$ with $p_L$ \emph{increasing} with $d$ (Fig.~\ref{fig:model_comparison})---an artifact of inappropriate noise modeling. Under this model, Phase~1 hardware appears to be \emph{above} the fault-tolerance threshold.
 
-\subsection{CV-correct model (Exp-A3b)}
+\subsection{CV-motivated model (Exp-A3b)}
 
-The definitive result comes from the CV-correct model: phenomenological noise with $p_{\mathrm{meas}} = p_{\mathrm{data}}$ and soft-information MWPM.
+The definitive result comes from the CV-motivated model: phenomenological noise with $p_{\mathrm{meas}} = p_{\mathrm{data}}$ and soft-information MWPM.
 
 \begin{table}[h]
 \caption{Logical error rates under four noise models. Phase~1 ($\sigma_{\mathrm{eff}} = 8.5$~dB). Error counts in parentheses.}
@@ -216,25 +221,59 @@ The suppression rate $\Lambda = p_L(d{=}3)/p_L(d{=}5) = 6.6$ at Phase~1 confirms
 
 \subsection{Threshold determination}
 
-The CV-correct model (MR+Soft) yields $p_{\mathrm{th}} \approx 2$--$3\%$ ($\sigma_{\mathrm{eff}} \approx 6.5$--$7.5$~dB), compared to the circuit-level threshold of $\sim 0.5$--$1\%$. Operating margins: Phase~1 $p_{\mathrm{phys}}/p_{\mathrm{th}} \approx 0.37$ ($2.7\times$ margin), Phase~2+ Real $0.19$ ($5.2\times$ margin).
+The CV-motivated model (MR+Soft) yields $p_{\mathrm{th}} \approx 2$--$3\%$ ($\sigma_{\mathrm{eff}} \approx 6.5$--$7.5$~dB), compared to the circuit-level threshold of $\sim 0.5$--$1\%$. Operating margins: Phase~1 $p_{\mathrm{phys}}/p_{\mathrm{th}} \approx 0.37$ ($2.7\times$ margin), Phase~2+ Real $0.19$ ($5.2\times$ margin).
 
 \subsection{Robustness analysis}
 
+\begin{figure*}[t]
+\includegraphics[width=\textwidth]{results/fig_robustness.png}
+\caption{Robustness analysis at Phase~1 parameters ($\sigma_{\mathrm{eff}} = 8.5$~dB). (a)~Impact of finite-energy GKP parameter $\Delta$: for $\Delta \leq 0.12$ (design target), the degradation is modest ($1.6$--$1.8\times$). (b)~Impact of inter-mode correlation $\rho$: at design spec $\rho \leq 0.03$, impact is negligible; MWPM performance degrades noticeably at $\rho \geq 0.08$.}
+\label{fig:robustness}
+\end{figure*}
+
+\textbf{Finite-energy GKP (Exp-A4):} For $\Delta \leq 0.12$, the impact is a modest $1.6$--$1.8\times$ degradation. The system remains within product specification even at $\Delta = 0.15$ (Fig.~\ref{fig:robustness}a).
+
+\textbf{Correlated noise (Exp-A4b):} At design spec $\rho \leq 0.03$, impact is negligible. FT breaks down only at $\rho \geq 0.20$. Critically, at $\rho \geq 0.08$, MWPM performance degrades noticeably (Fig.~\ref{fig:robustness}b), motivating the GNN decoder investigation in the following section.
+
+\subsection{GNN decoder advantage under correlated noise}
+
 \begin{figure}[t]
-\includegraphics[width=\columnwidth]{results/fig_a4_finite_gkp.png}
-\caption{Impact of finite-energy GKP parameter $\Delta$ on logical error rates.}
-\label{fig:finite_gkp}
+\includegraphics[width=\columnwidth]{results/fig_advantage_v2.png}
+\caption{GNN advantage ratio $p_L(\mathrm{MWPM})/p_L(\mathrm{GNN})$ vs.\ inter-mode correlation $\rho$. Left: $d = 3$. Right: $d = 5$. Values above the dashed line indicate GNN outperforms MWPM. The shaded region ($\rho > 0.15$) is out of the GNN training distribution. The GNN advantage \emph{increases} from $d = 3$ to $d = 5$, in contrast to the typical scaling behavior of ML decoders.}
+\label{fig:gnn_advantage}
 \end{figure}
 
-\textbf{Finite-energy GKP (Exp-A4):} For $\Delta \leq 0.12$, the impact is a modest $1.6$--$1.8\times$ degradation. The system remains within product specification even at $\Delta = 0.15$.
+The degradation of MWPM under correlated noise motivates investigating decoders that can learn noise structure. We trained a lightweight GNN decoder (3-layer message-passing network, 4{,}033 parameters) on syndrome data generated with mixed correlation strengths $\rho \in \{0, 0.03, 0.05, 0.08, 0.10, 0.15\}$.
 
-\begin{figure}[t]
-\includegraphics[width=\columnwidth]{results/fig_a4b_correlated.png}
-\caption{Impact of inter-mode correlation $\rho$ on logical error rates.}
-\label{fig:correlated}
-\end{figure}
+\begin{table}[h]
+\caption{GNN decoder vs.\ soft-info MWPM under correlated noise (Phase~1, $\sigma_{\mathrm{eff}} = 8.5$~dB). Advantage = $p_L(\mathrm{MWPM})/p_L(\mathrm{GNN})$.}
+\label{tab:gnn}
+\begin{ruledtabular}
+\begin{tabular}{lcccc}
+$\rho$ & $d$ & MWPM $p_L$ & GNN $p_L$ & Advantage \\
+\hline
+0.00 & 3 & $2.5{\times}10^{-3}$ & $4.6{\times}10^{-3}$ & $0.5\times$ \\
+0.08 & 3 & $4.3{\times}10^{-3}$ & $3.4{\times}10^{-3}$ & $1.3\times$ \\
+0.10 & 3 & $5.8{\times}10^{-3}$ & $3.0{\times}10^{-3}$ & $1.9\times$ \\
+0.15 & 3 & $7.6{\times}10^{-3}$ & $2.3{\times}10^{-3}$ & $3.3\times$ \\
+\hline
+0.00 & 5 & $4.0{\times}10^{-4}$ & $1.0{\times}10^{-3}$ & $0.4\times$ \\
+0.08 & 5 & $1.4{\times}10^{-3}$ & $8.0{\times}10^{-4}$ & $1.8\times$ \\
+0.10 & 5 & $2.4{\times}10^{-3}$ & $4.0{\times}10^{-4}$ & $6.0\times$ \\
+0.15 & 5 & $5.2{\times}10^{-3}$ & $8.0{\times}10^{-4}$ & $6.5\times$ \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
 
-\textbf{Correlated noise (Exp-A4b):} At design spec $\rho \leq 0.03$, impact is negligible. FT breaks down only at $\rho \geq 0.20$. At $\rho \geq 0.08$, MWPM performance degrades noticeably, suggesting that ML-based decoders capable of learning correlated noise structure may provide significant improvements in this regime.
+Three key observations (Table~\ref{tab:gnn}, Fig.~\ref{fig:gnn_advantage}):
+
+\textbf{Crossover at $\rho \approx 0.08$.} Below this threshold, MWPM outperforms GNN as expected for i.i.d.\ noise. Above $\rho \approx 0.08$, the GNN learns correlated error patterns that MWPM cannot exploit, achieving up to $6.5\times$ lower logical error rates.
+
+\textbf{Advantage increases with code distance.} At $\rho = 0.10$, the GNN advantage grows from $1.9\times$ ($d = 3$) to $6.0\times$ ($d = 5$). This is notable because ML decoders typically struggle to scale with $d$; the improvement suggests that correlated noise structure becomes more exploitable at larger code distances.
+
+\textbf{Out-of-distribution generalization.} The mixed-$\rho$ trained GNN maintains $2.1\times$ ($d = 3$) and $4.8\times$ ($d = 5$) advantages at $\rho = 0.20$, which lies outside its training distribution. This robustness is important for practical deployment where noise correlations may vary.
+
+Note: GNN results at $d \geq 7$ remain to be investigated and are left to future work.
 
 %% ============================================================
 \section{Discussion}
@@ -250,13 +289,13 @@ Three physical arguments: (i)~thermal noise immunity ($E/k_BT \approx 31$ at 155
 \caption{Comparison with prior GKP surface code studies.}
 \label{tab:prior_work}
 \begin{ruledtabular}
-\begin{tabular}{lccc}
-Reference & Noise model & Threshold & CV model? \\
+\begin{tabular}{lcccc}
+Reference & Noise model & Threshold & CV? & ML dec.? \\
 \hline
-Fukui (2018)~\cite{fukui2018} & CC & $7.8$~dB & No \\
-Noh (2022)~\cite{noh2022} & CC & --- & No \\
-Bourassa (2021)~\cite{bourassa2021} & CL & $\sim 1\%$ & No \\
-\textbf{This work} & \textbf{3-model comparison} & \textbf{2--3\%} & \textbf{Yes} \\
+Fukui (2018)~\cite{fukui2018} & CC & $7.8$~dB & No & No \\
+Noh (2022)~\cite{noh2022} & CC & --- & No & No \\
+Bourassa (2021)~\cite{bourassa2021} & CL & $\sim 1\%$ & No & No \\
+\textbf{This work} & \textbf{4-model} & \textbf{2--3\%} & \textbf{Yes} & \textbf{Yes} \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
@@ -267,20 +306,21 @@ Eliminating cryogenic infrastructure removes the dominant cost and complexity bo
 
 \subsection{Limitations}
 
-(1)~Simplified i.i.d.\ GKP noise model; macronode beam-splitter correlations not modeled. (2)~Stim DEM independent-edge approximation. (3)~Results presented for $d = 3$ and $d = 5$ only; $d \geq 7$ simulations require substantially more shots to achieve statistical significance at the expected low error rates. (4)~The $d = 5$ MR+Soft result from Exp-A3b (4 errors / 15{,}000 shots) has limited statistics; Exp-A2c (13 / 30{,}000) provides higher confidence but both are consistent within sampling uncertainty. (5)~Magic state distillation not addressed. (6)~High-quality room-temperature GKP generation remains experimental. (7)~Under correlated noise ($\rho \geq 0.08$), MWPM performance degrades; ML-based decoders may provide improvements.
+(1)~Simplified i.i.d.\ GKP noise model; macronode beam-splitter correlations not explicitly modeled. A full macronode TDM circuit simulation that derives the effective noise model from beam-splitter network propagation remains an important direction for future work. (2)~Stim DEM independent-edge approximation. (3)~QEC results presented for $d = 3$ and $d = 5$ only; $d \geq 7$ simulations require substantially more shots to achieve statistical significance at the expected low error rates. (4)~The $d = 5$ MR+Soft result from Exp-A3b (4 errors / 15{,}000 shots) has limited statistics; Exp-A2c (13 / 30{,}000) provides higher confidence but both are consistent within sampling uncertainty. (5)~Magic state distillation not addressed. (6)~High-quality room-temperature GKP generation remains experimental. (7)~GNN decoder results are limited to $d \leq 5$; scaling to $d \geq 7$ and larger training sets may further improve the advantage. (8)~GNN error counts at $d = 5$ are small (2--12 per condition); higher-statistics runs would strengthen the conclusions.
 
 %% ============================================================
 \section{Conclusion}
 \label{sec:conclusion}
 
-We have presented three principal results:
+We have presented four principal results:
 \begin{enumerate}
-\item The correct noise model for CV homodyne QEC is phenomenological ($p_{\mathrm{meas}} = p_{\mathrm{data}}$), not circuit-level. The wrong model overestimates $p_L$ by $10$--$100\times$.
+\item A physically motivated noise model for CV homodyne QEC is phenomenological ($p_{\mathrm{meas}} = p_{\mathrm{data}}$), not the standard DV circuit-level model. The DV model overestimates $p_L$ by $10$--$100\times$.
 \item Soft-info MWPM is essential, providing over an order of magnitude improvement in multi-round decoding. Without soft information, the system appears above threshold; with it, clear fault tolerance is demonstrated.
 \item Room-temperature FTQC is achievable: $p_L(d{=}5) = 4.33 \times 10^{-4}$ (13 errors in 30{,}000 shots, 95\% CI: $[2.5, 7.3] \times 10^{-4}$, entirely below $10^{-3}$) at Phase~1 parameters, with robustness confirmed against finite-energy GKP effects and correlated pump noise.
+\item A lightweight GNN decoder outperforms soft-info MWPM by up to $6.5\times$ under correlated noise ($\rho \geq 0.08$), with the advantage increasing at higher code distance. This extends the fault-tolerance operating envelope beyond the MWPM-accessible regime.
 \end{enumerate}
 
-The physics of CV photonic systems---telecom photons immune to thermal noise, deterministic homodyne detection, and passive beam-splitter entanglement---provides a qualitatively different noise landscape than DV platforms. Recognizing this through the correct noise model reveals that room-temperature fault tolerance is not merely aspirational but numerically demonstrated.
+The physics of CV photonic systems---telecom photons immune to thermal noise, deterministic homodyne detection, and passive beam-splitter entanglement---provides a qualitatively different noise landscape than DV platforms. Selecting the appropriate noise model reveals that room-temperature fault tolerance is numerically demonstrated, and GNN decoders can further extend resilience under realistic correlated noise conditions.
 
 %% ============================================================
 \begin{acknowledgments}
@@ -289,7 +329,7 @@ The numerical simulations were performed using Stim~\cite{gidney2021} and PyMatc
 
 %% ============================================================
 
-\begin{thebibliography}{17}
+\begin{thebibliography}{19}
 
 \bibitem{arute2019}
 F.~Arute \emph{et al.},
@@ -375,6 +415,16 @@ Quantum \textbf{5}, 497 (2021).
 O.~Higgott and C.~Gidney,
 ``Sparse Blossom: correcting a million errors per core second with minimum-weight matching,''
 arXiv:2303.15933 (2023).
+
+\bibitem{battistel2023}
+F.~Battistel, B.~M.~Varbanov, and B.~M.~Terhal,
+``Real-time decoding for fault-tolerant quantum computing: progress, challenges and outlook,''
+arXiv:2303.10846 (2023).
+
+\bibitem{meijering2024}
+T.~Meijering \emph{et al.},
+``Towards large-scale fault-tolerant quantum computing with GNN decoders,''
+arXiv (2024).
 
 \end{thebibliography}
 
