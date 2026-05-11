@@ -1,0 +1,107 @@
+[
+  {
+    "scenario": "No mismatch (control)",
+    "v_true_ch": [
+      0.1417,
+      0.1417,
+      0.1417,
+      0.1417,
+      0.1417
+    ],
+    "v_decoder": 0.1417,
+    "iter_pLs": [
+      0.0003,
+      0.0003,
+      0.0003,
+      0.0003,
+      0.0003
+    ],
+    "mle_improvement": 1.0,
+    "turbo_improvement": 1.0,
+    "n_shots": 10000
+  },
+  {
+    "scenario": "Small WDM variation (\u00b10.01)",
+    "v_true_ch": [
+      0.152,
+      0.148,
+      0.142,
+      0.148,
+      0.152
+    ],
+    "v_decoder": 0.1417,
+    "iter_pLs": [
+      0.0005,
+      0.0005,
+      0.0005,
+      0.0005,
+      0.0005
+    ],
+    "mle_improvement": 1.0,
+    "turbo_improvement": 1.0,
+    "n_shots": 10000
+  },
+  {
+    "scenario": "Large WDM variation (\u00b10.02)",
+    "v_true_ch": [
+      0.162,
+      0.152,
+      0.142,
+      0.152,
+      0.162
+    ],
+    "v_decoder": 0.1417,
+    "iter_pLs": [
+      0.0008,
+      0.0009,
+      0.0009,
+      0.0009,
+      0.0009
+    ],
+    "mle_improvement": 0.888888888888889,
+    "turbo_improvement": 0.888888888888889,
+    "n_shots": 10000
+  },
+  {
+    "scenario": "Asymmetric drift (ch0 degraded)",
+    "v_true_ch": [
+      0.18,
+      0.142,
+      0.142,
+      0.142,
+      0.142
+    ],
+    "v_decoder": 0.1417,
+    "iter_pLs": [
+      0.0007,
+      0.0006,
+      0.0005,
+      0.0005,
+      0.0005
+    ],
+    "mle_improvement": 1.1666666666666667,
+    "turbo_improvement": 1.4,
+    "n_shots": 10000
+  },
+  {
+    "scenario": "Two channels degraded",
+    "v_true_ch": [
+      0.175,
+      0.142,
+      0.142,
+      0.142,
+      0.175
+    ],
+    "v_decoder": 0.1417,
+    "iter_pLs": [
+      0.0008,
+      0.0007,
+      0.0007,
+      0.0007,
+      0.0007
+    ],
+    "mle_improvement": 1.142857142857143,
+    "turbo_improvement": 1.142857142857143,
+    "n_shots": 10000
+  }
+]

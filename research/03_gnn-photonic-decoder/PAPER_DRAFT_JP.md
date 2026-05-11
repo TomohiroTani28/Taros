@@ -8,7 +8,7 @@
 
 *独立研究者*
 
-**投稿先**: ~viXra~
+**投稿先**: ~~viXra~~
 
 ---
 
@@ -208,18 +208,16 @@ GNNはグラフ畳み込みにより局所的なエッジ重みの*非一様な*
 
 ## 参考文献
 
-[1] T. Tani, "Fault-tolerant quantum error correction at room temperature: Noise model selection and GNN decoder advantage for continuous-variable photonic architectures," viXra preprint (2026).
+[1] C. Gidney, "Stim: A fast stabilizer circuit simulator," Quantum **5**, 497 (2021).
 
-[2] C. Gidney, "Stim: A fast stabilizer circuit simulator," Quantum **5**, 497 (2021).
+[2] O. Higgott and C. Gidney, "Sparse Blossom: correcting a million errors per core second with minimum-weight matching," arXiv:2303.15933 (2023).
 
-[3] O. Higgott and C. Gidney, "Sparse Blossom: correcting a million errors per core second with minimum-weight matching," arXiv:2303.15933 (2023).
+[3] K. Noh and C. Chamberland, "Low-overhead fault-tolerant quantum error correction with the surface-GKP code," Phys. Rev. X **12**, 011058 (2022).
 
-[4] K. Noh and C. Chamberland, "Low-overhead fault-tolerant quantum error correction with the surface-GKP code," Phys. Rev. X **12**, 011058 (2022).
+[4] D. Gottesman, A. Kitaev, and J. Preskill, "Encoding a qubit in an oscillator," Phys. Rev. A **64**, 012310 (2001).
 
-[5] D. Gottesman, A. Kitaev, and J. Preskill, "Encoding a qubit in an oscillator," Phys. Rev. A **64**, 012310 (2001).
+[5] R. W. J. Overwater, M. Babaie, and F. Sebastiano, "Neural-network decoders for quantum error correction using surface codes," IEEE Trans. Quantum Eng. **3**, 3101319 (2022).
 
-[6] R. W. J. Overwater, M. Babaie, and F. Sebastiano, "Neural-network decoders for quantum error correction using surface codes," IEEE Trans. Quantum Eng. **3**, 3101319 (2022).
+[6] N. C. Menicucci, "Fault-tolerant measurement-based quantum computing with continuous-variable cluster states," Phys. Rev. Lett. **112**, 120504 (2014).
 
-[7] N. C. Menicucci, "Fault-tolerant measurement-based quantum computing with continuous-variable cluster states," Phys. Rev. Lett. **112**, 120504 (2014).
-
-[8] B. W. Walshe *et al.*, "Robust fault tolerance for continuous-variable cluster states with excess antisqueezing," Phys. Rev. A **100**, 010301(R) (2019).
+[7] B. W. Walshe *et al.*, "Robust fault tolerance for continuous-variable cluster states with excess antisqueezing," Phys. Rev. A **100**, 010301(R) (2019).

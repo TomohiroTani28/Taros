@@ -1,0 +1,57 @@
+{
+  "h_cv": 13.889793872833252,
+  "h_dv": 13.27678632736206,
+  "target_far": 0.01,
+  "k_cusum": 0.5,
+  "modes_per_cycle": 686,
+  "anomalies": {
+    "+0.2dB": {
+      "delta_dB": 0.2,
+      "v_after": 0.14837811525881248,
+      "cv_median_delay": 40.0,
+      "dv_median_delay": 77.0,
+      "cv_detect_rate": 1.0,
+      "dv_detect_rate": 0.9066666666666666,
+      "advantage": 1.925,
+      "cv_mean_delay": 50.88666666666666,
+      "dv_mean_delay": 113.26470588235294,
+      "n_trials": 300
+    },
+    "+0.3dB": {
+      "delta_dB": 0.3,
+      "v_after": 0.15183428555216882,
+      "cv_median_delay": 18.0,
+      "dv_median_delay": 33.0,
+      "cv_detect_rate": 1.0,
+      "dv_detect_rate": 1.0,
+      "advantage": 1.8333333333333333,
+      "cv_mean_delay": 19.716666666666665,
+      "dv_mean_delay": 37.14,
+      "n_trials": 300
+    },
+    "+0.5dB": {
+      "delta_dB": 0.5,
+      "v_after": 0.1589900149745882,
+      "cv_median_delay": 9.0,
+      "dv_median_delay": 13.0,
+      "cv_detect_rate": 1.0,
+      "dv_detect_rate": 1.0,
+      "advantage": 1.4444444444444444,
+      "cv_mean_delay": 9.24,
+      "dv_mean_delay": 13.306666666666667,
+      "n_trials": 300
+    },
+    "+1.0dB": {
+      "delta_dB": 1.0,
+      "v_after": 0.1783897308512335,
+      "cv_median_delay": 3.0,
+      "dv_median_delay": 4.0,
+      "cv_detect_rate": 1.0,
+      "dv_detect_rate": 1.0,
+      "advantage": 1.3333333333333333,
+      "cv_mean_delay": 3.5166666666666666,
+      "dv_mean_delay": 4.3133333333333335,
+      "n_trials": 300
+    }
+  }
+}

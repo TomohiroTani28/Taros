@@ -1,0 +1,35 @@
+{
+  "PLL cycle slip (+0.3dB)": {
+    "delta_dB": 0.3,
+    "v_before": 0.1417,
+    "v_after": 0.15183428555216882,
+    "cv_median": 200.0,
+    "dv_median": 200.0,
+    "cv_detect_rate": 0.0,
+    "dv_detect_rate": 0.0,
+    "advantage": 1.0,
+    "n_trials": 50
+  },
+  "PLL cycle slip (+0.5dB)": {
+    "delta_dB": 0.5,
+    "v_before": 0.1417,
+    "v_after": 0.1589900149745882,
+    "cv_median": 200.0,
+    "dv_median": 200.0,
+    "cv_detect_rate": 0.0,
+    "dv_detect_rate": 0.0,
+    "advantage": 1.0,
+    "n_trials": 50
+  },
+  "OPA mode hop (+1.0dB)": {
+    "delta_dB": 1.0,
+    "v_before": 0.1417,
+    "v_after": 0.1783897308512335,
+    "cv_median": 200.0,
+    "dv_median": 200.0,
+    "cv_detect_rate": 0.0,
+    "dv_detect_rate": 0.0,
+    "advantage": 1.0,
+    "n_trials": 50
+  }
+}
