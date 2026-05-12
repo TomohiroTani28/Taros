@@ -140,15 +140,17 @@ Wrapped Gaussian MLE was applied to d=7 configuration (686 modes/cycle), evaluat
 
 **Table II.** Median V_eff estimation error (Phase 1, V_eff = 0.1417).
 
-| QEC cycles | Total modes | **CV (MLE)** | DV (erfc inversion) | **CV advantage** |
+| QEC cycles | Total modes | **CV (MLE)** [IQR] | DV (erfc inversion) [IQR] | **CV advantage** |
 |-------------|-----------|-------------|-----------------|-----------|
-| 1 | 686 | **3.80%** | 28.62% | 7.5x |
-| 2 | 1,372 | **2.83%** | 26.65% | 9.4x |
-| **3** | **2,058** | **2.61%** | **27.31%** | **10.5x** |
-| 5 | 3,430 | 1.96% | 27.83% | 14.2x |
-| 10 | 6,860 | 1.25% | 27.24% | 21.8x |
-| 50 | 34,300 | 0.60% | 27.68% | 46.1x |
-| 100 | 68,600 | 0.42% | 27.54% | 65.1x |
+| 1 | 686 | **3.80%** [4.71%] | 28.62% [15.66%] | 7.5x |
+| 2 | 1,372 | **2.83%** [3.38%] | 26.65% [13.76%] | 9.4x |
+| **3** | **2,058** | **2.61%** [2.88%] | **27.31%** [11.77%] | **10.5x** |
+| 5 | 3,430 | 1.96% [2.34%] | 27.83% [8.62%] | 14.2x |
+| 10 | 6,860 | 1.25% [1.63%] | 27.24% [5.60%] | 21.8x |
+| 50 | 34,300 | 0.60% [0.65%] | 27.68% [2.77%] | 46.1x |
+| 100 | 68,600 | 0.42% [0.52%] | 27.54% [2.05%] | 65.1x |
+
+Bracketed values are interquartile ranges (IQR = p75 - p25) over 200 trials.
 
 **CV achieves 2.61% estimation accuracy in 3 QEC cycles (~21 microseconds).** DV saturates at 27.5% after 100 cycles (~700 microseconds) and cannot reach 3%.
 
@@ -159,16 +161,18 @@ Physical cause of DV saturation: At Phase 1 p_phys = 9.28 x 10^{-3}, the expecte
 ![Figure 4: CUSUM anomaly detection](results/fig3_cusum_detection.png)
 *Figure 4. (a) CUSUM detection delay at FAR=1%. CV advantage increases for smaller anomalies (+0.2 dB: 1.9x). (b) Detection reliability. DV detection rate drops to 91% at +0.2 dB (CV maintains 100% across all conditions).*
 
-Step changes simulating PLL cycle slips and OPA mode hops were evaluated using CUSUM cumulative sum tests, comparing CV and DV detection performance. For fair comparison, CUSUM detection thresholds h were calibrated to FAR=1% over 300 in-control cycles (CV: h=13.89, DV: h=13.28).
+Step changes simulating PLL cycle slips and OPA mode hops were evaluated using CUSUM cumulative sum tests [4], an alternative to Bayesian online changepoint detection [7] that is better suited to the known-shift detection problem. For fair comparison, CUSUM detection thresholds h were calibrated to FAR=1% over 300 in-control cycles (CV: h=13.89, DV: h=13.28).
 
 **Table III.** FAR=1% calibrated CUSUM detection performance. Fresh-start CUSUM from changepoint. 300 trials.
 
-| Anomaly | Delta_V_eff | CV delay | CV rate | DV delay | DV rate | **CV advantage** |
+| Anomaly | Delta_V_eff | CV median (mean) | CV rate | DV median (mean) | DV rate | **CV advantage** |
 |------|--------|--------|---------|--------|---------|-----------|
-| +0.2 dB | +4.7% | **40 cyc** | **100%** | 77 cyc | 91% | **1.9x** |
-| +0.3 dB | +7.2% | **18 cyc** | **100%** | 33 cyc | 100% | **1.8x** |
-| +0.5 dB | +12.2% | **9 cyc** | **100%** | 13 cyc | 100% | **1.4x** |
-| +1.0 dB | +25.9% | **3 cyc** | **100%** | 4 cyc | 100% | **1.3x** |
+| +0.2 dB | +4.7% | **40 cyc** (51) | **100%** | 77 cyc (113) | 91% | **1.9x** |
+| +0.3 dB | +7.2% | **18 cyc** (20) | **100%** | 33 cyc (37) | 100% | **1.8x** |
+| +0.5 dB | +12.2% | **9 cyc** (9) | **100%** | 13 cyc (13) | 100% | **1.4x** |
+| +1.0 dB | +25.9% | **3 cyc** (4) | **100%** | 4 cyc (4) | 100% | **1.3x** |
+
+Median and (mean) detection delays over 300 trials. Advantage ratio computed from medians.
 
 Two key findings:
 
@@ -190,7 +194,7 @@ When V_eff changes, all weights scale uniformly by 1/V_eff, but MWPM minimum-wei
 
 **Breaking condition: Channel asymmetric degradation.** With non-uniform V_eff across 5 WDM channels (one channel degraded by +0.038 SNU), an adaptive decoder based on per-channel V_eff estimation achieved 1.40x improvement (Exp-B5). This is because scale invariance is circumvented by relative weight changes between channels.
 
-**Implication:** High-precision V_eff estimation (Section III-B) should not be applied directly to decoder improvement, but rather to (1) anomaly detection (Section III-C), (2) recalibration triggers, (3) channel asymmetry detection, and (4) hardware health monitoring. Decoder performance improvement requires architectures not constrained by scale invariance, such as GNNs.
+**Implication:** High-precision V_eff estimation (Section III-B) should not be applied directly to decoder improvement, but rather to (1) anomaly detection (Section III-C), (2) recalibration triggers, (3) channel asymmetry detection, and (4) hardware health monitoring. Decoder performance improvement requires architectures not constrained by scale invariance, such as GNNs [10] or soft-info decoders that exploit the full analog residual structure [8].
 
 ---
 
@@ -204,7 +208,7 @@ In a d=7 system at 100 MHz clock, ~10^7 14-bit residuals are generated per secon
 
 ### B. Leveraging 30 Years of Telecommunications
 
-The GKP lattice-pilot signal correspondence enables direct transfer of telecommunications techniques to CV-QEC:
+The GKP lattice-pilot signal correspondence enables direct transfer of telecommunications techniques [9] to CV-QEC:
 
 - **MMSE estimation**: 10-15 dB better estimation accuracy than LS [1]
 - **Wiener filtering**: Optimal estimation exploiting temporal correlation of drift
