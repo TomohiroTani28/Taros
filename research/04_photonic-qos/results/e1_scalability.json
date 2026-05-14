@@ -1,0 +1,233 @@
+{
+  "d3_n1": {
+    "d": 3,
+    "n_logical": 1,
+    "tdm_cycle_us": 8.64,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 864,
+    "sc_physical_qubits": 288,
+    "sc_cycle_us": 0.54,
+    "hardware_ratio": 288.0,
+    "time_ratio": 16.0
+  },
+  "d3_n5": {
+    "d": 3,
+    "n_logical": 5,
+    "tdm_cycle_us": 10.8,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 1080,
+    "sc_physical_qubits": 360,
+    "sc_cycle_us": 0.54,
+    "hardware_ratio": 360.0,
+    "time_ratio": 20.0
+  },
+  "d3_n10": {
+    "d": 3,
+    "n_logical": 10,
+    "tdm_cycle_us": 13.5,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 1350,
+    "sc_physical_qubits": 450,
+    "sc_cycle_us": 0.54,
+    "hardware_ratio": 450.0,
+    "time_ratio": 25.0
+  },
+  "d3_n50": {
+    "d": 3,
+    "n_logical": 50,
+    "tdm_cycle_us": 67.5,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 6750,
+    "sc_physical_qubits": 2250,
+    "sc_cycle_us": 0.54,
+    "hardware_ratio": 2250.0,
+    "time_ratio": 125.0
+  },
+  "d3_n100": {
+    "d": 3,
+    "n_logical": 100,
+    "tdm_cycle_us": 135.0,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 13500,
+    "sc_physical_qubits": 4500,
+    "sc_cycle_us": 0.54,
+    "hardware_ratio": 4500.0,
+    "time_ratio": 250.0
+  },
+  "d3_n500": {
+    "d": 3,
+    "n_logical": 500,
+    "tdm_cycle_us": 675.0,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 67500,
+    "sc_physical_qubits": 22500,
+    "sc_cycle_us": 0.54,
+    "hardware_ratio": 22500.0,
+    "time_ratio": 1250.0
+  },
+  "d3_n1000": {
+    "d": 3,
+    "n_logical": 1000,
+    "tdm_cycle_us": 1350.0,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 135000,
+    "sc_physical_qubits": 45000,
+    "sc_cycle_us": 0.54,
+    "hardware_ratio": 45000.0,
+    "time_ratio": 2500.0
+  },
+  "d5_n1": {
+    "d": 5,
+    "n_logical": 1,
+    "tdm_cycle_us": 40.0,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 4000,
+    "sc_physical_qubits": 800,
+    "sc_cycle_us": 2.5,
+    "hardware_ratio": 800.0,
+    "time_ratio": 16.0
+  },
+  "d5_n5": {
+    "d": 5,
+    "n_logical": 5,
+    "tdm_cycle_us": 50.0,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 5000,
+    "sc_physical_qubits": 1000,
+    "sc_cycle_us": 2.5,
+    "hardware_ratio": 1000.0,
+    "time_ratio": 20.0
+  },
+  "d5_n10": {
+    "d": 5,
+    "n_logical": 10,
+    "tdm_cycle_us": 62.5,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 6250,
+    "sc_physical_qubits": 1250,
+    "sc_cycle_us": 2.5,
+    "hardware_ratio": 1250.0,
+    "time_ratio": 25.0
+  },
+  "d5_n50": {
+    "d": 5,
+    "n_logical": 50,
+    "tdm_cycle_us": 312.5,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 31250,
+    "sc_physical_qubits": 6250,
+    "sc_cycle_us": 2.5,
+    "hardware_ratio": 6250.0,
+    "time_ratio": 125.0
+  },
+  "d5_n100": {
+    "d": 5,
+    "n_logical": 100,
+    "tdm_cycle_us": 625.0,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 62500,
+    "sc_physical_qubits": 12500,
+    "sc_cycle_us": 2.5,
+    "hardware_ratio": 12500.0,
+    "time_ratio": 250.0
+  },
+  "d5_n500": {
+    "d": 5,
+    "n_logical": 500,
+    "tdm_cycle_us": 3125.0,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 312500,
+    "sc_physical_qubits": 62500,
+    "sc_cycle_us": 2.5,
+    "hardware_ratio": 62500.0,
+    "time_ratio": 1250.0
+  },
+  "d5_n1000": {
+    "d": 5,
+    "n_logical": 1000,
+    "tdm_cycle_us": 6250.0,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 625000,
+    "sc_physical_qubits": 125000,
+    "sc_cycle_us": 2.5,
+    "hardware_ratio": 125000.0,
+    "time_ratio": 2500.0
+  },
+  "d7_n1": {
+    "d": 7,
+    "n_logical": 1,
+    "tdm_cycle_us": 109.76,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 10976,
+    "sc_physical_qubits": 1568,
+    "sc_cycle_us": 6.86,
+    "hardware_ratio": 1568.0,
+    "time_ratio": 16.0
+  },
+  "d7_n5": {
+    "d": 7,
+    "n_logical": 5,
+    "tdm_cycle_us": 137.2,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 13720,
+    "sc_physical_qubits": 1960,
+    "sc_cycle_us": 6.86,
+    "hardware_ratio": 1960.0,
+    "time_ratio": 20.0
+  },
+  "d7_n10": {
+    "d": 7,
+    "n_logical": 10,
+    "tdm_cycle_us": 171.5,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 17150,
+    "sc_physical_qubits": 2450,
+    "sc_cycle_us": 6.86,
+    "hardware_ratio": 2450.0,
+    "time_ratio": 25.0
+  },
+  "d7_n50": {
+    "d": 7,
+    "n_logical": 50,
+    "tdm_cycle_us": 857.5,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 85750,
+    "sc_physical_qubits": 12250,
+    "sc_cycle_us": 6.86,
+    "hardware_ratio": 12250.0,
+    "time_ratio": 125.0
+  },
+  "d7_n100": {
+    "d": 7,
+    "n_logical": 100,
+    "tdm_cycle_us": 1715.0,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 171500,
+    "sc_physical_qubits": 24500,
+    "sc_cycle_us": 6.86,
+    "hardware_ratio": 24500.0,
+    "time_ratio": 250.0
+  },
+  "d7_n500": {
+    "d": 7,
+    "n_logical": 500,
+    "tdm_cycle_us": 8575.0,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 857500,
+    "sc_physical_qubits": 122500,
+    "sc_cycle_us": 6.86,
+    "hardware_ratio": 122500.0,
+    "time_ratio": 1250.0
+  },
+  "d7_n1000": {
+    "d": 7,
+    "n_logical": 1000,
+    "tdm_cycle_us": 17150.0,
+    "tdm_physical_devices": 1,
+    "tdm_total_modes": 1715000,
+    "sc_physical_qubits": 245000,
+    "sc_cycle_us": 6.86,
+    "hardware_ratio": 245000.0,
+    "time_ratio": 2500.0
+  }
+}
